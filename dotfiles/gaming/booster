@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+COMMAND=(powerprofilesctl launch -p performance)
+
+if [[ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]]; then
+    exec app2unit -- "${COMMAND[@]}" -- env "$@"
+else
+    exec "${COMMAND[@]}" -- "$@"
+fi

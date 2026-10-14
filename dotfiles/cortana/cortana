@@ -1,0 +1,278 @@
+#!/usr/bin/env bash
+# Cortana wrapper for the desktop: the agent, the API, deployment to the Pi, and notifications
+
+set -uo pipefail
+
+SCRIPT_ROOT="$(cd -- "$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")/../.." && pwd)"
+BASE_PATH="${CORTANA_PATH:-$SCRIPT_ROOT}"
+API_URL="${CORTANA_API:-}"
+API_KEY="${CORTANA_API_KEY:-}"
+PI="${CORTANA_PI:-cortana@192.168.1.117}"
+PI_PATH="${CORTANA_PI_PATH:-~/Cortana/}"
+SERVICE="cortana-desktop"
+AGENT_DIR="${CORTANA_DESKTOP_OUT:-$HOME/.local/share/cortana/desktop}"
+AGENT="$AGENT_DIR/CortanaDesktop"
+SERVICES=(kernel telegram discord web)
+
+BLUE=$'\033[1;34m'
+RESET=$'\033[0m'
+ACCENT=$'\033[38;2;81;209;246m'
+STRONG=$'\033[1m'$'\033[38;2;126;224;255m'
+MUTED=$'\033[38;2;138;164;192m'
+DIM=$'\033[2m'
+
+say() { printf '%s%s%s\n' "$BLUE" "$*" "$RESET"; }
+die() { say "$*"; exit 1; }
+
+usage() {
+	cat <<USAGE
+${STRONG}cortana${RESET} ${MUTED}- desktop agent and client${RESET}
+
+  ${ACCENT}chat${RESET}                     interactive persistent conversation
+  ${ACCENT}chat${RESET} <message>           one message through that same conversation
+  ${ACCENT}ask${RESET} <question>           one-shot question, never stored in any conversation
+  ${ACCENT}monitor${RESET} [--watch]        this machine's performance and temperatures
+  ${ACCENT}pc${RESET}                       what the Kernel last heard from this machine
+  ${ACCENT}status${RESET}                   house, sensors, automation, services
+
+  ${ACCENT}service${RESET} [start|stop|restart|build]    the resident agent
+  ${ACCENT}git${RESET} status|update [message]           version control, then tell the Kernel to update
+  ${ACCENT}api${RESET} [route] [-act|-cmd|-val|-msg|-txt|-kind X]  talk to the API directly
+  ${ACCENT}deploy${RESET} [service...] [-n|-s|-l]        sync this tree to the Pi and restart
+  ${ACCENT}notify${RESET} [-t Title]                     send piped input as a desktop notification
+  ${ACCENT}idle${RESET} on|off                           report desk idle state, for hypridle to call
+
+${DIM}Run with no arguments to start the resident agent.${RESET}
+USAGE
+}
+
+# --- agent -------------------------------------------------------------------
+
+build_agent() {
+	dotnet build "$BASE_PATH/CortanaDesktop" -o "$AGENT_DIR" --artifacts-path "$AGENT_DIR/lib"
+}
+
+dispatch_agent() {
+	if [ ! -x "$AGENT" ]; then
+		say "Building the desktop agent..."
+		build_agent || exit 1
+	fi
+	exec "$AGENT" "$@"
+}
+
+handle_service() {
+	case "${1:-}" in
+		"")        systemctl --user status "$SERVICE" ;;
+		build)     say "Building CortanaDesktop..."; build_agent && say "Build complete." ;;
+		start|stop|restart)
+			say "${1^}ing the service..."
+			systemctl --user "$1" "$SERVICE" && say "Done."
+			;;
+		*) die "Unknown service action '$1'" ;;
+	esac
+}
+
+# --- api ---------------------------------------------------------------------
+
+# api <method> <route> [json body]
+api() {
+	[ -n "$API_URL" ] || { echo "CORTANA_API is not set"; return 1; }
+
+	local method="$1" route="$2" body="${3:-}"
+	local url="${API_URL%/}/${route#/}"
+	local args=(--silent --show-error --max-time 30
+		-H 'Accept: text/plain' -H 'X-Cortana-Surface: Desktop'
+		-X "${method^^}" -w '\n%{http_code}')
+
+	[ -n "$API_KEY" ] && args+=(-H "X-Api-Key: $API_KEY")
+	[ -n "$body" ] && args+=(-H 'Content-Type: application/json' -d "$body")
+
+	local response status
+	response="$(curl "${args[@]}" "${url%/}" 2>/dev/null)" || { echo "Cortana is offline"; return 1; }
+
+	status="${response##*$'\n'}"
+	response="${response%$'\n'*}"
+
+	# The API explains refusals in the body, so prefer that over a bare status code.
+	if [ "$status" -ge 400 ] 2>/dev/null; then
+		[ -n "$response" ] && echo "$response" || echo "HTTP error $status"
+		return 1
+	fi
+
+	echo "$response"
+}
+
+handle_api() {
+	if [ $# -eq 0 ]; then
+		local identity
+		identity="$(api get '')" || { echo "Cortana is offline"; exit 1; }
+		say "$identity ~ $(api get raspberry/Temperature)"
+		return
+	fi
+
+	local route="$1" field="" value="" body=""
+	shift
+
+	while [ $# -gt 0 ]; do
+		case "$1" in
+			-act) field="action" ;;
+			-cmd) field="command" ;;
+			-val) field="value" ;;
+			-msg) field="message" ;;
+			-txt) field="text" ;;
+			-kind) field="kind" ;;
+			*) die "Unknown option '$1'" ;;
+		esac
+		shift
+		value="${1:-}"
+		shift || true
+		body="${body:+$body,}\"$field\":\"$value\""
+	done
+
+	if [ -n "$body" ]; then
+		say "$(api post "$route" "{$body}")"
+	else
+		say "$(api get "$route")"
+	fi
+}
+
+# --- git ---------------------------------------------------------------------
+
+handle_git() {
+	case "${1:-status}" in
+		status)
+			git -C "$BASE_PATH" status
+			;;
+		update)
+			shift
+			local message="${*:-Update}"
+			say "Committing with message '$message'..."
+			git -C "$BASE_PATH" add . && git -C "$BASE_PATH" commit -m "$message" && git -C "$BASE_PATH" push || return 1
+			say "Pushed. Telling the Kernel to update..."
+			sleep 1
+			say "$(api post services/Kernel '{"action":"Update"}')"
+			;;
+		*) die "Unknown git action '$1'" ;;
+	esac
+}
+
+# --- deploy ------------------------------------------------------------------
+
+remote() { ssh -o ConnectTimeout=10 "$PI" bash -s <<< "$1"; }
+
+started_at() { remote "systemctl --user show $1 -p ActiveEnterTimestamp --value" 2>/dev/null | tr -d '\r'; }
+
+handle_deploy() {
+	[ -f "$BASE_PATH/Cortana.slnx" ] || die "CORTANA_PATH is '$BASE_PATH', which is not a Cortana checkout. Refusing to sync."
+
+	if [ "$BASE_PATH" != "$SCRIPT_ROOT" ] && [ -z "${CORTANA_DEPLOY_FOREIGN:-}" ]; then
+		echo "CORTANA_PATH points at $BASE_PATH"
+		echo "but this script lives in    $SCRIPT_ROOT"
+		echo
+		echo "Deploy syncs with --delete, so the wrong tree overwrites the Pi."
+		die "Fix CORTANA_PATH, or set CORTANA_DEPLOY_FOREIGN=1 if you meant it."
+	fi
+
+	local dry="" restart=1 follow="" targets=()
+
+	while [ $# -gt 0 ]; do
+		case "$1" in
+			-n|--dry-run)    dry="--dry-run" ;;
+			-s|--no-restart) restart=0 ;;
+			-l|--logs)       follow=1 ;;
+			*)
+				[[ " ${SERVICES[*]} " == *" $1 "* ]] || die "Unknown service '$1'"
+				targets+=("cortana-$1")
+				;;
+		esac
+		shift
+	done
+
+	[ ${#targets[@]} -eq 0 ] && targets=(cortana-kernel)
+
+	say "Syncing $BASE_PATH -> $PI:$PI_PATH"
+	rsync -az --delete --info=stats1 $dry \
+		--exclude '.git/' --exclude 'bin/' --exclude 'obj/' --exclude 'out/' \
+		--exclude '.claude/' --exclude '.vscode/' --exclude '*.user' \
+		-e "ssh -o ConnectTimeout=10" "${BASE_PATH%/}/" "$PI:$PI_PATH" || exit 1
+
+	[ -n "$dry" ] && { say "Dry run, nothing changed."; return; }
+	[ "$restart" -eq 0 ] && { say "Synced, services untouched."; return; }
+
+	say "Reinstalling the unit files"
+	remote "cp ${PI_PATH}CortanaKernel/Scripts/*.service ~/.config/systemd/user/ && systemctl --user daemon-reload"
+
+	local -A before
+	for service in "${targets[@]}"; do before[$service]="$(started_at "$service")"; done
+
+	for service in "${targets[@]}"; do
+		say "Restarting $service (it publishes from scratch, so this takes a while)"
+		remote "systemctl --user restart $service --no-block"
+	done
+
+	say "Waiting for the new build to come up"
+	for service in "${targets[@]}"; do
+		local ready=0
+		for _ in $(seq 90); do
+			local now
+			now="$(started_at "$service")"
+			if [ -n "$now" ] && [ "$now" != "${before[$service]}" ] && remote "systemctl --user is-active --quiet $service"; then
+				ready=1
+				break
+			fi
+			sleep 10
+		done
+		[ "$ready" -eq 1 ] || say "WARNING: $service did not come back up, the old build may still be running"
+	done
+
+	remote 'for s in cortana-kernel cortana-telegram cortana-discord cortana-web; do printf "  %-18s %s\n" "$s" "$(systemctl --user is-active $s)"; done'
+
+	[ -n "$follow" ] && ssh -t "$PI" "journalctl --user -u ${targets[0]} -f -n 30"
+}
+
+# --- notify ------------------------------------------------------------------
+
+handle_notify() {
+	local title="Cortana"
+	[ "${1:-}" = "-t" ] && { title="${2:-Cortana}"; shift 2; }
+
+	[ -t 0 ] && die "'notify' expects piped input, for example: cortana api sensors | cortana notify"
+
+	local message
+	message="$(sed -e 's/\x1b\[[0-9;]*m//g')"
+	message="${message#"${message%%[![:space:]]*}"}"
+	message="${message%"${message##*[![:space:]]}"}"
+	[ -n "$message" ] || die "Nothing was piped in."
+
+	notify-send -i "$BASE_PATH/CortanaLib/Storage/cortana.jpg" -u low -a cortana "$title" "$message"
+}
+
+handle_idle() {
+	local state="${1:-}"
+	local dir="${XDG_RUNTIME_DIR:-/tmp}/cortana"
+
+	mkdir -p "$dir"
+
+	case "$state" in
+		on|start|1)  printf '1' > "$dir/idle" ;;
+		off|stop|0)  printf '0' > "$dir/idle" ;;
+		"")          cat "$dir/idle" 2>/dev/null || echo 0 ;;
+		*)           die "Usage: cortana idle on|off" ;;
+	esac
+}
+
+# --- entry point -------------------------------------------------------------
+
+command="${1:-help}"
+[ $# -gt 0 ] && shift
+
+case "$command" in
+	chat|ask|monitor|status|pc) dispatch_agent "$command" "$@" ;;
+	service)                    handle_service "$@" ;;
+	git)                        handle_git "$@" ;;
+	api)                        handle_api "$@" ;;
+	deploy)                     handle_deploy "$@" ;;
+	notify)                     handle_notify "$@" ;;
+	idle)                       handle_idle "$@" ;;
+	*)                          usage ;;
+esac

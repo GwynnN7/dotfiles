@@ -1,0 +1,627 @@
+[environments]
+available = ["caelestia", "noctalia"]
+
+# ==============================================================================
+# CATEGORY: shell
+# ==============================================================================
+
+[[components]]
+name = "caelestia"
+category = "shell"
+environment = "caelestia"
+default = true
+packages = ["local:caelestia"]
+post_install = [
+    "test -f ${XDG_STATE_HOME:-$HOME/.local/state}/caelestia/scheme.json || caelestia scheme set -n caelestia",
+    "caelestia shell -k >/dev/null; sleep 1; caelestia shell -d >/dev/null",
+]
+post_deploy = [
+    "caelestia shell -k >/dev/null; sleep 1; caelestia shell -d >/dev/null",
+]
+[[components.files]]
+src = "caelestia"
+dest = "$XDG_CONFIG_HOME/caelestia"
+
+[[components]]
+name = "noctalia"
+category = "shell"
+environment = "noctalia"
+default = true
+packages = ["noctalia-shell"]
+[[components.files]]
+src = "noctalia"
+dest = "$XDG_CONFIG_HOME/noctalia"
+
+# ==============================================================================
+# CATEGORY: wm
+# ==============================================================================
+
+[[components]]
+name = "hypr"
+category = "wm"
+default = true
+packages = [
+    "hyprland",
+    "xdg-desktop-portal-hyprland",
+    "xdg-desktop-portal-gtk",
+    "ttf-jetbrains-mono-nerd",
+]
+post_install = [
+    "hyprctl reload >/dev/null",
+    "hyprpm update",
+    "hyprpm reload",
+]
+post_deploy = [
+    "hyprctl reload >/dev/null",
+    "hyprpm update",
+    "hyprpm reload",
+]
+[[components.files]]
+src = "hypr"
+dest = "$XDG_CONFIG_HOME/hypr"
+[[components.files]]
+src = "xdg-desktop-portal"
+dest = "$XDG_CONFIG_HOME/xdg-desktop-portal"
+
+[[components]]
+name = "hyprpm"
+category = "wm"
+default = false
+packages = []
+post_install = [
+    "hyprpm purge-cache",
+    "hyprpm reload",
+    "hyprpm update",
+    "hyprpm add https://github.com/zjeffer/split-monitor-workspaces || true",
+    "hyprpm add https://github.com/yayuuu/hyprland-scroll-overview || true",
+    "hyprpm add https://github.com/gfhdhytghd/hymission || true",
+    "hyprpm enable split-monitor-workspaces || true",
+    "hyprpm enable scrolloverview || true",
+    "hyprpm enable hymission || true",
+    "hyprpm reload",
+]
+
+[[components]]
+name = "systemd"
+category = "wm"
+default = true
+packages = ["uwsm", "app2unit"]
+[[components.files]]
+src = "uwsm"
+dest = "$XDG_CONFIG_HOME/uwsm"
+[[components.files]]
+src = "environment.d"
+dest = "$XDG_CONFIG_HOME/environment.d"
+
+# ==============================================================================
+# CATEGORY: system
+# ==============================================================================
+
+[[components]]
+name = "system"
+category = "system"
+default = true
+packages = ["gnome-keyring", "networkmanager", "bluez", "bluez-utils"]
+
+[[components]]
+name = "audio"
+category = "system"
+default = true
+packages = [
+    "pipewire",
+    "pipewire-pulse",
+    "pipewire-audio",
+    "pipewire-alsa",
+    "pipewire-jack",
+    "wireplumber",
+    "pwvucontrol",
+    "playerctl",
+]
+[[components.files]]
+src = "wireplumber"
+dest = "$XDG_CONFIG_HOME/wireplumber"
+
+[[components]]
+name = "udiskie"
+category = "system"
+default = true
+packages = ["udiskie"]
+[[components.files]]
+src = "udiskie"
+dest = "$XDG_CONFIG_HOME/udiskie"
+
+[[components]]
+name = "clipboard"
+category = "system"
+default = true
+packages = ["wl-clipboard", "cliphist", "wtype"]
+
+# ==============================================================================
+# CATEGORY: login
+# ==============================================================================
+
+[[components]]
+name = "greetd"
+category = "login"
+default = false
+packages = ["greetd", "greetd-tuigreet"]
+post_install = [
+    "sudo systemctl daemon-reload",
+    "sudo systemctl enable --now greetd.service || true",
+]
+[[components.files]]
+src = "greetd/config.toml"
+dest = "/etc/greetd/config.toml"
+sudo = true
+[[components.files]]
+src = "greetd/greetd-switcher"
+dest = "/usr/local/bin/greetd-switcher"
+sudo = true
+
+[[components]]
+name = "sddm"
+category = "login"
+environment = "caelestia"
+default = false
+packages = [
+    "sddm",
+    "caelestia-sddm-minimalistv2-git",
+    "layer-shell-qt",
+]
+post_install = [
+    "sudo systemctl daemon-reload",
+    "sudo systemctl enable --now sddm.service || true",
+    "sudo /usr/share/sddm/themes/caelestia/scripts/sync.sh >/dev/null",
+]
+post_deploy = [
+    "sudo /usr/share/sddm/themes/caelestia/scripts/sync.sh >/dev/null",
+]
+[[components.files]]
+src = "sddm/caelestia.conf"
+dest = "/etc/sddm.conf.d/caelestia.conf"
+sudo = true
+[[components.files]]
+src = "sddm/sddm.lua"
+dest = "/opt/hypr/sddm.lua"
+sudo = true
+[[components.files]]
+src = "sddm/caelestia-sddm"
+dest = "/etc/sudoers.d/caelestia-sddm"
+sudo = true
+
+# ==============================================================================
+# CATEGORY: terminal
+# ==============================================================================
+
+[[components]]
+name = "foot"
+category = "terminal"
+default = true
+packages = ["foot", "fish", "ttf-jetbrains-mono-nerd"]
+[[components.files]]
+src = "foot"
+dest = "$XDG_CONFIG_HOME/foot"
+
+[[components]]
+name = "fish"
+category = "terminal"
+default = true
+packages = ["fish", "eza", "zoxide", "direnv"]
+[[components.files]]
+src = "fish"
+dest = "$XDG_CONFIG_HOME/fish"
+
+[[components]]
+name = "starship"
+category = "terminal"
+default = true
+packages = ["starship"]
+[[components.files]]
+src = "starship.toml"
+dest = "$XDG_CONFIG_HOME/starship.toml"
+
+[[components]]
+name = "fastfetch"
+category = "terminal"
+default = true
+packages = ["fastfetch"]
+[[components.files]]
+src = "fastfetch"
+dest = "$XDG_CONFIG_HOME/fastfetch"
+
+[[components]]
+name = "monitor"
+category = "terminal"
+default = true
+packages = ["btop", "nvtop", "ncdu"]
+post_install = ["killall -USR2 btop 2>/dev/null || true"]
+post_deploy = ["killall -USR2 btop 2>/dev/null || true"]
+[[components.files]]
+src = "btop"
+dest = "$XDG_CONFIG_HOME/btop"
+
+[[components]]
+name = "micro"
+category = "terminal"
+default = true
+packages = ["micro"]
+[[components.files]]
+src = "micro"
+dest = "$XDG_CONFIG_HOME/micro"
+[[components.files]]
+src = "applications/micro.desktop"
+dest = "$XDG_DATA_HOME/applications/micro.desktop"
+
+[[components]]
+name = "nvim"
+category = "terminal"
+environment = "caelestia"
+default = false
+packages = ["neovim"]
+[[components.files]]
+src = "nvim/colors/caelestia.lua"
+dest = "$XDG_CONFIG_HOME/nvim/colors/caelestia.lua"
+[[components.files]]
+src = "nvim/lua/plugins/caelestia.lua"
+dest = "$XDG_CONFIG_HOME/nvim/lua/plugins/caelestia.lua"
+
+[[components]]
+name = "yazi"
+category = "terminal"
+default = true
+packages = ["yazi", "7zip", "ffmpeg"]
+[[components.files]]
+src = "yazi"
+dest = "$XDG_CONFIG_HOME/yazi"
+
+[[components]]
+name = "pacseek"
+category = "terminal"
+default = true
+packages = ["pacseek"]
+[[components.files]]
+src = "pacseek"
+dest = "$XDG_CONFIG_HOME/pacseek"
+
+[[components]]
+name = "tools"
+category = "terminal"
+default = true
+packages = [
+    "git",
+    "curl",
+    "trash-cli",
+    "jq",
+    "lazygit",
+    "bat",
+    "ripgrep",
+    "ydotool",
+    "hyprpicker",
+    "hyprsunset",
+    "hypridle",
+    "xdg-user-dirs",
+]
+post_install = ["xdg-user-dirs-update"]
+post_deploy = ["xdg-user-dirs-update"]
+[[components.files]]
+src = "repo:GwynnN7/Wallpaper"
+dest = "$HOME/Pictures/Wallpaper"
+
+# ==============================================================================
+# CATEGORY: theming
+# ==============================================================================
+
+[[components]]
+name = "gtk"
+category = "theming"
+default = true
+packages = ["adw-gtk-theme", "papirus-icon-theme", "papirus-folders"]
+
+[[components]]
+name = "qt"
+category = "theming"
+default = true
+packages = [
+    "qtengine-git",
+    "frameworkintegration",
+    "darkly-bin",
+    "papirus-icon-theme",
+    "papirus-folders",
+]
+
+[[components]]
+name = "fonts"
+category = "theming"
+default = true
+packages = ["noto-fonts", "noto-fonts-cjk", "noto-fonts-emoji"]
+
+[[components]]
+name = "plymouth"
+category = "system"
+default = false
+packages = ["plymouth", "plymouth-theme-darth-vader-git"]
+post_install = [
+    "sudo plymouth-set-default-theme -R darth_vader",
+]
+
+# ==============================================================================
+# CATEGORY: gaming
+# ==============================================================================
+
+[[components]]
+name = "gaming-core"
+category = "gaming"
+default = true
+packages = ["cachyos-gaming-applications"]
+post_install = [
+	"flatpak install -y net.retrodeck.retrodeck"
+]
+[[components.files]]
+src = "gaming/scx_loader.toml"
+dest = "/etc/scx_loader/config.toml"
+sudo = true
+[[components.files]]
+src = "gaming/gaming"
+dest = "/etc/sudoers.d/gaming"
+sudo = true
+
+[[components]]
+name = "gamemode"
+category = "gaming"
+default = false
+packages = ["gamemode"]
+[[components.files]]
+src = "gaming/gamemode.ini"
+dest = "/usr/share/gamemode/gamemode.ini"
+sudo = true
+
+[[components]]
+name = "mangohud"
+category = "gaming"
+default = true
+packages = []
+[[components.files]]
+src = "mangohud"
+dest = "$XDG_CONFIG_HOME/MangoHud"
+
+[[components]]
+name = "hyprland-booster"
+category = "gaming"
+default = true
+packages = ["hyprland-focused-booster"]
+[[components.files]]
+src = "gaming/booster"
+dest = "/usr/local/bin/booster"
+sudo = true
+[[components.files]]
+src = "gaming/focus-booster-override.conf"
+dest = "$XDG_CONFIG_HOME/systemd/user/hyprland-focused-booster.service.d/override.conf"
+
+[[components]]
+name = "steamos-session"
+category = "gaming"
+default = true
+packages = ["gamescope-session-cachyos"]
+post_install = [
+    "steamos-session-select persistent"
+]
+[[components.files]]
+src = "steamos/steam-set-session"
+dest = "/usr/lib/steamos/steam-set-session"
+sudo = true
+[[components.files]]
+src = "steamos/steamos-session-select"
+dest = "/usr/bin/steamos-session-select"
+sudo = true
+
+[[components]]
+name = "decky-loader"
+category = "gaming"
+default = true
+packages = []
+post_install = [
+    "curl -L https://github.com/SteamDeckHomebrew/decky-installer/releases/latest/download/install_release.sh | sh",
+]
+[[components.files]]
+src = "steamos/homebrew"
+dest = "$HOME/homebrew"
+sudo = true
+[[components.files]]
+src = "steamos/dlo"
+dest = "$HOME/.dlo"
+
+[[components]]
+name = "lact"
+category = "gaming"
+default = true
+packages = ["lact"]
+[[components.files]]
+src = "gaming/lact/lact.yaml"
+dest = "/etc/lact/config.yaml"
+sudo = true
+[[components.files]]
+src = "gaming/lact/config.yaml"
+dest = "$XDG_CONFIG_HOME/lact/config.yaml"
+
+[[components]]
+name = "retrodeck-bios"
+category = "gaming"
+default = false
+packages = ["flatpak"]
+post_install = [
+    "flatpak install -y net.retrodeck.retrodeck",
+    "flatpak override --user --talk-name=org.freedesktop.Flatpak net.retrodeck.retrodeck",
+    "mkdir -p $HOME/Games/Retrodeck/Switch",
+    "mkdir -p $HOME/Games/Retrodeck/retrodeck/roms/apps",
+    "curl -fsSL https://raw.githubusercontent.com/Abdess/retrobios/main/install.sh | sh -s -- --platform retrodeck --dest $HOME/Games/Retrodeck/retrodeck/bios",
+]
+[[components.files]]
+src = "retrodeck/es_systems.xml"
+dest = "$HOME/.var/app/net.retrodeck.retrodeck/config/ES-DE/custom_systems/es_systems.xml"
+[[components.files]]
+src = "retrodeck/Switch.sh"
+dest = "$HOME/Games/Retrodeck/retrodeck/roms/apps/Switch.sh"
+
+# ==============================================================================
+# CATEGORY: apps
+# ==============================================================================
+
+[[components]]
+name = "thunar"
+category = "apps"
+default = true
+packages = ["thunar", "thunar-archive-plugin", "sshfs"]
+[[components.files]]
+src = "thunar"
+dest = "$XDG_CONFIG_HOME/Thunar"
+[[components.files]]
+src = "mimeapps.list"
+dest = "$XDG_CONFIG_HOME/mimeapps.list"
+[[components.files]]
+src = "xfce4"
+dest = "$XDG_CONFIG_HOME/xfce4"
+
+[[components]]
+name = "astra"
+category = "apps"
+default = true
+packages = [
+    "local:stowaway",
+    "local:wormhole",
+    "local:flightdeck",
+    "astra-airlock-git",
+    "astra-atlas-git",
+    "astra-foundry-git",
+]
+[[components.files]]
+src = "astra/atlas.conf"
+dest = "$XDG_CONFIG_HOME/astra-atlas/atlas.conf"
+[[components.files]]
+src = "caelestia/stowaway.json"
+dest = "$XDG_CONFIG_HOME/caelestia/stowaway.json"
+
+[[components]]
+name = "software"
+category = "apps"
+default = false
+packages = ["sone-bin", "zen-browser-bin", "telegram-desktop", "equibop"]
+[[components.files]]
+src = "applications/zen.desktop"
+dest = "$XDG_DATA_HOME/applications/zen.desktop"
+
+[[components]]
+name = "applications"
+category = "apps"
+default = false
+packages = [
+    "gimp",
+    "vlc",
+    "celluloid",
+    "loupe",
+    "evince",
+    "file-roller",
+    "gparted",
+    "xorg-xhost",
+]
+
+[[components]]
+name = "kdeconnect"
+category = "apps"
+default = false
+packages = ["kdeconnect", "local:kdeconnect"]
+post_install = [
+    "systemctl --user daemon-reload",
+    "systemctl --user stop hypr-kdeconnect-portal.service",
+    "systemctl --user restart xdg-desktop-portal",
+]
+
+[[components]]
+name = "openrgb"
+category = "desktop"
+environment = "caelestia"
+default = false
+packages = ["openrgb-git", "caelestia-rgb-sync"]
+post_install = [
+    "rm -f $XDG_CONFIG_HOME/caelestia-rgb/config.toml 2>/dev/null || true",
+    "caelestia-rgb-sync init",
+    "caelestia-rgb-sync calibrate device",
+    "caelestia-rgb-sync calibrate global",
+]
+post_deploy = [
+    "caelestia-rgb-sync apply",
+]
+
+# ==============================================================================
+# CATEGORY: development
+# ==============================================================================
+
+[[components]]
+name = "development"
+category = "development"
+default = false
+packages = [
+    "visual-studio-code-bin",
+    "git",
+    "github-cli",
+    "android-tools",
+    "eigen",
+    "openblas",
+    "python-numpy",
+    "python-pandas",
+    "python-matplotlib",
+]
+post_install = [
+    "code --install-extension $CAELESTIA_DOTS/vscode/caelestia-vscode-integration/caelestia-vscode-integration-*.vsix",
+]
+[[components.files]]
+src = "vscode/settings.json"
+dest = "$XDG_CONFIG_HOME/Code/User/settings.json"
+[[components.files]]
+src = "vscode/keybindings.json"
+dest = "$XDG_CONFIG_HOME/Code/User/keybindings.json"
+[[components.files]]
+src = "vscode/flags.conf"
+dest = "$XDG_CONFIG_HOME/code-flags.conf"
+
+[[components]]
+name = "rocm"
+category = "development"
+default = false
+packages = [
+    "rocm-hip-sdk",
+    "rocm-opencl-sdk",
+    "rocm-ml-sdk",
+    "rocminfo",
+    "rocm-smi-lib",
+    "unsloth-bin",
+]
+
+# ==============================================================================
+# CATEGORY: desktop
+# ==============================================================================
+
+[[components]]
+name = "cortana"
+category = "desktop"
+default = false
+packages = ["dotnet-sdk"]
+post_install = [
+    "systemctl --user daemon-reload",
+    "systemctl --user enable cortana-desktop.service",
+]
+[[components.files]]
+src = "repo:GwynnN7/Cortana"
+dest = "$HOME/Projects/Cortana"
+[[components.files]]
+src = "cortana/Settings.json"
+dest = "$XDG_CONFIG_HOME/cortana/Settings.json"
+[[components.files]]
+src = "cortana/cortana"
+dest = "$XDG_BIN_HOME/cortana"
+[[components.files]]
+src = "cortana/cortana-desktop.service"
+dest = "$XDG_CONFIG_SERVICE/cortana-desktop.service"
+[[components.files]]
+src = "cortana/efibootmgr"
+dest = "/etc/sudoers.d/efibootmgr"
+sudo = true
