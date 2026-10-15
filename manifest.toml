@@ -13,10 +13,11 @@ default = true
 packages = ["aur:quickshell-git", "local:caelestia", "local:stowaway"]
 post_install = [
     "test -f ${XDG_STATE_HOME:-$HOME/.local/state}/caelestia/scheme.json || caelestia scheme set -n caelestia",
-    "caelestia shell -k >/dev/null; sleep 1; caelestia shell -d >/dev/null",
+    "caelestia shell -k >/dev/null 2>&1; sleep 1; caelestia shell -d >/dev/null 2>&1",
 ]
 post_deploy = [
-    "caelestia shell -k >/dev/null; sleep 1; caelestia shell -d >/dev/null",
+	"serpantinumd stop >/dev/null 2>&1",
+    "caelestia shell -k >/dev/null 2>&1; sleep 1; caelestia shell -d >/dev/null 2>&1",
 ]
 [[components.files]]
 src = "caelestia"
@@ -33,7 +34,8 @@ packages = [
     "matugen"
 ]
 post_install = [
-    "serpantinum reload 2>/dev/null || serpantinumd start >/dev/null 2>&1 &",
+	"caelestia shell -k >/dev/null 2>&1",
+    "serpantinumd stop >/dev/null 2>&1; sleep 1; serpantinumd start >/dev/null 2>&1",
 ]
 post_deploy = [
     "serpantinum reload 2>/dev/null || true",

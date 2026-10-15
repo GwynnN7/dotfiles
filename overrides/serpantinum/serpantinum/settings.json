@@ -1,0 +1,240 @@
+{
+  "theme": {
+    "fontFamily": "Adwaita Sans",
+    "borderRadius": 8,
+    "activePreset": "Matugen",
+    "matugen": true,
+    "colors": {
+      "base": "#100f0f",
+      "blue": "#4385be",
+      "crust": "#282726",
+      "green": "#879a39",
+      "mantle": "#1c1b1a",
+      "maroon": "#af3029",
+      "mauve": "#ce5d97",
+      "overlay0": "#403e3c",
+      "overlay1": "#575653",
+      "overlay2": "#706f6c",
+      "peach": "#da702c",
+      "pink": "#d14d85",
+      "red": "#d14d41",
+      "sapphire": "#205ea6",
+      "subtext0": "#878580",
+      "subtext1": "#b7b5ac",
+      "surface0": "#1c1b1a",
+      "surface1": "#282726",
+      "surface2": "#343331",
+      "teal": "#3aa99f",
+      "text": "#cecdc3",
+      "yellow": "#d0a215"
+    }
+  },
+  "general": {
+    "location": {
+      "ip": "2a00:6d43:903:3f01:739a:d086:c051:1bfa",
+      "latitude": 43.461442,
+      "longitude": 11.87696,
+      "city": "Arezzo",
+      "region": "Tuscany",
+      "region_code": "52",
+      "country_name": "Italy",
+      "country_code": "IT",
+      "postal": "52020",
+      "timezone": "Europe/Rome",
+      "utc_offset": "+0200",
+      "currency": "EUR",
+      "languages": "it-IT,de-IT,fr-IT,sc,ca,co,sl",
+      "asn": "AS202613",
+      "org": "Aruba S.p.A.",
+      "source": "ipapi.co",
+      "updated_at": 1791971358
+    },
+    "language": "en",
+    "avatarPath": "/home/gwynn7/.face",
+    "muteSfx": false,
+    "sfxVolume": 100,
+    "screenshotCaptureOnRelease": false,
+    "quickactions": true,
+    "weatherInterval": 15,
+    "weatherUnit": "metric"
+  },
+  "wallpaperDir": "/home/gwynn7/Pictures/Wallpaper",
+  "idle": {
+    "enabled": true,
+    "manualInhibit": false,
+    "actions": {
+      "dim": {
+        "id": "dim",
+        "name": "Dim Screen",
+        "timeout": 120,
+        "enabled": true,
+        "respectInhibitors": true,
+        "mprisInhibit": true,
+        "warningTimeout": 0,
+        "warningCommand": "",
+        "beforeCommand": "",
+        "resumeCommand": "",
+        "isCustom": false
+      },
+      "lock": {
+        "id": "lock",
+        "name": "Lock Session",
+        "timeout": 300,
+        "enabled": true,
+        "respectInhibitors": true,
+        "mprisInhibit": true,
+        "warningTimeout": 10,
+        "warningCommand": "",
+        "beforeCommand": "",
+        "resumeCommand": "",
+        "isCustom": false
+      },
+      "dpms": {
+        "id": "dpms",
+        "name": "Display Off (DPMS)",
+        "timeout": 360,
+        "enabled": true,
+        "respectInhibitors": true,
+        "mprisInhibit": true,
+        "warningTimeout": 0,
+        "warningCommand": "",
+        "beforeCommand": "",
+        "resumeCommand": "",
+        "isCustom": false
+      },
+      "suspend": {
+        "id": "suspend",
+        "name": "System Suspend",
+        "timeout": 600,
+        "enabled": true,
+        "respectInhibitors": true,
+        "mprisInhibit": true,
+        "warningTimeout": 30,
+        "warningCommand": "",
+        "isCustom": false
+      }
+    },
+    "customActions": []
+  },
+  "notifications": {
+    "dnd": false,
+    "position": "top right",
+    "horizontalPosition": 88,
+    "verticalPosition": 15,
+    "sound": true,
+    "soundFile": "/home/gwynn7/.local/share/serpantinum/src/assets/sounds/notifications/Botanica.wav",
+    "showEmptyGraphic": true
+  },
+  "launcher": {
+    "position": "center",
+    "width": 600,
+    "itemCount": 10,
+    "terminalCommand": "kitty -e",
+    "smartRanking": true
+  },
+  "display": {
+    "monitors": {
+      "DP-1": {
+        "enabled": false
+      },
+      "HDMI-A-1": {
+        "enabled": false
+      }
+    }
+  },
+  "dock": {
+    "enabled": true,
+    "position": "bottom",
+    "onTop": true,
+    "elementSize": 44,
+    "floating": false,
+    "opacity": 100,
+    "exclusive": false,
+    "autohide": true,
+    "smartAutohide": false,
+    "autohideTimeout": 1000,
+    "editing": false,
+    "apps": [
+      {
+        "name": "SONE",
+        "comment": "Native Linux client for TIDAL — lossless and bit-perfect audio streaming",
+        "desktop_id": "SONE",
+        "icon": "sone"
+      },
+      {
+        "name": "Telegram",
+        "comment": "New era of messaging",
+        "desktop_id": "org.telegram.desktop",
+        "icon": "org.telegram.desktop"
+      },
+      {
+        "name": "Zen Browser",
+        "comment": "A fast, private and secure web browser built to improve your day-to-day experience.",
+        "desktop_id": "zen",
+        "icon": "/usr/share/icons/hicolor/128x128/apps/zen-browser.png"
+      },
+      {
+        "name": "Files",
+        "comment": "Access and organize files",
+        "desktop_id": "org.gnome.Nautilus",
+        "icon": "org.gnome.Nautilus"
+      }
+    ],
+    "overrideBoundsCorrection": false,
+    "enableScrolling": false,
+    "visibleElements": 7,
+    "hoverScale": 120,
+    "cascadeScale": true,
+    "focusRunning": true,
+    "showRunningIndicators": true,
+    "showRunningApps": true,
+    "runningScope": "output"
+  },
+  "bar": {
+    "position": "top",
+    "width": 100,
+    "opacity": 100,
+    "style": "modular",
+    "distinctPills": false,
+    "time": {
+      "format": "HH:mm:ss"
+    },
+    "autohide": false,
+    "autohideTimeout": 1000,
+    "groupColors": {},
+    "modules": {
+      "left": [
+        "left",
+        "workspaces",
+        "media",
+        "vis"
+      ],
+      "center": [
+        "timedate",
+        "info",
+        "sysmon"
+      ],
+      "right": [
+        "tray",
+        [
+          "kb",
+          "wifi",
+          "bt",
+          "vol",
+          "bat"
+        ]
+      ]
+    },
+    "workspacesStyle": "pacman",
+    "workspaceCount": 4,
+    "hideEmptyWorkspaces": false,
+    "timeStyle": "material",
+    "visContinuous": true,
+    "sysmonStyle": "wave",
+    "wifiStyle": "text",
+    "btStyle": "text",
+    "volStyle": "text",
+    "kbShowIcon": false
+  }
+}
+
