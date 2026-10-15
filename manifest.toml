@@ -64,8 +64,9 @@ dest = "$XDG_CONFIG_HOME/xdg-desktop-portal"
 name = "hyprpm"
 category = "wm"
 default = false
+ask = true
 packages = []
-post_install = [
+post_deploy = [
     "hyprpm purge-cache",
     "hyprpm reload",
     "hyprpm update",
@@ -417,6 +418,7 @@ sudo = true
 name = "decky-loader"
 category = "gaming"
 default = true
+ask = true
 packages = []
 post_install = [
     "curl -L https://github.com/SteamDeckHomebrew/decky-installer/releases/latest/download/install_release.sh | sh",
@@ -447,12 +449,15 @@ dest = "$XDG_CONFIG_HOME/lact/config.yaml"
 name = "retrodeck-bios"
 category = "gaming"
 default = false
+ask = true
 packages = ["flatpak"]
 post_install = [
     "flatpak install -y net.retrodeck.retrodeck",
     "flatpak override --user --talk-name=org.freedesktop.Flatpak net.retrodeck.retrodeck",
     "mkdir -p $HOME/Games/Retrodeck/Switch",
     "mkdir -p $HOME/Games/Retrodeck/retrodeck/roms/apps",
+]
+post_deploy = [
     "curl -fsSL https://raw.githubusercontent.com/Abdess/retrobios/main/install.sh | sh -s -- --platform retrodeck --dest $HOME/Games/Retrodeck/retrodeck/bios",
 ]
 [[components.files]]
