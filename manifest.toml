@@ -27,10 +27,7 @@ name = "noctalia"
 category = "shell"
 environment = "noctalia"
 default = true
-packages = ["noctalia-shell"]
-[[components.files]]
-src = "noctalia"
-dest = "$XDG_CONFIG_HOME/noctalia"
+packages = ["noctalia"]
 
 # ==============================================================================
 # CATEGORY: wm
@@ -161,7 +158,6 @@ sudo = true
 [[components]]
 name = "sddm"
 category = "login"
-environment = "caelestia"
 default = false
 packages = [
     "sddm",
@@ -180,6 +176,7 @@ post_deploy = [
 src = "sddm/caelestia.conf"
 dest = "/etc/sddm.conf.d/caelestia.conf"
 sudo = true
+environment = "caelestia"
 [[components.files]]
 src = "sddm/sddm.lua"
 dest = "/opt/hypr/sddm.lua"
@@ -188,6 +185,7 @@ sudo = true
 src = "sddm/caelestia-sddm"
 dest = "/etc/sudoers.d/caelestia-sddm"
 sudo = true
+environment = "caelestia"
 
 # ==============================================================================
 # CATEGORY: terminal
@@ -255,15 +253,16 @@ dest = "$XDG_DATA_HOME/applications/micro.desktop"
 [[components]]
 name = "nvim"
 category = "terminal"
-environment = "caelestia"
 default = false
 packages = ["neovim"]
 [[components.files]]
 src = "nvim/colors/caelestia.lua"
 dest = "$XDG_CONFIG_HOME/nvim/colors/caelestia.lua"
+environment = "caelestia"
 [[components.files]]
 src = "nvim/lua/plugins/caelestia.lua"
 dest = "$XDG_CONFIG_HOME/nvim/lua/plugins/caelestia.lua"
+environment = "caelestia"
 
 [[components]]
 name = "yazi"
@@ -370,10 +369,6 @@ name = "gamemode"
 category = "gaming"
 default = false
 packages = ["gamemode"]
-[[components.files]]
-src = "gaming/gamemode.ini"
-dest = "/usr/share/gamemode/gamemode.ini"
-sudo = true
 
 [[components]]
 name = "mangohud"
@@ -570,9 +565,6 @@ packages = [
     "python-pandas",
     "python-matplotlib",
 ]
-post_install = [
-    "code --install-extension $CAELESTIA_DOTS/vscode/caelestia-vscode-integration/caelestia-vscode-integration-*.vsix",
-]
 [[components.files]]
 src = "vscode/settings.json"
 dest = "$XDG_CONFIG_HOME/Code/User/settings.json"
@@ -582,6 +574,15 @@ dest = "$XDG_CONFIG_HOME/Code/User/keybindings.json"
 [[components.files]]
 src = "vscode/flags.conf"
 dest = "$XDG_CONFIG_HOME/code-flags.conf"
+
+[[components]]
+name = "vscode-caelestia"
+category = "development"
+environment = "caelestia"
+default = false
+post_install = [
+    "code --install-extension ${XDG_DATA_HOME:-$HOME/.local/share}/waysync/repo/overrides/caelestia/vscode/caelestia-vscode-integration/caelestia-vscode-integration-*.vsix",
+]
 
 [[components]]
 name = "rocm"
