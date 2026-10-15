@@ -10,7 +10,7 @@ name = "caelestia"
 category = "shell"
 environment = "caelestia"
 default = true
-packages = ["aur:quickshell-git", "local:shell"]
+packages = ["aur:quickshell-git", "local:caelestia"]
 post_install = [
     "test -f ${XDG_STATE_HOME:-$HOME/.local/state}/caelestia/scheme.json || caelestia scheme set -n caelestia",
     "caelestia shell -k >/dev/null; sleep 1; caelestia shell -d >/dev/null",
@@ -421,6 +421,7 @@ post_install = [
 src = "steamos/homebrew"
 dest = "$HOME/homebrew"
 sudo = true
+check = false
 [[components.files]]
 src = "steamos/dlo"
 dest = "$HOME/.dlo"
