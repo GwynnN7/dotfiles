@@ -311,10 +311,16 @@ dest = "$HOME/Pictures/Wallpaper"
 # ==============================================================================
 
 [[components]]
+name = "icons"
+category = "theming"
+default = true
+packages = ["papirus-icon-theme", "papirus-folders"]
+
+[[components]]
 name = "gtk"
 category = "theming"
 default = true
-packages = ["adw-gtk-theme", "papirus-icon-theme", "papirus-folders"]
+packages = ["adw-gtk-theme"]
 
 [[components]]
 name = "qt"
@@ -323,9 +329,7 @@ default = true
 packages = [
     "qtengine-git",
     "frameworkintegration",
-    "darkly-bin",
-    "papirus-icon-theme",
-    "papirus-folders",
+    "darkly-bin"
 ]
 
 [[components]]
