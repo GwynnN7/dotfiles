@@ -10,7 +10,7 @@ name = "caelestia"
 category = "shell"
 environment = "caelestia"
 default = true
-packages = ["local:caelestia"]
+packages = ["aur:quickshell-git", "local:shell"]
 post_install = [
     "test -f ${XDG_STATE_HOME:-$HOME/.local/state}/caelestia/scheme.json || caelestia scheme set -n caelestia",
     "caelestia shell -k >/dev/null; sleep 1; caelestia shell -d >/dev/null",
@@ -565,6 +565,9 @@ packages = [
     "python-pandas",
     "python-matplotlib",
 ]
+post_install = [
+    { cmd = "code --install-extension $WAYSYNC_REPO_DIR/overrides/caelestia/vscode/caelestia-vscode-integration/caelestia-vscode-integration-*.vsix", environment = "caelestia" },
+]
 [[components.files]]
 src = "vscode/settings.json"
 dest = "$XDG_CONFIG_HOME/Code/User/settings.json"
@@ -574,15 +577,6 @@ dest = "$XDG_CONFIG_HOME/Code/User/keybindings.json"
 [[components.files]]
 src = "vscode/flags.conf"
 dest = "$XDG_CONFIG_HOME/code-flags.conf"
-
-[[components]]
-name = "vscode-caelestia"
-category = "development"
-environment = "caelestia"
-default = false
-post_install = [
-    "code --install-extension ${XDG_DATA_HOME:-$HOME/.local/share}/waysync/repo/overrides/caelestia/vscode/caelestia-vscode-integration/caelestia-vscode-integration-*.vsix",
-]
 
 [[components]]
 name = "rocm"
