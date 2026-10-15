@@ -30,8 +30,7 @@ environment = "serpantinum"
 default = true
 packages = [
     "aur:quickshell-git",
-    "local:serpantinum",
-    "matugen"
+    "local:serpantinum"
 ]
 post_install = [
 	"caelestia shell -k >/dev/null 2>&1",
@@ -368,6 +367,16 @@ name = "icons"
 category = "theming"
 default = true
 packages = ["papirus-icon-theme", "papirus-folders"]
+
+[[components]]
+name = "matugen"
+category = "theming"
+default = true
+packages = ["matugen"]
+environment = "serpantinum"
+[[components.files]]
+src = "matugen"
+dest = "$XDG_CONFIG_HOME/matugen"
 
 [[components]]
 name = "gtk"
