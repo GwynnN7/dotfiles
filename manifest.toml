@@ -1,5 +1,5 @@
 [environments]
-available = ["caelestia", "noctalia"]
+available = ["caelestia", "serpantinum","noctalia"]
 
 # ==============================================================================
 # CATEGORY: shell
@@ -10,7 +10,7 @@ name = "caelestia"
 category = "shell"
 environment = "caelestia"
 default = true
-packages = ["aur:quickshell-git", "local:caelestia"]
+packages = ["aur:quickshell-git", "local:caelestia", "local:stowaway"]
 post_install = [
     "test -f ${XDG_STATE_HOME:-$HOME/.local/state}/caelestia/scheme.json || caelestia scheme set -n caelestia",
     "caelestia shell -k >/dev/null; sleep 1; caelestia shell -d >/dev/null",
@@ -21,6 +21,26 @@ post_deploy = [
 [[components.files]]
 src = "caelestia"
 dest = "$XDG_CONFIG_HOME/caelestia"
+
+[[components]]
+name = "serpantinum"
+category = "shell"
+environment = "serpantinum"
+default = true
+packages = [
+    "aur:quickshell-git",
+    "local:serpantinum",
+    "matugen"
+]
+post_install = [
+    "serpantinum reload 2>/dev/null || serpantinumd start >/dev/null 2>&1 &",
+]
+post_deploy = [
+    "serpantinum reload 2>/dev/null || true",
+]
+[[components.files]]
+src = "serpantinum"
+dest = "$XDG_CONFIG_HOME/serpantinum"
 
 [[components]]
 name = "noctalia"
@@ -34,14 +54,11 @@ packages = ["noctalia"]
 # ==============================================================================
 
 [[components]]
-name = "hypr"
+name = "hyprland"
 category = "wm"
 default = true
 packages = [
-    "hyprland",
-    "xdg-desktop-portal-hyprland",
-    "xdg-desktop-portal-gtk",
-    "ttf-jetbrains-mono-nerd",
+    "hyprland"
 ]
 post_install = [
     "hyprctl reload >/dev/null",
@@ -56,9 +73,29 @@ post_deploy = [
 [[components.files]]
 src = "hypr"
 dest = "$XDG_CONFIG_HOME/hypr"
+
+[[components]]
+name = "desktop portal"
+category = "wm"
+default = true
+packages = [
+    "xdg-desktop-portal-hyprland",
+    "xdg-desktop-portal-gtk",
+    "local:wormhole",
+]
 [[components.files]]
 src = "xdg-desktop-portal"
 dest = "$XDG_CONFIG_HOME/xdg-desktop-portal"
+
+[[components]]
+name = "hyprutils"
+category = "wm"
+default = true
+packages = [
+    "hyprpicker",
+    "hyprsunset",
+    "hypridle",
+]
 
 [[components]]
 name = "hyprpm"
@@ -196,16 +233,22 @@ environment = "caelestia"
 name = "foot"
 category = "terminal"
 default = true
-packages = ["foot", "fish", "ttf-jetbrains-mono-nerd"]
+packages = ["foot"]
 [[components.files]]
 src = "foot"
 dest = "$XDG_CONFIG_HOME/foot"
 
 [[components]]
+name = "kitty"
+category = "terminal"
+default = false
+packages = ["kitty"]
+
+[[components]]
 name = "fish"
 category = "terminal"
 default = true
-packages = ["fish", "eza", "zoxide", "direnv"]
+packages = ["fish"]
 [[components.files]]
 src = "fish"
 dest = "$XDG_CONFIG_HOME/fish"
@@ -269,7 +312,7 @@ environment = "caelestia"
 name = "yazi"
 category = "terminal"
 default = true
-packages = ["yazi", "7zip", "ffmpeg"]
+packages = ["yazi"]
 [[components.files]]
 src = "yazi"
 dest = "$XDG_CONFIG_HOME/yazi"
@@ -292,17 +335,24 @@ packages = [
     "curl",
     "trash-cli",
     "jq",
+    "7zip",
+    "ffmpeg",
     "lazygit",
     "bat",
+    "eza",
+    "imagemagick",
+    "zoxide",
+    "direnv",
     "ripgrep",
     "ydotool",
-    "hyprpicker",
-    "hyprsunset",
-    "hypridle",
+    "xorg-xhost",
     "xdg-user-dirs",
 ]
 post_install = ["xdg-user-dirs-update"]
 post_deploy = ["xdg-user-dirs-update"]
+[[components.files]]
+src = "mimeapps.list"
+dest = "$XDG_CONFIG_HOME/mimeapps.list"
 [[components.files]]
 src = "repo:GwynnN7/Wallpaper"
 dest = "$HOME/Pictures/Wallpaper"
@@ -337,7 +387,7 @@ packages = [
 name = "fonts"
 category = "theming"
 default = true
-packages = ["noto-fonts", "noto-fonts-cjk", "noto-fonts-emoji"]
+packages = ["ttf-jetbrains-mono-nerd", "noto-fonts", "noto-fonts-cjk", "noto-fonts-emoji"]
 
 [[components]]
 name = "plymouth"
@@ -356,7 +406,7 @@ post_install = [
 name = "gaming-core"
 category = "gaming"
 default = true
-packages = ["cachyos-gaming-applications"]
+packages = ["cachyos-gaming-applications", "flatpak"]
 post_install = [
 	"flatpak install -y net.retrodeck.retrodeck"
 ]
@@ -379,7 +429,7 @@ packages = ["gamemode"]
 name = "mangohud"
 category = "gaming"
 default = true
-packages = []
+packages = ["mangohud"]
 [[components.files]]
 src = "mangohud"
 dest = "$XDG_CONFIG_HOME/MangoHud"
@@ -468,45 +518,48 @@ src = "retrodeck/Switch.sh"
 dest = "$HOME/Games/Retrodeck/retrodeck/roms/apps/Switch.sh"
 
 # ==============================================================================
-# CATEGORY: apps
+# CATEGORY: file manager
 # ==============================================================================
 
 [[components]]
 name = "thunar"
-category = "apps"
+category = "file manager"
 default = true
 packages = ["thunar", "thunar-archive-plugin", "sshfs"]
 [[components.files]]
 src = "thunar"
 dest = "$XDG_CONFIG_HOME/Thunar"
 [[components.files]]
-src = "mimeapps.list"
-dest = "$XDG_CONFIG_HOME/mimeapps.list"
-[[components.files]]
 src = "xfce4"
 dest = "$XDG_CONFIG_HOME/xfce4"
+
+[[components]]
+name = "atlas"
+category = "file manager"
+default = true
+packages = [
+    "astra-atlas-git",
+]
+[[components.files]]
+src = "astra/atlas.conf"
+dest = "$XDG_CONFIG_HOME/astra-atlas/atlas.conf"
+
+# ==============================================================================
+# CATEGORY: apps
+# ==============================================================================
 
 [[components]]
 name = "astra"
 category = "apps"
 default = true
 packages = [
-    "local:stowaway",
-    "local:wormhole",
     "local:flightdeck",
     "astra-airlock-git",
-    "astra-atlas-git",
     "astra-foundry-git",
 ]
-[[components.files]]
-src = "astra/atlas.conf"
-dest = "$XDG_CONFIG_HOME/astra-atlas/atlas.conf"
-[[components.files]]
-src = "caelestia/stowaway.json"
-dest = "$XDG_CONFIG_HOME/caelestia/stowaway.json"
 
 [[components]]
-name = "software"
+name = "apps-core"
 category = "apps"
 default = false
 packages = ["sone-bin", "zen-browser-bin", "telegram-desktop", "equibop"]
@@ -525,8 +578,16 @@ packages = [
     "loupe",
     "evince",
     "file-roller",
-    "gparted",
-    "xorg-xhost",
+    "gparted"
+]
+
+[[components]]
+name = "easyeffects"
+category = "apps"
+default = true
+packages = ["easyeffects", "lsp-plugins-lv2"]
+post_install = [
+    "systemctl --user enable --now easyeffects 2>/dev/null || true"
 ]
 
 [[components]]
@@ -542,7 +603,7 @@ post_install = [
 
 [[components]]
 name = "openrgb"
-category = "desktop"
+category = "apps"
 environment = "caelestia"
 default = false
 packages = ["openrgb-git", "caelestia-rgb-sync"]
@@ -602,12 +663,12 @@ packages = [
 ]
 
 # ==============================================================================
-# CATEGORY: desktop
+# CATEGORY: cortana
 # ==============================================================================
 
 [[components]]
 name = "cortana"
-category = "desktop"
+category = "cortana"
 default = false
 packages = ["dotnet-sdk"]
 post_install = [

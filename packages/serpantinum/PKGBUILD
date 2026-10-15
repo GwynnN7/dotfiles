@@ -1,0 +1,61 @@
+# Maintainer: GwynnN7
+pkgname=serpantinum-git
+pkgver=2.2.9.r0.g0af267b
+pkgrel=1
+pkgdesc="Customizable Wayland desktop shell and widget suite built with Quickshell"
+arch=('x86_64' 'aarch64')
+url="https://github.com/ilyamiro/serpantinum"
+license=('AGPL-3.0-or-later')
+depends=(
+    'quickshell-git'
+    'qt6-base'
+    'qt6-declarative'
+    'qt6-svg'
+    'qt6-5compat'
+    'qt6-multimedia'
+    'qt6-shadertools'
+    'python'
+    'bash'
+    'wl-clipboard'
+    'cliphist'
+    'brightnessctl'
+    'playerctl'
+    'networkmanager'
+    'bluez-utils'
+    'grim'
+    'slurp'
+    'swappy'
+    'libnotify'
+)
+makedepends=('git')
+provides=('serpantinum')
+conflicts=('serpantinum')
+source=("git+${url}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+    cd "${srcdir}/serpantinum"
+    local ver="2.0.0"
+    if [[ -f version.txt ]]; then
+        ver="$(tr -d '[:space:]' < version.txt)"
+    fi
+    printf "%s.r%s.g%s" "$ver" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+    cd "${srcdir}/serpantinum"
+
+    # Install full runtime tree to /usr/share/serpantinum
+    install -d "${pkgdir}/usr/share/serpantinum"
+    cp -r bin src compositors config "${pkgdir}/usr/share/serpantinum/"
+    [[ -f version.txt ]] && install -Dm644 version.txt "${pkgdir}/usr/share/serpantinum/version.txt"
+
+    # Ensure CLI scripts in /usr/share/serpantinum/bin are executable and linked in /usr/bin
+    install -d "${pkgdir}/usr/bin"
+    for script in "${pkgdir}/usr/share/serpantinum/bin/"*; do
+        chmod 755 "$script"
+        ln -s "/usr/share/serpantinum/bin/$(basename "$script")" "${pkgdir}/usr/bin/$(basename "$script")"
+    done
+
+    install -Dm644 LICENSE.md "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.md"
+}
