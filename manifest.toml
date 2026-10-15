@@ -377,6 +377,16 @@ environment = "serpantinum"
 [[components.files]]
 src = "matugen"
 dest = "$XDG_CONFIG_HOME/matugen"
+[[components.files]]
+src = "matugen/config.toml"
+dest = "/usr/share/serpantinum/src/assets/matugen/config.toml"
+sudo = true
+check = false
+[[components.files]]
+src = "matugen/config-static.toml"
+dest = "/usr/share/serpantinum/src/assets/matugen/config-static.toml"
+sudo = true
+check = false
 
 [[components]]
 name = "gtk"

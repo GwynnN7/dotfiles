@@ -1,0 +1,27 @@
+[config]
+reload_apps = false
+
+[config.custom_colors]
+rosewater = { color = "#f5e0dc", blend = true }
+flamingo  = { color = "#f2cdcd", blend = true }
+pink      = { color = "#f5c2e7", blend = true }
+mauve     = { color = "#cba6f7", blend = true }
+red       = { color = "#f38ba8", blend = true }
+maroon    = { color = "#eba0ac", blend = true }
+peach     = { color = "#fab387", blend = true }
+yellow    = { color = "#f9e2af", blend = true }
+green     = { color = "#a6e3a1", blend = true }
+teal      = { color = "#94e2d5", blend = true }
+sky       = { color = "#89dceb", blend = true }
+sapphire  = { color = "#74c7ec", blend = true }
+blue      = { color = "#89b4fa", blend = true }
+lavender  = { color = "#b4befe", blend = true }
+
+[templates.kitty]
+input_path = "/usr/share/serpantinum/src/assets/matugen/templates/kitty-colors.conf.template"
+output_path = "~/.config/kitty/colors.conf"
+
+[templates.waysync_palette]
+input_path = "~/.config/matugen/templates/palette.json"
+output_path = "~/.local/state/matugen/palette.json"
+post_hook = "python3 ~/.config/matugen/apply-theme.py"

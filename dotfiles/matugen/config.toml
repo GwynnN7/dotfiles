@@ -1,7 +1,6 @@
 [config]
-reload_apps = true
+reload_apps = false
 
-# Harmonize semantic / Catppuccin colors with the active wallpaper
 [config.custom_colors]
 rosewater = { color = "#f5e0dc", blend = true }
 flamingo  = { color = "#f2cdcd", blend = true }
@@ -17,6 +16,14 @@ sky       = { color = "#89dceb", blend = true }
 sapphire  = { color = "#74c7ec", blend = true }
 blue      = { color = "#89b4fa", blend = true }
 lavender  = { color = "#b4befe", blend = true }
+
+[templates.quickshell]
+input_path = "/usr/share/serpantinum/src/assets/matugen/templates/serpantinum_matugen_colors.json.template"
+output_path = "~/.local/state/serpantinum/qs_colors.json"
+
+[templates.kitty]
+input_path = "/usr/share/serpantinum/src/assets/matugen/templates/kitty-colors.conf.template"
+output_path = "~/.config/kitty/colors.conf"
 
 [templates.waysync_palette]
 input_path = "~/.config/matugen/templates/palette.json"
