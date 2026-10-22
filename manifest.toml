@@ -150,8 +150,10 @@ packages = [
     "pipewire-alsa",
     "pipewire-jack",
     "wireplumber",
+    "libpulse",
     "pwvucontrol",
     "playerctl",
+    "pamixer"
 ]
 [[components.files]]
 src = "wireplumber"
@@ -336,7 +338,12 @@ packages = [
     "curl",
     "trash-cli",
     "jq",
+    "wget",
+    "file",
+    "fd",
+    "zbar",
     "7zip",
+    "unzip",
     "ffmpeg",
     "lazygit",
     "bat",
@@ -366,7 +373,7 @@ dest = "$HOME/Pictures/Wallpaper"
 name = "icons"
 category = "theming"
 default = true
-packages = ["papirus-icon-theme", "papirus-folders"]
+packages = ["papirus-icon-theme", "papirus-folders", "adwaita-icon-theme"]
 
 [[components]]
 name = "matugen"
@@ -408,16 +415,26 @@ packages = [
 name = "fonts"
 category = "theming"
 default = true
-packages = ["ttf-jetbrains-mono-nerd", "noto-fonts", "noto-fonts-cjk", "noto-fonts-emoji"]
+packages = ["ttf-material-symbols-variable", "ttf-rubik-vf", "ttf-jetbrains-mono-nerd", "noto-fonts", "noto-fonts-cjk", "noto-fonts-emoji", "ttf-iosevka-nerd", "ttf-cascadia-code-nerd"]
 
 [[components]]
 name = "plymouth"
-category = "system"
+category = "theming"
 default = false
 packages = ["plymouth", "plymouth-theme-darth-vader-git"]
 post_install = [
     "sudo plymouth-set-default-theme -R darth_vader",
 ]
+
+[[components]]
+name = "cava"
+category = "theming"
+default = true
+packages = ["cava"]
+[[components.files]]
+src = "cava"
+dest = "$XDG_CONFIG_HOME/cava"
+
 
 # ==============================================================================
 # CATEGORY: gaming
@@ -606,7 +623,7 @@ packages = [
 name = "easyeffects"
 category = "apps"
 default = true
-packages = ["easyeffects", "lsp-plugins-lv2"]
+packages = ["easyeffects", "lsp-plugins-lv2", "calf"]
 post_install = [
     "systemctl --user enable --now easyeffects 2>/dev/null || true"
 ]
@@ -653,6 +670,7 @@ packages = [
     "android-tools",
     "eigen",
     "openblas",
+    "python",
     "python-numpy",
     "python-pandas",
     "python-matplotlib",
