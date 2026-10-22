@@ -509,7 +509,7 @@ default = true
 ask = true
 packages = []
 post_install = [
-    "curl -L https://github.com/SteamDeckHomebrew/decky-installer/releases/latest/download/install_release.sh | sh",
+    "curl -L https://github.com/SteamDeckHomebrew/decky-installer/releases/latest/download/install_prerelease.sh | sh",
 ]
 [[components.files]]
 src = "steamos/homebrew"
