@@ -1,5 +1,5 @@
 [environments]
-available = ["caelestia", "serpantinum","noctalia"]
+available = ["caelestia", "serpantinum", "dms", "noctalia"]
 
 # ==============================================================================
 # CATEGORY: shell
@@ -16,7 +16,8 @@ post_install = [
     "caelestia shell -k >/dev/null 2>&1; sleep 1; caelestia shell -d >/dev/null 2>&1",
 ]
 post_deploy = [
-	"serpantinumd stop >/dev/null 2>&1",
+    "dms kill >/dev/null 2>&1 || true",
+	"serpantinumd stop >/dev/null 2>&1 || true",
     "caelestia shell -k >/dev/null 2>&1; sleep 1; caelestia shell -d >/dev/null 2>&1",
 ]
 [[components.files]]
@@ -33,7 +34,8 @@ packages = [
     "local:serpantinum"
 ]
 post_install = [
-	"caelestia shell -k >/dev/null 2>&1",
+    "dms kill >/dev/null 2>&1 || true",
+	"caelestia shell -k >/dev/null 2>&1 || true",
     "serpantinumd stop >/dev/null 2>&1; sleep 1; serpantinumd start >/dev/null 2>&1",
 ]
 post_deploy = [
@@ -42,6 +44,21 @@ post_deploy = [
 [[components.files]]
 src = "serpantinum"
 dest = "$XDG_CONFIG_HOME/serpantinum"
+
+[[components]]
+name = "dms"
+category = "shell"
+environment = "dms"
+default = true
+packages = ["dgop-git", "dsearch-git", "dms-shell-git"]
+post_install = [
+    "serpantinumd stop >/dev/null 2>&1 || true",
+	"caelestia shell -k >/dev/null 2>&1 || true",
+    "dms kill >/dev/null 2>&1; sleep 1; dms start >/dev/null 2>&1",
+]
+post_deploy = [
+    "dms kill >/dev/null 2>&1; sleep 1; dms start >/dev/null 2>&1",
+]
 
 [[components]]
 name = "noctalia"
@@ -581,6 +598,7 @@ packages = [
 [[components.files]]
 src = "astra/atlas.conf"
 dest = "$XDG_CONFIG_HOME/astra-atlas/atlas.conf"
+check = false
 
 # ==============================================================================
 # CATEGORY: apps
