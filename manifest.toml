@@ -12,13 +12,17 @@ environment = "caelestia"
 default = true
 packages = ["aur:quickshell-git", "local:caelestia", "local:stowaway"]
 post_install = [
+    "killall noctalia >/dev/null 2>&1",
+    "killall qs >/dev/null 2>&1",
+    "killall quickshell >/dev/null 2>&1",
     "test -f ${XDG_STATE_HOME:-$HOME/.local/state}/caelestia/scheme.json || caelestia scheme set -n caelestia",
-    "caelestia shell -k >/dev/null 2>&1; sleep 1; caelestia shell -d >/dev/null 2>&1",
+    "caelestia shell -d >/dev/null 2>&1",
 ]
 post_deploy = [
-    "dms kill >/dev/null 2>&1 || true",
-	"serpantinumd stop >/dev/null 2>&1 || true",
-    "caelestia shell -k >/dev/null 2>&1; sleep 1; caelestia shell -d >/dev/null 2>&1",
+    "killall noctalia >/dev/null 2>&1",
+    "killall qs >/dev/null 2>&1",
+    "killall quickshell >/dev/null 2>&1",
+    "caelestia shell -d >/dev/null 2>&1",
 ]
 [[components.files]]
 src = "caelestia"
@@ -34,12 +38,16 @@ packages = [
     "local:serpantinum"
 ]
 post_install = [
-    "dms kill >/dev/null 2>&1 || true",
-	"caelestia shell -k >/dev/null 2>&1 || true",
-    "serpantinumd stop >/dev/null 2>&1; sleep 1; serpantinumd start >/dev/null 2>&1",
+    "killall noctalia >/dev/null 2>&1",
+    "killall qs >/dev/null 2>&1",
+    "killall quickshell >/dev/null 2>&1",
+    "serpantinumd start >/dev/null 2>&1",
 ]
 post_deploy = [
-    "serpantinum reload 2>/dev/null || true",
+    "killall noctalia >/dev/null 2>&1",
+    "killall qs >/dev/null 2>&1",
+    "killall quickshell >/dev/null 2>&1",
+    "serpantinumd start >/dev/null 2>&1",
 ]
 [[components.files]]
 src = "serpantinum"
@@ -52,13 +60,20 @@ environment = "dms"
 default = true
 packages = ["dgop-git", "dsearch-git", "dms-shell-git"]
 post_install = [
-    "serpantinumd stop >/dev/null 2>&1 || true",
-	"caelestia shell -k >/dev/null 2>&1 || true",
-    "dms kill >/dev/null 2>&1; sleep 1; dms start >/dev/null 2>&1",
+    "killall noctalia >/dev/null 2>&1",
+    "killall qs >/dev/null 2>&1",
+    "killall quickshell >/dev/null 2>&1",
+    "dms run >/dev/null 2>&1",
 ]
 post_deploy = [
-    "dms kill >/dev/null 2>&1; sleep 1; dms start >/dev/null 2>&1",
+    "killall noctalia >/dev/null 2>&1",
+    "killall qs >/dev/null 2>&1",
+    "killall quickshell >/dev/null 2>&1",
+    "dms run >/dev/null 2>&1",
 ]
+[[components.files]]
+src = "dms"
+dest = "$XDG_CONFIG_HOME/dms"
 
 [[components]]
 name = "noctalia"
@@ -66,6 +81,16 @@ category = "shell"
 environment = "noctalia"
 default = true
 packages = ["noctalia"]
+post_install = [
+    "killall qs >/dev/null 2>&1",
+    "killall quickshell >/dev/null 2>&1",
+    "noctalia >/dev/null 2>&1",
+]
+post_deploy = [
+    "killall qs >/dev/null 2>&1",
+    "killall quickshell >/dev/null 2>&1",
+    "noctalia >/dev/null 2>&1",
+]
 
 # ==============================================================================
 # CATEGORY: wm
@@ -662,7 +687,7 @@ name = "openrgb"
 category = "apps"
 environment = "caelestia"
 default = false
-packages = ["openrgb-git", "caelestia-rgb-sync"]
+packages = ["openrgb", "caelestia-rgb-sync"]
 post_install = [
     "rm -f $XDG_CONFIG_HOME/caelestia-rgb/config.toml 2>/dev/null || true",
     "caelestia-rgb-sync init",
