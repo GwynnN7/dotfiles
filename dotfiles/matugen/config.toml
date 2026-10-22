@@ -1,5 +1,5 @@
 [config]
-reload_apps = false
+reload_apps = true
 
 [config.custom_colors]
 rosewater = { color = "#f5e0dc", blend = true }

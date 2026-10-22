@@ -1,53 +1,56 @@
 {
   "theme": {
     "fontFamily": "Adwaita Sans",
-    "borderRadius": 8,
+    "borderRadius": 16,
     "activePreset": "Matugen",
-    "matugen": true,
+    "matugen": false,
     "colors": {
-      "base": "#100f0f",
-      "blue": "#4385be",
-      "crust": "#282726",
-      "green": "#879a39",
-      "mantle": "#1c1b1a",
-      "maroon": "#af3029",
-      "mauve": "#ce5d97",
-      "overlay0": "#403e3c",
-      "overlay1": "#575653",
-      "overlay2": "#706f6c",
-      "peach": "#da702c",
-      "pink": "#d14d85",
-      "red": "#d14d41",
-      "sapphire": "#205ea6",
-      "subtext0": "#878580",
-      "subtext1": "#b7b5ac",
-      "surface0": "#1c1b1a",
-      "surface1": "#282726",
-      "surface2": "#343331",
-      "teal": "#3aa99f",
-      "text": "#cecdc3",
-      "yellow": "#d0a215"
-    }
+      "base": "#000000",
+      "blue": "#ffffff",
+      "crust": "#000000",
+      "green": "#ffffff",
+      "mantle": "#050505",
+      "maroon": "#808080",
+      "mauve": "#d0d0d0",
+      "overlay0": "#5a5a5a",
+      "overlay1": "#7a7a7a",
+      "overlay2": "#9a9a9a",
+      "peach": "#cccccc",
+      "pink": "#e0e0e0",
+      "red": "#a0a0a0",
+      "sapphire": "#e0e0e0",
+      "subtext0": "#a0a0a0",
+      "subtext1": "#c0c0c0",
+      "surface0": "#1a1a1a",
+      "surface1": "#2a2a2a",
+      "surface2": "#3a3a3a",
+      "teal": "#c0c0c0",
+      "text": "#ffffff",
+      "yellow": "#ffffff"
+    },
+    "blurBackground": false,
+    "blurStyle": "blur",
+    "elementOpacity": 100
   },
   "general": {
     "location": {
-      "ip": "2a00:6d43:903:3f01:739a:d086:c051:1bfa",
-      "latitude": 43.461442,
-      "longitude": 11.87696,
-      "city": "Arezzo",
-      "region": "Tuscany",
-      "region_code": "52",
+      "ip": "151.15.77.16",
+      "latitude": 41.894253,
+      "longitude": 12.484253,
+      "city": "Rome",
+      "region": "Lazio",
+      "region_code": "62",
       "country_name": "Italy",
       "country_code": "IT",
-      "postal": "52020",
+      "postal": "00185",
       "timezone": "Europe/Rome",
       "utc_offset": "+0200",
       "currency": "EUR",
       "languages": "it-IT,de-IT,fr-IT,sc,ca,co,sl",
-      "asn": "AS202613",
-      "org": "Aruba S.p.A.",
+      "asn": "AS1267",
+      "org": "WIND TRE S.P.A.",
       "source": "ipapi.co",
-      "updated_at": 1791971358
+      "updated_at": 1792142898
     },
     "language": "en",
     "avatarPath": "/home/gwynn7/.face",
@@ -66,7 +69,7 @@
       "dim": {
         "id": "dim",
         "name": "Dim Screen",
-        "timeout": 120,
+        "timeout": 350,
         "enabled": true,
         "respectInhibitors": true,
         "mprisInhibit": true,
@@ -79,7 +82,7 @@
       "lock": {
         "id": "lock",
         "name": "Lock Session",
-        "timeout": 300,
+        "timeout": 600,
         "enabled": true,
         "respectInhibitors": true,
         "mprisInhibit": true,
@@ -92,7 +95,7 @@
       "dpms": {
         "id": "dpms",
         "name": "Display Off (DPMS)",
-        "timeout": 360,
+        "timeout": 750,
         "enabled": true,
         "respectInhibitors": true,
         "mprisInhibit": true,
@@ -105,7 +108,7 @@
       "suspend": {
         "id": "suspend",
         "name": "System Suspend",
-        "timeout": 600,
+        "timeout": 900,
         "enabled": true,
         "respectInhibitors": true,
         "mprisInhibit": true,
@@ -114,7 +117,9 @@
         "isCustom": false
       }
     },
-    "customActions": []
+    "customActions": [],
+    "caffeineStartTime": 0,
+    "caffeineEndTime": 0
   },
   "notifications": {
     "dnd": false,
@@ -122,14 +127,14 @@
     "horizontalPosition": 88,
     "verticalPosition": 15,
     "sound": true,
-    "soundFile": "/home/gwynn7/.local/share/serpantinum/src/assets/sounds/notifications/Botanica.wav",
-    "showEmptyGraphic": true
+    "soundFile": "/usr/share/serpantinum/src/assets/sounds/notifications/Botanica.wav",
+    "showEmptyGraphic": false
   },
   "launcher": {
     "position": "center",
     "width": 600,
     "itemCount": 10,
-    "terminalCommand": "kitty -e",
+    "terminalCommand": "foot -e",
     "smartRanking": true
   },
   "display": {
@@ -138,6 +143,9 @@
         "enabled": false
       },
       "HDMI-A-1": {
+        "enabled": false
+      },
+      "eDP-1": {
         "enabled": false
       }
     }
@@ -156,10 +164,10 @@
     "editing": false,
     "apps": [
       {
-        "name": "SONE",
-        "comment": "Native Linux client for TIDAL — lossless and bit-perfect audio streaming",
-        "desktop_id": "SONE",
-        "icon": "sone"
+        "name": "Zen Browser",
+        "comment": "A fast, private and secure web browser built to improve your day-to-day experience.",
+        "desktop_id": "zen",
+        "icon": "/usr/share/icons/hicolor/128x128/apps/zen-browser.png"
       },
       {
         "name": "Telegram",
@@ -168,16 +176,22 @@
         "icon": "org.telegram.desktop"
       },
       {
-        "name": "Zen Browser",
-        "comment": "A fast, private and secure web browser built to improve your day-to-day experience.",
-        "desktop_id": "zen",
-        "icon": "/usr/share/icons/hicolor/128x128/apps/zen-browser.png"
+        "name": "SONE",
+        "comment": "Native Linux client for TIDAL — lossless and bit-perfect audio streaming",
+        "desktop_id": "SONE",
+        "icon": "sone"
       },
       {
-        "name": "Files",
-        "comment": "Access and organize files",
-        "desktop_id": "org.gnome.Nautilus",
-        "icon": "org.gnome.Nautilus"
+        "name": "Equibop",
+        "comment": "Equibop is a Vesktop fork that is a free/libre cross platform desktop app aiming to give you a snappier Discord experience with Equicord pre-installed",
+        "desktop_id": "equibop",
+        "icon": "equibop"
+      },
+      {
+        "name": "Steam",
+        "comment": "Application for managing and playing games on Steam",
+        "desktop_id": "steam",
+        "icon": "steam"
       }
     ],
     "overrideBoundsCorrection": false,
@@ -197,27 +211,33 @@
     "style": "modular",
     "distinctPills": false,
     "time": {
-      "format": "HH:mm:ss"
+      "format": "HH:mm"
     },
     "autohide": false,
     "autohideTimeout": 1000,
-    "groupColors": {},
+    "groupColors": {
+      "g_kb": "#8ecff2",
+      "g_media": "#474364",
+      "g_wifi": "#ffb0ca"
+    },
     "modules": {
       "left": [
         "left",
-        "workspaces",
-        "media",
-        "vis"
+        "focus",
+        [
+          "media",
+          "vis"
+        ]
       ],
       "center": [
         "timedate",
-        "info",
-        "sysmon"
+        "workspaces",
+        "info"
       ],
       "right": [
         "tray",
+        "sysmon",
         [
-          "kb",
           "wifi",
           "bt",
           "vol",
@@ -229,12 +249,27 @@
     "workspaceCount": 4,
     "hideEmptyWorkspaces": false,
     "timeStyle": "material",
-    "visContinuous": true,
+    "visContinuous": false,
     "sysmonStyle": "wave",
     "wifiStyle": "text",
     "btStyle": "text",
     "volStyle": "text",
-    "kbShowIcon": false
+    "kbShowIcon": false,
+    "mediaWidth": 155,
+    "height": 37,
+    "centerByEdges": true,
+    "menuStyle": "icon",
+    "menuShowLauncher": true,
+    "menuShowSettings": true
+  },
+  "osd": {
+    "horizontalPosition": 50,
+    "verticalPosition": 10,
+    "orientation": "horizontal",
+    "showCapsLock": true,
+    "showNumLock": true,
+    "showAirplane": true,
+    "attachToBar": true
   }
 }
 
