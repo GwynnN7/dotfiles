@@ -438,7 +438,7 @@
         "lyricsDir": "~/Music/Lyrics",
         "mediaGif": "root:/assets/toothless.gif",
         "sessionGif": "root:/assets/cortana.png",
-        "wallpaperDir": "~/Pictures/Wallpaper"
+        "wallpaperDir": "~/Pictures/Wallpapers"
     },
     "services": {
         "arpcCaelestiaInfo": false,

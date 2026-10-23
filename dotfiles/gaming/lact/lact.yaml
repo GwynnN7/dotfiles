@@ -50,13 +50,5 @@ profiles:
         max_core_clock: 2800
         voltage_offset: -75
         power_profile_mode_index: 1
-    rule:
-      type: process
-      filter:
-        name: winedevice.exe
-        args: /run/host/usr/share/steam/compatibilitytools.d/proton-cachyos-slr/files/lib/wine/x86_64-unix/wine64-preloader /run/host/usr/share/steam/compatibilitytools.d/proton-cachyos-slr/files/lib/wine/x86_64-unix/wine C:\windows\system32\winedevice.exe
-    hooks:
-      activated: sudo scxctl switch --sched lavd
-      deactivated: sudo scxctl restore
 current_profile: null
-auto_switch_profiles: true
+auto_switch_profiles: false

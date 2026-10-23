@@ -44,6 +44,8 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("cortana idle off")
 end)
 
+require("hyprland.gamewatch")
+
 -- Resizer listeners
 local function apply_resizer_rules(win)
     local match_str = function(pattern, field, exact)

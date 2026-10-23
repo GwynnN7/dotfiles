@@ -1,5 +1,5 @@
 [environments]
-available = ["caelestia", "serpantinum", "dms", "noctalia"]
+available = ["caelestia", "cykler", "serpantinum", "dms", "noctalia"]
 
 # ==============================================================================
 # CATEGORY: shell
@@ -10,7 +10,30 @@ name = "caelestia"
 category = "shell"
 environment = "caelestia"
 default = true
-packages = ["aur:quickshell-git", "local:caelestia", "local:stowaway"]
+packages = ["aur:quickshell-git", "local:caelestia", "local:stowaway", "midnight-cli-git"]
+post_install = [
+    "killall noctalia >/dev/null 2>&1",
+    "killall qs >/dev/null 2>&1",
+    "killall quickshell >/dev/null 2>&1",
+    "test -f ${XDG_STATE_HOME:-$HOME/.local/state}/caelestia/scheme.json || caelestia scheme set -n caelestia",
+    "caelestia shell -d >/dev/null 2>&1",
+]
+post_deploy = [
+    "killall noctalia >/dev/null 2>&1",
+    "killall qs >/dev/null 2>&1",
+    "killall quickshell >/dev/null 2>&1",
+    "caelestia shell -d >/dev/null 2>&1",
+]
+[[components.files]]
+src = "caelestia"
+dest = "$XDG_CONFIG_HOME/caelestia"
+
+[[components]]
+name = "cykler"
+category = "shell"
+environment = "cykler"
+default = true
+packages = ["aur:quickshell-git", "local:cykler", "local:stowaway", "caelestia-cli-git"]
 post_install = [
     "killall noctalia >/dev/null 2>&1",
     "killall qs >/dev/null 2>&1",
@@ -41,13 +64,13 @@ post_install = [
     "killall noctalia >/dev/null 2>&1",
     "killall qs >/dev/null 2>&1",
     "killall quickshell >/dev/null 2>&1",
-    "serpantinumd start >/dev/null 2>&1",
+    "serpantinumd start >/dev/null 2>&1 &",
 ]
 post_deploy = [
     "killall noctalia >/dev/null 2>&1",
     "killall qs >/dev/null 2>&1",
     "killall quickshell >/dev/null 2>&1",
-    "serpantinumd start >/dev/null 2>&1",
+    "serpantinumd start >/dev/null 2>&1 &",
 ]
 [[components.files]]
 src = "serpantinum"
@@ -63,13 +86,13 @@ post_install = [
     "killall noctalia >/dev/null 2>&1",
     "killall qs >/dev/null 2>&1",
     "killall quickshell >/dev/null 2>&1",
-    "dms run >/dev/null 2>&1",
+    "dms run >/dev/null 2>&1 &",
 ]
 post_deploy = [
     "killall noctalia >/dev/null 2>&1",
     "killall qs >/dev/null 2>&1",
     "killall quickshell >/dev/null 2>&1",
-    "dms run >/dev/null 2>&1",
+    "dms run >/dev/null 2>&1 &",
 ]
 [[components.files]]
 src = "dms"
@@ -84,12 +107,12 @@ packages = ["noctalia"]
 post_install = [
     "killall qs >/dev/null 2>&1",
     "killall quickshell >/dev/null 2>&1",
-    "noctalia >/dev/null 2>&1",
+    "noctalia >/dev/null 2>&1 &",
 ]
 post_deploy = [
     "killall qs >/dev/null 2>&1",
     "killall quickshell >/dev/null 2>&1",
-    "noctalia >/dev/null 2>&1",
+    "noctalia >/dev/null 2>&1 &",
 ]
 
 # ==============================================================================
@@ -200,6 +223,10 @@ packages = [
 [[components.files]]
 src = "wireplumber"
 dest = "$XDG_CONFIG_HOME/wireplumber"
+[[components.files]]
+src = "pipewire"
+dest = "$XDG_CONFIG_HOME/pipewire"
+environment = "cykler"
 
 [[components]]
 name = "udiskie"
@@ -242,6 +269,7 @@ sudo = true
 name = "sddm"
 category = "login"
 default = false
+environments = ["caelestia", "cykler"]
 packages = [
     "sddm",
     "caelestia-sddm-minimalistv2-git",
@@ -259,7 +287,6 @@ post_deploy = [
 src = "sddm/caelestia.conf"
 dest = "/etc/sddm.conf.d/caelestia.conf"
 sudo = true
-environment = "caelestia"
 [[components.files]]
 src = "sddm/sddm.lua"
 dest = "/opt/hypr/sddm.lua"
@@ -268,7 +295,6 @@ sudo = true
 src = "sddm/caelestia-sddm"
 dest = "/etc/sudoers.d/caelestia-sddm"
 sudo = true
-environment = "caelestia"
 
 # ==============================================================================
 # CATEGORY: terminal
@@ -347,11 +373,11 @@ packages = ["neovim"]
 [[components.files]]
 src = "nvim/colors/caelestia.lua"
 dest = "$XDG_CONFIG_HOME/nvim/colors/caelestia.lua"
-environment = "caelestia"
+environments = ["caelestia", "cykler"]
 [[components.files]]
 src = "nvim/lua/plugins/caelestia.lua"
 dest = "$XDG_CONFIG_HOME/nvim/lua/plugins/caelestia.lua"
-environment = "caelestia"
+environments = ["caelestia", "cykler"]
 
 [[components]]
 name = "yazi"
@@ -395,6 +421,7 @@ packages = [
     "direnv",
     "ripgrep",
     "ydotool",
+    "libnotify",
     "xorg-xhost",
     "xdg-user-dirs",
 ]
@@ -405,7 +432,7 @@ src = "mimeapps.list"
 dest = "$XDG_CONFIG_HOME/mimeapps.list"
 [[components.files]]
 src = "repo:GwynnN7/Wallpaper"
-dest = "$HOME/Pictures/Wallpaper"
+dest = "$HOME/Pictures/Wallpapers"
 
 # ==============================================================================
 # CATEGORY: theming
@@ -472,7 +499,7 @@ post_install = [
 name = "cava"
 category = "theming"
 default = true
-packages = ["cava"]
+packages = ["cava", "libcava"]
 [[components.files]]
 src = "cava"
 dest = "$XDG_CONFIG_HOME/cava"
@@ -685,7 +712,7 @@ post_install = [
 [[components]]
 name = "openrgb"
 category = "apps"
-environment = "caelestia"
+environments = ["caelestia", "cykler"]
 default = false
 packages = ["openrgb", "caelestia-rgb-sync"]
 post_install = [
@@ -719,7 +746,7 @@ packages = [
     "python-matplotlib",
 ]
 post_install = [
-    { cmd = "code --install-extension $WAYSYNC_REPO_DIR/overrides/caelestia/vscode/caelestia-vscode-integration/caelestia-vscode-integration-*.vsix", environment = "caelestia" },
+    { cmd = "code --install-extension $WAYSYNC_REPO_DIR/overrides/caelestia/vscode/caelestia-vscode-integration/caelestia-vscode-integration-*.vsix", environments = ["caelestia", "cykler"] },
 ]
 [[components.files]]
 src = "vscode/settings.json"

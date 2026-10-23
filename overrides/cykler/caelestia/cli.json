@@ -1,0 +1,131 @@
+{
+    "record": {
+        "extraArgs": []
+    },
+    "wallpaper": {
+        "postHook": "echo $WALLPAPER_PATH $SCHEME_NAME $SCHEME_FLAVOUR $SCHEME_MODE $SCHEME_VARIANT $SCHEME_COLOURS && caelestia-rgb-sync apply"
+    },
+    "theme": {
+        "enableTerm": true,
+        "enableHypr": true,
+        "enableDiscord": true,
+        "enableSpicetify": false,
+        "enablePandora": false,
+        "enableFuzzel": true,
+        "enableBtop": true,
+        "enableNvtop": true,
+        "enableHtop": true,
+        "enableGtk": true,
+        "enableQt": true,
+        "enableWarp": true,
+        "enableChromium": true,
+        "enableZed": false,
+        "enableCava": true,
+        "iconTheme": "Papirus-Dark",
+        "iconThemeLight": "Papirus-Light",
+        "iconThemeDark": "Papirus-Dark",
+        "postHook": "echo $SCHEME_NAME $SCHEME_FLAVOUR $SCHEME_MODE $SCHEME_VARIANT $SCHEME_COLOURS"
+    },
+    "toggles": {
+        "communication": {
+            "discord": {
+                "enable": false,
+                "match": [
+                    {
+                        "class": "equibop"
+                    }
+                ],
+                "command": [
+                    "equibop"
+                ],
+                "move": true
+            },
+            "telegram": {
+                "enable": true,
+                "match": [
+                    {
+                        "class": "org.telegram.desktop"
+                    }
+                ],
+                "command": [
+                    "Telegram"
+                ],
+                "move": true
+            }
+        },
+        "music": {
+            "spotify": {
+                "enable": false,
+                "match": [
+                    {
+                        "class": "Spotify"
+                    },
+                    {
+                        "initialTitle": "Spotify"
+                    },
+                    {
+                        "initialTitle": "Spotify Free"
+                    }
+                ],
+                "command": [
+                    "spicetify",
+                    "watch",
+                    "-s"
+                ],
+                "move": true
+            },
+            "tidal-hifi": {
+                "enable": false,
+                "match": [
+                    {
+                        "class": "tidal-hifi"
+                    }
+                ],
+                "command": [
+                    "tidal-hifi"
+                ],
+                "move": true
+            },
+            "sone": {
+                "enable": true,
+                "match": [
+                    {
+                        "class": "sone"
+                    }
+                ],
+                "command": [
+                    "sone"
+                ],
+                "move": true
+            }
+        },
+        "sysmon": {
+            "btop": {
+                "enable": true,
+                "match": [
+                    {
+                        "class": "btop",
+                        "title": "btop",
+                        "workspace": {
+                            "name": "special:sysmon"
+                        }
+                    }
+                ],
+                "command": [
+                    "foot",
+                    "-a",
+                    "btop",
+                    "-T",
+                    "btop",
+                    "fish",
+                    "-C",
+                    "exec btop"
+                ]
+            }
+        }
+    },
+    "dots": {
+        "url": "https://github.com/GwynnN7/caelestia-dots.git",
+        "branch": "main"
+    }
+}

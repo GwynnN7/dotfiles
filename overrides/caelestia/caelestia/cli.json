@@ -131,9 +131,5 @@
                 ]
             }
         }
-    },
-    "dots": {
-        "url": "https://github.com/GwynnN7/caelestia-dots.git",
-        "branch": "main"
     }
 }
