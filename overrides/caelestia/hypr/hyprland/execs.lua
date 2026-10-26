@@ -33,8 +33,7 @@ hl.on("hyprland.start", function()
 
     -- Start shell
     hl.exec_cmd("hyprpm reload")
-    hl.exec_cmd("caelestia shell -d")
-    hl.exec_cmd("stowaway -d")
+    hl.exec_cmd("systemctl --user start desktop-shell")
 
     -- OpenRGB
     hl.exec_cmd("systemctl --user start openrgb.service")
@@ -43,8 +42,6 @@ hl.on("hyprland.start", function()
     -- Cortana
 	hl.exec_cmd("cortana idle off")
 end)
-
-require("hyprland.gamewatch")
 
 -- Resizer listeners
 local function apply_resizer_rules(win)
@@ -79,7 +76,7 @@ local function apply_resizer_rules(win)
     fn.resizer(win, match_class("nngceckbapebfimnlniiiahkandclblb", true), 20, 54, float_center)                         -- Chromium
 
     -- Picture in picture
-    fn.resizer(win, match_title("Picture[- ]in[- ][Pp]icture", false), 0, 0, pip_actions)
+    fn.resizer(win, match_title("^Picture[- ]in[- ][Pp]icture$", false), 0, 0, pip_actions)
 
     -- Tags, because window rules are unreliable
     fn.resizer(win, match_tag("float_60_70"), 60, 70, float_center)
