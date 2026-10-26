@@ -598,7 +598,7 @@ check = false
 src = "steamos/dlo"
 dest = "$HOME/.dlo"
 [[components.files]]
-src = "cortana/sudoers_plugin_loader"
+src = "steamos/sudoers_plugin_loader"
 dest = "/etc/sudoers.d/plugin_loader"
 sudo = true
 
