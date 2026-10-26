@@ -261,9 +261,9 @@
         "equalizer": true,
         "soundEffects": {
             "enabled": true,
-            "notificationVolume": 0.8025534315395095,
+            "notificationVolume": 0.80,
             "screenUnlock": false,
-            "sfxVolume": 0.8041638283378747,
+            "sfxVolume": 0.80,
             "volumeTick": true
         }
     },
@@ -288,7 +288,7 @@
                 "-c",
                 "steamos-session-select gamescope || systemctl reboot"
             ],
-            "suspend": [
+            "sleep": [
                 "suspend"
             ],
             "windows": [
@@ -327,8 +327,8 @@
             "logout": "exit_to_app",
             "reboot": "cached",
             "shutdown": "power_settings_new",
-            "steam": "stadia_controller",
-            "suspend": "bedtime",
+            "steamos": "stadia_controller",
+            "sleep": "bedtime",
             "windows": "window"
         }
     },

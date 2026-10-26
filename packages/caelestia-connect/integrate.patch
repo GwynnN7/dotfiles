@@ -12,3 +12,16 @@ index 5b5c1cb..df2697a 100755
  
      if args.uninstall:
          new_status, new_content = strip_blocks(status.read_text()), strip_blocks(content.read_text())
+diff --git a/caelestia/services/KdeConnect.qml b/caelestia/services/KdeConnect.qml
+index 39b8e28..3af3c2c 100644
+--- a/caelestia/services/KdeConnect.qml
++++ b/caelestia/services/KdeConnect.qml
+@@ -21,7 +21,7 @@ Singleton {
+     // The bar icon is only shown once something is paired or wants to pair
+     readonly property bool shown: running && (paired.length > 0 || pairRequests.length > 0)
+ 
+-    readonly property string appPath: `${Quickshell.env("HOME")}/.local/bin/caelestia-connect`
++    readonly property string appPath: `/usr/bin/caelestia-connect`
+     readonly property string socketPath: `${Quickshell.env("XDG_RUNTIME_DIR")}/caelestia-connect/ipc.sock`
+ 
+     property int _nextId: 1

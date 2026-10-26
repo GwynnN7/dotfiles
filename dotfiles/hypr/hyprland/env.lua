@@ -3,8 +3,6 @@ local vars = require("variables")
 -- Themes
 hl.env("QT_QPA_PLATFORMTHEME", "qtengine")
 hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
-hl.env("GDK_WAYLAND_DISABLE", "ext_background_effect_manager_v1")
-
 hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
 hl.env("XCURSOR_THEME", vars.cursorTheme)
 hl.env("XCURSOR_SIZE", vars.cursorSize)
