@@ -543,6 +543,9 @@ sudo = true
 [[components.files]]
 src = "gaming/start-steam"
 dest = "$XDG_BIN_HOME/start-steam"
+[[components.files]]
+src = "applications/steam.desktop"
+dest = "$XDG_DATA_HOME/applications/steam.desktop"
 
 [[components]]
 name = "gamemode"

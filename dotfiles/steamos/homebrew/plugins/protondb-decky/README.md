@@ -4,16 +4,18 @@
 [![License](https://img.shields.io/github/license/bschelst/protondb-decky)](LICENSE)
 [![Decky Loader](https://img.shields.io/badge/Decky-Loader-blue)](https://github.com/SteamDeckHomebrew/decky-loader)
 
-Display **tappable ProtonDB badges** directly on your Steam library game pages / Store pages.
+Display **tappable ProtonDB badges** on your Steam library and Store pages, with a **submit** button to report directly from Game Mode, a **compatibility analysis** modal (working status, report trends, Proton version breakdown, and recommended launch options), and **status icons** on library game covers. Badges and analysis are also available as an overlay on **Steam Store pages**.
 
+![Dead by Daylight - Badge](./assets/20260520220425_1.jpg)
 
- Library view:
-
-![ProtonDB Badges](./assets/screenshot.jpg)
-
- Store view:
-
-![ProtonDB Badges](./assets/screenshot_store.jpg)
+| | |
+|:---:|:---:|
+| ![Details](./assets/20260520220435_1.jpg) | ![Reports](./assets/20260520220451_1.jpg) |
+| Details tab | Reports tab |
+| ![Versions](./assets/20260520220504_1.jpg) | ![Settings](./assets/20260520220511_1.jpg) |
+| Versions tab | Settings tab |
+| ![Library Grid](./assets/20260520220606_1.jpg) | ![Store Page](./assets/20260520220626_1.jpg) |
+| Library status icons | Store page overlay |
 
 ---
 
@@ -46,6 +48,46 @@ This plugin was created to:
 - **Library badge button toggle**: Disable the badges in library.
 - **Store badge button toggle**: Disable the badge in Steam store pages.
 
+
+---
+
+## 📊 Compatibility Analysis
+
+The analysis button (bar chart icon) next to the ProtonDB badge opens a detailed compatibility breakdown powered by community reports. The button color indicates the current working status:
+
+- **Green** — Game is working based on recent reports
+- **Red** — Game is not working or has significant issues
+- **Gray** — Not enough data to determine status
+
+> Note: These colors reflect whether the game works *right now*, which is different from the ProtonDB tier (Platinum/Gold/Silver/Bronze/Borked) that rates *how well* it runs.
+
+### Tabs
+
+| Tab | Description |
+|-----|-------------|
+| **Details** | Working status, confidence score, trend direction, freshness, and warnings |
+| **Reports** | Report history chart (last 5 years) showing good vs bad reports per month, followed by the 20 most recent individual reports |
+| **Versions** | Proton version breakdown — report counts and success rates per version. The current Steam Deck default is highlighted |
+| **Settings** | Launch options extracted from positive community reports. Tap **Copy** to copy an option to clipboard, then paste it into Steam > Game Properties > Launch Options before `%command%` |
+
+### Library Status Icons
+
+Small status icons appear on game covers in the library grid:
+
+- **Green atom** — Game should work on Linux
+- **Red atom** — Game is borked or not working
+- **Gray atom** — Unknown or insufficient data
+
+These icons are populated in the background after plugin startup. Games you haven't browsed yet may take a few minutes to appear as data is fetched in batches to avoid API overload.
+
+### Settings Tips
+
+The Settings tab shows environment variables that other users have successfully used when running the game. Only options from positive reports (Platinum/Gold/Silver) are included, and each option must appear in at least 2 reports.
+
+Example usage:
+```
+PROTON_ENABLE_NVAPI=1 %command%
+```
 
 ---
 
@@ -113,7 +155,7 @@ https://github.com/SteamDeckHomebrew/decky-loader
 
 ## 📦 Installation (Decky Loader)
 
-> The plugin is not available in the Decky Store **yet** and must be installed manually.
+Use Decky Store, search for ProtonDB badges or use manual instructions below:
 
 1. Download the **latest `.zip` release**:
    https://github.com/bschelst/protondb-decky/releases

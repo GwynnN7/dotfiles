@@ -17,6 +17,7 @@ if (api._version != API_VERSION) {
 }
 const call = api.call;
 const routerHook = api.routerHook;
+const toaster = api.toaster;
 const fetchNoCors = api.fetchNoCors;
 
 var DefaultContext = {
@@ -99,10 +100,14 @@ function FaGithub (props) {
   return GenIcon({"attr":{"viewBox":"0 0 496 512"},"child":[{"tag":"path","attr":{"d":"M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.9-32.4 70.2-73.5l84.5-60.2c52.1 1.3 95.8-40.9 95.8-93.5 0-51.6-42-93.5-93.7-93.5s-93.7 42-93.7 93.5v1.2L176.6 279c-15.5-.9-30.7 3.4-43.5 12.1L0 236.1C10.2 108.4 117.1 8 247.6 8 384.8 8 496 119 496 256zM155.7 384.3l-30.5-12.6a52.79 52.79 0 0 0 27.2 25.8c26.9 11.2 57.8-1.6 69-28.4 5.4-13 5.5-27.3.1-40.3-5.4-13-15.5-23.2-28.5-28.6-12.9-5.4-26.7-5.2-38.9-.6l31.5 13c19.8 8.2 29.2 30.9 20.9 50.7-8.3 19.9-31 29.2-50.8 21zm173.8-129.9c-34.4 0-62.4-28-62.4-62.3s28-62.3 62.4-62.3 62.4 28 62.4 62.3-27.9 62.3-62.4 62.3zm.1-15.6c25.9 0 46.9-21 46.9-46.8 0-25.9-21-46.8-46.9-46.8s-46.9 21-46.9 46.8c.1 25.8 21.1 46.8 46.9 46.8z"}}]})(props);
 }function FaBook (props) {
   return GenIcon({"attr":{"viewBox":"0 0 448 512"},"child":[{"tag":"path","attr":{"d":"M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"}}]})(props);
+}function FaChartBar (props) {
+  return GenIcon({"attr":{"viewBox":"0 0 512 512"},"child":[{"tag":"path","attr":{"d":"M332.8 320h38.4c6.4 0 12.8-6.4 12.8-12.8V172.8c0-6.4-6.4-12.8-12.8-12.8h-38.4c-6.4 0-12.8 6.4-12.8 12.8v134.4c0 6.4 6.4 12.8 12.8 12.8zm96 0h38.4c6.4 0 12.8-6.4 12.8-12.8V76.8c0-6.4-6.4-12.8-12.8-12.8h-38.4c-6.4 0-12.8 6.4-12.8 12.8v230.4c0 6.4 6.4 12.8 12.8 12.8zm-288 0h38.4c6.4 0 12.8-6.4 12.8-12.8v-70.4c0-6.4-6.4-12.8-12.8-12.8h-38.4c-6.4 0-12.8 6.4-12.8 12.8v70.4c0 6.4 6.4 12.8 12.8 12.8zm96 0h38.4c6.4 0 12.8-6.4 12.8-12.8V108.8c0-6.4-6.4-12.8-12.8-12.8h-38.4c-6.4 0-12.8 6.4-12.8 12.8v198.4c0 6.4 6.4 12.8 12.8 12.8zM496 384H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v336c0 17.67 14.33 32 32 32h464c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"}}]})(props);
 }function FaCog (props) {
   return GenIcon({"attr":{"viewBox":"0 0 512 512"},"child":[{"tag":"path","attr":{"d":"M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"}}]})(props);
 }function FaGamepad (props) {
   return GenIcon({"attr":{"viewBox":"0 0 640 512"},"child":[{"tag":"path","attr":{"d":"M480.07 96H160a160 160 0 1 0 114.24 272h91.52A160 160 0 1 0 480.07 96zM248 268a12 12 0 0 1-12 12h-52v52a12 12 0 0 1-12 12h-24a12 12 0 0 1-12-12v-52H84a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h52v-52a12 12 0 0 1 12-12h24a12 12 0 0 1 12 12v52h52a12 12 0 0 1 12 12zm216 76a40 40 0 1 1 40-40 40 40 0 0 1-40 40zm64-96a40 40 0 1 1 40-40 40 40 0 0 1-40 40z"}}]})(props);
+}function FaGlobe (props) {
+  return GenIcon({"attr":{"viewBox":"0 0 496 512"},"child":[{"tag":"path","attr":{"d":"M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"}}]})(props);
 }function FaPaperPlane (props) {
   return GenIcon({"attr":{"viewBox":"0 0 512 512"},"child":[{"tag":"path","attr":{"d":"M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"}}]})(props);
 }function FaQuestionCircle (props) {
@@ -2941,8 +2946,16 @@ var localforageExports = localforage$1.exports;
 var localforage = /*@__PURE__*/getDefaultExportFromCjs(localforageExports);
 
 const STORAGE_KEY = 'protondb-badges-cache';
+const REPORTS_STORAGE_KEY = 'protondb-reports-cache';
 localforage.config({
     name: STORAGE_KEY
+});
+const reportsStore = localforage.createInstance({
+    name: REPORTS_STORAGE_KEY
+});
+const VERSIONS_STORAGE_KEY = 'protondb-versions-cache';
+const versionsStore = localforage.createInstance({
+    name: VERSIONS_STORAGE_KEY
 });
 async function updateCache(appId, newData) {
     const oldCache = await localforage.getItem(appId);
@@ -2953,12 +2966,88 @@ async function updateCache(appId, newData) {
 function clearCache$t(appId) {
     {
         localforage.clear();
+        reportsStore.clear();
+        versionsStore.clear();
     }
 }
 async function getCache(appId) {
     const data = await localforage.getItem(appId);
     return data;
 }
+async function getAllCachedStatuses() {
+    const result = new Map();
+    await localforage.iterate((value, key) => {
+        const status = value?.analysis?.working_status?.status;
+        if (status) {
+            result.set(key, status);
+        }
+    });
+    return result;
+}
+const REPORTS_MAX_AGE_MS = 60 * 60 * 1000;
+async function getCachedReports(appId) {
+    try {
+        const cached = await reportsStore.getItem(appId);
+        if (!cached?.data?.reports)
+            return null;
+        const age = Date.now() - new Date(cached.lastUpdated).getTime();
+        if (age > REPORTS_MAX_AGE_MS)
+            return null;
+        return cached.data;
+    }
+    catch {
+        return null;
+    }
+}
+async function setCachedReports(appId, data) {
+    try {
+        await reportsStore.setItem(appId, {
+            data,
+            lastUpdated: new Date().toISOString()
+        });
+    }
+    catch {
+        /* storage full or unavailable — non-critical */
+    }
+}
+async function getCachedVersions(appId) {
+    try {
+        const cached = await versionsStore.getItem(appId);
+        if (!cached?.data?.versions)
+            return null;
+        const age = Date.now() - new Date(cached.lastUpdated).getTime();
+        if (age > REPORTS_MAX_AGE_MS)
+            return null;
+        return cached.data;
+    }
+    catch {
+        return null;
+    }
+}
+async function setCachedVersions(appId, data) {
+    try {
+        await versionsStore.setItem(appId, {
+            data,
+            lastUpdated: new Date().toISOString()
+        });
+    }
+    catch {
+        /* storage full or unavailable — non-critical */
+    }
+}
+
+const appTypes = {
+    1: 'game',
+    2: 'software',
+    4: 'tool',
+    8: 'demo',
+    2048: 'video',
+    65536: 'playtest'
+};
+const PLUGIN_VERSION = '1.3.2';
+// ProtonDB Gateway configuration
+const GATEWAY_BASE_URL = 'https://protondb.schelstraete.org';
+const GATEWAY_API_KEY = '7fcedef70025704dffa916f4494ac9c9c63a771d6ce528b60afdbb78af296bcf';
 
 var sectionLibrary$s = "Library";
 var sectionStore$s = "Store";
@@ -3049,6 +3138,37 @@ var helpSubmitDesc$s = "Помогнете на общността, като с�
 var helpSubmitStep1$s = "Играйте игра поне 15-30 минути";
 var helpSubmitStep2$s = "Щракнете върху бутона Изпрати на значката ProtonDB";
 var helpSubmitStep3$s = "Попълнете формата за доклад на уебсайта на ProtonDB";
+var sectionEnhancedFeatures$s = "Разширени функции";
+var showAnalysisButton$s = "Покажи бутон за анализ";
+var showAnalysisButtonDesc$s = "Показва бутон до значката за преглед на подробен анализ на съвместимостта, включително тенденции на доклади и графика на историята";
+var roundedCorners$s = "Заоблени ъгли";
+var roundedCornersDesc$s = "Използвайте заоблени ъгли за всички бутони на значката";
+var showLibraryIcons$s = "Library Status Icons";
+var showLibraryIconsDesc$s = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$s = "Icon Position";
+var libraryIconPositionDesc$s = "Position of the status icon on game covers";
+var helpAnalysisTitle$s = "Анализ на съвместимостта";
+var helpAnalysisDesc$s = "Бутонът за анализ (икона стълбовидна диаграма) до значката отваря подробен преглед на съвместимостта за всяка игра. Тези данни са събрани от всички доклади в ProtonDB, подадени от общността.";
+var helpAnalysisDetails$s = "Разделът Подробности показва:";
+var helpAnalysisWorking$s = "Работен статус — дали играта работи на Linux в момента и колко сигурна е тази оценка";
+var helpAnalysisConfidence$s = "Резултат на увереност — колко данни от доклади са налични за оценка на играта (0-100)";
+var helpAnalysisTrend$s = "Тенденция — дали съвместимостта се подобрява, стабилна е или намалява спрямо скорошни и стари доклади";
+var helpAnalysisFreshness$s = "Актуалност — кога е подаден последният доклад";
+var helpAnalysisWarnings$s = "Предупреждения за несъответствия на версия на Proton, проблеми с GPU или анти-чит";
+var helpAnalysisChart$s = "Разделът История на докладите показва графика на добри (зелени) срещу лоши (червени) доклади по месеци за последните 2 години, за да видите как се е променяла съвместимостта.";
+var helpAnalysisColorsTitle$s = "Цветове на бутона за анализ";
+var helpAnalysisColorsDesc$s = "Бутонът за анализ използва проста система от три цвята вместо цветовете на нивата на ProtonDB (Platinum, Gold и т.н.). Това е умишлено — нивата отразяват колко добре работи играта, докато бутонът за анализ отговаря на друг въпрос: работи ли играта изобщо в момента?";
+var helpAnalysisColorGreen$s = "Зелено — Играта работи според последните доклади";
+var helpAnalysisColorRed$s = "Червено — Играта не работи или има сериозни проблеми";
+var helpAnalysisColorGray$s = "Сиво — Няма достатъчно данни за определяне на статуса";
+var helpAnalysisToggle$s = "Можете да включите или изключите бутона за анализ в Настройки под Разширени функции.";
+var clearCacheSuccess$s = "Кешът е изчистен успешно";
+var settingsTabCount$s = "{with} от {total} доклада включват опции за стартиране (само положителни)";
+var settingsTabHint$s = "Натиснете Копирай и поставете в Steam > Свойства на играта > Опции за стартиране преди %command%";
+var settingsTabExample$s = "Пример: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$s = "Няма докладвани опции за стартиране за тази игра";
+var settingsTabCopy$s = "Копирай";
+var settingsTabCopied$s = "Копирано!";
 var bg = {
 	sectionLibrary: sectionLibrary$s,
 	sectionStore: sectionStore$s,
@@ -3138,7 +3258,38 @@ var bg = {
 	helpSubmitDesc: helpSubmitDesc$s,
 	helpSubmitStep1: helpSubmitStep1$s,
 	helpSubmitStep2: helpSubmitStep2$s,
-	helpSubmitStep3: helpSubmitStep3$s
+	helpSubmitStep3: helpSubmitStep3$s,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$s,
+	showAnalysisButton: showAnalysisButton$s,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$s,
+	roundedCorners: roundedCorners$s,
+	roundedCornersDesc: roundedCornersDesc$s,
+	showLibraryIcons: showLibraryIcons$s,
+	showLibraryIconsDesc: showLibraryIconsDesc$s,
+	libraryIconPosition: libraryIconPosition$s,
+	libraryIconPositionDesc: libraryIconPositionDesc$s,
+	helpAnalysisTitle: helpAnalysisTitle$s,
+	helpAnalysisDesc: helpAnalysisDesc$s,
+	helpAnalysisDetails: helpAnalysisDetails$s,
+	helpAnalysisWorking: helpAnalysisWorking$s,
+	helpAnalysisConfidence: helpAnalysisConfidence$s,
+	helpAnalysisTrend: helpAnalysisTrend$s,
+	helpAnalysisFreshness: helpAnalysisFreshness$s,
+	helpAnalysisWarnings: helpAnalysisWarnings$s,
+	helpAnalysisChart: helpAnalysisChart$s,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$s,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$s,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$s,
+	helpAnalysisColorRed: helpAnalysisColorRed$s,
+	helpAnalysisColorGray: helpAnalysisColorGray$s,
+	helpAnalysisToggle: helpAnalysisToggle$s,
+	clearCacheSuccess: clearCacheSuccess$s,
+	settingsTabCount: settingsTabCount$s,
+	settingsTabHint: settingsTabHint$s,
+	settingsTabExample: settingsTabExample$s,
+	settingsTabEmpty: settingsTabEmpty$s,
+	settingsTabCopy: settingsTabCopy$s,
+	settingsTabCopied: settingsTabCopied$s
 };
 
 var sectionLibrary$r = "Library";
@@ -3230,6 +3381,37 @@ var helpSubmitDesc$r = "Pomozte komunitě sdílením vašeho herního zážitku!
 var helpSubmitStep1$r = "Hrajte hru alespoň 15-30 minut";
 var helpSubmitStep2$r = "Klikněte na tlačítko Odeslat na odznaku ProtonDB";
 var helpSubmitStep3$r = "Vyplňte formulář hlášení na webu ProtonDB";
+var sectionEnhancedFeatures$r = "Rozšířené funkce";
+var showAnalysisButton$r = "Zobrazit tlačítko analýzy";
+var showAnalysisButtonDesc$r = "Zobrazí tlačítko vedle odznaku pro zobrazení podrobné analýzy kompatibility, včetně trendů hlášení a grafu historie";
+var roundedCorners$r = "Zaoblené rohy";
+var roundedCornersDesc$r = "Použít zaoblené rohy na všech tlačítkách odznaku";
+var showLibraryIcons$r = "Library Status Icons";
+var showLibraryIconsDesc$r = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$r = "Icon Position";
+var libraryIconPositionDesc$r = "Position of the status icon on game covers";
+var helpAnalysisTitle$r = "Analýza kompatibility";
+var helpAnalysisDesc$r = "Tlačítko analýzy (ikona sloupcového grafu) vedle odznaku otevře podrobný přehled kompatibility pro každou hru. Data pochází ze všech hlášení na ProtonDB od komunity.";
+var helpAnalysisDetails$r = "Záložka Podrobnosti zobrazuje:";
+var helpAnalysisWorking$r = "Stav funkčnosti — zda hra aktuálně funguje na Linuxu a jak jisté je toto hodnocení";
+var helpAnalysisConfidence$r = "Skóre důvěry — kolik dat z hlášení je k dispozici pro hodnocení hry (0-100)";
+var helpAnalysisTrend$r = "Trend — zda se kompatibilita zlepšuje, je stabilní nebo klesá na základě porovnání nedávných a starších hlášení";
+var helpAnalysisFreshness$r = "Aktuálnost — kdy bylo odesláno poslední hlášení";
+var helpAnalysisWarnings$r = "Varování o neshodách verzí Protonu, problémech s GPU nebo anti-cheatu";
+var helpAnalysisChart$r = "Záložka Historie hlášení zobrazuje graf dobrých (zelených) a špatných (červených) hlášení po měsících za poslední 2 roky.";
+var helpAnalysisColorsTitle$r = "Barvy tlačítka analýzy";
+var helpAnalysisColorsDesc$r = "Tlačítko analýzy používá jednoduchý semaforový systém místo barev úrovní ProtonDB (Platinum, Gold atd.). Je to záměrné — úrovně odrážejí, jak dobře hra běží, zatímco tlačítko analýzy odpovídá na jinou otázku: funguje hra právě teď vůbec?";
+var helpAnalysisColorGreen$r = "Zelená — Hra funguje podle nedávných hlášení";
+var helpAnalysisColorRed$r = "Červená — Hra nefunguje nebo má závažné problémy";
+var helpAnalysisColorGray$r = "Šedá — Nedostatek dat pro určení stavu";
+var helpAnalysisToggle$r = "Tlačítko analýzy můžete zapnout nebo vypnout v Nastavení pod Rozšířené funkce.";
+var clearCacheSuccess$r = "Mezipaměť byla úspěšně vymazána";
+var settingsTabCount$r = "{with} z {total} hlášení obsahuje možnosti spuštění (pouze pozitivní)";
+var settingsTabHint$r = "Klepněte na Kopírovat a vložte do Steam > Vlastnosti hry > Možnosti spuštění před %command%";
+var settingsTabExample$r = "Příklad: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$r = "Pro tuto hru nebyly hlášeny žádné možnosti spuštění";
+var settingsTabCopy$r = "Kopírovat";
+var settingsTabCopied$r = "Zkopírováno!";
 var cs = {
 	sectionLibrary: sectionLibrary$r,
 	sectionStore: sectionStore$r,
@@ -3319,7 +3501,38 @@ var cs = {
 	helpSubmitDesc: helpSubmitDesc$r,
 	helpSubmitStep1: helpSubmitStep1$r,
 	helpSubmitStep2: helpSubmitStep2$r,
-	helpSubmitStep3: helpSubmitStep3$r
+	helpSubmitStep3: helpSubmitStep3$r,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$r,
+	showAnalysisButton: showAnalysisButton$r,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$r,
+	roundedCorners: roundedCorners$r,
+	roundedCornersDesc: roundedCornersDesc$r,
+	showLibraryIcons: showLibraryIcons$r,
+	showLibraryIconsDesc: showLibraryIconsDesc$r,
+	libraryIconPosition: libraryIconPosition$r,
+	libraryIconPositionDesc: libraryIconPositionDesc$r,
+	helpAnalysisTitle: helpAnalysisTitle$r,
+	helpAnalysisDesc: helpAnalysisDesc$r,
+	helpAnalysisDetails: helpAnalysisDetails$r,
+	helpAnalysisWorking: helpAnalysisWorking$r,
+	helpAnalysisConfidence: helpAnalysisConfidence$r,
+	helpAnalysisTrend: helpAnalysisTrend$r,
+	helpAnalysisFreshness: helpAnalysisFreshness$r,
+	helpAnalysisWarnings: helpAnalysisWarnings$r,
+	helpAnalysisChart: helpAnalysisChart$r,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$r,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$r,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$r,
+	helpAnalysisColorRed: helpAnalysisColorRed$r,
+	helpAnalysisColorGray: helpAnalysisColorGray$r,
+	helpAnalysisToggle: helpAnalysisToggle$r,
+	clearCacheSuccess: clearCacheSuccess$r,
+	settingsTabCount: settingsTabCount$r,
+	settingsTabHint: settingsTabHint$r,
+	settingsTabExample: settingsTabExample$r,
+	settingsTabEmpty: settingsTabEmpty$r,
+	settingsTabCopy: settingsTabCopy$r,
+	settingsTabCopied: settingsTabCopied$r
 };
 
 var sectionLibrary$q = "Library";
@@ -3411,6 +3624,37 @@ var helpSubmitDesc$q = "Hjælp fællesskabet ved at dele din spiloplevelse! Rapp
 var helpSubmitStep1$q = "Spil et spil i mindst 15-30 minutter";
 var helpSubmitStep2$q = "Klik på Indsend-knappen på ProtonDB-badgen";
 var helpSubmitStep3$q = "Udfyld rapportformularen på ProtonDBs hjemmeside";
+var sectionEnhancedFeatures$q = "Udvidede funktioner";
+var showAnalysisButton$q = "Vis analyseknap";
+var showAnalysisButtonDesc$q = "Viser en knap ved siden af badget til at se detaljeret kompatibilitetsanalyse, herunder rapporttendenser og historikgraf";
+var roundedCorners$q = "Afrundede hjørner";
+var roundedCornersDesc$q = "Brug afrundede hjørner på alle badge-knapper";
+var showLibraryIcons$q = "Library Status Icons";
+var showLibraryIconsDesc$q = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$q = "Icon Position";
+var libraryIconPositionDesc$q = "Position of the status icon on game covers";
+var helpAnalysisTitle$q = "Kompatibilitetsanalyse";
+var helpAnalysisDesc$q = "Analyseknappen (søjlediagramikon) ved siden af badget åbner en detaljeret kompatibilitetsoversigt for hvert spil. Dataene er indsamlet fra alle ProtonDB-rapporter indsendt af fællesskabet.";
+var helpAnalysisDetails$q = "Fanen Detaljer viser:";
+var helpAnalysisWorking$q = "Funktionsstatus — om spillet fungerer på Linux, og hvor sikker vurderingen er";
+var helpAnalysisConfidence$q = "Tillidsscore — hvor mange rapportdata der er tilgængelige til at bedømme spillet (0-100)";
+var helpAnalysisTrend$q = "Tendens — om kompatibiliteten forbedres, er stabil eller falder baseret på nyere og ældre rapporter";
+var helpAnalysisFreshness$q = "Aktualitet — hvornår den seneste rapport blev indsendt";
+var helpAnalysisWarnings$q = "Advarsler om Proton-versionsfejl, GPU-problemer eller anti-cheat";
+var helpAnalysisChart$q = "Fanen Rapporthistorik viser en graf over gode (grønne) og dårlige (røde) rapporter pr. måned over de sidste 2 år.";
+var helpAnalysisColorsTitle$q = "Analyseknappens farver";
+var helpAnalysisColorsDesc$q = "Analyseknappen bruger et simpelt trafiklyssystem i stedet for ProtonDB's tier-farver (Platinum, Gold osv.). Dette er bevidst — tiers afspejler hvor godt et spil kører, mens analyseknappen besvarer et andet spørgsmål: virker spillet overhovedet lige nu?";
+var helpAnalysisColorGreen$q = "Grøn — Spillet virker baseret på nylige rapporter";
+var helpAnalysisColorRed$q = "Rød — Spillet virker ikke eller har betydelige problemer";
+var helpAnalysisColorGray$q = "Grå — Ikke nok data til at bestemme status";
+var helpAnalysisToggle$q = "Du kan aktivere eller deaktivere analyseknappen i Indstillinger under Udvidede funktioner.";
+var clearCacheSuccess$q = "Cache ryddet";
+var settingsTabCount$q = "{with} af {total} rapporter inkluderer startindstillinger (kun positive)";
+var settingsTabHint$q = "Tryk på Kopiér og indsæt i Steam > Spilegenskaber > Startindstillinger før %command%";
+var settingsTabExample$q = "Eksempel: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$q = "Ingen startindstillinger rapporteret for dette spil";
+var settingsTabCopy$q = "Kopiér";
+var settingsTabCopied$q = "Kopieret!";
 var da = {
 	sectionLibrary: sectionLibrary$q,
 	sectionStore: sectionStore$q,
@@ -3500,7 +3744,38 @@ var da = {
 	helpSubmitDesc: helpSubmitDesc$q,
 	helpSubmitStep1: helpSubmitStep1$q,
 	helpSubmitStep2: helpSubmitStep2$q,
-	helpSubmitStep3: helpSubmitStep3$q
+	helpSubmitStep3: helpSubmitStep3$q,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$q,
+	showAnalysisButton: showAnalysisButton$q,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$q,
+	roundedCorners: roundedCorners$q,
+	roundedCornersDesc: roundedCornersDesc$q,
+	showLibraryIcons: showLibraryIcons$q,
+	showLibraryIconsDesc: showLibraryIconsDesc$q,
+	libraryIconPosition: libraryIconPosition$q,
+	libraryIconPositionDesc: libraryIconPositionDesc$q,
+	helpAnalysisTitle: helpAnalysisTitle$q,
+	helpAnalysisDesc: helpAnalysisDesc$q,
+	helpAnalysisDetails: helpAnalysisDetails$q,
+	helpAnalysisWorking: helpAnalysisWorking$q,
+	helpAnalysisConfidence: helpAnalysisConfidence$q,
+	helpAnalysisTrend: helpAnalysisTrend$q,
+	helpAnalysisFreshness: helpAnalysisFreshness$q,
+	helpAnalysisWarnings: helpAnalysisWarnings$q,
+	helpAnalysisChart: helpAnalysisChart$q,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$q,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$q,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$q,
+	helpAnalysisColorRed: helpAnalysisColorRed$q,
+	helpAnalysisColorGray: helpAnalysisColorGray$q,
+	helpAnalysisToggle: helpAnalysisToggle$q,
+	clearCacheSuccess: clearCacheSuccess$q,
+	settingsTabCount: settingsTabCount$q,
+	settingsTabHint: settingsTabHint$q,
+	settingsTabExample: settingsTabExample$q,
+	settingsTabEmpty: settingsTabEmpty$q,
+	settingsTabCopy: settingsTabCopy$q,
+	settingsTabCopied: settingsTabCopied$q
 };
 
 var sectionLibrary$p = "Bibliothek";
@@ -3592,6 +3867,37 @@ var helpSubmitDesc$p = "Hilf der Community, indem du deine Spielerfahrung teilst
 var helpSubmitStep1$p = "Spiele ein Spiel mindestens 15-30 Minuten";
 var helpSubmitStep2$p = "Klicke auf den Senden-Button auf dem ProtonDB-Abzeichen";
 var helpSubmitStep3$p = "Fülle das Berichtsformular auf der ProtonDB-Website aus";
+var sectionEnhancedFeatures$p = "Erweiterte Funktionen";
+var showAnalysisButton$p = "Analyse-Button anzeigen";
+var showAnalysisButtonDesc$p = "Zeigt einen Button neben dem Badge für eine detaillierte Kompatibilitätsanalyse, einschließlich Berichtstrends und Verlaufsdiagramm";
+var roundedCorners$p = "Abgerundete Ecken";
+var roundedCornersDesc$p = "Abgerundete Ecken für alle Badge-Buttons verwenden";
+var showLibraryIcons$p = "Bibliothek-Statusicons";
+var showLibraryIconsDesc$p = "Kompatibilitätsstatus-Icons auf Spiel-Covern in der Bibliothek anzeigen";
+var libraryIconPosition$p = "Icon-Position";
+var libraryIconPositionDesc$p = "Position des Statusicons auf Spiel-Covern";
+var helpAnalysisTitle$p = "Kompatibilitätsanalyse";
+var helpAnalysisDesc$p = "Der Analyse-Button (Balkendiagramm-Symbol) neben dem Badge öffnet eine detaillierte Kompatibilitätsübersicht für jedes Spiel. Die Daten stammen aus allen von der Community eingereichten ProtonDB-Berichten.";
+var helpAnalysisDetails$p = "Der Reiter Details zeigt:";
+var helpAnalysisWorking$p = "Funktionsstatus — ob das Spiel derzeit unter Linux funktioniert und wie sicher diese Einschätzung ist";
+var helpAnalysisConfidence$p = "Vertrauenswert — wie viele Berichtsdaten zur Bewertung des Spiels vorliegen (0-100)";
+var helpAnalysisTrend$p = "Trend — ob sich die Kompatibilität verbessert, stabil ist oder abnimmt, basierend auf neueren und älteren Berichten";
+var helpAnalysisFreshness$p = "Aktualität — wann der letzte Bericht eingereicht wurde";
+var helpAnalysisWarnings$p = "Warnungen zu Proton-Versionsunterschieden, GPU-Problemen oder Anti-Cheat";
+var helpAnalysisChart$p = "Der Reiter Berichtsverlauf zeigt ein Diagramm guter (grüner) und schlechter (roter) Berichte pro Monat der letzten 2 Jahre.";
+var helpAnalysisColorsTitle$p = "Farben der Analyse-Schaltfläche";
+var helpAnalysisColorsDesc$p = "Die Analyse-Schaltfläche verwendet ein einfaches Ampelsystem anstelle der ProtonDB-Stufenfarben (Platinum, Gold usw.). Das ist beabsichtigt — die Stufen zeigen, wie gut ein Spiel läuft, während die Analyse-Schaltfläche eine andere Frage beantwortet: funktioniert das Spiel gerade überhaupt?";
+var helpAnalysisColorGreen$p = "Grün — Spiel funktioniert laut aktuellen Berichten";
+var helpAnalysisColorRed$p = "Rot — Spiel funktioniert nicht oder hat erhebliche Probleme";
+var helpAnalysisColorGray$p = "Grau — Nicht genügend Daten zur Statusbestimmung";
+var helpAnalysisToggle$p = "Sie können den Analyse-Button in den Einstellungen unter Erweiterte Funktionen ein- oder ausschalten.";
+var clearCacheSuccess$p = "Cache erfolgreich geleert";
+var settingsTabCount$p = "{with} von {total} Berichten enthalten Startoptionen (nur positive)";
+var settingsTabHint$p = "Tippe auf Kopieren und füge es in Steam > Spieleigenschaften > Startoptionen vor %command% ein";
+var settingsTabExample$p = "Beispiel: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$p = "Keine Startoptionen für dieses Spiel gemeldet";
+var settingsTabCopy$p = "Kopieren";
+var settingsTabCopied$p = "Kopiert!";
 var de = {
 	sectionLibrary: sectionLibrary$p,
 	sectionStore: sectionStore$p,
@@ -3681,7 +3987,38 @@ var de = {
 	helpSubmitDesc: helpSubmitDesc$p,
 	helpSubmitStep1: helpSubmitStep1$p,
 	helpSubmitStep2: helpSubmitStep2$p,
-	helpSubmitStep3: helpSubmitStep3$p
+	helpSubmitStep3: helpSubmitStep3$p,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$p,
+	showAnalysisButton: showAnalysisButton$p,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$p,
+	roundedCorners: roundedCorners$p,
+	roundedCornersDesc: roundedCornersDesc$p,
+	showLibraryIcons: showLibraryIcons$p,
+	showLibraryIconsDesc: showLibraryIconsDesc$p,
+	libraryIconPosition: libraryIconPosition$p,
+	libraryIconPositionDesc: libraryIconPositionDesc$p,
+	helpAnalysisTitle: helpAnalysisTitle$p,
+	helpAnalysisDesc: helpAnalysisDesc$p,
+	helpAnalysisDetails: helpAnalysisDetails$p,
+	helpAnalysisWorking: helpAnalysisWorking$p,
+	helpAnalysisConfidence: helpAnalysisConfidence$p,
+	helpAnalysisTrend: helpAnalysisTrend$p,
+	helpAnalysisFreshness: helpAnalysisFreshness$p,
+	helpAnalysisWarnings: helpAnalysisWarnings$p,
+	helpAnalysisChart: helpAnalysisChart$p,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$p,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$p,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$p,
+	helpAnalysisColorRed: helpAnalysisColorRed$p,
+	helpAnalysisColorGray: helpAnalysisColorGray$p,
+	helpAnalysisToggle: helpAnalysisToggle$p,
+	clearCacheSuccess: clearCacheSuccess$p,
+	settingsTabCount: settingsTabCount$p,
+	settingsTabHint: settingsTabHint$p,
+	settingsTabExample: settingsTabExample$p,
+	settingsTabEmpty: settingsTabEmpty$p,
+	settingsTabCopy: settingsTabCopy$p,
+	settingsTabCopied: settingsTabCopied$p
 };
 
 var sectionLibrary$o = "Library";
@@ -3773,6 +4110,37 @@ var helpSubmitDesc$o = "Βοηθήστε την κοινότητα μοιράζ�
 var helpSubmitStep1$o = "Παίξτε ένα παιχνίδι για τουλάχιστον 15-30 λεπτά";
 var helpSubmitStep2$o = "Κάντε κλικ στο κουμπί Υποβολή στο σήμα ProtonDB";
 var helpSubmitStep3$o = "Συμπληρώστε τη φόρμα αναφοράς στον ιστότοπο του ProtonDB";
+var sectionEnhancedFeatures$o = "Προηγμένες λειτουργίες";
+var showAnalysisButton$o = "Εμφάνιση κουμπιού ανάλυσης";
+var showAnalysisButtonDesc$o = "Εμφανίζει ένα κουμπί δίπλα στο σήμα για προβολή λεπτομερούς ανάλυσης συμβατότητας, συμπεριλαμβανομένων τάσεων αναφορών και γραφήματος ιστορικού";
+var roundedCorners$o = "Στρογγυλεμένες γωνίες";
+var roundedCornersDesc$o = "Χρήση στρογγυλεμένων γωνιών σε όλα τα κουμπιά σήματος";
+var showLibraryIcons$o = "Library Status Icons";
+var showLibraryIconsDesc$o = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$o = "Icon Position";
+var libraryIconPositionDesc$o = "Position of the status icon on game covers";
+var helpAnalysisTitle$o = "Ανάλυση συμβατότητας";
+var helpAnalysisDesc$o = "Το κουμπί ανάλυσης (εικονίδιο γραφήματος) δίπλα στο σήμα ανοίγει μια λεπτομερή ανάλυση συμβατότητας για κάθε παιχνίδι. Τα δεδομένα προέρχονται από όλες τις αναφορές ProtonDB της κοινότητας.";
+var helpAnalysisDetails$o = "Η καρτέλα Λεπτομέρειες δείχνει:";
+var helpAnalysisWorking$o = "Κατάσταση λειτουργίας — αν το παιχνίδι λειτουργεί σε Linux και πόσο βέβαιη είναι αυτή η εκτίμηση";
+var helpAnalysisConfidence$o = "Βαθμολογία εμπιστοσύνης — πόσα δεδομένα αναφορών υπάρχουν για την αξιολόγηση του παιχνιδιού (0-100)";
+var helpAnalysisTrend$o = "Τάση — αν η συμβατότητα βελτιώνεται, είναι σταθερή ή μειώνεται";
+var helpAnalysisFreshness$o = "Ενημερότητα — πότε υποβλήθηκε η τελευταία αναφορά";
+var helpAnalysisWarnings$o = "Προειδοποιήσεις για ασυμφωνίες έκδοσης Proton, προβλήματα GPU ή anti-cheat";
+var helpAnalysisChart$o = "Η καρτέλα Ιστορικό Αναφορών δείχνει ένα γράφημα καλών (πράσινων) και κακών (κόκκινων) αναφορών ανά μήνα τα τελευταία 2 χρόνια.";
+var helpAnalysisColorsTitle$o = "Χρώματα κουμπιού ανάλυσης";
+var helpAnalysisColorsDesc$o = "Το κουμπί ανάλυσης χρησιμοποιεί ένα απλό σύστημα φαναριού αντί για τα χρώματα βαθμίδων του ProtonDB (Platinum, Gold κ.λπ.). Αυτό είναι σκόπιμο — οι βαθμίδες αντικατοπτρίζουν πόσο καλά τρέχει ένα παιχνίδι, ενώ το κουμπί ανάλυσης απαντά σε διαφορετικό ερώτημα: λειτουργεί το παιχνίδι καθόλου αυτή τη στιγμή;";
+var helpAnalysisColorGreen$o = "Πράσινο — Το παιχνίδι λειτουργεί βάσει πρόσφατων αναφορών";
+var helpAnalysisColorRed$o = "Κόκκινο — Το παιχνίδι δεν λειτουργεί ή έχει σημαντικά προβλήματα";
+var helpAnalysisColorGray$o = "Γκρι — Δεν υπάρχουν αρκετά δεδομένα για τον προσδιορισμό της κατάστασης";
+var helpAnalysisToggle$o = "Μπορείτε να ενεργοποιήσετε ή να απενεργοποιήσετε το κουμπί ανάλυσης στις Ρυθμίσεις, στις Προηγμένες λειτουργίες.";
+var clearCacheSuccess$o = "Η προσωρινή μνήμη εκκαθαρίστηκε";
+var settingsTabCount$o = "{with} από {total} αναφορές περιλαμβάνουν επιλογές εκκίνησης (μόνο θετικές)";
+var settingsTabHint$o = "Πατήστε Αντιγραφή και επικολλήστε στο Steam > Ιδιότητες παιχνιδιού > Επιλογές εκκίνησης πριν το %command%";
+var settingsTabExample$o = "Παράδειγμα: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$o = "Δεν αναφέρθηκαν επιλογές εκκίνησης για αυτό το παιχνίδι";
+var settingsTabCopy$o = "Αντιγραφή";
+var settingsTabCopied$o = "Αντιγράφηκε!";
 var el = {
 	sectionLibrary: sectionLibrary$o,
 	sectionStore: sectionStore$o,
@@ -3862,7 +4230,38 @@ var el = {
 	helpSubmitDesc: helpSubmitDesc$o,
 	helpSubmitStep1: helpSubmitStep1$o,
 	helpSubmitStep2: helpSubmitStep2$o,
-	helpSubmitStep3: helpSubmitStep3$o
+	helpSubmitStep3: helpSubmitStep3$o,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$o,
+	showAnalysisButton: showAnalysisButton$o,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$o,
+	roundedCorners: roundedCorners$o,
+	roundedCornersDesc: roundedCornersDesc$o,
+	showLibraryIcons: showLibraryIcons$o,
+	showLibraryIconsDesc: showLibraryIconsDesc$o,
+	libraryIconPosition: libraryIconPosition$o,
+	libraryIconPositionDesc: libraryIconPositionDesc$o,
+	helpAnalysisTitle: helpAnalysisTitle$o,
+	helpAnalysisDesc: helpAnalysisDesc$o,
+	helpAnalysisDetails: helpAnalysisDetails$o,
+	helpAnalysisWorking: helpAnalysisWorking$o,
+	helpAnalysisConfidence: helpAnalysisConfidence$o,
+	helpAnalysisTrend: helpAnalysisTrend$o,
+	helpAnalysisFreshness: helpAnalysisFreshness$o,
+	helpAnalysisWarnings: helpAnalysisWarnings$o,
+	helpAnalysisChart: helpAnalysisChart$o,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$o,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$o,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$o,
+	helpAnalysisColorRed: helpAnalysisColorRed$o,
+	helpAnalysisColorGray: helpAnalysisColorGray$o,
+	helpAnalysisToggle: helpAnalysisToggle$o,
+	clearCacheSuccess: clearCacheSuccess$o,
+	settingsTabCount: settingsTabCount$o,
+	settingsTabHint: settingsTabHint$o,
+	settingsTabExample: settingsTabExample$o,
+	settingsTabEmpty: settingsTabEmpty$o,
+	settingsTabCopy: settingsTabCopy$o,
+	settingsTabCopied: settingsTabCopied$o
 };
 
 var sectionLibrary$n = "Library";
@@ -3954,6 +4353,40 @@ var helpSubmitDesc$n = "Help the community by sharing your gaming experience! Re
 var helpSubmitStep1$n = "Play a game for at least 15-30 minutes";
 var helpSubmitStep2$n = "Click the Submit button on the ProtonDB badge";
 var helpSubmitStep3$n = "Fill out the report form on ProtonDB's website";
+var helpAnalysisTitle$n = "Compatibility Analysis";
+var helpAnalysisDesc$n = "The analysis button (bar chart icon) next to the badge opens a detailed compatibility breakdown for each game. This data is gathered from all ProtonDB reports submitted by the community.";
+var helpAnalysisDetails$n = "The Details tab shows:";
+var helpAnalysisWorking$n = "Working Status — whether the game currently works on Linux, and how certain that assessment is";
+var helpAnalysisConfidence$n = "Confidence Score — how much report data is available to judge the game (0-100)";
+var helpAnalysisTrend$n = "Trend — whether compatibility is improving, stable, or declining based on recent vs older reports";
+var helpAnalysisFreshness$n = "Freshness — how recently the latest report was submitted";
+var helpAnalysisWarnings$n = "Warnings about Proton version mismatches, GPU issues, or anti-cheat";
+var helpAnalysisChart$n = "The Report History tab shows a chart of good (green) vs bad (red) reports per month over the last 2 years, so you can see how compatibility has changed over time.";
+var helpAnalysisColorsTitle$n = "Analysis Button Colors";
+var helpAnalysisColorsDesc$n = "The analysis button uses a simple traffic-light system instead of ProtonDB's tier colors (Platinum, Gold, etc.). This is intentional — the tiers reflect how well a game runs, while the analysis button answers a different question: does the game work at all right now?";
+var helpAnalysisColorGreen$n = "Green — Game is working based on recent reports";
+var helpAnalysisColorRed$n = "Red — Game is not working or has significant issues";
+var helpAnalysisColorGray$n = "Gray — Not enough data to determine status";
+var helpAnalysisToggle$n = "You can enable or disable the analysis button in Settings under Enhanced Features.";
+var sectionEnhancedFeatures$n = "Enhanced Features";
+var showAnalysisButton$n = "Show Analysis Button";
+var showAnalysisButtonDesc$n = "Display a button next to the badge to view detailed compatibility analysis, including report trends and a history chart";
+var roundedCorners$n = "Rounded Corners";
+var roundedCornersDesc$n = "Use rounded corners on all badge buttons";
+var showLibraryIcons$n = "Library Status Icons";
+var showLibraryIconsDesc$n = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$n = "Icon Position";
+var libraryIconPositionDesc$n = "Position of the status icon on game covers";
+var clearCacheSuccess$n = "Cache cleared successfully";
+var sectionAbout = "About";
+var name = "Name";
+var version = "Version";
+var settingsTabCount$n = "{with} of {total} reports include launch options (positive only)";
+var settingsTabHint$n = "Tap Copy and paste it into Steam > Game Properties > Launch Options before %command%";
+var settingsTabExample$n = "Example: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$n = "No launch options reported for this game";
+var settingsTabCopy$n = "Copy";
+var settingsTabCopied$n = "Copied!";
 var en = {
 	sectionLibrary: sectionLibrary$n,
 	sectionStore: sectionStore$n,
@@ -4043,7 +4476,41 @@ var en = {
 	helpSubmitDesc: helpSubmitDesc$n,
 	helpSubmitStep1: helpSubmitStep1$n,
 	helpSubmitStep2: helpSubmitStep2$n,
-	helpSubmitStep3: helpSubmitStep3$n
+	helpSubmitStep3: helpSubmitStep3$n,
+	helpAnalysisTitle: helpAnalysisTitle$n,
+	helpAnalysisDesc: helpAnalysisDesc$n,
+	helpAnalysisDetails: helpAnalysisDetails$n,
+	helpAnalysisWorking: helpAnalysisWorking$n,
+	helpAnalysisConfidence: helpAnalysisConfidence$n,
+	helpAnalysisTrend: helpAnalysisTrend$n,
+	helpAnalysisFreshness: helpAnalysisFreshness$n,
+	helpAnalysisWarnings: helpAnalysisWarnings$n,
+	helpAnalysisChart: helpAnalysisChart$n,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$n,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$n,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$n,
+	helpAnalysisColorRed: helpAnalysisColorRed$n,
+	helpAnalysisColorGray: helpAnalysisColorGray$n,
+	helpAnalysisToggle: helpAnalysisToggle$n,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$n,
+	showAnalysisButton: showAnalysisButton$n,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$n,
+	roundedCorners: roundedCorners$n,
+	roundedCornersDesc: roundedCornersDesc$n,
+	showLibraryIcons: showLibraryIcons$n,
+	showLibraryIconsDesc: showLibraryIconsDesc$n,
+	libraryIconPosition: libraryIconPosition$n,
+	libraryIconPositionDesc: libraryIconPositionDesc$n,
+	clearCacheSuccess: clearCacheSuccess$n,
+	sectionAbout: sectionAbout,
+	name: name,
+	version: version,
+	settingsTabCount: settingsTabCount$n,
+	settingsTabHint: settingsTabHint$n,
+	settingsTabExample: settingsTabExample$n,
+	settingsTabEmpty: settingsTabEmpty$n,
+	settingsTabCopy: settingsTabCopy$n,
+	settingsTabCopied: settingsTabCopied$n
 };
 
 var sectionLibrary$m = "Biblioteca";
@@ -4135,6 +4602,37 @@ var helpSubmitDesc$m = "¡Ayuda a la comunidad compartiendo tu experiencia de ju
 var helpSubmitStep1$m = "Juega un juego durante al menos 15-30 minutos";
 var helpSubmitStep2$m = "Haz clic en el botón Enviar en la insignia de ProtonDB";
 var helpSubmitStep3$m = "Completa el formulario de informe en el sitio web de ProtonDB";
+var sectionEnhancedFeatures$m = "Funciones avanzadas";
+var showAnalysisButton$m = "Mostrar botón de análisis";
+var showAnalysisButtonDesc$m = "Muestra un botón junto a la insignia para ver un análisis detallado de compatibilidad, incluyendo tendencias de informes y gráfico de historial";
+var roundedCorners$m = "Esquinas redondeadas";
+var roundedCornersDesc$m = "Usar esquinas redondeadas en todos los botones de insignia";
+var showLibraryIcons$m = "Library Status Icons";
+var showLibraryIconsDesc$m = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$m = "Icon Position";
+var libraryIconPositionDesc$m = "Position of the status icon on game covers";
+var helpAnalysisTitle$m = "Análisis de compatibilidad";
+var helpAnalysisDesc$m = "El botón de análisis (icono de gráfico de barras) junto a la insignia abre un desglose detallado de compatibilidad para cada juego. Estos datos provienen de todos los informes de ProtonDB enviados por la comunidad.";
+var helpAnalysisDetails$m = "La pestaña Detalles muestra:";
+var helpAnalysisWorking$m = "Estado de funcionamiento — si el juego funciona actualmente en Linux y qué tan segura es esa evaluación";
+var helpAnalysisConfidence$m = "Puntuación de confianza — cuántos datos de informes hay disponibles para evaluar el juego (0-100)";
+var helpAnalysisTrend$m = "Tendencia — si la compatibilidad está mejorando, es estable o está empeorando";
+var helpAnalysisFreshness$m = "Actualidad — cuándo se envió el último informe";
+var helpAnalysisWarnings$m = "Advertencias sobre incompatibilidades de versión de Proton, problemas de GPU o anti-trampas";
+var helpAnalysisChart$m = "La pestaña Historial de informes muestra un gráfico de informes buenos (verdes) y malos (rojos) por mes durante los últimos 2 años.";
+var helpAnalysisColorsTitle$m = "Colores del botón de análisis";
+var helpAnalysisColorsDesc$m = "El botón de análisis usa un sistema simple de semáforo en lugar de los colores de nivel de ProtonDB (Platinum, Gold, etc.). Esto es intencional — los niveles reflejan qué tan bien funciona un juego, mientras que el botón de análisis responde una pregunta diferente: ¿funciona el juego en absoluto ahora mismo?";
+var helpAnalysisColorGreen$m = "Verde — El juego funciona según informes recientes";
+var helpAnalysisColorRed$m = "Rojo — El juego no funciona o tiene problemas significativos";
+var helpAnalysisColorGray$m = "Gris — No hay suficientes datos para determinar el estado";
+var helpAnalysisToggle$m = "Puedes activar o desactivar el botón de análisis en Ajustes, en Funciones avanzadas.";
+var clearCacheSuccess$m = "Caché borrada correctamente";
+var settingsTabCount$m = "{with} de {total} informes incluyen opciones de lanzamiento (solo positivos)";
+var settingsTabHint$m = "Pulsa Copiar y pégalo en Steam > Propiedades del juego > Opciones de lanzamiento antes de %command%";
+var settingsTabExample$m = "Ejemplo: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$m = "No se han reportado opciones de lanzamiento para este juego";
+var settingsTabCopy$m = "Copiar";
+var settingsTabCopied$m = "¡Copiado!";
 var es = {
 	sectionLibrary: sectionLibrary$m,
 	sectionStore: sectionStore$m,
@@ -4224,7 +4722,38 @@ var es = {
 	helpSubmitDesc: helpSubmitDesc$m,
 	helpSubmitStep1: helpSubmitStep1$m,
 	helpSubmitStep2: helpSubmitStep2$m,
-	helpSubmitStep3: helpSubmitStep3$m
+	helpSubmitStep3: helpSubmitStep3$m,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$m,
+	showAnalysisButton: showAnalysisButton$m,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$m,
+	roundedCorners: roundedCorners$m,
+	roundedCornersDesc: roundedCornersDesc$m,
+	showLibraryIcons: showLibraryIcons$m,
+	showLibraryIconsDesc: showLibraryIconsDesc$m,
+	libraryIconPosition: libraryIconPosition$m,
+	libraryIconPositionDesc: libraryIconPositionDesc$m,
+	helpAnalysisTitle: helpAnalysisTitle$m,
+	helpAnalysisDesc: helpAnalysisDesc$m,
+	helpAnalysisDetails: helpAnalysisDetails$m,
+	helpAnalysisWorking: helpAnalysisWorking$m,
+	helpAnalysisConfidence: helpAnalysisConfidence$m,
+	helpAnalysisTrend: helpAnalysisTrend$m,
+	helpAnalysisFreshness: helpAnalysisFreshness$m,
+	helpAnalysisWarnings: helpAnalysisWarnings$m,
+	helpAnalysisChart: helpAnalysisChart$m,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$m,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$m,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$m,
+	helpAnalysisColorRed: helpAnalysisColorRed$m,
+	helpAnalysisColorGray: helpAnalysisColorGray$m,
+	helpAnalysisToggle: helpAnalysisToggle$m,
+	clearCacheSuccess: clearCacheSuccess$m,
+	settingsTabCount: settingsTabCount$m,
+	settingsTabHint: settingsTabHint$m,
+	settingsTabExample: settingsTabExample$m,
+	settingsTabEmpty: settingsTabEmpty$m,
+	settingsTabCopy: settingsTabCopy$m,
+	settingsTabCopied: settingsTabCopied$m
 };
 
 var sectionLibrary$l = "Library";
@@ -4316,6 +4845,37 @@ var helpSubmitDesc$l = "¡Ayuda a la comunidad compartiendo tu experiencia de ju
 var helpSubmitStep1$l = "Juega un juego durante al menos 15-30 minutos";
 var helpSubmitStep2$l = "Haz clic en el botón Enviar en la medalla de ProtonDB";
 var helpSubmitStep3$l = "Completa el formulario de reporte en el sitio web de ProtonDB";
+var sectionEnhancedFeatures$l = "Funciones avanzadas";
+var showAnalysisButton$l = "Mostrar botón de análisis";
+var showAnalysisButtonDesc$l = "Muestra un botón junto a la insignia para ver un análisis detallado de compatibilidad, incluyendo tendencias de reportes y gráfico de historial";
+var roundedCorners$l = "Esquinas redondeadas";
+var roundedCornersDesc$l = "Usar esquinas redondeadas en todos los botones de insignia";
+var showLibraryIcons$l = "Library Status Icons";
+var showLibraryIconsDesc$l = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$l = "Icon Position";
+var libraryIconPositionDesc$l = "Position of the status icon on game covers";
+var helpAnalysisTitle$l = "Análisis de compatibilidad";
+var helpAnalysisDesc$l = "El botón de análisis (ícono de gráfico de barras) junto a la insignia abre un desglose detallado de compatibilidad para cada juego. Estos datos provienen de todos los reportes de ProtonDB enviados por la comunidad.";
+var helpAnalysisDetails$l = "La pestaña Detalles muestra:";
+var helpAnalysisWorking$l = "Estado de funcionamiento — si el juego funciona actualmente en Linux y qué tan segura es esa evaluación";
+var helpAnalysisConfidence$l = "Puntuación de confianza — cuántos datos de reportes hay disponibles para evaluar el juego (0-100)";
+var helpAnalysisTrend$l = "Tendencia — si la compatibilidad está mejorando, es estable o está empeorando";
+var helpAnalysisFreshness$l = "Actualidad — cuándo se envió el último reporte";
+var helpAnalysisWarnings$l = "Advertencias sobre incompatibilidades de versión de Proton, problemas de GPU o anti-trampas";
+var helpAnalysisChart$l = "La pestaña Historial de reportes muestra un gráfico de reportes buenos (verdes) y malos (rojos) por mes durante los últimos 2 años.";
+var helpAnalysisColorsTitle$l = "Colores del botón de análisis";
+var helpAnalysisColorsDesc$l = "El botón de análisis usa un sistema simple de semáforo en lugar de los colores de nivel de ProtonDB (Platinum, Gold, etc.). Esto es intencional — los niveles reflejan qué tan bien funciona un juego, mientras que el botón de análisis responde una pregunta diferente: ¿funciona el juego en absoluto ahora mismo?";
+var helpAnalysisColorGreen$l = "Verde — El juego funciona según reportes recientes";
+var helpAnalysisColorRed$l = "Rojo — El juego no funciona o tiene problemas significativos";
+var helpAnalysisColorGray$l = "Gris — No hay suficientes datos para determinar el estado";
+var helpAnalysisToggle$l = "Puedes activar o desactivar el botón de análisis en Ajustes, en Funciones avanzadas.";
+var clearCacheSuccess$l = "Caché borrada correctamente";
+var settingsTabCount$l = "{with} de {total} reportes incluyen opciones de lanzamiento (solo positivos)";
+var settingsTabHint$l = "Toca Copiar y pégalo en Steam > Propiedades del juego > Opciones de lanzamiento antes de %command%";
+var settingsTabExample$l = "Ejemplo: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$l = "No se reportaron opciones de lanzamiento para este juego";
+var settingsTabCopy$l = "Copiar";
+var settingsTabCopied$l = "¡Copiado!";
 var es419 = {
 	sectionLibrary: sectionLibrary$l,
 	sectionStore: sectionStore$l,
@@ -4405,7 +4965,38 @@ var es419 = {
 	helpSubmitDesc: helpSubmitDesc$l,
 	helpSubmitStep1: helpSubmitStep1$l,
 	helpSubmitStep2: helpSubmitStep2$l,
-	helpSubmitStep3: helpSubmitStep3$l
+	helpSubmitStep3: helpSubmitStep3$l,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$l,
+	showAnalysisButton: showAnalysisButton$l,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$l,
+	roundedCorners: roundedCorners$l,
+	roundedCornersDesc: roundedCornersDesc$l,
+	showLibraryIcons: showLibraryIcons$l,
+	showLibraryIconsDesc: showLibraryIconsDesc$l,
+	libraryIconPosition: libraryIconPosition$l,
+	libraryIconPositionDesc: libraryIconPositionDesc$l,
+	helpAnalysisTitle: helpAnalysisTitle$l,
+	helpAnalysisDesc: helpAnalysisDesc$l,
+	helpAnalysisDetails: helpAnalysisDetails$l,
+	helpAnalysisWorking: helpAnalysisWorking$l,
+	helpAnalysisConfidence: helpAnalysisConfidence$l,
+	helpAnalysisTrend: helpAnalysisTrend$l,
+	helpAnalysisFreshness: helpAnalysisFreshness$l,
+	helpAnalysisWarnings: helpAnalysisWarnings$l,
+	helpAnalysisChart: helpAnalysisChart$l,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$l,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$l,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$l,
+	helpAnalysisColorRed: helpAnalysisColorRed$l,
+	helpAnalysisColorGray: helpAnalysisColorGray$l,
+	helpAnalysisToggle: helpAnalysisToggle$l,
+	clearCacheSuccess: clearCacheSuccess$l,
+	settingsTabCount: settingsTabCount$l,
+	settingsTabHint: settingsTabHint$l,
+	settingsTabExample: settingsTabExample$l,
+	settingsTabEmpty: settingsTabEmpty$l,
+	settingsTabCopy: settingsTabCopy$l,
+	settingsTabCopied: settingsTabCopied$l
 };
 
 var sectionLibrary$k = "Library";
@@ -4497,6 +5088,37 @@ var helpSubmitDesc$k = "Auta yhteisöä jakamalla pelikokemuksesi! Raportit autt
 var helpSubmitStep1$k = "Pelaa peliä vähintään 15-30 minuuttia";
 var helpSubmitStep2$k = "Napsauta Lähetä-painiketta ProtonDB-merkissä";
 var helpSubmitStep3$k = "Täytä raporttilomake ProtonDB:n verkkosivustolla";
+var sectionEnhancedFeatures$k = "Lisäominaisuudet";
+var showAnalysisButton$k = "Näytä analyysipainike";
+var showAnalysisButtonDesc$k = "Näyttää painikkeen merkin vieressä yksityiskohtaisen yhteensopivuusanalyysin katselua varten, sisältäen raporttitrendit ja historiakaavion";
+var roundedCorners$k = "Pyöristetyt kulmat";
+var roundedCornersDesc$k = "Käytä pyöristettyjä kulmia kaikissa merkkipainikkeissa";
+var showLibraryIcons$k = "Library Status Icons";
+var showLibraryIconsDesc$k = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$k = "Icon Position";
+var libraryIconPositionDesc$k = "Position of the status icon on game covers";
+var helpAnalysisTitle$k = "Yhteensopivuusanalyysi";
+var helpAnalysisDesc$k = "Analyysipainike (pylväskaavion kuvake) merkin vieressä avaa yksityiskohtaisen yhteensopivuuskatsauksen jokaiselle pelille. Tiedot on kerätty kaikista yhteisön lähettämistä ProtonDB-raporteista.";
+var helpAnalysisDetails$k = "Tiedot-välilehti näyttää:";
+var helpAnalysisWorking$k = "Toimintatila — toimiiko peli Linuxissa ja kuinka varma arvio on";
+var helpAnalysisConfidence$k = "Luottamuspisteet — kuinka paljon raporttidataa on saatavilla pelin arviointiin (0-100)";
+var helpAnalysisTrend$k = "Trendi — paraneeko, pysyykö vakaana vai heikkeneekö yhteensopivuus";
+var helpAnalysisFreshness$k = "Tuoreus — milloin viimeisin raportti lähetettiin";
+var helpAnalysisWarnings$k = "Varoitukset Proton-versioeroista, GPU-ongelmista tai huijauksenestosta";
+var helpAnalysisChart$k = "Raporttihistoria-välilehti näyttää kaavion hyvistä (vihreä) ja huonoista (punainen) raporteista kuukausittain viimeisen 2 vuoden ajalta.";
+var helpAnalysisColorsTitle$k = "Analyysipainikkeen värit";
+var helpAnalysisColorsDesc$k = "Analyysipainike käyttää yksinkertaista liikennevalojärjestelmää ProtonDB:n tasovärien (Platinum, Gold jne.) sijaan. Tämä on tarkoituksellista — tasot heijastavat kuinka hyvin peli toimii, kun taas analyysipainike vastaa eri kysymykseen: toimiiko peli ylipäätään juuri nyt?";
+var helpAnalysisColorGreen$k = "Vihreä — Peli toimii viimeaikaisten raporttien perusteella";
+var helpAnalysisColorRed$k = "Punainen — Peli ei toimi tai sillä on merkittäviä ongelmia";
+var helpAnalysisColorGray$k = "Harmaa — Ei tarpeeksi tietoa tilan määrittämiseen";
+var helpAnalysisToggle$k = "Voit ottaa analyysipainikkeen käyttöön tai poistaa sen käytöstä Asetuksissa kohdassa Lisäominaisuudet.";
+var clearCacheSuccess$k = "Välimuisti tyhjennetty";
+var settingsTabCount$k = "{with} / {total} raportista sisältää käynnistysasetuksia (vain positiiviset)";
+var settingsTabHint$k = "Paina Kopioi ja liitä Steam > Pelin ominaisuudet > Käynnistysasetukset ennen %command%";
+var settingsTabExample$k = "Esimerkki: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$k = "Ei raportoituja käynnistysasetuksia tälle pelille";
+var settingsTabCopy$k = "Kopioi";
+var settingsTabCopied$k = "Kopioitu!";
 var fi = {
 	sectionLibrary: sectionLibrary$k,
 	sectionStore: sectionStore$k,
@@ -4586,7 +5208,38 @@ var fi = {
 	helpSubmitDesc: helpSubmitDesc$k,
 	helpSubmitStep1: helpSubmitStep1$k,
 	helpSubmitStep2: helpSubmitStep2$k,
-	helpSubmitStep3: helpSubmitStep3$k
+	helpSubmitStep3: helpSubmitStep3$k,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$k,
+	showAnalysisButton: showAnalysisButton$k,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$k,
+	roundedCorners: roundedCorners$k,
+	roundedCornersDesc: roundedCornersDesc$k,
+	showLibraryIcons: showLibraryIcons$k,
+	showLibraryIconsDesc: showLibraryIconsDesc$k,
+	libraryIconPosition: libraryIconPosition$k,
+	libraryIconPositionDesc: libraryIconPositionDesc$k,
+	helpAnalysisTitle: helpAnalysisTitle$k,
+	helpAnalysisDesc: helpAnalysisDesc$k,
+	helpAnalysisDetails: helpAnalysisDetails$k,
+	helpAnalysisWorking: helpAnalysisWorking$k,
+	helpAnalysisConfidence: helpAnalysisConfidence$k,
+	helpAnalysisTrend: helpAnalysisTrend$k,
+	helpAnalysisFreshness: helpAnalysisFreshness$k,
+	helpAnalysisWarnings: helpAnalysisWarnings$k,
+	helpAnalysisChart: helpAnalysisChart$k,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$k,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$k,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$k,
+	helpAnalysisColorRed: helpAnalysisColorRed$k,
+	helpAnalysisColorGray: helpAnalysisColorGray$k,
+	helpAnalysisToggle: helpAnalysisToggle$k,
+	clearCacheSuccess: clearCacheSuccess$k,
+	settingsTabCount: settingsTabCount$k,
+	settingsTabHint: settingsTabHint$k,
+	settingsTabExample: settingsTabExample$k,
+	settingsTabEmpty: settingsTabEmpty$k,
+	settingsTabCopy: settingsTabCopy$k,
+	settingsTabCopied: settingsTabCopied$k
 };
 
 var sectionLibrary$j = "Bibliothèque";
@@ -4678,6 +5331,37 @@ var helpSubmitDesc$j = "Aidez la communauté en partageant votre expérience de 
 var helpSubmitStep1$j = "Jouez à un jeu pendant au moins 15-30 minutes";
 var helpSubmitStep2$j = "Cliquez sur le bouton Soumettre sur le badge ProtonDB";
 var helpSubmitStep3$j = "Remplissez le formulaire de rapport sur le site ProtonDB";
+var sectionEnhancedFeatures$j = "Fonctionnalités avancées";
+var showAnalysisButton$j = "Afficher le bouton d'analyse";
+var showAnalysisButtonDesc$j = "Affiche un bouton à côté du badge pour consulter une analyse détaillée de compatibilité, incluant les tendances des rapports et un graphique historique";
+var roundedCorners$j = "Coins arrondis";
+var roundedCornersDesc$j = "Utiliser des coins arrondis sur tous les boutons de badge";
+var showLibraryIcons$j = "Icônes de statut bibliothèque";
+var showLibraryIconsDesc$j = "Afficher les icônes de statut de compatibilité sur les jaquettes dans la bibliothèque";
+var libraryIconPosition$j = "Position de l'icône";
+var libraryIconPositionDesc$j = "Position de l'icône de statut sur les jaquettes";
+var helpAnalysisTitle$j = "Analyse de compatibilité";
+var helpAnalysisDesc$j = "Le bouton d'analyse (icône graphique) à côté du badge ouvre un aperçu détaillé de la compatibilité pour chaque jeu. Ces données proviennent de tous les rapports ProtonDB soumis par la communauté.";
+var helpAnalysisDetails$j = "L'onglet Détails affiche :";
+var helpAnalysisWorking$j = "État de fonctionnement — si le jeu fonctionne actuellement sous Linux et la fiabilité de cette évaluation";
+var helpAnalysisConfidence$j = "Score de confiance — quantité de données de rapports disponibles pour évaluer le jeu (0-100)";
+var helpAnalysisTrend$j = "Tendance — si la compatibilité s'améliore, est stable ou se dégrade";
+var helpAnalysisFreshness$j = "Fraîcheur — date du dernier rapport soumis";
+var helpAnalysisWarnings$j = "Avertissements concernant les incompatibilités de version Proton, les problèmes GPU ou l'anti-triche";
+var helpAnalysisChart$j = "L'onglet Historique des rapports affiche un graphique des bons (verts) et mauvais (rouges) rapports par mois sur les 2 dernières années.";
+var helpAnalysisColorsTitle$j = "Couleurs du bouton d'analyse";
+var helpAnalysisColorsDesc$j = "Le bouton d'analyse utilise un système de feu tricolore simple au lieu des couleurs de niveau ProtonDB (Platinum, Gold, etc.). C'est intentionnel — les niveaux reflètent à quel point un jeu fonctionne bien, tandis que le bouton d'analyse répond à une question différente : le jeu fonctionne-t-il tout court en ce moment ?";
+var helpAnalysisColorGreen$j = "Vert — Le jeu fonctionne selon les rapports récents";
+var helpAnalysisColorRed$j = "Rouge — Le jeu ne fonctionne pas ou a des problèmes importants";
+var helpAnalysisColorGray$j = "Gris — Pas assez de données pour déterminer le statut";
+var helpAnalysisToggle$j = "Vous pouvez activer ou désactiver le bouton d'analyse dans les Paramètres, sous Fonctionnalités avancées.";
+var clearCacheSuccess$j = "Cache vidé avec succès";
+var settingsTabCount$j = "{with} des {total} rapports incluent des options de lancement (positifs uniquement)";
+var settingsTabHint$j = "Appuyez sur Copier et collez dans Steam > Propriétés du jeu > Options de lancement avant %command%";
+var settingsTabExample$j = "Exemple : PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$j = "Aucune option de lancement signalée pour ce jeu";
+var settingsTabCopy$j = "Copier";
+var settingsTabCopied$j = "Copié !";
 var fr = {
 	sectionLibrary: sectionLibrary$j,
 	sectionStore: sectionStore$j,
@@ -4767,7 +5451,38 @@ var fr = {
 	helpSubmitDesc: helpSubmitDesc$j,
 	helpSubmitStep1: helpSubmitStep1$j,
 	helpSubmitStep2: helpSubmitStep2$j,
-	helpSubmitStep3: helpSubmitStep3$j
+	helpSubmitStep3: helpSubmitStep3$j,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$j,
+	showAnalysisButton: showAnalysisButton$j,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$j,
+	roundedCorners: roundedCorners$j,
+	roundedCornersDesc: roundedCornersDesc$j,
+	showLibraryIcons: showLibraryIcons$j,
+	showLibraryIconsDesc: showLibraryIconsDesc$j,
+	libraryIconPosition: libraryIconPosition$j,
+	libraryIconPositionDesc: libraryIconPositionDesc$j,
+	helpAnalysisTitle: helpAnalysisTitle$j,
+	helpAnalysisDesc: helpAnalysisDesc$j,
+	helpAnalysisDetails: helpAnalysisDetails$j,
+	helpAnalysisWorking: helpAnalysisWorking$j,
+	helpAnalysisConfidence: helpAnalysisConfidence$j,
+	helpAnalysisTrend: helpAnalysisTrend$j,
+	helpAnalysisFreshness: helpAnalysisFreshness$j,
+	helpAnalysisWarnings: helpAnalysisWarnings$j,
+	helpAnalysisChart: helpAnalysisChart$j,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$j,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$j,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$j,
+	helpAnalysisColorRed: helpAnalysisColorRed$j,
+	helpAnalysisColorGray: helpAnalysisColorGray$j,
+	helpAnalysisToggle: helpAnalysisToggle$j,
+	clearCacheSuccess: clearCacheSuccess$j,
+	settingsTabCount: settingsTabCount$j,
+	settingsTabHint: settingsTabHint$j,
+	settingsTabExample: settingsTabExample$j,
+	settingsTabEmpty: settingsTabEmpty$j,
+	settingsTabCopy: settingsTabCopy$j,
+	settingsTabCopied: settingsTabCopied$j
 };
 
 var sectionLibrary$i = "Library";
@@ -4859,6 +5574,37 @@ var helpSubmitDesc$i = "Segíts a közösségnek a játékélményed megosztás�
 var helpSubmitStep1$i = "Játssz egy játékkal legalább 15-30 percig";
 var helpSubmitStep2$i = "Kattints a Beküldés gombra a ProtonDB jelvényen";
 var helpSubmitStep3$i = "Töltsd ki a jelentés űrlapot a ProtonDB weboldalán";
+var sectionEnhancedFeatures$i = "Bővített funkciók";
+var showAnalysisButton$i = "Elemzés gomb megjelenítése";
+var showAnalysisButtonDesc$i = "Egy gombot jelenít meg a jelvény mellett a részletes kompatibilitási elemzés megtekintéséhez, beleértve a jelentési trendeket és az előzménygrafikont";
+var roundedCorners$i = "Lekerekített sarkok";
+var roundedCornersDesc$i = "Lekerekített sarkok használata az összes jelvénygombon";
+var showLibraryIcons$i = "Library Status Icons";
+var showLibraryIconsDesc$i = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$i = "Icon Position";
+var libraryIconPositionDesc$i = "Position of the status icon on game covers";
+var helpAnalysisTitle$i = "Kompatibilitási elemzés";
+var helpAnalysisDesc$i = "Az elemzés gomb (oszlopdiagram ikon) a jelvény mellett megnyit egy részletes kompatibilitási áttekintést minden játékhoz. Az adatok a közösség által beküldött ProtonDB jelentésekből származnak.";
+var helpAnalysisDetails$i = "A Részletek fül megmutatja:";
+var helpAnalysisWorking$i = "Működési állapot — hogy a játék jelenleg működik-e Linuxon és mennyire biztos ez az értékelés";
+var helpAnalysisConfidence$i = "Megbízhatósági pontszám — mennyi jelentésadat áll rendelkezésre a játék értékeléséhez (0-100)";
+var helpAnalysisTrend$i = "Trend — javul, stabil vagy romlik-e a kompatibilitás";
+var helpAnalysisFreshness$i = "Frissesség — mikor küldték be az utolsó jelentést";
+var helpAnalysisWarnings$i = "Figyelmeztetések Proton verzió eltérésekre, GPU problémákra vagy csalásvédelemre";
+var helpAnalysisChart$i = "Az Előzmények fül egy grafikont mutat a jó (zöld) és rossz (piros) jelentésekről havonta az elmúlt 2 évben.";
+var helpAnalysisColorsTitle$i = "Elemzés gomb színei";
+var helpAnalysisColorsDesc$i = "Az elemzés gomb egyszerű jelzőlámpa-rendszert használ a ProtonDB szintszínek (Platinum, Gold stb.) helyett. Ez szándékos — a szintek azt tükrözik, mennyire jól fut egy játék, míg az elemzés gomb más kérdésre válaszol: egyáltalán működik-e a játék most?";
+var helpAnalysisColorGreen$i = "Zöld — A játék működik a legutóbbi jelentések alapján";
+var helpAnalysisColorRed$i = "Piros — A játék nem működik vagy jelentős problémái vannak";
+var helpAnalysisColorGray$i = "Szürke — Nincs elég adat az állapot megállapításához";
+var helpAnalysisToggle$i = "Az elemzés gombot a Beállítások alatt, a Bővített funkciók menüben kapcsolhatja be vagy ki.";
+var clearCacheSuccess$i = "Gyorsítótár törölve";
+var settingsTabCount$i = "{with} / {total} jelentés tartalmaz indítási beállításokat (csak pozitívak)";
+var settingsTabHint$i = "Nyomj a Másolás gombra, és illeszd be a Steam > Játék tulajdonságai > Indítási beállítások mezőbe a %command% elé";
+var settingsTabExample$i = "Példa: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$i = "Nincsenek jelentett indítási beállítások ehhez a játékhoz";
+var settingsTabCopy$i = "Másolás";
+var settingsTabCopied$i = "Másolva!";
 var hu = {
 	sectionLibrary: sectionLibrary$i,
 	sectionStore: sectionStore$i,
@@ -4948,7 +5694,38 @@ var hu = {
 	helpSubmitDesc: helpSubmitDesc$i,
 	helpSubmitStep1: helpSubmitStep1$i,
 	helpSubmitStep2: helpSubmitStep2$i,
-	helpSubmitStep3: helpSubmitStep3$i
+	helpSubmitStep3: helpSubmitStep3$i,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$i,
+	showAnalysisButton: showAnalysisButton$i,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$i,
+	roundedCorners: roundedCorners$i,
+	roundedCornersDesc: roundedCornersDesc$i,
+	showLibraryIcons: showLibraryIcons$i,
+	showLibraryIconsDesc: showLibraryIconsDesc$i,
+	libraryIconPosition: libraryIconPosition$i,
+	libraryIconPositionDesc: libraryIconPositionDesc$i,
+	helpAnalysisTitle: helpAnalysisTitle$i,
+	helpAnalysisDesc: helpAnalysisDesc$i,
+	helpAnalysisDetails: helpAnalysisDetails$i,
+	helpAnalysisWorking: helpAnalysisWorking$i,
+	helpAnalysisConfidence: helpAnalysisConfidence$i,
+	helpAnalysisTrend: helpAnalysisTrend$i,
+	helpAnalysisFreshness: helpAnalysisFreshness$i,
+	helpAnalysisWarnings: helpAnalysisWarnings$i,
+	helpAnalysisChart: helpAnalysisChart$i,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$i,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$i,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$i,
+	helpAnalysisColorRed: helpAnalysisColorRed$i,
+	helpAnalysisColorGray: helpAnalysisColorGray$i,
+	helpAnalysisToggle: helpAnalysisToggle$i,
+	clearCacheSuccess: clearCacheSuccess$i,
+	settingsTabCount: settingsTabCount$i,
+	settingsTabHint: settingsTabHint$i,
+	settingsTabExample: settingsTabExample$i,
+	settingsTabEmpty: settingsTabEmpty$i,
+	settingsTabCopy: settingsTabCopy$i,
+	settingsTabCopied: settingsTabCopied$i
 };
 
 var sectionLibrary$h = "Libreria";
@@ -5040,6 +5817,37 @@ var helpSubmitDesc$h = "Aiuta la community condividendo la tua esperienza di gio
 var helpSubmitStep1$h = "Gioca a un gioco per almeno 15-30 minuti";
 var helpSubmitStep2$h = "Clicca sul pulsante Invia sul badge ProtonDB";
 var helpSubmitStep3$h = "Compila il modulo di rapporto sul sito web di ProtonDB";
+var sectionEnhancedFeatures$h = "Funzionalità avanzate";
+var showAnalysisButton$h = "Mostra pulsante analisi";
+var showAnalysisButtonDesc$h = "Mostra un pulsante accanto al badge per visualizzare un'analisi dettagliata della compatibilità, incluse le tendenze dei report e il grafico storico";
+var roundedCorners$h = "Angoli arrotondati";
+var roundedCornersDesc$h = "Usa angoli arrotondati su tutti i pulsanti del badge";
+var showLibraryIcons$h = "Library Status Icons";
+var showLibraryIconsDesc$h = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$h = "Icon Position";
+var libraryIconPositionDesc$h = "Position of the status icon on game covers";
+var helpAnalysisTitle$h = "Analisi di compatibilità";
+var helpAnalysisDesc$h = "Il pulsante di analisi (icona grafico a barre) accanto al badge apre una panoramica dettagliata della compatibilità per ogni gioco. I dati provengono da tutti i report ProtonDB inviati dalla comunità.";
+var helpAnalysisDetails$h = "La scheda Dettagli mostra:";
+var helpAnalysisWorking$h = "Stato di funzionamento — se il gioco funziona su Linux e quanto è affidabile questa valutazione";
+var helpAnalysisConfidence$h = "Punteggio di affidabilità — quanti dati di report sono disponibili per valutare il gioco (0-100)";
+var helpAnalysisTrend$h = "Tendenza — se la compatibilità sta migliorando, è stabile o in calo";
+var helpAnalysisFreshness$h = "Attualità — quando è stato inviato l'ultimo report";
+var helpAnalysisWarnings$h = "Avvisi su incompatibilità di versione Proton, problemi GPU o anti-cheat";
+var helpAnalysisChart$h = "La scheda Cronologia report mostra un grafico dei report positivi (verdi) e negativi (rossi) per mese negli ultimi 2 anni.";
+var helpAnalysisColorsTitle$h = "Colori del pulsante di analisi";
+var helpAnalysisColorsDesc$h = "Il pulsante di analisi utilizza un semplice sistema a semaforo invece dei colori dei livelli ProtonDB (Platinum, Gold, ecc.). Questo è intenzionale — i livelli riflettono quanto bene funziona un gioco, mentre il pulsante di analisi risponde a una domanda diversa: il gioco funziona in questo momento?";
+var helpAnalysisColorGreen$h = "Verde — Il gioco funziona in base ai report recenti";
+var helpAnalysisColorRed$h = "Rosso — Il gioco non funziona o ha problemi significativi";
+var helpAnalysisColorGray$h = "Grigio — Dati insufficienti per determinare lo stato";
+var helpAnalysisToggle$h = "Puoi attivare o disattivare il pulsante di analisi nelle Impostazioni sotto Funzionalità avanzate.";
+var clearCacheSuccess$h = "Cache svuotata con successo";
+var settingsTabCount$h = "{with} di {total} segnalazioni includono opzioni di avvio (solo positive)";
+var settingsTabHint$h = "Tocca Copia e incolla in Steam > Proprietà del gioco > Opzioni di avvio prima di %command%";
+var settingsTabExample$h = "Esempio: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$h = "Nessuna opzione di avvio segnalata per questo gioco";
+var settingsTabCopy$h = "Copia";
+var settingsTabCopied$h = "Copiato!";
 var it = {
 	sectionLibrary: sectionLibrary$h,
 	sectionStore: sectionStore$h,
@@ -5129,7 +5937,38 @@ var it = {
 	helpSubmitDesc: helpSubmitDesc$h,
 	helpSubmitStep1: helpSubmitStep1$h,
 	helpSubmitStep2: helpSubmitStep2$h,
-	helpSubmitStep3: helpSubmitStep3$h
+	helpSubmitStep3: helpSubmitStep3$h,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$h,
+	showAnalysisButton: showAnalysisButton$h,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$h,
+	roundedCorners: roundedCorners$h,
+	roundedCornersDesc: roundedCornersDesc$h,
+	showLibraryIcons: showLibraryIcons$h,
+	showLibraryIconsDesc: showLibraryIconsDesc$h,
+	libraryIconPosition: libraryIconPosition$h,
+	libraryIconPositionDesc: libraryIconPositionDesc$h,
+	helpAnalysisTitle: helpAnalysisTitle$h,
+	helpAnalysisDesc: helpAnalysisDesc$h,
+	helpAnalysisDetails: helpAnalysisDetails$h,
+	helpAnalysisWorking: helpAnalysisWorking$h,
+	helpAnalysisConfidence: helpAnalysisConfidence$h,
+	helpAnalysisTrend: helpAnalysisTrend$h,
+	helpAnalysisFreshness: helpAnalysisFreshness$h,
+	helpAnalysisWarnings: helpAnalysisWarnings$h,
+	helpAnalysisChart: helpAnalysisChart$h,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$h,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$h,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$h,
+	helpAnalysisColorRed: helpAnalysisColorRed$h,
+	helpAnalysisColorGray: helpAnalysisColorGray$h,
+	helpAnalysisToggle: helpAnalysisToggle$h,
+	clearCacheSuccess: clearCacheSuccess$h,
+	settingsTabCount: settingsTabCount$h,
+	settingsTabHint: settingsTabHint$h,
+	settingsTabExample: settingsTabExample$h,
+	settingsTabEmpty: settingsTabEmpty$h,
+	settingsTabCopy: settingsTabCopy$h,
+	settingsTabCopied: settingsTabCopied$h
 };
 
 var sectionLibrary$g = "Library";
@@ -5221,6 +6060,37 @@ var helpSubmitDesc$g = "ゲーム体験を共有してコミュニティを助�
 var helpSubmitStep1$g = "ゲームを少なくとも15〜30分プレイ";
 var helpSubmitStep2$g = "ProtonDBバッジの送信ボタンをクリック";
 var helpSubmitStep3$g = "ProtonDBのウェブサイトでレポートフォームに記入";
+var sectionEnhancedFeatures$g = "拡張機能";
+var showAnalysisButton$g = "分析ボタンを表示";
+var showAnalysisButtonDesc$g = "バッジの横にボタンを表示し、レポートの傾向や履歴グラフを含む詳細な互換性分析を確認できます";
+var roundedCorners$g = "角丸";
+var roundedCornersDesc$g = "すべてのバッジボタンに角丸を使用する";
+var showLibraryIcons$g = "Library Status Icons";
+var showLibraryIconsDesc$g = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$g = "Icon Position";
+var libraryIconPositionDesc$g = "Position of the status icon on game covers";
+var helpAnalysisTitle$g = "互換性分析";
+var helpAnalysisDesc$g = "バッジの横にある分析ボタン（棒グラフアイコン）を押すと、各ゲームの詳細な互換性分析が表示されます。このデータはコミュニティが提出したすべてのProtonDBレポートから集められています。";
+var helpAnalysisDetails$g = "詳細タブの表示内容：";
+var helpAnalysisWorking$g = "動作状況 — ゲームが現在Linuxで動作するかどうか、およびその評価の確実性";
+var helpAnalysisConfidence$g = "信頼度スコア — ゲームを評価するために利用可能なレポートデータの量（0-100）";
+var helpAnalysisTrend$g = "トレンド — 最近のレポートと古いレポートに基づき、互換性が改善、安定、または低下しているか";
+var helpAnalysisFreshness$g = "鮮度 — 最新のレポートがいつ提出されたか";
+var helpAnalysisWarnings$g = "Protonバージョンの不一致、GPU問題、アンチチートに関する警告";
+var helpAnalysisChart$g = "レポート履歴タブには、過去2年間の月別の良い（緑）レポートと悪い（赤）レポートのグラフが表示されます。";
+var helpAnalysisColorsTitle$g = "分析ボタンの色";
+var helpAnalysisColorsDesc$g = "分析ボタンはProtonDBのティアカラー（Platinum、Goldなど）ではなく、シンプルな信号機システムを使用しています。これは意図的です。ティアはゲームがどれだけうまく動作するかを反映しますが、分析ボタンは別の質問に答えます：ゲームは今動作していますか？";
+var helpAnalysisColorGreen$g = "緑 — 最近のレポートに基づきゲームは動作中";
+var helpAnalysisColorRed$g = "赤 — ゲームが動作しないか重大な問題あり";
+var helpAnalysisColorGray$g = "グレー — ステータスを判断するのに十分なデータがない";
+var helpAnalysisToggle$g = "分析ボタンは設定の拡張機能でオン・オフを切り替えられます。";
+var clearCacheSuccess$g = "キャッシュをクリアしました";
+var settingsTabCount$g = "{total}件中{with}件のレポートに起動オプションが含まれています（ポジティブのみ）";
+var settingsTabHint$g = "コピーをタップして、Steam > ゲームのプロパティ > 起動オプションの%command%の前に貼り付けてください";
+var settingsTabExample$g = "例: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$g = "このゲームの起動オプションは報告されていません";
+var settingsTabCopy$g = "コピー";
+var settingsTabCopied$g = "コピー済み！";
 var ja = {
 	sectionLibrary: sectionLibrary$g,
 	sectionStore: sectionStore$g,
@@ -5310,7 +6180,38 @@ var ja = {
 	helpSubmitDesc: helpSubmitDesc$g,
 	helpSubmitStep1: helpSubmitStep1$g,
 	helpSubmitStep2: helpSubmitStep2$g,
-	helpSubmitStep3: helpSubmitStep3$g
+	helpSubmitStep3: helpSubmitStep3$g,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$g,
+	showAnalysisButton: showAnalysisButton$g,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$g,
+	roundedCorners: roundedCorners$g,
+	roundedCornersDesc: roundedCornersDesc$g,
+	showLibraryIcons: showLibraryIcons$g,
+	showLibraryIconsDesc: showLibraryIconsDesc$g,
+	libraryIconPosition: libraryIconPosition$g,
+	libraryIconPositionDesc: libraryIconPositionDesc$g,
+	helpAnalysisTitle: helpAnalysisTitle$g,
+	helpAnalysisDesc: helpAnalysisDesc$g,
+	helpAnalysisDetails: helpAnalysisDetails$g,
+	helpAnalysisWorking: helpAnalysisWorking$g,
+	helpAnalysisConfidence: helpAnalysisConfidence$g,
+	helpAnalysisTrend: helpAnalysisTrend$g,
+	helpAnalysisFreshness: helpAnalysisFreshness$g,
+	helpAnalysisWarnings: helpAnalysisWarnings$g,
+	helpAnalysisChart: helpAnalysisChart$g,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$g,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$g,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$g,
+	helpAnalysisColorRed: helpAnalysisColorRed$g,
+	helpAnalysisColorGray: helpAnalysisColorGray$g,
+	helpAnalysisToggle: helpAnalysisToggle$g,
+	clearCacheSuccess: clearCacheSuccess$g,
+	settingsTabCount: settingsTabCount$g,
+	settingsTabHint: settingsTabHint$g,
+	settingsTabExample: settingsTabExample$g,
+	settingsTabEmpty: settingsTabEmpty$g,
+	settingsTabCopy: settingsTabCopy$g,
+	settingsTabCopied: settingsTabCopied$g
 };
 
 var sectionLibrary$f = "Library";
@@ -5402,6 +6303,37 @@ var helpSubmitDesc$f = "게임 경험을 공유하여 커뮤니티를 도와주�
 var helpSubmitStep1$f = "게임을 최소 15-30분 플레이";
 var helpSubmitStep2$f = "ProtonDB 배지의 제출 버튼 클릭";
 var helpSubmitStep3$f = "ProtonDB 웹사이트에서 보고서 양식 작성";
+var sectionEnhancedFeatures$f = "고급 기능";
+var showAnalysisButton$f = "분석 버튼 표시";
+var showAnalysisButtonDesc$f = "배지 옆에 버튼을 표시하여 보고서 추세와 기록 그래프를 포함한 상세 호환성 분석을 확인합니다";
+var roundedCorners$f = "둥근 모서리";
+var roundedCornersDesc$f = "모든 배지 버튼에 둥근 모서리 사용";
+var showLibraryIcons$f = "Library Status Icons";
+var showLibraryIconsDesc$f = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$f = "Icon Position";
+var libraryIconPositionDesc$f = "Position of the status icon on game covers";
+var helpAnalysisTitle$f = "호환성 분석";
+var helpAnalysisDesc$f = "배지 옆의 분석 버튼(막대 그래프 아이콘)을 누르면 각 게임의 상세 호환성 분석을 볼 수 있습니다. 이 데이터는 커뮤니티가 제출한 모든 ProtonDB 보고서에서 수집됩니다.";
+var helpAnalysisDetails$f = "상세 탭 표시 내용:";
+var helpAnalysisWorking$f = "작동 상태 — 게임이 현재 리눅스에서 작동하는지와 그 평가의 확실성";
+var helpAnalysisConfidence$f = "신뢰도 점수 — 게임을 평가하기 위한 보고서 데이터의 양 (0-100)";
+var helpAnalysisTrend$f = "추세 — 최근과 이전 보고서를 기반으로 호환성이 개선, 안정, 또는 하락 중인지";
+var helpAnalysisFreshness$f = "최신성 — 마지막 보고서가 제출된 시기";
+var helpAnalysisWarnings$f = "Proton 버전 불일치, GPU 문제 또는 안티치트 관련 경고";
+var helpAnalysisChart$f = "보고서 기록 탭은 지난 2년간 월별 좋은(녹색) 보고서와 나쁜(빨간) 보고서 그래프를 보여줍니다.";
+var helpAnalysisColorsTitle$f = "분석 버튼 색상";
+var helpAnalysisColorsDesc$f = "분석 버튼은 ProtonDB의 등급 색상(Platinum, Gold 등) 대신 간단한 신호등 시스템을 사용합니다. 이는 의도적입니다 — 등급은 게임이 얼마나 잘 실행되는지를 반영하고, 분석 버튼은 다른 질문에 답합니다: 게임이 지금 작동하나요?";
+var helpAnalysisColorGreen$f = "초록 — 최근 보고서 기반으로 게임이 작동 중";
+var helpAnalysisColorRed$f = "빨강 — 게임이 작동하지 않거나 심각한 문제 있음";
+var helpAnalysisColorGray$f = "회색 — 상태를 판단할 충분한 데이터 없음";
+var helpAnalysisToggle$f = "설정의 고급 기능에서 분석 버튼을 켜거나 끌 수 있습니다.";
+var clearCacheSuccess$f = "캐시가 지워졌습니다";
+var settingsTabCount$f = "{total}개 보고서 중 {with}개에 실행 옵션이 포함되어 있습니다 (긍정적만)";
+var settingsTabHint$f = "복사를 탭하고 Steam > 게임 속성 > 실행 옵션에서 %command% 앞에 붙여넣으세요";
+var settingsTabExample$f = "예: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$f = "이 게임에 대해 보고된 실행 옵션이 없습니다";
+var settingsTabCopy$f = "복사";
+var settingsTabCopied$f = "복사됨!";
 var ko = {
 	sectionLibrary: sectionLibrary$f,
 	sectionStore: sectionStore$f,
@@ -5491,7 +6423,38 @@ var ko = {
 	helpSubmitDesc: helpSubmitDesc$f,
 	helpSubmitStep1: helpSubmitStep1$f,
 	helpSubmitStep2: helpSubmitStep2$f,
-	helpSubmitStep3: helpSubmitStep3$f
+	helpSubmitStep3: helpSubmitStep3$f,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$f,
+	showAnalysisButton: showAnalysisButton$f,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$f,
+	roundedCorners: roundedCorners$f,
+	roundedCornersDesc: roundedCornersDesc$f,
+	showLibraryIcons: showLibraryIcons$f,
+	showLibraryIconsDesc: showLibraryIconsDesc$f,
+	libraryIconPosition: libraryIconPosition$f,
+	libraryIconPositionDesc: libraryIconPositionDesc$f,
+	helpAnalysisTitle: helpAnalysisTitle$f,
+	helpAnalysisDesc: helpAnalysisDesc$f,
+	helpAnalysisDetails: helpAnalysisDetails$f,
+	helpAnalysisWorking: helpAnalysisWorking$f,
+	helpAnalysisConfidence: helpAnalysisConfidence$f,
+	helpAnalysisTrend: helpAnalysisTrend$f,
+	helpAnalysisFreshness: helpAnalysisFreshness$f,
+	helpAnalysisWarnings: helpAnalysisWarnings$f,
+	helpAnalysisChart: helpAnalysisChart$f,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$f,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$f,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$f,
+	helpAnalysisColorRed: helpAnalysisColorRed$f,
+	helpAnalysisColorGray: helpAnalysisColorGray$f,
+	helpAnalysisToggle: helpAnalysisToggle$f,
+	clearCacheSuccess: clearCacheSuccess$f,
+	settingsTabCount: settingsTabCount$f,
+	settingsTabHint: settingsTabHint$f,
+	settingsTabExample: settingsTabExample$f,
+	settingsTabEmpty: settingsTabEmpty$f,
+	settingsTabCopy: settingsTabCopy$f,
+	settingsTabCopied: settingsTabCopied$f
 };
 
 var sectionLibrary$e = "Bibliotheek";
@@ -5583,6 +6546,37 @@ var helpSubmitDesc$e = "Help de community door je spelervaring te delen! Rapport
 var helpSubmitStep1$e = "Speel een spel minimaal 15-30 minuten";
 var helpSubmitStep2$e = "Klik op de Verzend-knop op de ProtonDB badge";
 var helpSubmitStep3$e = "Vul het rapportformulier in op de ProtonDB website";
+var sectionEnhancedFeatures$e = "Uitgebreide functies";
+var showAnalysisButton$e = "Analyseknop tonen";
+var showAnalysisButtonDesc$e = "Toont een knop naast de badge om een gedetailleerde compatibiliteitsanalyse te bekijken, inclusief rapporttrends en een geschiedenisgrafiek";
+var roundedCorners$e = "Afgeronde hoeken";
+var roundedCornersDesc$e = "Gebruik afgeronde hoeken op alle badge-knoppen";
+var showLibraryIcons$e = "Bibliotheek statusiconen";
+var showLibraryIconsDesc$e = "Toon compatibiliteitsstatus iconen op game covers in de bibliotheek";
+var libraryIconPosition$e = "Icoonpositie";
+var libraryIconPositionDesc$e = "Positie van het statusicoon op game covers";
+var helpAnalysisTitle$e = "Compatibiliteitsanalyse";
+var helpAnalysisDesc$e = "De analyseknop (staafdiagram-icoon) naast de badge opent een gedetailleerd compatibiliteitsoverzicht voor elk spel. Deze gegevens komen uit alle ProtonDB-rapporten die door de community zijn ingediend.";
+var helpAnalysisDetails$e = "Het tabblad Details toont:";
+var helpAnalysisWorking$e = "Werkstatus — of het spel momenteel werkt op Linux en hoe zeker die beoordeling is";
+var helpAnalysisConfidence$e = "Betrouwbaarheidsscore — hoeveel rapportgegevens beschikbaar zijn om het spel te beoordelen (0-100)";
+var helpAnalysisTrend$e = "Trend — of de compatibiliteit verbetert, stabiel is of afneemt op basis van recente en oudere rapporten";
+var helpAnalysisFreshness$e = "Actualiteit — wanneer het laatste rapport is ingediend";
+var helpAnalysisWarnings$e = "Waarschuwingen over Proton-versieverschillen, GPU-problemen of anti-cheat";
+var helpAnalysisChart$e = "Het tabblad Rapportgeschiedenis toont een grafiek van goede (groene) en slechte (rode) rapporten per maand over de afgelopen 2 jaar.";
+var helpAnalysisColorsTitle$e = "Kleuren van de analyseknop";
+var helpAnalysisColorsDesc$e = "De analyseknop gebruikt een eenvoudig stoplichtsysteem in plaats van de ProtonDB-niveaukleuren (Platinum, Gold, enz.). Dit is bewust — de niveaus weerspiegelen hoe goed een game draait, terwijl de analyseknop een andere vraag beantwoordt: werkt de game überhaupt op dit moment?";
+var helpAnalysisColorGreen$e = "Groen — Game werkt op basis van recente rapporten";
+var helpAnalysisColorRed$e = "Rood — Game werkt niet of heeft aanzienlijke problemen";
+var helpAnalysisColorGray$e = "Grijs — Niet genoeg gegevens om de status te bepalen";
+var helpAnalysisToggle$e = "Je kunt de analyseknop in- of uitschakelen bij Instellingen onder Uitgebreide functies.";
+var clearCacheSuccess$e = "Cache gewist";
+var settingsTabCount$e = "{with} van {total} rapporten bevatten startopties (alleen positieve)";
+var settingsTabHint$e = "Tik op Kopiëren en plak het in Steam > Speleigenschappen > Startopties vóór %command%";
+var settingsTabExample$e = "Voorbeeld: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$e = "Geen startopties gerapporteerd voor dit spel";
+var settingsTabCopy$e = "Kopiëren";
+var settingsTabCopied$e = "Gekopieerd!";
 var nl = {
 	sectionLibrary: sectionLibrary$e,
 	sectionStore: sectionStore$e,
@@ -5672,7 +6666,38 @@ var nl = {
 	helpSubmitDesc: helpSubmitDesc$e,
 	helpSubmitStep1: helpSubmitStep1$e,
 	helpSubmitStep2: helpSubmitStep2$e,
-	helpSubmitStep3: helpSubmitStep3$e
+	helpSubmitStep3: helpSubmitStep3$e,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$e,
+	showAnalysisButton: showAnalysisButton$e,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$e,
+	roundedCorners: roundedCorners$e,
+	roundedCornersDesc: roundedCornersDesc$e,
+	showLibraryIcons: showLibraryIcons$e,
+	showLibraryIconsDesc: showLibraryIconsDesc$e,
+	libraryIconPosition: libraryIconPosition$e,
+	libraryIconPositionDesc: libraryIconPositionDesc$e,
+	helpAnalysisTitle: helpAnalysisTitle$e,
+	helpAnalysisDesc: helpAnalysisDesc$e,
+	helpAnalysisDetails: helpAnalysisDetails$e,
+	helpAnalysisWorking: helpAnalysisWorking$e,
+	helpAnalysisConfidence: helpAnalysisConfidence$e,
+	helpAnalysisTrend: helpAnalysisTrend$e,
+	helpAnalysisFreshness: helpAnalysisFreshness$e,
+	helpAnalysisWarnings: helpAnalysisWarnings$e,
+	helpAnalysisChart: helpAnalysisChart$e,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$e,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$e,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$e,
+	helpAnalysisColorRed: helpAnalysisColorRed$e,
+	helpAnalysisColorGray: helpAnalysisColorGray$e,
+	helpAnalysisToggle: helpAnalysisToggle$e,
+	clearCacheSuccess: clearCacheSuccess$e,
+	settingsTabCount: settingsTabCount$e,
+	settingsTabHint: settingsTabHint$e,
+	settingsTabExample: settingsTabExample$e,
+	settingsTabEmpty: settingsTabEmpty$e,
+	settingsTabCopy: settingsTabCopy$e,
+	settingsTabCopied: settingsTabCopied$e
 };
 
 var sectionLibrary$d = "Library";
@@ -5764,6 +6789,37 @@ var helpSubmitDesc$d = "Hjelp fellesskapet ved å dele spillopplevelsen din! Rap
 var helpSubmitStep1$d = "Spill et spill i minst 15-30 minutter";
 var helpSubmitStep2$d = "Klikk på Send-knappen på ProtonDB-badgen";
 var helpSubmitStep3$d = "Fyll ut rapportskjemaet på ProtonDBs nettsted";
+var sectionEnhancedFeatures$d = "Utvidede funksjoner";
+var showAnalysisButton$d = "Vis analyseknapp";
+var showAnalysisButtonDesc$d = "Viser en knapp ved siden av merket for å se detaljert kompatibilitetsanalyse, inkludert rapporttrender og historikkgraf";
+var roundedCorners$d = "Avrundede hjørner";
+var roundedCornersDesc$d = "Bruk avrundede hjørner på alle merkeknapper";
+var showLibraryIcons$d = "Library Status Icons";
+var showLibraryIconsDesc$d = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$d = "Icon Position";
+var libraryIconPositionDesc$d = "Position of the status icon on game covers";
+var helpAnalysisTitle$d = "Kompatibilitetsanalyse";
+var helpAnalysisDesc$d = "Analyseknappen (stolpediagramikon) ved siden av merket åpner en detaljert kompatibilitetsoversikt for hvert spill. Dataene er samlet inn fra alle ProtonDB-rapporter sendt inn av fellesskapet.";
+var helpAnalysisDetails$d = "Fanen Detaljer viser:";
+var helpAnalysisWorking$d = "Funksjonsstatus — om spillet fungerer på Linux og hvor sikker den vurderingen er";
+var helpAnalysisConfidence$d = "Tillitsscore — hvor mye rapportdata som er tilgjengelig for å vurdere spillet (0-100)";
+var helpAnalysisTrend$d = "Trend — om kompatibiliteten forbedres, er stabil eller synker";
+var helpAnalysisFreshness$d = "Aktualitet — når den siste rapporten ble sendt inn";
+var helpAnalysisWarnings$d = "Advarsler om Proton-versjonsforskjeller, GPU-problemer eller anti-juksesystemer";
+var helpAnalysisChart$d = "Fanen Rapporthistorikk viser en graf over gode (grønne) og dårlige (røde) rapporter per måned de siste 2 årene.";
+var helpAnalysisColorsTitle$d = "Farger på analyseknappen";
+var helpAnalysisColorsDesc$d = "Analyseknappen bruker et enkelt trafikklyssystem i stedet for ProtonDBs nivåfarger (Platinum, Gold osv.). Dette er bevisst — nivåene gjenspeiler hvor godt et spill kjører, mens analyseknappen svarer på et annet spørsmål: fungerer spillet i det hele tatt akkurat nå?";
+var helpAnalysisColorGreen$d = "Grønn — Spillet fungerer basert på nylige rapporter";
+var helpAnalysisColorRed$d = "Rød — Spillet fungerer ikke eller har betydelige problemer";
+var helpAnalysisColorGray$d = "Grå — Ikke nok data til å bestemme status";
+var helpAnalysisToggle$d = "Du kan aktivere eller deaktivere analyseknappen i Innstillinger under Utvidede funksjoner.";
+var clearCacheSuccess$d = "Hurtigbuffer tømt";
+var settingsTabCount$d = "{with} av {total} rapporter inkluderer startalternativer (kun positive)";
+var settingsTabHint$d = "Trykk på Kopier og lim inn i Steam > Spillegenskaper > Startalternativer før %command%";
+var settingsTabExample$d = "Eksempel: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$d = "Ingen startalternativer rapportert for dette spillet";
+var settingsTabCopy$d = "Kopier";
+var settingsTabCopied$d = "Kopiert!";
 var no = {
 	sectionLibrary: sectionLibrary$d,
 	sectionStore: sectionStore$d,
@@ -5853,7 +6909,38 @@ var no = {
 	helpSubmitDesc: helpSubmitDesc$d,
 	helpSubmitStep1: helpSubmitStep1$d,
 	helpSubmitStep2: helpSubmitStep2$d,
-	helpSubmitStep3: helpSubmitStep3$d
+	helpSubmitStep3: helpSubmitStep3$d,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$d,
+	showAnalysisButton: showAnalysisButton$d,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$d,
+	roundedCorners: roundedCorners$d,
+	roundedCornersDesc: roundedCornersDesc$d,
+	showLibraryIcons: showLibraryIcons$d,
+	showLibraryIconsDesc: showLibraryIconsDesc$d,
+	libraryIconPosition: libraryIconPosition$d,
+	libraryIconPositionDesc: libraryIconPositionDesc$d,
+	helpAnalysisTitle: helpAnalysisTitle$d,
+	helpAnalysisDesc: helpAnalysisDesc$d,
+	helpAnalysisDetails: helpAnalysisDetails$d,
+	helpAnalysisWorking: helpAnalysisWorking$d,
+	helpAnalysisConfidence: helpAnalysisConfidence$d,
+	helpAnalysisTrend: helpAnalysisTrend$d,
+	helpAnalysisFreshness: helpAnalysisFreshness$d,
+	helpAnalysisWarnings: helpAnalysisWarnings$d,
+	helpAnalysisChart: helpAnalysisChart$d,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$d,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$d,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$d,
+	helpAnalysisColorRed: helpAnalysisColorRed$d,
+	helpAnalysisColorGray: helpAnalysisColorGray$d,
+	helpAnalysisToggle: helpAnalysisToggle$d,
+	clearCacheSuccess: clearCacheSuccess$d,
+	settingsTabCount: settingsTabCount$d,
+	settingsTabHint: settingsTabHint$d,
+	settingsTabExample: settingsTabExample$d,
+	settingsTabEmpty: settingsTabEmpty$d,
+	settingsTabCopy: settingsTabCopy$d,
+	settingsTabCopied: settingsTabCopied$d
 };
 
 var sectionLibrary$c = "Library";
@@ -5945,6 +7032,37 @@ var helpSubmitDesc$c = "Pomóż społeczności, dzieląc się swoim doświadczen
 var helpSubmitStep1$c = "Graj w grę przez co najmniej 15-30 minut";
 var helpSubmitStep2$c = "Kliknij przycisk Wyślij na odznace ProtonDB";
 var helpSubmitStep3$c = "Wypełnij formularz raportu na stronie ProtonDB";
+var sectionEnhancedFeatures$c = "Funkcje zaawansowane";
+var showAnalysisButton$c = "Pokaż przycisk analizy";
+var showAnalysisButtonDesc$c = "Wyświetla przycisk obok odznaki do przeglądania szczegółowej analizy kompatybilności, w tym trendów raportów i wykresu historii";
+var roundedCorners$c = "Zaokrąglone rogi";
+var roundedCornersDesc$c = "Użyj zaokrąglonych rogów na wszystkich przyciskach odznaki";
+var showLibraryIcons$c = "Library Status Icons";
+var showLibraryIconsDesc$c = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$c = "Icon Position";
+var libraryIconPositionDesc$c = "Position of the status icon on game covers";
+var helpAnalysisTitle$c = "Analiza kompatybilności";
+var helpAnalysisDesc$c = "Przycisk analizy (ikona wykresu słupkowego) obok odznaki otwiera szczegółowy przegląd kompatybilności dla każdej gry. Dane pochodzą ze wszystkich raportów ProtonDB przesłanych przez społeczność.";
+var helpAnalysisDetails$c = "Zakładka Szczegóły pokazuje:";
+var helpAnalysisWorking$c = "Status działania — czy gra działa na Linuxie i jak pewna jest ta ocena";
+var helpAnalysisConfidence$c = "Wynik pewności — ile danych z raportów jest dostępnych do oceny gry (0-100)";
+var helpAnalysisTrend$c = "Trend — czy kompatybilność się poprawia, jest stabilna czy spada";
+var helpAnalysisFreshness$c = "Aktualność — kiedy przesłano ostatni raport";
+var helpAnalysisWarnings$c = "Ostrzeżenia o niezgodnościach wersji Proton, problemach z GPU lub systemach antycheat";
+var helpAnalysisChart$c = "Zakładka Historia raportów pokazuje wykres dobrych (zielonych) i złych (czerwonych) raportów miesięcznie z ostatnich 2 lat.";
+var helpAnalysisColorsTitle$c = "Kolory przycisku analizy";
+var helpAnalysisColorsDesc$c = "Przycisk analizy używa prostego systemu sygnalizacji świetlnej zamiast kolorów poziomów ProtonDB (Platinum, Gold itp.). Jest to celowe — poziomy odzwierciedlają jak dobrze gra działa, podczas gdy przycisk analizy odpowiada na inne pytanie: czy gra w ogóle działa teraz?";
+var helpAnalysisColorGreen$c = "Zielony — Gra działa na podstawie ostatnich raportów";
+var helpAnalysisColorRed$c = "Czerwony — Gra nie działa lub ma poważne problemy";
+var helpAnalysisColorGray$c = "Szary — Za mało danych do określenia statusu";
+var helpAnalysisToggle$c = "Możesz włączyć lub wyłączyć przycisk analizy w Ustawieniach w sekcji Funkcje zaawansowane.";
+var clearCacheSuccess$c = "Pamięć podręczna wyczyszczona";
+var settingsTabCount$c = "{with} z {total} raportów zawiera opcje uruchamiania (tylko pozytywne)";
+var settingsTabHint$c = "Naciśnij Kopiuj i wklej w Steam > Właściwości gry > Opcje uruchamiania przed %command%";
+var settingsTabExample$c = "Przykład: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$c = "Brak zgłoszonych opcji uruchamiania dla tej gry";
+var settingsTabCopy$c = "Kopiuj";
+var settingsTabCopied$c = "Skopiowano!";
 var pl = {
 	sectionLibrary: sectionLibrary$c,
 	sectionStore: sectionStore$c,
@@ -6034,7 +7152,38 @@ var pl = {
 	helpSubmitDesc: helpSubmitDesc$c,
 	helpSubmitStep1: helpSubmitStep1$c,
 	helpSubmitStep2: helpSubmitStep2$c,
-	helpSubmitStep3: helpSubmitStep3$c
+	helpSubmitStep3: helpSubmitStep3$c,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$c,
+	showAnalysisButton: showAnalysisButton$c,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$c,
+	roundedCorners: roundedCorners$c,
+	roundedCornersDesc: roundedCornersDesc$c,
+	showLibraryIcons: showLibraryIcons$c,
+	showLibraryIconsDesc: showLibraryIconsDesc$c,
+	libraryIconPosition: libraryIconPosition$c,
+	libraryIconPositionDesc: libraryIconPositionDesc$c,
+	helpAnalysisTitle: helpAnalysisTitle$c,
+	helpAnalysisDesc: helpAnalysisDesc$c,
+	helpAnalysisDetails: helpAnalysisDetails$c,
+	helpAnalysisWorking: helpAnalysisWorking$c,
+	helpAnalysisConfidence: helpAnalysisConfidence$c,
+	helpAnalysisTrend: helpAnalysisTrend$c,
+	helpAnalysisFreshness: helpAnalysisFreshness$c,
+	helpAnalysisWarnings: helpAnalysisWarnings$c,
+	helpAnalysisChart: helpAnalysisChart$c,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$c,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$c,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$c,
+	helpAnalysisColorRed: helpAnalysisColorRed$c,
+	helpAnalysisColorGray: helpAnalysisColorGray$c,
+	helpAnalysisToggle: helpAnalysisToggle$c,
+	clearCacheSuccess: clearCacheSuccess$c,
+	settingsTabCount: settingsTabCount$c,
+	settingsTabHint: settingsTabHint$c,
+	settingsTabExample: settingsTabExample$c,
+	settingsTabEmpty: settingsTabEmpty$c,
+	settingsTabCopy: settingsTabCopy$c,
+	settingsTabCopied: settingsTabCopied$c
 };
 
 var sectionLibrary$b = "Biblioteca";
@@ -6126,6 +7275,37 @@ var helpSubmitDesc$b = "Ajude a comunidade partilhando a sua experiência de jog
 var helpSubmitStep1$b = "Jogue um jogo durante pelo menos 15-30 minutos";
 var helpSubmitStep2$b = "Clique no botão Enviar no distintivo ProtonDB";
 var helpSubmitStep3$b = "Preencha o formulário de relatório no site do ProtonDB";
+var sectionEnhancedFeatures$b = "Funcionalidades avançadas";
+var showAnalysisButton$b = "Mostrar botão de análise";
+var showAnalysisButtonDesc$b = "Mostra um botão junto ao emblema para ver uma análise detalhada de compatibilidade, incluindo tendências de relatórios e gráfico de histórico";
+var roundedCorners$b = "Cantos arredondados";
+var roundedCornersDesc$b = "Usar cantos arredondados em todos os botões de emblema";
+var showLibraryIcons$b = "Library Status Icons";
+var showLibraryIconsDesc$b = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$b = "Icon Position";
+var libraryIconPositionDesc$b = "Position of the status icon on game covers";
+var helpAnalysisTitle$b = "Análise de compatibilidade";
+var helpAnalysisDesc$b = "O botão de análise (ícone de gráfico de barras) junto ao emblema abre uma visão detalhada da compatibilidade para cada jogo. Os dados provêm de todos os relatórios ProtonDB enviados pela comunidade.";
+var helpAnalysisDetails$b = "O separador Detalhes mostra:";
+var helpAnalysisWorking$b = "Estado de funcionamento — se o jogo funciona atualmente no Linux e a fiabilidade dessa avaliação";
+var helpAnalysisConfidence$b = "Pontuação de confiança — quantidade de dados de relatórios disponíveis para avaliar o jogo (0-100)";
+var helpAnalysisTrend$b = "Tendência — se a compatibilidade está a melhorar, estável ou a piorar";
+var helpAnalysisFreshness$b = "Atualidade — quando foi enviado o último relatório";
+var helpAnalysisWarnings$b = "Avisos sobre incompatibilidades de versão do Proton, problemas de GPU ou anti-batota";
+var helpAnalysisChart$b = "O separador Histórico de relatórios mostra um gráfico de relatórios bons (verdes) e maus (vermelhos) por mês nos últimos 2 anos.";
+var helpAnalysisColorsTitle$b = "Cores do botão de análise";
+var helpAnalysisColorsDesc$b = "O botão de análise usa um sistema simples de semáforo em vez das cores de nível do ProtonDB (Platinum, Gold, etc.). Isto é intencional — os níveis refletem quão bem um jogo funciona, enquanto o botão de análise responde a uma pergunta diferente: o jogo funciona de todo neste momento?";
+var helpAnalysisColorGreen$b = "Verde — O jogo funciona com base em relatórios recentes";
+var helpAnalysisColorRed$b = "Vermelho — O jogo não funciona ou tem problemas significativos";
+var helpAnalysisColorGray$b = "Cinzento — Dados insuficientes para determinar o estado";
+var helpAnalysisToggle$b = "Pode ativar ou desativar o botão de análise nas Definições em Funcionalidades avançadas.";
+var clearCacheSuccess$b = "Cache limpa com sucesso";
+var settingsTabCount$b = "{with} de {total} relatórios incluem opções de lançamento (apenas positivos)";
+var settingsTabHint$b = "Toque em Copiar e cole em Steam > Propriedades do jogo > Opções de lançamento antes de %command%";
+var settingsTabExample$b = "Exemplo: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$b = "Nenhuma opção de lançamento reportada para este jogo";
+var settingsTabCopy$b = "Copiar";
+var settingsTabCopied$b = "Copiado!";
 var pt = {
 	sectionLibrary: sectionLibrary$b,
 	sectionStore: sectionStore$b,
@@ -6215,7 +7395,38 @@ var pt = {
 	helpSubmitDesc: helpSubmitDesc$b,
 	helpSubmitStep1: helpSubmitStep1$b,
 	helpSubmitStep2: helpSubmitStep2$b,
-	helpSubmitStep3: helpSubmitStep3$b
+	helpSubmitStep3: helpSubmitStep3$b,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$b,
+	showAnalysisButton: showAnalysisButton$b,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$b,
+	roundedCorners: roundedCorners$b,
+	roundedCornersDesc: roundedCornersDesc$b,
+	showLibraryIcons: showLibraryIcons$b,
+	showLibraryIconsDesc: showLibraryIconsDesc$b,
+	libraryIconPosition: libraryIconPosition$b,
+	libraryIconPositionDesc: libraryIconPositionDesc$b,
+	helpAnalysisTitle: helpAnalysisTitle$b,
+	helpAnalysisDesc: helpAnalysisDesc$b,
+	helpAnalysisDetails: helpAnalysisDetails$b,
+	helpAnalysisWorking: helpAnalysisWorking$b,
+	helpAnalysisConfidence: helpAnalysisConfidence$b,
+	helpAnalysisTrend: helpAnalysisTrend$b,
+	helpAnalysisFreshness: helpAnalysisFreshness$b,
+	helpAnalysisWarnings: helpAnalysisWarnings$b,
+	helpAnalysisChart: helpAnalysisChart$b,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$b,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$b,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$b,
+	helpAnalysisColorRed: helpAnalysisColorRed$b,
+	helpAnalysisColorGray: helpAnalysisColorGray$b,
+	helpAnalysisToggle: helpAnalysisToggle$b,
+	clearCacheSuccess: clearCacheSuccess$b,
+	settingsTabCount: settingsTabCount$b,
+	settingsTabHint: settingsTabHint$b,
+	settingsTabExample: settingsTabExample$b,
+	settingsTabEmpty: settingsTabEmpty$b,
+	settingsTabCopy: settingsTabCopy$b,
+	settingsTabCopied: settingsTabCopied$b
 };
 
 var sectionLibrary$a = "Biblioteca";
@@ -6307,6 +7518,37 @@ var helpSubmitDesc$a = "Ajude a comunidade compartilhando sua experiência de jo
 var helpSubmitStep1$a = "Jogue um jogo por pelo menos 15-30 minutos";
 var helpSubmitStep2$a = "Clique no botão Enviar na medalha ProtonDB";
 var helpSubmitStep3$a = "Preencha o formulário de relatório no site do ProtonDB";
+var sectionEnhancedFeatures$a = "Funcionalidades avançadas";
+var showAnalysisButton$a = "Mostrar botão de análise";
+var showAnalysisButtonDesc$a = "Mostra um botão ao lado do emblema para ver uma análise detalhada de compatibilidade, incluindo tendências de relatórios e gráfico de histórico";
+var roundedCorners$a = "Cantos arredondados";
+var roundedCornersDesc$a = "Usar cantos arredondados em todos os botões de emblema";
+var showLibraryIcons$a = "Library Status Icons";
+var showLibraryIconsDesc$a = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$a = "Icon Position";
+var libraryIconPositionDesc$a = "Position of the status icon on game covers";
+var helpAnalysisTitle$a = "Análise de compatibilidade";
+var helpAnalysisDesc$a = "O botão de análise (ícone de gráfico de barras) ao lado do emblema abre uma visão detalhada da compatibilidade para cada jogo. Os dados vêm de todos os relatórios ProtonDB enviados pela comunidade.";
+var helpAnalysisDetails$a = "A aba Detalhes mostra:";
+var helpAnalysisWorking$a = "Status de funcionamento — se o jogo funciona atualmente no Linux e a confiabilidade dessa avaliação";
+var helpAnalysisConfidence$a = "Pontuação de confiança — quantidade de dados de relatórios disponíveis para avaliar o jogo (0-100)";
+var helpAnalysisTrend$a = "Tendência — se a compatibilidade está melhorando, estável ou piorando";
+var helpAnalysisFreshness$a = "Atualidade — quando o último relatório foi enviado";
+var helpAnalysisWarnings$a = "Avisos sobre incompatibilidades de versão do Proton, problemas de GPU ou anti-trapaça";
+var helpAnalysisChart$a = "A aba Histórico de relatórios mostra um gráfico de relatórios bons (verdes) e ruins (vermelhos) por mês nos últimos 2 anos.";
+var helpAnalysisColorsTitle$a = "Cores do botão de análise";
+var helpAnalysisColorsDesc$a = "O botão de análise usa um sistema simples de semáforo em vez das cores de nível do ProtonDB (Platinum, Gold, etc.). Isso é intencional — os níveis refletem quão bem um jogo funciona, enquanto o botão de análise responde a uma pergunta diferente: o jogo funciona agora?";
+var helpAnalysisColorGreen$a = "Verde — O jogo funciona com base em relatórios recentes";
+var helpAnalysisColorRed$a = "Vermelho — O jogo não funciona ou tem problemas significativos";
+var helpAnalysisColorGray$a = "Cinza — Dados insuficientes para determinar o status";
+var helpAnalysisToggle$a = "Você pode ativar ou desativar o botão de análise nas Configurações em Funcionalidades avançadas.";
+var clearCacheSuccess$a = "Cache limpo com sucesso";
+var settingsTabCount$a = "{with} de {total} relatórios incluem opções de lançamento (apenas positivos)";
+var settingsTabHint$a = "Toque em Copiar e cole em Steam > Propriedades do jogo > Opções de lançamento antes de %command%";
+var settingsTabExample$a = "Exemplo: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$a = "Nenhuma opção de lançamento reportada para este jogo";
+var settingsTabCopy$a = "Copiar";
+var settingsTabCopied$a = "Copiado!";
 var ptBr = {
 	sectionLibrary: sectionLibrary$a,
 	sectionStore: sectionStore$a,
@@ -6396,7 +7638,38 @@ var ptBr = {
 	helpSubmitDesc: helpSubmitDesc$a,
 	helpSubmitStep1: helpSubmitStep1$a,
 	helpSubmitStep2: helpSubmitStep2$a,
-	helpSubmitStep3: helpSubmitStep3$a
+	helpSubmitStep3: helpSubmitStep3$a,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$a,
+	showAnalysisButton: showAnalysisButton$a,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$a,
+	roundedCorners: roundedCorners$a,
+	roundedCornersDesc: roundedCornersDesc$a,
+	showLibraryIcons: showLibraryIcons$a,
+	showLibraryIconsDesc: showLibraryIconsDesc$a,
+	libraryIconPosition: libraryIconPosition$a,
+	libraryIconPositionDesc: libraryIconPositionDesc$a,
+	helpAnalysisTitle: helpAnalysisTitle$a,
+	helpAnalysisDesc: helpAnalysisDesc$a,
+	helpAnalysisDetails: helpAnalysisDetails$a,
+	helpAnalysisWorking: helpAnalysisWorking$a,
+	helpAnalysisConfidence: helpAnalysisConfidence$a,
+	helpAnalysisTrend: helpAnalysisTrend$a,
+	helpAnalysisFreshness: helpAnalysisFreshness$a,
+	helpAnalysisWarnings: helpAnalysisWarnings$a,
+	helpAnalysisChart: helpAnalysisChart$a,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$a,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$a,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$a,
+	helpAnalysisColorRed: helpAnalysisColorRed$a,
+	helpAnalysisColorGray: helpAnalysisColorGray$a,
+	helpAnalysisToggle: helpAnalysisToggle$a,
+	clearCacheSuccess: clearCacheSuccess$a,
+	settingsTabCount: settingsTabCount$a,
+	settingsTabHint: settingsTabHint$a,
+	settingsTabExample: settingsTabExample$a,
+	settingsTabEmpty: settingsTabEmpty$a,
+	settingsTabCopy: settingsTabCopy$a,
+	settingsTabCopied: settingsTabCopied$a
 };
 
 var sectionLibrary$9 = "Library";
@@ -6488,6 +7761,37 @@ var helpSubmitDesc$9 = "Ajută comunitatea împărtășindu-ți experiența de j
 var helpSubmitStep1$9 = "Joacă un joc cel puțin 15-30 de minute";
 var helpSubmitStep2$9 = "Apasă butonul Trimite de pe ecusonul ProtonDB";
 var helpSubmitStep3$9 = "Completează formularul de raport pe site-ul ProtonDB";
+var sectionEnhancedFeatures$9 = "Funcții avansate";
+var showAnalysisButton$9 = "Afișează butonul de analiză";
+var showAnalysisButtonDesc$9 = "Afișează un buton lângă insignă pentru a vizualiza o analiză detaliată a compatibilității, inclusiv tendințe ale rapoartelor și graficul istoricului";
+var roundedCorners$9 = "Colțuri rotunjite";
+var roundedCornersDesc$9 = "Folosește colțuri rotunjite pe toate butoanele de insignă";
+var showLibraryIcons$9 = "Library Status Icons";
+var showLibraryIconsDesc$9 = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$9 = "Icon Position";
+var libraryIconPositionDesc$9 = "Position of the status icon on game covers";
+var helpAnalysisTitle$9 = "Analiză de compatibilitate";
+var helpAnalysisDesc$9 = "Butonul de analiză (pictograma grafic cu bare) de lângă insignă deschide o privire detaliată asupra compatibilității pentru fiecare joc. Datele provin din toate rapoartele ProtonDB trimise de comunitate.";
+var helpAnalysisDetails$9 = "Fila Detalii arată:";
+var helpAnalysisWorking$9 = "Starea de funcționare — dacă jocul funcționează pe Linux și cât de sigură este această evaluare";
+var helpAnalysisConfidence$9 = "Scor de încredere — câte date din rapoarte sunt disponibile pentru evaluarea jocului (0-100)";
+var helpAnalysisTrend$9 = "Tendință — dacă compatibilitatea se îmbunătățește, este stabilă sau scade";
+var helpAnalysisFreshness$9 = "Actualitate — când a fost trimis ultimul raport";
+var helpAnalysisWarnings$9 = "Avertismente despre nepotriviri de versiune Proton, probleme GPU sau anti-cheat";
+var helpAnalysisChart$9 = "Fila Istoric rapoarte arată un grafic al rapoartelor bune (verzi) și rele (roșii) pe lună din ultimii 2 ani.";
+var helpAnalysisColorsTitle$9 = "Culorile butonului de analiză";
+var helpAnalysisColorsDesc$9 = "Butonul de analiză folosește un sistem simplu de semafor în loc de culorile nivelurilor ProtonDB (Platinum, Gold etc.). Acest lucru este intenționat — nivelurile reflectă cât de bine funcționează un joc, în timp ce butonul de analiză răspunde la o întrebare diferită: funcționează jocul deloc în acest moment?";
+var helpAnalysisColorGreen$9 = "Verde — Jocul funcționează conform rapoartelor recente";
+var helpAnalysisColorRed$9 = "Roșu — Jocul nu funcționează sau are probleme semnificative";
+var helpAnalysisColorGray$9 = "Gri — Date insuficiente pentru a determina starea";
+var helpAnalysisToggle$9 = "Puteți activa sau dezactiva butonul de analiză în Setări, la Funcții avansate.";
+var clearCacheSuccess$9 = "Cache-ul a fost șters";
+var settingsTabCount$9 = "{with} din {total} rapoarte includ opțiuni de lansare (doar pozitive)";
+var settingsTabHint$9 = "Apasă Copiază și lipește în Steam > Proprietăți joc > Opțiuni de lansare înainte de %command%";
+var settingsTabExample$9 = "Exemplu: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$9 = "Nicio opțiune de lansare raportată pentru acest joc";
+var settingsTabCopy$9 = "Copiază";
+var settingsTabCopied$9 = "Copiat!";
 var ro = {
 	sectionLibrary: sectionLibrary$9,
 	sectionStore: sectionStore$9,
@@ -6577,12 +7881,43 @@ var ro = {
 	helpSubmitDesc: helpSubmitDesc$9,
 	helpSubmitStep1: helpSubmitStep1$9,
 	helpSubmitStep2: helpSubmitStep2$9,
-	helpSubmitStep3: helpSubmitStep3$9
+	helpSubmitStep3: helpSubmitStep3$9,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$9,
+	showAnalysisButton: showAnalysisButton$9,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$9,
+	roundedCorners: roundedCorners$9,
+	roundedCornersDesc: roundedCornersDesc$9,
+	showLibraryIcons: showLibraryIcons$9,
+	showLibraryIconsDesc: showLibraryIconsDesc$9,
+	libraryIconPosition: libraryIconPosition$9,
+	libraryIconPositionDesc: libraryIconPositionDesc$9,
+	helpAnalysisTitle: helpAnalysisTitle$9,
+	helpAnalysisDesc: helpAnalysisDesc$9,
+	helpAnalysisDetails: helpAnalysisDetails$9,
+	helpAnalysisWorking: helpAnalysisWorking$9,
+	helpAnalysisConfidence: helpAnalysisConfidence$9,
+	helpAnalysisTrend: helpAnalysisTrend$9,
+	helpAnalysisFreshness: helpAnalysisFreshness$9,
+	helpAnalysisWarnings: helpAnalysisWarnings$9,
+	helpAnalysisChart: helpAnalysisChart$9,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$9,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$9,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$9,
+	helpAnalysisColorRed: helpAnalysisColorRed$9,
+	helpAnalysisColorGray: helpAnalysisColorGray$9,
+	helpAnalysisToggle: helpAnalysisToggle$9,
+	clearCacheSuccess: clearCacheSuccess$9,
+	settingsTabCount: settingsTabCount$9,
+	settingsTabHint: settingsTabHint$9,
+	settingsTabExample: settingsTabExample$9,
+	settingsTabEmpty: settingsTabEmpty$9,
+	settingsTabCopy: settingsTabCopy$9,
+	settingsTabCopied: settingsTabCopied$9
 };
 
-var sectionLibrary$8 = "Library";
-var sectionStore$8 = "Store";
-var sectionLinks$8 = "Links";
+var sectionLibrary$8 = "Библиотека";
+var sectionStore$8 = "Магазин";
+var sectionLinks$8 = "Ссылки";
 var badgePosition$8 = "Позиция значка";
 var badgePositionDescription$8 = "Где будет значок на фоне страницы игры";
 var badgeSize$8 = "Размер значка";
@@ -6594,9 +7929,9 @@ var expandOnHover$8 = "Развернуть ярлык при наведении
 var expandOnHoverDescription$8 = "Только минималистичный. Показывать текст значка на наведении";
 var positionTopLeft$8 = "Вверху слева";
 var positionTopRight$8 = "Вверху справа";
-var positionBottomLeft$8 = "Bottom Left";
-var positionBottomMiddle$8 = "Bottom Middle";
-var positionBottomRight$8 = "Bottom Right";
+var positionBottomLeft$8 = "Внизу слева";
+var positionBottomMiddle$8 = "Внизу по центру";
+var positionBottomRight$8 = "Внизу справа";
 var positionTopMiddle$8 = "Вверху по центру";
 var settings$8 = "Настройки";
 var sizeMinimalist$8 = "Минималистичный";
@@ -6620,17 +7955,17 @@ var login$8 = "Войти";
 var loading$8 = "...";
 var noReport$8 = "НЕТ ОТЧЁТА";
 var disableSubmit$8 = "Отключить отправку";
-var disableSubmitDesc$8 = "Hide the submit button that allows contributing reports to ProtonDB";
-var enableLibraryBadge$8 = "Enable Badge on Library";
-var enableLibraryBadgeDesc$8 = "Show ProtonDB badge on game pages in your library";
+var disableSubmitDesc$8 = "Скрыть кнопку отправки отчётов в ProtonDB";
+var enableLibraryBadge$8 = "Включить значок в библиотеке";
+var enableLibraryBadgeDesc$8 = "Показывать значок ProtonDB на страницах игр в вашей библиотеке";
 var enableStoreBadge$8 = "Включить значок на страницах магазина";
-var enableStoreBadgeDesc$8 = "Show ProtonDB badge as overlay on store pages";
-var storeBadgePosition$8 = "Store Badge Position";
-var storeBadgePositionDesc$8 = "Position the badge overlay on store pages";
-var storePositionBottomCenter$8 = "Bottom Center";
-var storePositionBottomLeft$8 = "Bottom Left";
-var storePositionBottomRight$8 = "Bottom Right";
-var storePositionTopMiddle$8 = "Top Right";
+var enableStoreBadgeDesc$8 = "Показывать значок ProtonDB в виде оверлея на страницах магазина";
+var storeBadgePosition$8 = "Позиция значка на страницах магазина";
+var storeBadgePositionDesc$8 = "Позиция оверлея значка на страницах магазина";
+var storePositionBottomCenter$8 = "Внизу по центру";
+var storePositionBottomLeft$8 = "Внизу слева";
+var storePositionBottomRight$8 = "Внизу справа";
+var storePositionTopMiddle$8 = "Вверху по центру";
 var helpButton$8 = "Инструкция";
 var helpTitle$8 = "ProtonDB Badges - Справка";
 var helpToc$8 = "Перейти к разделу";
@@ -6669,6 +8004,37 @@ var helpSubmitDesc$8 = "Помогите сообществу, поделивш�
 var helpSubmitStep1$8 = "Поиграйте в игру минимум 15-30 минут";
 var helpSubmitStep2$8 = "Нажмите кнопку отправки на значке ProtonDB";
 var helpSubmitStep3$8 = "Заполните форму отчёта на сайте ProtonDB";
+var sectionEnhancedFeatures$8 = "Расширенные функции";
+var showAnalysisButton$8 = "Показать кнопку анализа";
+var showAnalysisButtonDesc$8 = "Отображает кнопку рядом со значком для просмотра подробного анализа совместимости, включая тенденции отчётов и график истории";
+var roundedCorners$8 = "Скруглённые углы";
+var roundedCornersDesc$8 = "Использовать скруглённые углы на всех кнопках значка";
+var showLibraryIcons$8 = "Library Status Icons";
+var showLibraryIconsDesc$8 = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$8 = "Icon Position";
+var libraryIconPositionDesc$8 = "Position of the status icon on game covers";
+var helpAnalysisTitle$8 = "Анализ совместимости";
+var helpAnalysisDesc$8 = "Кнопка анализа (значок столбчатой диаграммы) рядом со значком открывает подробный обзор совместимости для каждой игры. Данные собраны из всех отчётов ProtonDB, отправленных сообществом.";
+var helpAnalysisDetails$8 = "Вкладка Подробности показывает:";
+var helpAnalysisWorking$8 = "Статус работы — работает ли игра в Linux и насколько достоверна эта оценка";
+var helpAnalysisConfidence$8 = "Оценка достоверности — сколько данных из отчётов доступно для оценки игры (0-100)";
+var helpAnalysisTrend$8 = "Тенденция — улучшается, стабильна или ухудшается совместимость на основе сравнения новых и старых отчётов";
+var helpAnalysisFreshness$8 = "Актуальность — когда был отправлен последний отчёт";
+var helpAnalysisWarnings$8 = "Предупреждения о несоответствиях версии Proton, проблемах с GPU или античитах";
+var helpAnalysisChart$8 = "Вкладка История отчётов показывает график хороших (зелёных) и плохих (красных) отчётов по месяцам за последние 2 года.";
+var helpAnalysisColorsTitle$8 = "Цвета кнопки анализа";
+var helpAnalysisColorsDesc$8 = "Кнопка анализа использует простую систему светофора вместо цветов уровней ProtonDB (Platinum, Gold и т.д.). Это сделано намеренно — уровни отражают, насколько хорошо работает игра, а кнопка анализа отвечает на другой вопрос: работает ли игра вообще прямо сейчас?";
+var helpAnalysisColorGreen$8 = "Зелёный — Игра работает по данным последних отчётов";
+var helpAnalysisColorRed$8 = "Красный — Игра не работает или имеет серьёзные проблемы";
+var helpAnalysisColorGray$8 = "Серый — Недостаточно данных для определения статуса";
+var helpAnalysisToggle$8 = "Вы можете включить или отключить кнопку анализа в Настройках в разделе Расширенные функции.";
+var clearCacheSuccess$8 = "Кэш очищен";
+var settingsTabCount$8 = "{with} из {total} отчётов содержат параметры запуска (только положительные)";
+var settingsTabHint$8 = "Нажмите Копировать и вставьте в Steam > Свойства игры > Параметры запуска перед %command%";
+var settingsTabExample$8 = "Пример: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$8 = "Для этой игры не указаны параметры запуска";
+var settingsTabCopy$8 = "Копировать";
+var settingsTabCopied$8 = "Скопировано!";
 var ru = {
 	sectionLibrary: sectionLibrary$8,
 	sectionStore: sectionStore$8,
@@ -6758,7 +8124,38 @@ var ru = {
 	helpSubmitDesc: helpSubmitDesc$8,
 	helpSubmitStep1: helpSubmitStep1$8,
 	helpSubmitStep2: helpSubmitStep2$8,
-	helpSubmitStep3: helpSubmitStep3$8
+	helpSubmitStep3: helpSubmitStep3$8,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$8,
+	showAnalysisButton: showAnalysisButton$8,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$8,
+	roundedCorners: roundedCorners$8,
+	roundedCornersDesc: roundedCornersDesc$8,
+	showLibraryIcons: showLibraryIcons$8,
+	showLibraryIconsDesc: showLibraryIconsDesc$8,
+	libraryIconPosition: libraryIconPosition$8,
+	libraryIconPositionDesc: libraryIconPositionDesc$8,
+	helpAnalysisTitle: helpAnalysisTitle$8,
+	helpAnalysisDesc: helpAnalysisDesc$8,
+	helpAnalysisDetails: helpAnalysisDetails$8,
+	helpAnalysisWorking: helpAnalysisWorking$8,
+	helpAnalysisConfidence: helpAnalysisConfidence$8,
+	helpAnalysisTrend: helpAnalysisTrend$8,
+	helpAnalysisFreshness: helpAnalysisFreshness$8,
+	helpAnalysisWarnings: helpAnalysisWarnings$8,
+	helpAnalysisChart: helpAnalysisChart$8,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$8,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$8,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$8,
+	helpAnalysisColorRed: helpAnalysisColorRed$8,
+	helpAnalysisColorGray: helpAnalysisColorGray$8,
+	helpAnalysisToggle: helpAnalysisToggle$8,
+	clearCacheSuccess: clearCacheSuccess$8,
+	settingsTabCount: settingsTabCount$8,
+	settingsTabHint: settingsTabHint$8,
+	settingsTabExample: settingsTabExample$8,
+	settingsTabEmpty: settingsTabEmpty$8,
+	settingsTabCopy: settingsTabCopy$8,
+	settingsTabCopied: settingsTabCopied$8
 };
 
 var sectionLibrary$7 = "Library";
@@ -6850,6 +8247,37 @@ var helpSubmitDesc$7 = "Pomagajte skupnosti z deljenjem vaše igralne izkušnje!
 var helpSubmitStep1$7 = "Igrajte igro vsaj 15-30 minut";
 var helpSubmitStep2$7 = "Kliknite gumb Pošlji na znački ProtonDB";
 var helpSubmitStep3$7 = "Izpolnite obrazec za poročilo na spletni strani ProtonDB";
+var sectionEnhancedFeatures$7 = "Napredne funkcije";
+var showAnalysisButton$7 = "Prikaži gumb za analizo";
+var showAnalysisButtonDesc$7 = "Prikaže gumb poleg značke za ogled podrobne analize združljivosti, vključno s trendi poročil in grafom zgodovine";
+var roundedCorners$7 = "Zaobljeni robovi";
+var roundedCornersDesc$7 = "Uporabi zaobljene robove na vseh gumbih značke";
+var showLibraryIcons$7 = "Library Status Icons";
+var showLibraryIconsDesc$7 = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$7 = "Icon Position";
+var libraryIconPositionDesc$7 = "Position of the status icon on game covers";
+var helpAnalysisTitle$7 = "Analiza združljivosti";
+var helpAnalysisDesc$7 = "Gumb za analizo (ikona stolpičnega grafikona) poleg značke odpre podroben pregled združljivosti za vsako igro. Podatki so zbrani iz vseh poročil ProtonDB, ki jih je poslala skupnost.";
+var helpAnalysisDetails$7 = "Zavihek Podrobnosti prikazuje:";
+var helpAnalysisWorking$7 = "Stanje delovanja — ali igra trenutno deluje na Linuxu in kako zanesljiva je ta ocena";
+var helpAnalysisConfidence$7 = "Ocena zaupanja — koliko podatkov iz poročil je na voljo za oceno igre (0-100)";
+var helpAnalysisTrend$7 = "Trend — ali se združljivost izboljšuje, je stabilna ali upada";
+var helpAnalysisFreshness$7 = "Svežina — kdaj je bilo poslano zadnje poročilo";
+var helpAnalysisWarnings$7 = "Opozorila o neskladnostih različic Proton, težavah z GPU ali proti-goljufijah";
+var helpAnalysisChart$7 = "Zavihek Zgodovina poročil prikazuje grafikon dobrih (zelenih) in slabih (rdečih) poročil po mesecih v zadnjih 2 letih.";
+var helpAnalysisColorsTitle$7 = "Barve gumba za analizo";
+var helpAnalysisColorsDesc$7 = "Gumb za analizo uporablja preprost semaforski sistem namesto barv stopenj ProtonDB (Platinum, Gold itd.). To je namerno — stopnje odražajo, kako dobro igra deluje, medtem ko gumb za analizo odgovarja na drugo vprašanje: ali igra sploh deluje trenutno?";
+var helpAnalysisColorGreen$7 = "Zelena — Igra deluje glede na nedavna poročila";
+var helpAnalysisColorRed$7 = "Rdeča — Igra ne deluje ali ima pomembne težave";
+var helpAnalysisColorGray$7 = "Siva — Ni dovolj podatkov za določitev stanja";
+var helpAnalysisToggle$7 = "Gumb za analizo lahko omogočite ali onemogočite v Nastavitvah pod Napredne funkcije.";
+var clearCacheSuccess$7 = "Predpomnilnik izpraznjen";
+var settingsTabCount$7 = "{with} od {total} poročil vključuje zagonske možnosti (samo pozitivna)";
+var settingsTabHint$7 = "Tapnite Kopiraj in prilepite v Steam > Lastnosti igre > Zagonske možnosti pred %command%";
+var settingsTabExample$7 = "Primer: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$7 = "Za to igro niso poročane nobene zagonske možnosti";
+var settingsTabCopy$7 = "Kopiraj";
+var settingsTabCopied$7 = "Kopirano!";
 var sl = {
 	sectionLibrary: sectionLibrary$7,
 	sectionStore: sectionStore$7,
@@ -6939,7 +8367,38 @@ var sl = {
 	helpSubmitDesc: helpSubmitDesc$7,
 	helpSubmitStep1: helpSubmitStep1$7,
 	helpSubmitStep2: helpSubmitStep2$7,
-	helpSubmitStep3: helpSubmitStep3$7
+	helpSubmitStep3: helpSubmitStep3$7,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$7,
+	showAnalysisButton: showAnalysisButton$7,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$7,
+	roundedCorners: roundedCorners$7,
+	roundedCornersDesc: roundedCornersDesc$7,
+	showLibraryIcons: showLibraryIcons$7,
+	showLibraryIconsDesc: showLibraryIconsDesc$7,
+	libraryIconPosition: libraryIconPosition$7,
+	libraryIconPositionDesc: libraryIconPositionDesc$7,
+	helpAnalysisTitle: helpAnalysisTitle$7,
+	helpAnalysisDesc: helpAnalysisDesc$7,
+	helpAnalysisDetails: helpAnalysisDetails$7,
+	helpAnalysisWorking: helpAnalysisWorking$7,
+	helpAnalysisConfidence: helpAnalysisConfidence$7,
+	helpAnalysisTrend: helpAnalysisTrend$7,
+	helpAnalysisFreshness: helpAnalysisFreshness$7,
+	helpAnalysisWarnings: helpAnalysisWarnings$7,
+	helpAnalysisChart: helpAnalysisChart$7,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$7,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$7,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$7,
+	helpAnalysisColorRed: helpAnalysisColorRed$7,
+	helpAnalysisColorGray: helpAnalysisColorGray$7,
+	helpAnalysisToggle: helpAnalysisToggle$7,
+	clearCacheSuccess: clearCacheSuccess$7,
+	settingsTabCount: settingsTabCount$7,
+	settingsTabHint: settingsTabHint$7,
+	settingsTabExample: settingsTabExample$7,
+	settingsTabEmpty: settingsTabEmpty$7,
+	settingsTabCopy: settingsTabCopy$7,
+	settingsTabCopied: settingsTabCopied$7
 };
 
 var sectionLibrary$6 = "Library";
@@ -7031,6 +8490,37 @@ var helpSubmitDesc$6 = "Hjälp gemenskapen genom att dela din spelupplevelse! Ra
 var helpSubmitStep1$6 = "Spela ett spel i minst 15-30 minuter";
 var helpSubmitStep2$6 = "Klicka på Skicka-knappen på ProtonDB-märket";
 var helpSubmitStep3$6 = "Fyll i rapportformuläret på ProtonDBs webbplats";
+var sectionEnhancedFeatures$6 = "Utökade funktioner";
+var showAnalysisButton$6 = "Visa analysknapp";
+var showAnalysisButtonDesc$6 = "Visar en knapp bredvid märket för att se detaljerad kompatibilitetsanalys, inklusive rapporttrender och historikgraf";
+var roundedCorners$6 = "Rundade hörn";
+var roundedCornersDesc$6 = "Använd rundade hörn på alla märkesknappar";
+var showLibraryIcons$6 = "Library Status Icons";
+var showLibraryIconsDesc$6 = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$6 = "Icon Position";
+var libraryIconPositionDesc$6 = "Position of the status icon on game covers";
+var helpAnalysisTitle$6 = "Kompatibilitetsanalys";
+var helpAnalysisDesc$6 = "Analysknappen (stapeldiagramikon) bredvid märket öppnar en detaljerad kompatibilitetsöversikt för varje spel. Data kommer från alla ProtonDB-rapporter som skickats in av gemenskapen.";
+var helpAnalysisDetails$6 = "Fliken Detaljer visar:";
+var helpAnalysisWorking$6 = "Funktionsstatus — om spelet fungerar på Linux och hur säker den bedömningen är";
+var helpAnalysisConfidence$6 = "Tillförlitlighetspoäng — hur mycket rapportdata som finns tillgängligt för att bedöma spelet (0-100)";
+var helpAnalysisTrend$6 = "Trend — om kompatibiliteten förbättras, är stabil eller försämras";
+var helpAnalysisFreshness$6 = "Aktualitet — när den senaste rapporten skickades in";
+var helpAnalysisWarnings$6 = "Varningar om Proton-versionsskillnader, GPU-problem eller fuskskydd";
+var helpAnalysisChart$6 = "Fliken Rapporthistorik visar en graf över bra (gröna) och dåliga (röda) rapporter per månad de senaste 2 åren.";
+var helpAnalysisColorsTitle$6 = "Analysknappens färger";
+var helpAnalysisColorsDesc$6 = "Analysknappen använder ett enkelt trafikljussystem istället för ProtonDB:s nivåfärger (Platinum, Gold osv.). Detta är avsiktligt — nivåerna speglar hur bra ett spel fungerar, medan analysknappen besvarar en annan fråga: fungerar spelet överhuvudtaget just nu?";
+var helpAnalysisColorGreen$6 = "Grön — Spelet fungerar baserat på senaste rapporter";
+var helpAnalysisColorRed$6 = "Röd — Spelet fungerar inte eller har betydande problem";
+var helpAnalysisColorGray$6 = "Grå — Inte tillräckligt med data för att bestämma status";
+var helpAnalysisToggle$6 = "Du kan aktivera eller inaktivera analysknappen i Inställningar under Utökade funktioner.";
+var clearCacheSuccess$6 = "Cache rensad";
+var settingsTabCount$6 = "{with} av {total} rapporter inkluderar startalternativ (bara positiva)";
+var settingsTabHint$6 = "Tryck på Kopiera och klistra in i Steam > Spelegenskaper > Startalternativ före %command%";
+var settingsTabExample$6 = "Exempel: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$6 = "Inga startalternativ rapporterade för detta spel";
+var settingsTabCopy$6 = "Kopiera";
+var settingsTabCopied$6 = "Kopierat!";
 var sv = {
 	sectionLibrary: sectionLibrary$6,
 	sectionStore: sectionStore$6,
@@ -7120,7 +8610,38 @@ var sv = {
 	helpSubmitDesc: helpSubmitDesc$6,
 	helpSubmitStep1: helpSubmitStep1$6,
 	helpSubmitStep2: helpSubmitStep2$6,
-	helpSubmitStep3: helpSubmitStep3$6
+	helpSubmitStep3: helpSubmitStep3$6,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$6,
+	showAnalysisButton: showAnalysisButton$6,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$6,
+	roundedCorners: roundedCorners$6,
+	roundedCornersDesc: roundedCornersDesc$6,
+	showLibraryIcons: showLibraryIcons$6,
+	showLibraryIconsDesc: showLibraryIconsDesc$6,
+	libraryIconPosition: libraryIconPosition$6,
+	libraryIconPositionDesc: libraryIconPositionDesc$6,
+	helpAnalysisTitle: helpAnalysisTitle$6,
+	helpAnalysisDesc: helpAnalysisDesc$6,
+	helpAnalysisDetails: helpAnalysisDetails$6,
+	helpAnalysisWorking: helpAnalysisWorking$6,
+	helpAnalysisConfidence: helpAnalysisConfidence$6,
+	helpAnalysisTrend: helpAnalysisTrend$6,
+	helpAnalysisFreshness: helpAnalysisFreshness$6,
+	helpAnalysisWarnings: helpAnalysisWarnings$6,
+	helpAnalysisChart: helpAnalysisChart$6,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$6,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$6,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$6,
+	helpAnalysisColorRed: helpAnalysisColorRed$6,
+	helpAnalysisColorGray: helpAnalysisColorGray$6,
+	helpAnalysisToggle: helpAnalysisToggle$6,
+	clearCacheSuccess: clearCacheSuccess$6,
+	settingsTabCount: settingsTabCount$6,
+	settingsTabHint: settingsTabHint$6,
+	settingsTabExample: settingsTabExample$6,
+	settingsTabEmpty: settingsTabEmpty$6,
+	settingsTabCopy: settingsTabCopy$6,
+	settingsTabCopied: settingsTabCopied$6
 };
 
 var sectionLibrary$5 = "Library";
@@ -7212,6 +8733,37 @@ var helpSubmitDesc$5 = "ช่วยเหลือชุมชนโดยก�
 var helpSubmitStep1$5 = "เล่นเกมอย่างน้อย 15-30 นาที";
 var helpSubmitStep2$5 = "คลิกปุ่มส่งบนตรารับรอง ProtonDB";
 var helpSubmitStep3$5 = "กรอกแบบฟอร์มรายงานบนเว็บไซต์ ProtonDB";
+var sectionEnhancedFeatures$5 = "ฟีเจอร์ขั้นสูง";
+var showAnalysisButton$5 = "แสดงปุ่มวิเคราะห์";
+var showAnalysisButtonDesc$5 = "แสดงปุ่มข้างตราสัญลักษณ์เพื่อดูการวิเคราะห์ความเข้ากันได้โดยละเอียด รวมถึงแนวโน้มรายงานและกราฟประวัติ";
+var roundedCorners$5 = "มุมโค้งมน";
+var roundedCornersDesc$5 = "ใช้มุมโค้งมนบนปุ่มป้ายทั้งหมด";
+var showLibraryIcons$5 = "Library Status Icons";
+var showLibraryIconsDesc$5 = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$5 = "Icon Position";
+var libraryIconPositionDesc$5 = "Position of the status icon on game covers";
+var helpAnalysisTitle$5 = "การวิเคราะห์ความเข้ากันได้";
+var helpAnalysisDesc$5 = "ปุ่มวิเคราะห์ (ไอคอนกราฟแท่ง) ข้างตราสัญลักษณ์จะเปิดรายละเอียดความเข้ากันได้ของแต่ละเกม ข้อมูลเหล่านี้รวบรวมจากรายงาน ProtonDB ทั้งหมดที่ส่งโดยชุมชน";
+var helpAnalysisDetails$5 = "แท็บรายละเอียดแสดง:";
+var helpAnalysisWorking$5 = "สถานะการทำงาน — เกมทำงานบน Linux หรือไม่ และการประเมินนั้นมีความแน่นอนเพียงใด";
+var helpAnalysisConfidence$5 = "คะแนนความเชื่อมั่น — มีข้อมูลรายงานมากเพียงใดสำหรับการประเมินเกม (0-100)";
+var helpAnalysisTrend$5 = "แนวโน้ม — ความเข้ากันได้กำลังดีขึ้น คงที่ หรือลดลง";
+var helpAnalysisFreshness$5 = "ความสด — รายงานล่าสุดถูกส่งเมื่อใด";
+var helpAnalysisWarnings$5 = "คำเตือนเกี่ยวกับเวอร์ชัน Proton ไม่ตรงกัน ปัญหา GPU หรือแอนตี้ชีต";
+var helpAnalysisChart$5 = "แท็บประวัติรายงานแสดงกราฟรายงานดี (เขียว) และไม่ดี (แดง) รายเดือนย้อนหลัง 2 ปี";
+var helpAnalysisColorsTitle$5 = "สีของปุ่มวิเคราะห์";
+var helpAnalysisColorsDesc$5 = "ปุ่มวิเคราะห์ใช้ระบบไฟจราจรอย่างง่ายแทนสีระดับของ ProtonDB (Platinum, Gold ฯลฯ) ซึ่งเป็นไปโดยเจตนา — ระดับสะท้อนว่าเกมทำงานได้ดีแค่ไหน ในขณะที่ปุ่มวิเคราะห์ตอบคำถามอื่น: เกมทำงานได้เลยหรือไม่ในตอนนี้?";
+var helpAnalysisColorGreen$5 = "เขียว — เกมทำงานได้ตามรายงานล่าสุด";
+var helpAnalysisColorRed$5 = "แดง — เกมไม่ทำงานหรือมีปัญหาสำคัญ";
+var helpAnalysisColorGray$5 = "เทา — ข้อมูลไม่เพียงพอที่จะระบุสถานะ";
+var helpAnalysisToggle$5 = "คุณสามารถเปิดหรือปิดปุ่มวิเคราะห์ได้ในการตั้งค่าภายใต้ฟีเจอร์ขั้นสูง";
+var clearCacheSuccess$5 = "ล้างแคชสำเร็จ";
+var settingsTabCount$5 = "{with} จาก {total} รายงานมีตัวเลือกการเปิดเกม (เฉพาะรายงานเชิงบวก)";
+var settingsTabHint$5 = "แตะคัดลอกแล้ววางใน Steam > คุณสมบัติเกม > ตัวเลือกการเปิดเกม ก่อน %command%";
+var settingsTabExample$5 = "ตัวอย่าง: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$5 = "ไม่มีตัวเลือกการเปิดเกมที่รายงานสำหรับเกมนี้";
+var settingsTabCopy$5 = "คัดลอก";
+var settingsTabCopied$5 = "คัดลอกแล้ว!";
 var th = {
 	sectionLibrary: sectionLibrary$5,
 	sectionStore: sectionStore$5,
@@ -7301,7 +8853,38 @@ var th = {
 	helpSubmitDesc: helpSubmitDesc$5,
 	helpSubmitStep1: helpSubmitStep1$5,
 	helpSubmitStep2: helpSubmitStep2$5,
-	helpSubmitStep3: helpSubmitStep3$5
+	helpSubmitStep3: helpSubmitStep3$5,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$5,
+	showAnalysisButton: showAnalysisButton$5,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$5,
+	roundedCorners: roundedCorners$5,
+	roundedCornersDesc: roundedCornersDesc$5,
+	showLibraryIcons: showLibraryIcons$5,
+	showLibraryIconsDesc: showLibraryIconsDesc$5,
+	libraryIconPosition: libraryIconPosition$5,
+	libraryIconPositionDesc: libraryIconPositionDesc$5,
+	helpAnalysisTitle: helpAnalysisTitle$5,
+	helpAnalysisDesc: helpAnalysisDesc$5,
+	helpAnalysisDetails: helpAnalysisDetails$5,
+	helpAnalysisWorking: helpAnalysisWorking$5,
+	helpAnalysisConfidence: helpAnalysisConfidence$5,
+	helpAnalysisTrend: helpAnalysisTrend$5,
+	helpAnalysisFreshness: helpAnalysisFreshness$5,
+	helpAnalysisWarnings: helpAnalysisWarnings$5,
+	helpAnalysisChart: helpAnalysisChart$5,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$5,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$5,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$5,
+	helpAnalysisColorRed: helpAnalysisColorRed$5,
+	helpAnalysisColorGray: helpAnalysisColorGray$5,
+	helpAnalysisToggle: helpAnalysisToggle$5,
+	clearCacheSuccess: clearCacheSuccess$5,
+	settingsTabCount: settingsTabCount$5,
+	settingsTabHint: settingsTabHint$5,
+	settingsTabExample: settingsTabExample$5,
+	settingsTabEmpty: settingsTabEmpty$5,
+	settingsTabCopy: settingsTabCopy$5,
+	settingsTabCopied: settingsTabCopied$5
 };
 
 var sectionLibrary$4 = "Library";
@@ -7393,6 +8976,37 @@ var helpSubmitDesc$4 = "Oyun deneyiminizi paylaşarak topluluğa yardım edin! R
 var helpSubmitStep1$4 = "Bir oyunu en az 15-30 dakika oynayın";
 var helpSubmitStep2$4 = "ProtonDB rozetindeki Gönder düğmesine tıklayın";
 var helpSubmitStep3$4 = "ProtonDB web sitesindeki rapor formunu doldurun";
+var sectionEnhancedFeatures$4 = "Gelişmiş özellikler";
+var showAnalysisButton$4 = "Analiz düğmesini göster";
+var showAnalysisButtonDesc$4 = "Rozet yanında ayrıntılı uyumluluk analizi, rapor eğilimleri ve geçmiş grafiği görüntülemek için bir düğme gösterir";
+var roundedCorners$4 = "Yuvarlak köşeler";
+var roundedCornersDesc$4 = "Tüm rozet düğmelerinde yuvarlak köşeler kullan";
+var showLibraryIcons$4 = "Library Status Icons";
+var showLibraryIconsDesc$4 = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$4 = "Icon Position";
+var libraryIconPositionDesc$4 = "Position of the status icon on game covers";
+var helpAnalysisTitle$4 = "Uyumluluk analizi";
+var helpAnalysisDesc$4 = "Rozet yanındaki analiz düğmesi (çubuk grafik simgesi), her oyun için ayrıntılı bir uyumluluk dökümü açar. Bu veriler topluluk tarafından gönderilen tüm ProtonDB raporlarından toplanmıştır.";
+var helpAnalysisDetails$4 = "Ayrıntılar sekmesi şunları gösterir:";
+var helpAnalysisWorking$4 = "Çalışma durumu — oyunun Linux'ta çalışıp çalışmadığı ve bu değerlendirmenin ne kadar kesin olduğu";
+var helpAnalysisConfidence$4 = "Güven puanı — oyunu değerlendirmek için ne kadar rapor verisi mevcut (0-100)";
+var helpAnalysisTrend$4 = "Eğilim — uyumluluğun iyileşip, sabit kalıp veya kötüleşip kötüleşmediği";
+var helpAnalysisFreshness$4 = "Güncellik — en son raporun ne zaman gönderildiği";
+var helpAnalysisWarnings$4 = "Proton sürüm uyumsuzlukları, GPU sorunları veya hile önleme ile ilgili uyarılar";
+var helpAnalysisChart$4 = "Rapor Geçmişi sekmesi, son 2 yılda aylık iyi (yeşil) ve kötü (kırmızı) raporların grafiğini gösterir.";
+var helpAnalysisColorsTitle$4 = "Analiz düğmesi renkleri";
+var helpAnalysisColorsDesc$4 = "Analiz düğmesi, ProtonDB seviye renkleri (Platinum, Gold vb.) yerine basit bir trafik ışığı sistemi kullanır. Bu kasıtlıdır — seviyeler bir oyunun ne kadar iyi çalıştığını yansıtırken, analiz düğmesi farklı bir soruyu yanıtlar: oyun şu anda çalışıyor mu?";
+var helpAnalysisColorGreen$4 = "Yeşil — Oyun son raporlara göre çalışıyor";
+var helpAnalysisColorRed$4 = "Kırmızı — Oyun çalışmıyor veya önemli sorunları var";
+var helpAnalysisColorGray$4 = "Gri — Durumu belirlemek için yeterli veri yok";
+var helpAnalysisToggle$4 = "Analiz düğmesini Ayarlar'da Gelişmiş özellikler altından açıp kapatabilirsiniz.";
+var clearCacheSuccess$4 = "Önbellek temizlendi";
+var settingsTabCount$4 = "{total} raporun {with} tanesi başlatma seçenekleri içeriyor (yalnızca olumlu)";
+var settingsTabHint$4 = "Kopyala'ya dokunun ve Steam > Oyun Özellikleri > Başlatma Seçenekleri'ne %command% öncesine yapıştırın";
+var settingsTabExample$4 = "Örnek: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$4 = "Bu oyun için başlatma seçeneği bildirilmemiş";
+var settingsTabCopy$4 = "Kopyala";
+var settingsTabCopied$4 = "Kopyalandı!";
 var tr = {
 	sectionLibrary: sectionLibrary$4,
 	sectionStore: sectionStore$4,
@@ -7482,12 +9096,43 @@ var tr = {
 	helpSubmitDesc: helpSubmitDesc$4,
 	helpSubmitStep1: helpSubmitStep1$4,
 	helpSubmitStep2: helpSubmitStep2$4,
-	helpSubmitStep3: helpSubmitStep3$4
+	helpSubmitStep3: helpSubmitStep3$4,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$4,
+	showAnalysisButton: showAnalysisButton$4,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$4,
+	roundedCorners: roundedCorners$4,
+	roundedCornersDesc: roundedCornersDesc$4,
+	showLibraryIcons: showLibraryIcons$4,
+	showLibraryIconsDesc: showLibraryIconsDesc$4,
+	libraryIconPosition: libraryIconPosition$4,
+	libraryIconPositionDesc: libraryIconPositionDesc$4,
+	helpAnalysisTitle: helpAnalysisTitle$4,
+	helpAnalysisDesc: helpAnalysisDesc$4,
+	helpAnalysisDetails: helpAnalysisDetails$4,
+	helpAnalysisWorking: helpAnalysisWorking$4,
+	helpAnalysisConfidence: helpAnalysisConfidence$4,
+	helpAnalysisTrend: helpAnalysisTrend$4,
+	helpAnalysisFreshness: helpAnalysisFreshness$4,
+	helpAnalysisWarnings: helpAnalysisWarnings$4,
+	helpAnalysisChart: helpAnalysisChart$4,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$4,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$4,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$4,
+	helpAnalysisColorRed: helpAnalysisColorRed$4,
+	helpAnalysisColorGray: helpAnalysisColorGray$4,
+	helpAnalysisToggle: helpAnalysisToggle$4,
+	clearCacheSuccess: clearCacheSuccess$4,
+	settingsTabCount: settingsTabCount$4,
+	settingsTabHint: settingsTabHint$4,
+	settingsTabExample: settingsTabExample$4,
+	settingsTabEmpty: settingsTabEmpty$4,
+	settingsTabCopy: settingsTabCopy$4,
+	settingsTabCopied: settingsTabCopied$4
 };
 
-var sectionLibrary$3 = "Library";
-var sectionStore$3 = "Store";
-var sectionLinks$3 = "Links";
+var sectionLibrary$3 = "Бібліотека";
+var sectionStore$3 = "Магазин";
+var sectionLinks$3 = "Посилання";
 var badgePosition$3 = "Розташування значка";
 var badgePositionDescription$3 = "Розташуйте значок в заголовку гри";
 var badgeSize$3 = "Розмір значка";
@@ -7495,13 +9140,13 @@ var badgeSizeDescription$3 = "Оберіть інший розмір для зн
 var caching$3 = "Кешування";
 var clearCache$3 = "Очистити кеш ProtonDB";
 var clearCacheLabel$3 = "Очистити кеш, щоб примусово оновити всі значки ProtonDB";
-var expandOnHover$3 = "Розгорнути мітку на наведенні";
+var expandOnHover$3 = "Розгорнути мітку при наведенні";
 var expandOnHoverDescription$3 = "Тільки мінімалістичний. Показувати текст значка при наведенні";
 var positionTopLeft$3 = "Зверху зліва";
 var positionTopRight$3 = "Зверху справа";
-var positionBottomLeft$3 = "Bottom Left";
-var positionBottomMiddle$3 = "Bottom Middle";
-var positionBottomRight$3 = "Bottom Right";
+var positionBottomLeft$3 = "Знизу зліва";
+var positionBottomMiddle$3 = "Знизу по центру";
+var positionBottomRight$3 = "Знизу справа";
 var positionTopMiddle$3 = "Зверху по центру";
 var settings$3 = "Налаштування";
 var sizeMinimalist$3 = "Мінімалістичний";
@@ -7525,17 +9170,17 @@ var login$3 = "Увійти";
 var loading$3 = "...";
 var noReport$3 = "НЕМАЄ ЗВІТУ";
 var disableSubmit$3 = "Вимкнути надсилання";
-var disableSubmitDesc$3 = "Hide the submit button that allows contributing reports to ProtonDB";
-var enableLibraryBadge$3 = "Enable Badge on Library";
-var enableLibraryBadgeDesc$3 = "Show ProtonDB badge on game pages in your library";
+var disableSubmitDesc$3 = "Приховати кнопку для надсилання звітів на ProtonDB";
+var enableLibraryBadge$3 = "Увімкнути значок у бібліотеці";
+var enableLibraryBadgeDesc$3 = "Показати значок ProtonDB на сторінках ігор у вашій бібліотеці";
 var enableStoreBadge$3 = "Увімкнути значок на сторінках магазину";
-var enableStoreBadgeDesc$3 = "Show ProtonDB badge as overlay on store pages";
-var storeBadgePosition$3 = "Store Badge Position";
-var storeBadgePositionDesc$3 = "Position the badge overlay on store pages";
-var storePositionBottomCenter$3 = "Bottom Center";
-var storePositionBottomLeft$3 = "Bottom Left";
-var storePositionBottomRight$3 = "Bottom Right";
-var storePositionTopMiddle$3 = "Top Right";
+var enableStoreBadgeDesc$3 = "Показати значок ProtonDB як оверлей на сторінках магазину";
+var storeBadgePosition$3 = "Позиція значка на сторінках магазину";
+var storeBadgePositionDesc$3 = "Розташування оверлею значка на сторінках магазину";
+var storePositionBottomCenter$3 = "Знизу по центру";
+var storePositionBottomLeft$3 = "Знизу зліва";
+var storePositionBottomRight$3 = "Знизу справа";
+var storePositionTopMiddle$3 = "Зверху по центру";
 var helpButton$3 = "Інструкції";
 var helpTitle$3 = "ProtonDB Badges - Довідка";
 var helpToc$3 = "Перейти до розділу";
@@ -7574,6 +9219,37 @@ var helpSubmitDesc$3 = "Допоможіть спільноті, поділив�
 var helpSubmitStep1$3 = "Грайте в гру принаймні 15-30 хвилин";
 var helpSubmitStep2$3 = "Натисніть кнопку Надіслати на значку ProtonDB";
 var helpSubmitStep3$3 = "Заповніть форму звіту на веб-сайті ProtonDB";
+var sectionEnhancedFeatures$3 = "Розширені функції";
+var showAnalysisButton$3 = "Показати кнопку аналізу";
+var showAnalysisButtonDesc$3 = "Відображає кнопку поруч зі значком для перегляду детального аналізу сумісності, включаючи тенденції звітів та графік історії";
+var roundedCorners$3 = "Заокруглені кути";
+var roundedCornersDesc$3 = "Використовувати заокруглені кути на всіх кнопках значка";
+var showLibraryIcons$3 = "Library Status Icons";
+var showLibraryIconsDesc$3 = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$3 = "Icon Position";
+var libraryIconPositionDesc$3 = "Position of the status icon on game covers";
+var helpAnalysisTitle$3 = "Аналіз сумісності";
+var helpAnalysisDesc$3 = "Кнопка аналізу (значок стовпчастої діаграми) поруч зі значком відкриває детальний огляд сумісності для кожної гри. Дані зібрані з усіх звітів ProtonDB, надісланих спільнотою.";
+var helpAnalysisDetails$3 = "Вкладка Деталі показує:";
+var helpAnalysisWorking$3 = "Статус роботи — чи працює гра на Linux і наскільки достовірна ця оцінка";
+var helpAnalysisConfidence$3 = "Оцінка достовірності — скільки даних зі звітів доступно для оцінки гри (0-100)";
+var helpAnalysisTrend$3 = "Тенденція — чи покращується, стабільна або погіршується сумісність";
+var helpAnalysisFreshness$3 = "Актуальність — коли був надісланий останній звіт";
+var helpAnalysisWarnings$3 = "Попередження про невідповідності версії Proton, проблеми з GPU або античіти";
+var helpAnalysisChart$3 = "Вкладка Історія звітів показує графік хороших (зелених) та поганих (червоних) звітів за місяцями за останні 2 роки.";
+var helpAnalysisColorsTitle$3 = "Кольори кнопки аналізу";
+var helpAnalysisColorsDesc$3 = "Кнопка аналізу використовує просту систему світлофора замість кольорів рівнів ProtonDB (Platinum, Gold тощо). Це зроблено навмисно — рівні відображають, наскільки добре працює гра, а кнопка аналізу відповідає на інше питання: чи працює гра взагалі зараз?";
+var helpAnalysisColorGreen$3 = "Зелений — Гра працює за даними останніх звітів";
+var helpAnalysisColorRed$3 = "Червоний — Гра не працює або має серйозні проблеми";
+var helpAnalysisColorGray$3 = "Сірий — Недостатньо даних для визначення статусу";
+var helpAnalysisToggle$3 = "Ви можете увімкнути або вимкнути кнопку аналізу в Налаштуваннях у розділі Розширені функції.";
+var clearCacheSuccess$3 = "Кеш очищено";
+var settingsTabCount$3 = "{with} з {total} звітів містять параметри запуску (лише позитивні)";
+var settingsTabHint$3 = "Натисніть Копіювати та вставте в Steam > Властивості гри > Параметри запуску перед %command%";
+var settingsTabExample$3 = "Приклад: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$3 = "Для цієї гри не повідомлено параметрів запуску";
+var settingsTabCopy$3 = "Копіювати";
+var settingsTabCopied$3 = "Скопійовано!";
 var uk = {
 	sectionLibrary: sectionLibrary$3,
 	sectionStore: sectionStore$3,
@@ -7663,7 +9339,38 @@ var uk = {
 	helpSubmitDesc: helpSubmitDesc$3,
 	helpSubmitStep1: helpSubmitStep1$3,
 	helpSubmitStep2: helpSubmitStep2$3,
-	helpSubmitStep3: helpSubmitStep3$3
+	helpSubmitStep3: helpSubmitStep3$3,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$3,
+	showAnalysisButton: showAnalysisButton$3,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$3,
+	roundedCorners: roundedCorners$3,
+	roundedCornersDesc: roundedCornersDesc$3,
+	showLibraryIcons: showLibraryIcons$3,
+	showLibraryIconsDesc: showLibraryIconsDesc$3,
+	libraryIconPosition: libraryIconPosition$3,
+	libraryIconPositionDesc: libraryIconPositionDesc$3,
+	helpAnalysisTitle: helpAnalysisTitle$3,
+	helpAnalysisDesc: helpAnalysisDesc$3,
+	helpAnalysisDetails: helpAnalysisDetails$3,
+	helpAnalysisWorking: helpAnalysisWorking$3,
+	helpAnalysisConfidence: helpAnalysisConfidence$3,
+	helpAnalysisTrend: helpAnalysisTrend$3,
+	helpAnalysisFreshness: helpAnalysisFreshness$3,
+	helpAnalysisWarnings: helpAnalysisWarnings$3,
+	helpAnalysisChart: helpAnalysisChart$3,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$3,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$3,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$3,
+	helpAnalysisColorRed: helpAnalysisColorRed$3,
+	helpAnalysisColorGray: helpAnalysisColorGray$3,
+	helpAnalysisToggle: helpAnalysisToggle$3,
+	clearCacheSuccess: clearCacheSuccess$3,
+	settingsTabCount: settingsTabCount$3,
+	settingsTabHint: settingsTabHint$3,
+	settingsTabExample: settingsTabExample$3,
+	settingsTabEmpty: settingsTabEmpty$3,
+	settingsTabCopy: settingsTabCopy$3,
+	settingsTabCopied: settingsTabCopied$3
 };
 
 var sectionLibrary$2 = "Library";
@@ -7755,6 +9462,37 @@ var helpSubmitDesc$2 = "Giúp đỡ cộng đồng bằng cách chia sẻ trải
 var helpSubmitStep1$2 = "Chơi game ít nhất 15-30 phút";
 var helpSubmitStep2$2 = "Nhấp vào nút Gửi trên huy hiệu ProtonDB";
 var helpSubmitStep3$2 = "Điền vào biểu mẫu báo cáo trên trang web ProtonDB";
+var sectionEnhancedFeatures$2 = "Tính năng nâng cao";
+var showAnalysisButton$2 = "Hiển thị nút phân tích";
+var showAnalysisButtonDesc$2 = "Hiển thị nút bên cạnh huy hiệu để xem phân tích chi tiết về khả năng tương thích, bao gồm xu hướng báo cáo và biểu đồ lịch sử";
+var roundedCorners$2 = "Góc bo tròn";
+var roundedCornersDesc$2 = "Sử dụng góc bo tròn trên tất cả các nút huy hiệu";
+var showLibraryIcons$2 = "Library Status Icons";
+var showLibraryIconsDesc$2 = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$2 = "Icon Position";
+var libraryIconPositionDesc$2 = "Position of the status icon on game covers";
+var helpAnalysisTitle$2 = "Phân tích tương thích";
+var helpAnalysisDesc$2 = "Nút phân tích (biểu tượng biểu đồ cột) bên cạnh huy hiệu mở tổng quan chi tiết về khả năng tương thích cho mỗi trò chơi. Dữ liệu được thu thập từ tất cả báo cáo ProtonDB do cộng đồng gửi.";
+var helpAnalysisDetails$2 = "Tab Chi tiết hiển thị:";
+var helpAnalysisWorking$2 = "Trạng thái hoạt động — trò chơi có hoạt động trên Linux không và đánh giá đó đáng tin cậy đến mức nào";
+var helpAnalysisConfidence$2 = "Điểm tin cậy — có bao nhiêu dữ liệu báo cáo để đánh giá trò chơi (0-100)";
+var helpAnalysisTrend$2 = "Xu hướng — khả năng tương thích đang cải thiện, ổn định hay giảm sút";
+var helpAnalysisFreshness$2 = "Độ mới — báo cáo gần nhất được gửi khi nào";
+var helpAnalysisWarnings$2 = "Cảnh báo về phiên bản Proton không khớp, vấn đề GPU hoặc chống gian lận";
+var helpAnalysisChart$2 = "Tab Lịch sử báo cáo hiển thị biểu đồ báo cáo tốt (xanh) và xấu (đỏ) theo tháng trong 2 năm qua.";
+var helpAnalysisColorsTitle$2 = "Màu nút phân tích";
+var helpAnalysisColorsDesc$2 = "Nút phân tích sử dụng hệ thống đèn giao thông đơn giản thay vì màu cấp bậc ProtonDB (Platinum, Gold, v.v.). Điều này là có chủ đích — các cấp bậc phản ánh trò chơi chạy tốt đến mức nào, trong khi nút phân tích trả lời một câu hỏi khác: trò chơi có hoạt động được không vào lúc này?";
+var helpAnalysisColorGreen$2 = "Xanh lá — Trò chơi hoạt động dựa trên báo cáo gần đây";
+var helpAnalysisColorRed$2 = "Đỏ — Trò chơi không hoạt động hoặc có vấn đề nghiêm trọng";
+var helpAnalysisColorGray$2 = "Xám — Không đủ dữ liệu để xác định trạng thái";
+var helpAnalysisToggle$2 = "Bạn có thể bật hoặc tắt nút phân tích trong Cài đặt mục Tính năng nâng cao.";
+var clearCacheSuccess$2 = "Đã xóa bộ nhớ đệm";
+var settingsTabCount$2 = "{with} trong {total} báo cáo bao gồm tùy chọn khởi chạy (chỉ tích cực)";
+var settingsTabHint$2 = "Nhấn Sao chép và dán vào Steam > Thuộc tính trò chơi > Tùy chọn khởi chạy trước %command%";
+var settingsTabExample$2 = "Ví dụ: PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$2 = "Không có tùy chọn khởi chạy nào được báo cáo cho trò chơi này";
+var settingsTabCopy$2 = "Sao chép";
+var settingsTabCopied$2 = "Đã sao chép!";
 var vi = {
 	sectionLibrary: sectionLibrary$2,
 	sectionStore: sectionStore$2,
@@ -7844,7 +9582,38 @@ var vi = {
 	helpSubmitDesc: helpSubmitDesc$2,
 	helpSubmitStep1: helpSubmitStep1$2,
 	helpSubmitStep2: helpSubmitStep2$2,
-	helpSubmitStep3: helpSubmitStep3$2
+	helpSubmitStep3: helpSubmitStep3$2,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$2,
+	showAnalysisButton: showAnalysisButton$2,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$2,
+	roundedCorners: roundedCorners$2,
+	roundedCornersDesc: roundedCornersDesc$2,
+	showLibraryIcons: showLibraryIcons$2,
+	showLibraryIconsDesc: showLibraryIconsDesc$2,
+	libraryIconPosition: libraryIconPosition$2,
+	libraryIconPositionDesc: libraryIconPositionDesc$2,
+	helpAnalysisTitle: helpAnalysisTitle$2,
+	helpAnalysisDesc: helpAnalysisDesc$2,
+	helpAnalysisDetails: helpAnalysisDetails$2,
+	helpAnalysisWorking: helpAnalysisWorking$2,
+	helpAnalysisConfidence: helpAnalysisConfidence$2,
+	helpAnalysisTrend: helpAnalysisTrend$2,
+	helpAnalysisFreshness: helpAnalysisFreshness$2,
+	helpAnalysisWarnings: helpAnalysisWarnings$2,
+	helpAnalysisChart: helpAnalysisChart$2,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$2,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$2,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$2,
+	helpAnalysisColorRed: helpAnalysisColorRed$2,
+	helpAnalysisColorGray: helpAnalysisColorGray$2,
+	helpAnalysisToggle: helpAnalysisToggle$2,
+	clearCacheSuccess: clearCacheSuccess$2,
+	settingsTabCount: settingsTabCount$2,
+	settingsTabHint: settingsTabHint$2,
+	settingsTabExample: settingsTabExample$2,
+	settingsTabEmpty: settingsTabEmpty$2,
+	settingsTabCopy: settingsTabCopy$2,
+	settingsTabCopied: settingsTabCopied$2
 };
 
 var sectionLibrary$1 = "Library";
@@ -7936,6 +9705,37 @@ var helpSubmitDesc$1 = "通过分享您的游戏体验来帮助社区！报告�
 var helpSubmitStep1$1 = "玩游戏至少15-30分钟";
 var helpSubmitStep2$1 = "点击ProtonDB徽章上的提交按钮";
 var helpSubmitStep3$1 = "在ProtonDB网站上填写报告表单";
+var sectionEnhancedFeatures$1 = "增强功能";
+var showAnalysisButton$1 = "显示分析按钮";
+var showAnalysisButtonDesc$1 = "在徽章旁显示按钮，查看详细的兼容性分析，包括报告趋势和历史图表";
+var roundedCorners$1 = "圆角";
+var roundedCornersDesc$1 = "为所有徽章按钮使用圆角";
+var showLibraryIcons$1 = "Library Status Icons";
+var showLibraryIconsDesc$1 = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition$1 = "Icon Position";
+var libraryIconPositionDesc$1 = "Position of the status icon on game covers";
+var helpAnalysisTitle$1 = "兼容性分析";
+var helpAnalysisDesc$1 = "徽章旁的分析按钮（柱状图图标）可打开每款游戏的详细兼容性分析。数据来自社区提交的所有 ProtonDB 报告。";
+var helpAnalysisDetails$1 = "详情标签页显示：";
+var helpAnalysisWorking$1 = "运行状态 — 游戏目前是否能在 Linux 上运行，以及该评估的可靠程度";
+var helpAnalysisConfidence$1 = "置信度评分 — 有多少报告数据可用于评估游戏（0-100）";
+var helpAnalysisTrend$1 = "趋势 — 根据近期和较早的报告，兼容性是在改善、稳定还是下降";
+var helpAnalysisFreshness$1 = "新鲜度 — 最新报告的提交时间";
+var helpAnalysisWarnings$1 = "关于 Proton 版本不匹配、GPU 问题或反作弊的警告";
+var helpAnalysisChart$1 = "报告历史标签页显示过去 2 年中每月好评（绿色）和差评（红色）报告的图表。";
+var helpAnalysisColorsTitle$1 = "分析按钮颜色";
+var helpAnalysisColorsDesc$1 = "分析按钮使用简单的红绿灯系统，而不是 ProtonDB 的等级颜色（Platinum、Gold 等）。这是有意为之的——等级反映游戏运行得多好，而分析按钮回答的是另一个问题：游戏现在能运行吗？";
+var helpAnalysisColorGreen$1 = "绿色 — 根据最近的报告，游戏可以运行";
+var helpAnalysisColorRed$1 = "红色 — 游戏无法运行或存在严重问题";
+var helpAnalysisColorGray$1 = "灰色 — 没有足够的数据来确定状态";
+var helpAnalysisToggle$1 = "您可以在设置的增强功能中启用或禁用分析按钮。";
+var clearCacheSuccess$1 = "缓存已清除";
+var settingsTabCount$1 = "{total}份报告中有{with}份包含启动选项（仅正面报告）";
+var settingsTabHint$1 = "点击复制并粘贴到 Steam > 游戏属性 > 启动选项中 %command% 之前";
+var settingsTabExample$1 = "示例：PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty$1 = "此游戏没有报告的启动选项";
+var settingsTabCopy$1 = "复制";
+var settingsTabCopied$1 = "已复制！";
 var zhCn = {
 	sectionLibrary: sectionLibrary$1,
 	sectionStore: sectionStore$1,
@@ -8025,7 +9825,38 @@ var zhCn = {
 	helpSubmitDesc: helpSubmitDesc$1,
 	helpSubmitStep1: helpSubmitStep1$1,
 	helpSubmitStep2: helpSubmitStep2$1,
-	helpSubmitStep3: helpSubmitStep3$1
+	helpSubmitStep3: helpSubmitStep3$1,
+	sectionEnhancedFeatures: sectionEnhancedFeatures$1,
+	showAnalysisButton: showAnalysisButton$1,
+	showAnalysisButtonDesc: showAnalysisButtonDesc$1,
+	roundedCorners: roundedCorners$1,
+	roundedCornersDesc: roundedCornersDesc$1,
+	showLibraryIcons: showLibraryIcons$1,
+	showLibraryIconsDesc: showLibraryIconsDesc$1,
+	libraryIconPosition: libraryIconPosition$1,
+	libraryIconPositionDesc: libraryIconPositionDesc$1,
+	helpAnalysisTitle: helpAnalysisTitle$1,
+	helpAnalysisDesc: helpAnalysisDesc$1,
+	helpAnalysisDetails: helpAnalysisDetails$1,
+	helpAnalysisWorking: helpAnalysisWorking$1,
+	helpAnalysisConfidence: helpAnalysisConfidence$1,
+	helpAnalysisTrend: helpAnalysisTrend$1,
+	helpAnalysisFreshness: helpAnalysisFreshness$1,
+	helpAnalysisWarnings: helpAnalysisWarnings$1,
+	helpAnalysisChart: helpAnalysisChart$1,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle$1,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc$1,
+	helpAnalysisColorGreen: helpAnalysisColorGreen$1,
+	helpAnalysisColorRed: helpAnalysisColorRed$1,
+	helpAnalysisColorGray: helpAnalysisColorGray$1,
+	helpAnalysisToggle: helpAnalysisToggle$1,
+	clearCacheSuccess: clearCacheSuccess$1,
+	settingsTabCount: settingsTabCount$1,
+	settingsTabHint: settingsTabHint$1,
+	settingsTabExample: settingsTabExample$1,
+	settingsTabEmpty: settingsTabEmpty$1,
+	settingsTabCopy: settingsTabCopy$1,
+	settingsTabCopied: settingsTabCopied$1
 };
 
 var sectionLibrary = "Library";
@@ -8117,6 +9948,37 @@ var helpSubmitDesc = "透過分享您的遊戲體驗來幫助社群！報告可�
 var helpSubmitStep1 = "玩遊戲至少15-30分鐘";
 var helpSubmitStep2 = "點擊ProtonDB徽章上的提交按鈕";
 var helpSubmitStep3 = "在ProtonDB網站上填寫報告表單";
+var sectionEnhancedFeatures = "進階功能";
+var showAnalysisButton = "顯示分析按鈕";
+var showAnalysisButtonDesc = "在徽章旁顯示按鈕，查看詳細的相容性分析，包括報告趨勢和歷史圖表";
+var roundedCorners = "圓角";
+var roundedCornersDesc = "為所有徽章按鈕使用圓角";
+var showLibraryIcons = "Library Status Icons";
+var showLibraryIconsDesc = "Show compatibility status icons on game covers in the library grid";
+var libraryIconPosition = "Icon Position";
+var libraryIconPositionDesc = "Position of the status icon on game covers";
+var helpAnalysisTitle = "相容性分析";
+var helpAnalysisDesc = "徽章旁的分析按鈕（長條圖圖示）可開啟每款遊戲的詳細相容性分析。資料來自社群提交的所有 ProtonDB 報告。";
+var helpAnalysisDetails = "詳情分頁顯示：";
+var helpAnalysisWorking = "運行狀態 — 遊戲目前是否能在 Linux 上運行，以及該評估的可靠程度";
+var helpAnalysisConfidence = "信心評分 — 有多少報告資料可用於評估遊戲（0-100）";
+var helpAnalysisTrend = "趨勢 — 根據近期和較早的報告，相容性是在改善、穩定還是下降";
+var helpAnalysisFreshness = "新鮮度 — 最新報告的提交時間";
+var helpAnalysisWarnings = "關於 Proton 版本不匹配、GPU 問題或防作弊的警告";
+var helpAnalysisChart = "報告歷史分頁顯示過去 2 年中每月好評（綠色）和差評（紅色）報告的圖表。";
+var helpAnalysisColorsTitle = "分析按鈕顏色";
+var helpAnalysisColorsDesc = "分析按鈕使用簡單的紅綠燈系統，而非 ProtonDB 的等級顏色（Platinum、Gold 等）。這是刻意的——等級反映遊戲運行得多好，而分析按鈕回答的是另一個問題：遊戲現在能運行嗎？";
+var helpAnalysisColorGreen = "綠色 — 根據最近的報告，遊戲可以運行";
+var helpAnalysisColorRed = "紅色 — 遊戲無法運行或存在嚴重問題";
+var helpAnalysisColorGray = "灰色 — 沒有足夠的資料來確定狀態";
+var helpAnalysisToggle = "您可以在設定的進階功能中啟用或停用分析按鈕。";
+var clearCacheSuccess = "快取已清除";
+var settingsTabCount = "{total}份報告中有{with}份包含啟動選項（僅正面報告）";
+var settingsTabHint = "點擊複製並貼上到 Steam > 遊戲屬性 > 啟動選項中 %command% 之前";
+var settingsTabExample = "範例：PROTON_ENABLE_NVAPI=1 %command%";
+var settingsTabEmpty = "此遊戲沒有報告的啟動選項";
+var settingsTabCopy = "複製";
+var settingsTabCopied = "已複製！";
 var zhTw = {
 	sectionLibrary: sectionLibrary,
 	sectionStore: sectionStore,
@@ -8206,7 +10068,38 @@ var zhTw = {
 	helpSubmitDesc: helpSubmitDesc,
 	helpSubmitStep1: helpSubmitStep1,
 	helpSubmitStep2: helpSubmitStep2,
-	helpSubmitStep3: helpSubmitStep3
+	helpSubmitStep3: helpSubmitStep3,
+	sectionEnhancedFeatures: sectionEnhancedFeatures,
+	showAnalysisButton: showAnalysisButton,
+	showAnalysisButtonDesc: showAnalysisButtonDesc,
+	roundedCorners: roundedCorners,
+	roundedCornersDesc: roundedCornersDesc,
+	showLibraryIcons: showLibraryIcons,
+	showLibraryIconsDesc: showLibraryIconsDesc,
+	libraryIconPosition: libraryIconPosition,
+	libraryIconPositionDesc: libraryIconPositionDesc,
+	helpAnalysisTitle: helpAnalysisTitle,
+	helpAnalysisDesc: helpAnalysisDesc,
+	helpAnalysisDetails: helpAnalysisDetails,
+	helpAnalysisWorking: helpAnalysisWorking,
+	helpAnalysisConfidence: helpAnalysisConfidence,
+	helpAnalysisTrend: helpAnalysisTrend,
+	helpAnalysisFreshness: helpAnalysisFreshness,
+	helpAnalysisWarnings: helpAnalysisWarnings,
+	helpAnalysisChart: helpAnalysisChart,
+	helpAnalysisColorsTitle: helpAnalysisColorsTitle,
+	helpAnalysisColorsDesc: helpAnalysisColorsDesc,
+	helpAnalysisColorGreen: helpAnalysisColorGreen,
+	helpAnalysisColorRed: helpAnalysisColorRed,
+	helpAnalysisColorGray: helpAnalysisColorGray,
+	helpAnalysisToggle: helpAnalysisToggle,
+	clearCacheSuccess: clearCacheSuccess,
+	settingsTabCount: settingsTabCount,
+	settingsTabHint: settingsTabHint,
+	settingsTabExample: settingsTabExample,
+	settingsTabEmpty: settingsTabEmpty,
+	settingsTabCopy: settingsTabCopy,
+	settingsTabCopied: settingsTabCopied
 };
 
 const languages = {
@@ -8249,11 +10142,13 @@ function getCurrentLanguage() {
 function useTranslations() {
     const [lang] = SP_REACT.useState(getCurrentLanguage());
     return function (key) {
-        if (languages[lang]?.[key]?.length) {
-            return languages[lang]?.[key];
+        const langStrings = languages[lang];
+        const enStrings = languages.en;
+        if (langStrings?.[key]?.length) {
+            return langStrings[key];
         }
-        else if (languages.en?.[key]?.length) {
-            return languages.en?.[key];
+        else if (enStrings?.[key]?.length) {
+            return enStrings[key];
         }
         else {
             return key;
@@ -8995,7 +10890,11 @@ const DEFAULT_SETTINGS = {
     disableSubmit: false,
     enableLibraryBadge: true,
     enableStoreBadge: true,
-    storeBadgePosition: 'bc'
+    storeBadgePosition: 'bc',
+    showAnalysisButton: true,
+    roundedCorners: false,
+    showLibraryIcons: true,
+    libraryIconPosition: 'bl'
 };
 // Not using the React context here as this approach is simpler.
 const SettingsContext = new BehaviorSubject(DEFAULT_SETTINGS);
@@ -9008,7 +10907,7 @@ function updateSettings(key, value) {
 function loadSettings() {
     LoadingContext.next(true);
     call('get_setting', 'settings', DEFAULT_SETTINGS)
-        .then(settings => {
+        .then((settings) => {
         // Merge with defaults to handle missing fields from older versions
         const mergedSettings = { ...DEFAULT_SETTINGS, ...settings };
         SettingsContext.next(mergedSettings);
@@ -9048,61 +10947,34 @@ const useSettings = () => {
     function setStoreBadgePosition(value) {
         updateSettings('storeBadgePosition', value);
     }
-    return { settings, setSize, setPosition, setLabelOnHover, setDisableSubmit, setEnableLibraryBadge, setEnableStoreBadge, setStoreBadgePosition, loading };
-};
-
-function useSystemInfo() {
-    const [systemInfo, setSystemInfo] = SP_REACT.useState(null);
-    const [loading, setLoading] = SP_REACT.useState(true);
-    SP_REACT.useEffect(() => {
-        const fetchSystemInfo = async () => {
-            try {
-                const info = await call('get_system_info');
-                setSystemInfo(info);
-            }
-            catch (e) {
-                console.error('Failed to get system info:', e);
-                setSystemInfo({
-                    plugin_version: 'unknown',
-                    os_name: 'unknown',
-                    os_version: 'unknown',
-                    decky_version: 'unknown'
-                });
-            }
-            finally {
-                setLoading(false);
-            }
-        };
-        fetchSystemInfo();
-    }, []);
-    // Format OS display - show "SteamOS" if it's SteamOS, otherwise "Linux: [type]"
-    const getOsDisplay = () => {
-        if (!systemInfo)
-            return 'Loading...';
-        const osName = systemInfo.os_name.toLowerCase();
-        if (osName.includes('steamos') || osName.includes('steam os')) {
-            return `SteamOS: ${systemInfo.os_version}`;
-        }
-        else {
-            return `Linux: ${systemInfo.os_name}`;
-        }
-    };
+    function setShowAnalysisButton(value) {
+        updateSettings('showAnalysisButton', value);
+    }
+    function setRoundedCorners(value) {
+        updateSettings('roundedCorners', value);
+    }
+    function setShowLibraryIcons(value) {
+        updateSettings('showLibraryIcons', value);
+    }
+    function setLibraryIconPosition(value) {
+        updateSettings('libraryIconPosition', value);
+    }
     return {
-        systemInfo,
-        loading,
-        getOsDisplay
+        settings,
+        setSize,
+        setPosition,
+        setLabelOnHover,
+        setDisableSubmit,
+        setEnableLibraryBadge,
+        setEnableStoreBadge,
+        setStoreBadgePosition,
+        setShowAnalysisButton,
+        setRoundedCorners,
+        setShowLibraryIcons,
+        setLibraryIconPosition,
+        loading
     };
-}
-
-const appTypes = {
-    1: 'game',
-    2: 'software',
-    4: 'tool',
-    8: 'demo',
-    2048: 'video',
-    65536: 'playtest'
 };
-const PLUGIN_VERSION = '1.2.0';
 
 // THIS FILE IS AUTO GENERATED
 function ImSpinner2 (props) {
@@ -9192,6 +11064,7 @@ const HelpModal = ({ closeModal }) => {
     const scrollContainerRef = SP_REACT.useRef(null);
     const aboutRef = SP_REACT.useRef(null);
     const usingRef = SP_REACT.useRef(null);
+    const analysisRef = SP_REACT.useRef(null);
     const protondbRef = SP_REACT.useRef(null);
     const submitRef = SP_REACT.useRef(null);
     const scrollToSection = (ref) => {
@@ -9220,6 +11093,7 @@ const HelpModal = ({ closeModal }) => {
                 }, "flow-children": "row" },
                 SP_REACT.createElement(TocButton, { icon: SP_REACT.createElement(FaBook, { size: 14 }), label: t('helpAboutTitle'), onClick: () => scrollToSection(aboutRef) }),
                 SP_REACT.createElement(TocButton, { icon: SP_REACT.createElement(FaCog, { size: 14 }), label: t('helpUsingTitle'), onClick: () => scrollToSection(usingRef) }),
+                SP_REACT.createElement(TocButton, { icon: SP_REACT.createElement(FaChartBar, { size: 14 }), label: t('helpAnalysisTitle'), onClick: () => scrollToSection(analysisRef) }),
                 SP_REACT.createElement(TocButton, { icon: SP_REACT.createElement(FaSteam, { size: 14 }), label: t('helpProtonDBTitle'), onClick: () => scrollToSection(protondbRef) }),
                 SP_REACT.createElement(TocButton, { icon: SP_REACT.createElement(FaGamepad, { size: 14 }), label: t('helpSubmitTitle'), onClick: () => scrollToSection(submitRef) }))),
         SP_REACT.createElement("div", { ref: scrollContainerRef, style: {
@@ -9237,50 +11111,142 @@ const HelpModal = ({ closeModal }) => {
                         SP_REACT.createElement(SectionHeader, { icon: SP_REACT.createElement(FaCog, null), title: t('helpUsingTitle') }),
                         SP_REACT.createElement("div", { style: { marginBottom: '16px' } },
                             SP_REACT.createElement("strong", null, t('helpBadgeTiers')),
-                            SP_REACT.createElement("ul", { style: { marginTop: '8px', paddingLeft: '20px', lineHeight: '1.6' } },
+                            SP_REACT.createElement("ul", { style: {
+                                    marginTop: '8px',
+                                    paddingLeft: '20px',
+                                    lineHeight: '1.6'
+                                } },
                                 SP_REACT.createElement("li", null,
                                     SP_REACT.createElement("span", { style: { color: '#b4c7dc' } }, "Platinum"),
-                                    " - ",
+                                    " -",
+                                    ' ',
                                     t('helpTierPlatinum')),
                                 SP_REACT.createElement("li", null,
                                     SP_REACT.createElement("span", { style: { color: '#cfb53b' } }, "Gold"),
-                                    " - ",
+                                    " -",
+                                    ' ',
                                     t('helpTierGold')),
                                 SP_REACT.createElement("li", null,
                                     SP_REACT.createElement("span", { style: { color: '#a6a6a6' } }, "Silver"),
-                                    " - ",
+                                    " -",
+                                    ' ',
                                     t('helpTierSilver')),
                                 SP_REACT.createElement("li", null,
                                     SP_REACT.createElement("span", { style: { color: '#cd7f32' } }, "Bronze"),
-                                    " - ",
+                                    " -",
+                                    ' ',
                                     t('helpTierBronze')),
                                 SP_REACT.createElement("li", null,
                                     SP_REACT.createElement("span", { style: { color: '#ff0000' } }, "Borked"),
-                                    " - ",
+                                    " -",
+                                    ' ',
                                     t('helpTierBorked')),
                                 SP_REACT.createElement("li", null,
                                     SP_REACT.createElement("span", { style: { color: '#6c757d' } }, "Pending"),
-                                    " - ",
+                                    " -",
+                                    ' ',
                                     t('helpTierPending')),
                                 SP_REACT.createElement("li", null,
                                     SP_REACT.createElement("span", { style: { color: '#4a4a4a' } }, "No Report"),
-                                    " - ",
+                                    " -",
+                                    ' ',
                                     t('helpTierNoReport')))),
                         SP_REACT.createElement("div", { style: { marginBottom: '16px' } },
                             SP_REACT.createElement("strong", null, t('helpSettingsExplain')),
-                            SP_REACT.createElement("ul", { style: { marginTop: '8px', paddingLeft: '20px', lineHeight: '1.6' } },
+                            SP_REACT.createElement("ul", { style: {
+                                    marginTop: '8px',
+                                    paddingLeft: '20px',
+                                    lineHeight: '1.6'
+                                } },
                                 SP_REACT.createElement("li", null,
                                     SP_REACT.createElement("strong", null, t('helpSettingSize')),
-                                    " - ",
+                                    " -",
+                                    ' ',
                                     t('helpSettingSizeDesc')),
                                 SP_REACT.createElement("li", null,
                                     SP_REACT.createElement("strong", null, t('helpSettingPosition')),
-                                    " - ",
+                                    " -",
+                                    ' ',
                                     t('helpSettingPositionDesc')),
                                 SP_REACT.createElement("li", null,
                                     SP_REACT.createElement("strong", null, t('helpSettingSubmit')),
-                                    " - ",
+                                    " -",
+                                    ' ',
                                     t('helpSettingSubmitDesc')))))),
+                SP_REACT.createElement(DFL.Focusable, { onFocus: (e) => e.target.scrollIntoView({ behavior: 'smooth', block: 'nearest' }) },
+                    SP_REACT.createElement(HelpSection, { sectionRef: analysisRef },
+                        SP_REACT.createElement(SectionHeader, { icon: SP_REACT.createElement(FaChartBar, null), title: t('helpAnalysisTitle') }),
+                        SP_REACT.createElement("p", { style: { lineHeight: '1.6', marginBottom: '12px' } }, t('helpAnalysisDesc')),
+                        SP_REACT.createElement("div", { style: { marginBottom: '12px' } },
+                            SP_REACT.createElement("strong", null, t('helpAnalysisDetails')),
+                            SP_REACT.createElement("ul", { style: {
+                                    marginTop: '8px',
+                                    paddingLeft: '20px',
+                                    lineHeight: '1.6'
+                                } },
+                                SP_REACT.createElement("li", null, t('helpAnalysisWorking')),
+                                SP_REACT.createElement("li", null, t('helpAnalysisConfidence')),
+                                SP_REACT.createElement("li", null, t('helpAnalysisTrend')),
+                                SP_REACT.createElement("li", null, t('helpAnalysisFreshness')),
+                                SP_REACT.createElement("li", null, t('helpAnalysisWarnings')))),
+                        SP_REACT.createElement("p", { style: { lineHeight: '1.6', marginBottom: '12px' } }, t('helpAnalysisChart')),
+                        SP_REACT.createElement("div", { style: { marginBottom: '12px' } },
+                            SP_REACT.createElement("strong", null, t('helpAnalysisColorsTitle')),
+                            SP_REACT.createElement("p", { style: {
+                                    marginTop: '6px',
+                                    marginBottom: '10px',
+                                    lineHeight: '1.6',
+                                    fontSize: '13px',
+                                    color: '#bbb'
+                                } }, t('helpAnalysisColorsDesc')),
+                            SP_REACT.createElement("ul", { style: {
+                                    marginTop: '8px',
+                                    paddingLeft: '20px',
+                                    lineHeight: '1.8'
+                                } },
+                                SP_REACT.createElement("li", null,
+                                    SP_REACT.createElement("span", { style: {
+                                            display: 'inline-block',
+                                            width: '12px',
+                                            height: '12px',
+                                            borderRadius: '3px',
+                                            background: 'rgb(74, 194, 100)',
+                                            marginRight: '8px',
+                                            verticalAlign: 'middle'
+                                        } }),
+                                    t('helpAnalysisColorGreen')),
+                                SP_REACT.createElement("li", null,
+                                    SP_REACT.createElement("span", { style: {
+                                            display: 'inline-block',
+                                            width: '12px',
+                                            height: '12px',
+                                            borderRadius: '3px',
+                                            background: 'rgb(200, 30, 30)',
+                                            marginRight: '8px',
+                                            verticalAlign: 'middle'
+                                        } }),
+                                    t('helpAnalysisColorRed')),
+                                SP_REACT.createElement("li", null,
+                                    SP_REACT.createElement("span", { style: {
+                                            display: 'inline-block',
+                                            width: '12px',
+                                            height: '12px',
+                                            borderRadius: '3px',
+                                            background: 'rgb(166, 166, 166)',
+                                            marginRight: '8px',
+                                            verticalAlign: 'middle'
+                                        } }),
+                                    t('helpAnalysisColorGray')))),
+                        SP_REACT.createElement("div", { style: {
+                                padding: '12px',
+                                background: 'rgba(207, 181, 59, 0.2)',
+                                borderRadius: '6px',
+                                borderLeft: '3px solid #cfb53b'
+                            } },
+                            SP_REACT.createElement("strong", null,
+                                "\uD83D\uDCA1 ",
+                                t('helpTip')),
+                            SP_REACT.createElement("p", { style: { marginTop: '4px', lineHeight: '1.5' } }, t('helpAnalysisToggle'))))),
                 SP_REACT.createElement(DFL.Focusable, { onFocus: (e) => e.target.scrollIntoView({ behavior: 'smooth', block: 'nearest' }) },
                     SP_REACT.createElement(HelpSection, { sectionRef: protondbRef },
                         SP_REACT.createElement(SectionHeader, { icon: SP_REACT.createElement(FaSteam, null), title: t('helpProtonDBTitle') }),
@@ -9318,9 +11284,8 @@ const DeckPanelSection = DFL.PanelSection;
 const DeckPanelSectionRow = DFL.PanelSectionRow;
 const DeckButtonItem = DFL.ButtonItem;
 function Index() {
-    const { settings, setSize, setPosition, setLabelOnHover, setDisableSubmit, setEnableLibraryBadge, setEnableStoreBadge, loading } = useSettings();
+    const { settings, setSize, setPosition, setLabelOnHover, setDisableSubmit, setEnableLibraryBadge, setEnableStoreBadge, setShowAnalysisButton, setRoundedCorners, setShowLibraryIcons, setLibraryIconPosition, loading } = useSettings();
     const t = useTranslations();
-    const { systemInfo} = useSystemInfo();
     const sizeOptions = [
         { data: 0, label: t('sizeRegular'), value: 'regular' },
         { data: 1, label: t('sizeSmall'), value: 'small' },
@@ -9338,6 +11303,11 @@ function Index() {
         { data: 0, label: t('expandOnHoverOff'), value: 'off' },
         { data: 1, label: t('sizeSmall'), value: 'small' },
         { data: 2, label: t('sizeRegular'), value: 'regular' }
+    ];
+    const libraryIconPositionOptions = [
+        { data: 0, label: t('positionBottomLeft'), value: 'bl' },
+        { data: 1, label: t('positionTopLeft'), value: 'tl' },
+        { data: 2, label: t('positionTopRight'), value: 'tr' }
     ];
     if (loading) {
         return (SP_REACT.createElement("div", { style: {
@@ -9385,15 +11355,44 @@ function Index() {
                         const newPosition = positionOptions.find((o) => o.data === newVal.data)?.value ||
                             'tl';
                         setPosition(newPosition);
+                    } })),
+            SP_REACT.createElement(DeckPanelSectionRow, null,
+                SP_REACT.createElement(DFL.ToggleField, { label: t('roundedCorners'), description: t('roundedCornersDesc'), checked: settings.roundedCorners === true, onChange: (checked) => {
+                        setRoundedCorners(checked);
                     } }))),
         SP_REACT.createElement(DeckPanelSection, { title: t('sectionStore') },
             SP_REACT.createElement(DeckPanelSectionRow, null,
                 SP_REACT.createElement(DFL.ToggleField, { label: t('enableStoreBadge'), description: t('enableStoreBadgeDesc'), checked: settings.enableStoreBadge, onChange: (checked) => {
                         setEnableStoreBadge(checked);
                     } }))),
+        SP_REACT.createElement(DeckPanelSection, { title: t('sectionEnhancedFeatures') },
+            SP_REACT.createElement(DeckPanelSectionRow, null,
+                SP_REACT.createElement(DFL.ToggleField, { label: t('showAnalysisButton'), description: t('showAnalysisButtonDesc'), checked: settings.showAnalysisButton !== false, onChange: (checked) => {
+                        setShowAnalysisButton(checked);
+                    } })),
+            settings.showAnalysisButton !== false && (SP_REACT.createElement(DeckPanelSectionRow, null,
+                SP_REACT.createElement(DFL.ToggleField, { label: t('showLibraryIcons'), description: t('showLibraryIconsDesc'), checked: settings.showLibraryIcons === true, onChange: (checked) => {
+                        setShowLibraryIcons(checked);
+                    } }))),
+            settings.showAnalysisButton !== false &&
+                settings.showLibraryIcons === true && (SP_REACT.createElement(DeckPanelSectionRow, null,
+                SP_REACT.createElement(DFL.DropdownItem, { label: t('libraryIconPosition'), description: t('libraryIconPositionDesc'), menuLabel: t('libraryIconPosition'), rgOptions: libraryIconPositionOptions.map((o) => ({
+                        data: o.data,
+                        label: o.label
+                    })), selectedOption: libraryIconPositionOptions.find((o) => o.value === (settings.libraryIconPosition || 'bl'))?.data || 0, onChange: (newVal) => {
+                        const newPos = libraryIconPositionOptions.find((o) => o.data === newVal.data)?.value || 'bl';
+                        setLibraryIconPosition(newPos);
+                    } })))),
         SP_REACT.createElement(DeckPanelSection, { title: t('caching') },
             SP_REACT.createElement(DeckPanelSectionRow, null,
-                SP_REACT.createElement(DeckButtonItem, { label: t('clearCacheLabel'), bottomSeparator: "none", layout: "below", onClick: () => clearCache$t() }, t('clearCache')))),
+                SP_REACT.createElement(DeckButtonItem, { label: t('clearCacheLabel'), bottomSeparator: "none", layout: "below", onClick: () => {
+                        clearCache$t();
+                        toaster.toast({
+                            title: 'ProtonDB Badges',
+                            body: t('clearCacheSuccess'),
+                            duration: 3000
+                        });
+                    } }, t('clearCache')))),
         SP_REACT.createElement(DeckPanelSection, { title: t('sectionLinks') },
             SP_REACT.createElement(DeckPanelSectionRow, null,
                 SP_REACT.createElement(DeckButtonItem, { bottomSeparator: "standard", layout: "below", onClick: () => DFL.showModal(SP_REACT.createElement(HelpModal, null)) },
@@ -9401,19 +11400,25 @@ function Index() {
                         SP_REACT.createElement(FaQuestionCircle, { size: 20 }),
                         SP_REACT.createElement("span", null, t('helpButton'))))),
             SP_REACT.createElement(DeckPanelSectionRow, null,
+                SP_REACT.createElement(DeckButtonItem, { bottomSeparator: "standard", layout: "below", onClick: () => DFL.Navigation.NavigateToExternalWeb('https://www.protondb.com') },
+                    SP_REACT.createElement("div", { style: { display: 'flex', alignItems: 'center', gap: '8px' } },
+                        SP_REACT.createElement(FaGlobe, { size: 20 }),
+                        SP_REACT.createElement("span", null, "ProtonDB")))),
+            SP_REACT.createElement(DeckPanelSectionRow, null,
+                SP_REACT.createElement(DeckButtonItem, { bottomSeparator: "standard", layout: "below", onClick: () => DFL.Navigation.NavigateToExternalWeb('https://protondb.schelstraete.org/status') },
+                    SP_REACT.createElement("div", { style: { display: 'flex', alignItems: 'center', gap: '8px' } },
+                        SP_REACT.createElement(FaChartBar, { size: 20 }),
+                        SP_REACT.createElement("span", null, "ProtonDB Analysis")))),
+            SP_REACT.createElement(DeckPanelSectionRow, null,
                 SP_REACT.createElement(DeckButtonItem, { bottomSeparator: "none", layout: "below", onClick: () => DFL.Navigation.NavigateToExternalWeb(GITHUB_URL) },
                     SP_REACT.createElement("div", { style: { display: 'flex', alignItems: 'center', gap: '8px' } },
                         SP_REACT.createElement(FaGithub, { size: 20 }),
                         SP_REACT.createElement("span", null, "GitHub"))))),
-        SP_REACT.createElement(DeckPanelSection, { title: "VERSION INFO" },
+        SP_REACT.createElement(DeckPanelSection, { title: t('sectionAbout') },
             SP_REACT.createElement(DeckPanelSectionRow, null,
-                SP_REACT.createElement(DFL.Field, { label: "Plugin", bottomSeparator: "none" }, PLUGIN_VERSION)),
+                SP_REACT.createElement(DFL.Field, { label: t('name'), bottomSeparator: "standard" }, "ProtonDB Badges")),
             SP_REACT.createElement(DeckPanelSectionRow, null,
-                SP_REACT.createElement(DFL.Field, { label: systemInfo?.os_name?.toLowerCase().includes('steamos') ? 'SteamOS' : 'Linux', bottomSeparator: "none" }, systemInfo?.os_name?.toLowerCase().includes('steamos')
-                    ? systemInfo?.os_version || 'Loading...'
-                    : systemInfo?.os_name || 'Loading...')),
-            SP_REACT.createElement(DeckPanelSectionRow, null,
-                SP_REACT.createElement(DFL.Field, { label: "Decky", bottomSeparator: "none" }, systemInfo?.decky_version || 'Loading...')))));
+                SP_REACT.createElement(DFL.Field, { label: t('version'), bottomSeparator: "none" }, PLUGIN_VERSION)))));
 }
 
 /**
@@ -9432,9 +11437,1400 @@ function IoLogoTux (props) {
   return GenIcon({"attr":{"viewBox":"0 0 512 512"},"child":[{"tag":"path","attr":{"d":"M426.3 396c-6.7-4-13.2-11-12-18.8 2.3-15.3 2.5-21.5-.2-25.8-1.9-3.2-5.5-5-8.6-5.8 2-2.5 3.1-5.4 3.8-10.9 1.3-10-4.7-41-12.7-65.7s-29.9-50-44.7-68c-26-31.8-22.8-39.2-26.3-99.7C323.4 62.8 306.3 32 256 32s-67 32-67 59c0 28.7 2 51 2 51 1.3 33.4 1 39.4-8 55.3-4.9 8.7-27 30-35.7 44.7s-7.6 29.5-24.6 52.8c-12.4 17-13.8 28.4-9.7 44-7 8.2-3.6 19.9-5 24.9-2.6 8.7-13.7 10.3-22.3 11s-15.3 0-18.7 5.3.7 16 4.3 30-7.3 15-7.3 31 30 16 59.7 22.7 40.7 16.3 56 16.3 26.8-10.2 38-19.3c7.2-5.9 29-3.7 42.3-3.7s34.3-.6 45.7 2.4S317 480 345 480s34.7-20.7 61-34.3 42-20 42-29.7-15-16-21.7-20zm-226.5 55.5c-1.3 13-12.6 17.1-24.1 16.1-13-1.1-29-7.6-44.1-12.1s-35.5-7.5-49-9.9c-15.3-2.7 0-13.6-.2-34.2-.1-8-7.1-19.4-4.2-24.7s17.3-2.4 22.3-3.8 12.7-5.7 15.3-11.9c1.4-3.4 1.8-17.7 2.9-22.8 1.1-4.9 7.9-7.2 22.2.1s28.9 38.1 42.3 59.8 17.9 30.4 16.6 43.4zm118.5-65.8c2 10.3 3.2 24.5.7 36.3s-7 15.5-10.7 23c-2.2-6.8 5.3-13.8 4.4-30.8-.5-9.5-.8-7.8-11.5 1.8-12.2 10.8-27.6 20.1-53 22.5-21 2-32.5-8.3-32.5-8.3 5 16-4.3 24.7-4.3 24.7.3-3.7.8-14.3-2.5-21.6-4-9-9.3-18.7-9.3-18.7s8.6-2.7 11.6-10 2-17.3-8.7-27.7-52.5-37.6-55.9-42.1c-4.9-6.5-6.7-10.2-7-23.2s5.4-24.8 4.3-20.3c-.8 3.2.1 6.8.1 19.8s7.6 23.3 13.9 25c9.5 2.6 2-26.1 8-53.1s11.7-32.8 19.2-43.8 19.2-20.5 17-43.1-.1-20.1 5.1-11.8c4 6.5 13.3 24 24.7 22 19.4-3.3 43.9-24.6 47.6-28.2 3.7-3.6.7-7.1-2.3-5.8-15.5 6.7-44.3 21.5-51.5 18.2s-18.1-20.6-16.8-19.5c15.4 13.6 19.9 11.1 26.4 9 8.4-2.8 12.8-4.3 28.5-11.3s20.7-5.3 22.3-8.7-.4-6.7-4.7-5.7c-6.4 1.5-3.4 5.1-22.7 12.3-25.3 9.5-33.3 10.3-44 3-8.6-5.9-15-12.7-15-16.7s8.3-8.3 12.3-11.3 12.3-10.9 12.3-10.9 1-7.2-.6-12.7c-1.9-6.5-7.8-9.3-11.9-8.1-4.1 1.1-8 5.5-6.8 14.8 1 8.3 7 11 7 11s-2.7 3.5-5.2 4.7c0 0-.8-.3-3.5-6.3s-6.6-19.5-.3-31.1 19.6-5.2 23.8 3.8c3.9 8.3 2.4 22.7 2.4 22.7 6-2.2 13-2 21 3.5-7.1-29.8 9.5-41.1 22-41.1s22.3 9.6 22.3 25c0 12-3.5 18.2-6.9 22-4.1-.5-8.2-1.5-6.3-3.4 1.3-1.4 4.4-5.7 4.4-13.2s-5.9-13.7-13.7-13.7c-9.2 0-12.6 8.3-13.7 13s-.4 8.6-.2 10.4c.6 5 10.9 9.6 23.9 12.9s11.3 9 8.3 25.3 6.3 18.3 14.3 33.8 5.7 21.8 15.9 35.2 19 47.8 16.4 76.8c-.9 10.5-3.9 10.2 7.3 6.7 5.6-1.7 12-2.7 12-2.7 3.1-6.3 3.4-16.3 3.5-22.3.2-13.5.7-41.5-26.7-71.5 0 0 29.5 21.7 34 62 2.5 22.3-2 32.4-2 32.4 5.3 1.3 9.8 7.3 12.6 11.8 3.7 6.1-3.9-5.8-20-5.8-8.5 0-15.3 3.9-18.5 7.9s-3.1 7.6-3.2 11.7c-7.1-1.2-12.4 0-16.8 4.9-5.6 7-2.8 24.2-.8 34.6zm90.1 47.2c-24.1 10.4-32.7 23.5-47.7 31.5s-27.7 2.3-33.7-8 10.4-28.2 4.7-59.6c-4.4-24.2-6.3-31-4.9-36.8 1.4-5.5 9.4-4.4 11.5-3.9 1.3 5.4 6.7 19.5 27 19.5 0 0 23.2 2.6 32.7-21.2 0 0 5.7-.2 7.2 3.5 2.3 5.8-2.9 16.5-2.8 21.3.3 15.7 11.7 21.1 28.4 32 8.2 5.6 2.1 11.1-22.4 21.7z"}}]})(props);
 }
 
-const useParams = Object.values(DFL.ReactRouter).find((val) => /return (\w)\?\1\.params:{}/.test(`${val}`));
+const FETCH_TIMEOUT_MS$3 = 2000;
+async function safeJson(res) {
+    try {
+        return await res.json();
+    }
+    catch {
+        return undefined;
+    }
+}
+// Helper function to add timeout to fetch requests
+async function fetchWithTimeout$3(fetchPromise, timeoutMs = FETCH_TIMEOUT_MS$3) {
+    const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Request timeout')), timeoutMs);
+    });
+    return Promise.race([fetchPromise, timeoutPromise]);
+}
+async function getGameAnalysis(appId) {
+    try {
+        // Build URL with user context (Steam Deck defaults)
+        // Steam Deck uses AMD GPU and typically runs Proton 9
+        const url = new URL(`${GATEWAY_BASE_URL}/api/v1/analysis/${appId}`);
+        url.searchParams.append('user_gpu_vendor', 'amd');
+        url.searchParams.append('user_proton_version', '10');
+        const res = await fetchWithTimeout$3(fetchNoCors(url.toString(), {
+            method: 'GET',
+            headers: {
+                'X-API-Key': GATEWAY_API_KEY
+            }
+        }));
+        if (res.status === 200) {
+            return await safeJson(res);
+        }
+    }
+    catch (error) {
+        // silently fail analysis fetch failed:', error)
+        return undefined;
+    }
+    return undefined;
+}
+async function getReportHistory(appId) {
+    try {
+        const res = await fetchWithTimeout$3(fetchNoCors(`${GATEWAY_BASE_URL}/api/v1/reports/history/${appId}`, {
+            method: 'GET',
+            headers: {
+                'X-API-Key': GATEWAY_API_KEY
+            }
+        }), 5000);
+        if (res.status === 200) {
+            return await safeJson(res);
+        }
+    }
+    catch (error) {
+        // silently fail report history fetch failed:', error)
+        return undefined;
+    }
+    return undefined;
+}
+async function getSettingsTips(appId) {
+    try {
+        const res = await fetchWithTimeout$3(fetchNoCors(`${GATEWAY_BASE_URL}/api/v1/reports/settings/${appId}`, {
+            method: 'GET',
+            headers: {
+                'X-API-Key': GATEWAY_API_KEY
+            }
+        }), 5000);
+        if (res.status === 200) {
+            return await safeJson(res);
+        }
+    }
+    catch {
+        return undefined;
+    }
+    return undefined;
+}
+async function getProtonVersions(appId) {
+    try {
+        const res = await fetchWithTimeout$3(fetchNoCors(`${GATEWAY_BASE_URL}/api/v1/reports/versions/${appId}`, {
+            method: 'GET',
+            headers: {
+                'X-API-Key': GATEWAY_API_KEY
+            }
+        }), 5000);
+        if (res.status === 200) {
+            return await safeJson(res);
+        }
+    }
+    catch {
+        return undefined;
+    }
+    return undefined;
+}
+async function getRecentReports(appId) {
+    try {
+        const res = await fetchWithTimeout$3(fetchNoCors(`${GATEWAY_BASE_URL}/api/v1/reports/recent/${appId}?limit=20`, {
+            method: 'GET',
+            headers: {
+                'X-API-Key': GATEWAY_API_KEY
+            }
+        }), 5000);
+        if (res.status === 200) {
+            return await safeJson(res);
+        }
+    }
+    catch (error) {
+        // silently fail recent reports fetch failed:', error)
+        return undefined;
+    }
+    return undefined;
+}
 
-function cleanString(str) {
+const ReportChart = ({ months }) => {
+    if (!Array.isArray(months) || months.length === 0) {
+        return (SP_REACT.createElement("div", { style: { color: '#888', textAlign: 'center', padding: '40px 0' } }, "No report data available"));
+    }
+    const now = new Date();
+    const fiveYearsAgo = new Date(now.getFullYear() - 5, now.getMonth(), 1);
+    const filtered = months.filter((m) => {
+        if (!m?.month || typeof m.month !== 'string')
+            return false;
+        const [y, mo] = m.month.split('-').map(Number);
+        if (isNaN(y) || isNaN(mo))
+            return false;
+        return new Date(y, mo - 1, 1) >= fiveYearsAgo;
+    });
+    if (filtered.length === 0) {
+        return (SP_REACT.createElement("div", { style: { color: '#888', textAlign: 'center', padding: '40px 0' } }, "No report data available"));
+    }
+    const w = 500;
+    const h = 180;
+    const pad = 40;
+    const chartW = w - pad - 30;
+    const chartH = h - 30;
+    let maxVal = 1;
+    filtered.forEach((m) => {
+        maxVal = Math.max(maxVal, m.positive || 0, m.negative || 0);
+    });
+    const x = (i) => pad + (i / (filtered.length - 1 || 1)) * chartW;
+    const y = (v) => 10 + chartH - (v / maxVal) * chartH;
+    const makeLine = (key) => filtered
+        .map((d, i) => `${i === 0 ? 'M' : 'L'}${x(i).toFixed(1)},${y(d[key]).toFixed(1)}`)
+        .join(' ');
+    const makeArea = (key) => `${makeLine(key)} L${x(filtered.length - 1).toFixed(1)},${10 + chartH} L${pad},${10 + chartH} Z`;
+    const SHORT_MONTHS = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec'
+    ];
+    function formatMonthLabel(m) {
+        const parts = m?.split('-') ?? [];
+        const y = parts[0] ?? '??';
+        const moIdx = parseInt(parts[1]) - 1;
+        return `${SHORT_MONTHS[moIdx] ?? '???'} '${y.slice(2)}`;
+    }
+    const step = Math.max(1, Math.floor(filtered.length / 6));
+    const xLabels = [];
+    for (let i = 0; i < filtered.length; i += step) {
+        xLabels.push({ i, label: formatMonthLabel(filtered[i].month) });
+    }
+    const yLabels = [];
+    const yStep = Math.max(1, Math.ceil(maxVal / 4));
+    for (let v = 0; v <= maxVal; v += yStep) {
+        yLabels.push(v);
+    }
+    return (SP_REACT.createElement("div", { style: { width: '100%', height: 220 } },
+        SP_REACT.createElement("svg", { viewBox: `0 0 ${w} ${h}`, style: { width: '100%', height: '100%' } },
+            SP_REACT.createElement("defs", null,
+                SP_REACT.createElement("linearGradient", { id: "gp", x1: "0", y1: "0", x2: "0", y2: "1" },
+                    SP_REACT.createElement("stop", { offset: "0%", stopColor: "#4caf50", stopOpacity: 0.4 }),
+                    SP_REACT.createElement("stop", { offset: "100%", stopColor: "#4caf50", stopOpacity: 0.05 })),
+                SP_REACT.createElement("linearGradient", { id: "gn", x1: "0", y1: "0", x2: "0", y2: "1" },
+                    SP_REACT.createElement("stop", { offset: "0%", stopColor: "#f44336", stopOpacity: 0.4 }),
+                    SP_REACT.createElement("stop", { offset: "100%", stopColor: "#f44336", stopOpacity: 0.05 }))),
+            SP_REACT.createElement("path", { d: makeArea('positive'), fill: "url(#gp)" }),
+            SP_REACT.createElement("path", { d: makeLine('positive'), fill: "none", stroke: "#4caf50", strokeWidth: 2 }),
+            SP_REACT.createElement("path", { d: makeArea('negative'), fill: "url(#gn)" }),
+            SP_REACT.createElement("path", { d: makeLine('negative'), fill: "none", stroke: "#f44336", strokeWidth: 2 }),
+            xLabels.map((l) => (SP_REACT.createElement("text", { key: l.i, x: x(l.i), y: h - 2, fill: "#888", fontSize: 9, textAnchor: "middle" }, l.label))),
+            yLabels.map((v) => (SP_REACT.createElement("text", { key: v, x: pad - 4, y: y(v) + 3, fill: "#888", fontSize: 9, textAnchor: "end" }, v))),
+            SP_REACT.createElement("circle", { cx: w - 80, cy: 12, r: 4, fill: "#4caf50" }),
+            SP_REACT.createElement("text", { x: w - 72, y: 16, fill: "#ccc", fontSize: 11 }, "Good"),
+            SP_REACT.createElement("circle", { cx: w - 35, cy: 12, r: 4, fill: "#f44336" }),
+            SP_REACT.createElement("text", { x: w - 27, y: 16, fill: "#ccc", fontSize: 11 }, "Bad"))));
+};
+
+function getCurrentLaunchOptions(appId) {
+    return new Promise((resolve) => {
+        const steamApps = globalThis.SteamClient?.Apps;
+        if (!steamApps?.RegisterForAppDetails) {
+            resolve('');
+            return;
+        }
+        let settled = false;
+        const timeout = setTimeout(() => {
+            if (!settled) {
+                settled = true;
+                unregister();
+                resolve('');
+            }
+        }, 1500);
+        let unregister = () => { };
+        const registration = steamApps.RegisterForAppDetails(appId, (details) => {
+            if (!settled) {
+                settled = true;
+                clearTimeout(timeout);
+                unregister();
+                resolve(typeof details?.strLaunchOptions === 'string'
+                    ? details.strLaunchOptions
+                    : '');
+            }
+        });
+        unregister = registration?.unregister ?? (() => { });
+    });
+}
+function setLaunchOptions(appId, options) {
+    try {
+        const steamApps = globalThis.SteamClient?.Apps;
+        if (steamApps?.SetAppLaunchOptions) {
+            steamApps.SetAppLaunchOptions(appId, options);
+        }
+    }
+    catch {
+        /* prevent crash if Steam API throws */
+    }
+}
+function buildMergedOptions(current, newOption, mode) {
+    if (mode === 'replace')
+        return newOption;
+    if (!current.trim())
+        return newOption;
+    if (current.includes(newOption))
+        return current;
+    return `${current} ${newOption}`;
+}
+
+let lastDebugInfo = '';
+async function getInstalledCompatTools() {
+    try {
+        const sc = globalThis.SteamClient;
+        if (!sc) {
+            lastDebugInfo = 'No SteamClient';
+            return [];
+        }
+        if (!sc.Settings) {
+            lastDebugInfo = `No Settings. Keys: ${Object.keys(sc).slice(0, 15).join(',')}`;
+            return [];
+        }
+        if (!sc.Settings.GetGlobalCompatTools) {
+            lastDebugInfo = `No GetGlobalCompatTools. Settings keys: ${Object.keys(sc.Settings).slice(0, 15).join(',')}`;
+            return [];
+        }
+        let tools = sc.Settings.GetGlobalCompatTools();
+        if (tools &&
+            typeof tools === 'object' &&
+            typeof tools.then === 'function') {
+            tools = await tools;
+        }
+        if (!tools) {
+            lastDebugInfo = 'GetGlobalCompatTools returned falsy';
+            return [];
+        }
+        if (!Array.isArray(tools)) {
+            const keys = Object.keys(tools).slice(0, 15).join(',');
+            const vals = Object.values(tools)
+                .slice(0, 3)
+                .map((v) => typeof v === 'object' && v
+                ? Object.keys(v).slice(0, 5).join('/')
+                : String(v).slice(0, 30))
+                .join(' | ');
+            lastDebugInfo = `Not array. Type: ${typeof tools}, keys: [${keys}], vals: [${vals}]`;
+            return [];
+        }
+        if (tools.length === 0) {
+            lastDebugInfo = 'Empty array';
+            return [];
+        }
+        const first = tools[0];
+        const sampleKeys = Object.keys(first).join(',');
+        lastDebugInfo = `Found ${tools.length} tools. Keys: ${sampleKeys}. First: ${JSON.stringify(first).slice(0, 100)}`;
+        return tools
+            .filter((t) => t && typeof t === 'object')
+            .map((t) => ({
+            toolName: t.strToolName || t.toolName || t.name || t.internal_name || '',
+            displayName: t.strDisplayName ||
+                t.displayName ||
+                t.display_name ||
+                t.strToolName ||
+                t.toolName ||
+                t.name ||
+                ''
+        }))
+            .filter((t) => t.toolName);
+    }
+    catch (e) {
+        lastDebugInfo = `Error: ${e?.message || String(e)}`;
+        return [];
+    }
+}
+function findMatchingTool(versionName, tools) {
+    try {
+        if (!versionName || typeof versionName !== 'string' || !tools?.length)
+            return null;
+        const normalized = versionName.toLowerCase().trim();
+        if (normalized === 'unknown' || normalized === 'other') {
+            lastDebugInfo = `"${normalized}" has no applicable Proton tool`;
+            return null;
+        }
+        if (normalized === 'native linux') {
+            lastDebugInfo = `"Native Linux" → clear compat tool (run natively)`;
+            return { toolName: '', displayName: 'Native (no Proton)' };
+        }
+        if (normalized === 'proton official') {
+            const official = findLatestOfficial(tools);
+            lastDebugInfo = official
+                ? `"Proton Official" → ${official.displayName}`
+                : `"Proton Official" no match`;
+            return official;
+        }
+        if (normalized === 'ge-proton' || normalized === 'proton-ge') {
+            const ge = tools.find((t) => t.displayName.toLowerCase() === 'proton-ge latest') ||
+                findLatestGE(tools);
+            lastDebugInfo = ge
+                ? `"GE-Proton" → ${ge.displayName}`
+                : `"GE-Proton" no match`;
+            return ge;
+        }
+        if (normalized === 'hotfix') {
+            const hf = tools.find((t) => t.displayName.toLowerCase().includes('hotfix'));
+            lastDebugInfo = hf ? `"Hotfix" → ${hf.displayName}` : `"Hotfix" no match`;
+            return hf || null;
+        }
+        const exactDisplay = tools.find((t) => t.displayName.toLowerCase().trim() === normalized);
+        if (exactDisplay) {
+            lastDebugInfo = `Exact: "${normalized}" → ${exactDisplay.displayName}`;
+            return exactDisplay;
+        }
+        const exactTool = tools.find((t) => t.toolName.toLowerCase().trim() === normalized);
+        if (exactTool) {
+            lastDebugInfo = `Tool name: "${normalized}" → ${exactTool.displayName}`;
+            return exactTool;
+        }
+        const containsDisplay = tools.find((t) => t.displayName.toLowerCase().includes(normalized) ||
+            normalized.includes(t.displayName.toLowerCase()));
+        if (containsDisplay) {
+            lastDebugInfo = `Partial: "${normalized}" → ${containsDisplay.displayName}`;
+            return containsDisplay;
+        }
+        const majorMatch = extractMajorVersion(normalized);
+        if (majorMatch) {
+            const match = tools.find((t) => {
+                const toolMajor = extractMajorVersion(t.displayName.toLowerCase());
+                return toolMajor === majorMatch;
+            });
+            if (match) {
+                lastDebugInfo = `Major v${majorMatch}: "${normalized}" → ${match.displayName}`;
+                return match;
+            }
+        }
+        lastDebugInfo = `No match for "${normalized}"`;
+        return null;
+    }
+    catch (e) {
+        lastDebugInfo = `Match error: ${e?.message || String(e)}`;
+        return null;
+    }
+}
+function findLatestOfficial(tools) {
+    const officials = tools.filter((t) => {
+        const d = t.displayName.toLowerCase();
+        return (d.startsWith('proton ') &&
+            /proton \d/.test(d) &&
+            !d.includes('ge') &&
+            !d.includes('hotfix') &&
+            !d.includes('experimental'));
+    });
+    if (!officials.length)
+        return null;
+    officials.sort((a, b) => {
+        const va = parseFloat(a.displayName.replace(/[^0-9.]/g, '')) || 0;
+        const vb = parseFloat(b.displayName.replace(/[^0-9.]/g, '')) || 0;
+        return vb - va;
+    });
+    return officials[0];
+}
+function findLatestGE(tools) {
+    const geTools = tools.filter((t) => {
+        const d = t.displayName.toLowerCase();
+        return d.includes('ge-proton') || d.includes('proton-ge');
+    });
+    if (!geTools.length)
+        return null;
+    geTools.sort((a, b) => {
+        const va = parseFloat(a.displayName.replace(/[^0-9.]/g, '').slice(0, 4)) || 0;
+        const vb = parseFloat(b.displayName.replace(/[^0-9.]/g, '').slice(0, 4)) || 0;
+        return vb - va;
+    });
+    return geTools[0];
+}
+function extractMajorVersion(version) {
+    const match = version.match(/proton\s*(\d+)/);
+    if (match)
+        return match[1];
+    const geMatch = version.match(/ge-proton(\d+)/);
+    if (geMatch)
+        return geMatch[1];
+    return null;
+}
+function applyCompatTool(appId, toolName) {
+    try {
+        const apps = globalThis.SteamClient?.Apps;
+        if (!apps?.SpecifyCompatTool)
+            return false;
+        apps.SpecifyCompatTool(appId, toolName);
+        return true;
+    }
+    catch {
+        return false;
+    }
+}
+async function getCurrentCompatTool(appId) {
+    return new Promise((resolve) => {
+        try {
+            const apps = globalThis.SteamClient?.Apps;
+            if (!apps?.RegisterForAppDetails) {
+                resolve('');
+                return;
+            }
+            let settled = false;
+            const reg = apps.RegisterForAppDetails(appId, (details) => {
+                if (settled)
+                    return;
+                settled = true;
+                if (reg?.unregister)
+                    reg.unregister();
+                resolve(details?.strCompatToolName || '');
+            });
+            setTimeout(() => {
+                if (!settled) {
+                    settled = true;
+                    if (reg?.unregister)
+                        reg.unregister();
+                    resolve('');
+                }
+            }, 1500);
+        }
+        catch {
+            resolve('');
+        }
+    });
+}
+function parseVersionNumber(name) {
+    if (!name || typeof name !== 'string')
+        return 0;
+    const n = name.toLowerCase();
+    const protonMatch = n.match(/proton[_ ](\d+)/);
+    if (protonMatch)
+        return parseInt(protonMatch[1], 10);
+    const geMatch = n.match(/ge-proton(\d+)/);
+    if (geMatch)
+        return parseInt(geMatch[1], 10);
+    if (n.includes('experimental'))
+        return 999;
+    if (n.includes('hotfix'))
+        return 998;
+    return 0;
+}
+function isDowngrade(currentToolName, newToolDisplayName) {
+    if (!currentToolName)
+        return false;
+    const currentVersion = parseVersionNumber(currentToolName);
+    const newVersion = parseVersionNumber(newToolDisplayName);
+    if (currentVersion === 0 || newVersion === 0)
+        return false;
+    return newVersion < currentVersion;
+}
+
+const CURRENT_PROTON_MAJOR = '10';
+const TREND_ICONS = {
+    improving: '🟢',
+    declining: '🔴',
+    stable: '⚪',
+    unknown: '❓'
+};
+const WORKING_STATUS_ICONS = {
+    working: '✅',
+    not_working: '❌',
+    unknown: '❓'
+};
+function formatPercent(ratio) {
+    if (ratio === undefined || ratio === null)
+        return '—';
+    return `${(ratio * 100).toFixed(1)}%`;
+}
+const rowStyle = (even) => ({
+    display: 'flex',
+    background: even ? 'rgba(255,255,255,0.04)' : 'transparent',
+    fontSize: '13px',
+    color: '#e0e0e0'
+});
+const labelStyle = (sub) => ({
+    padding: sub ? '6px 10px 6px 20px' : '6px 10px',
+    fontWeight: 'bold',
+    color: sub ? '#888888' : '#c0c0c0',
+    width: '220px',
+    minWidth: '220px',
+    flexShrink: 0
+});
+const valueStyle = {
+    padding: '6px 10px',
+    flex: 1
+};
+const Row = ({ label, value, even, sub }) => (SP_REACT.createElement("div", { style: rowStyle(even) },
+    SP_REACT.createElement("div", { style: labelStyle(!!sub) }, label),
+    SP_REACT.createElement("div", { style: valueStyle }, value)));
+const tabStyle = (active) => ({
+    flex: 1,
+    padding: '8px 0',
+    textAlign: 'center',
+    fontSize: '13px',
+    fontWeight: 'bold',
+    color: active ? '#fff' : '#888',
+    background: active ? 'rgba(255,255,255,0.1)' : 'transparent',
+    borderBottom: active ? '2px solid #7ab3f0' : '2px solid transparent',
+    cursor: 'pointer',
+    border: 'none',
+    borderRadius: 0
+});
+function formatDate(timestamp) {
+    const d = new Date(timestamp * 1000);
+    return d.toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+    });
+}
+function isPositiveRating(rating) {
+    return rating === 'Gold' || rating === 'Platinum' || rating === 'Silver';
+}
+const ReportCard = ({ report }) => {
+    const positive = isPositiveRating(report.rating);
+    const color = positive ? '#4ade80' : '#f87171';
+    const label = positive ? '👍 Works' : '👎 Issues';
+    return (SP_REACT.createElement("div", { style: {
+            background: 'rgba(255,255,255,0.04)',
+            borderRadius: '6px',
+            padding: '10px 12px',
+            marginBottom: '8px',
+            borderLeft: `3px solid ${color}`
+        } },
+        SP_REACT.createElement("div", { style: {
+                display: 'flex',
+                justifyContent: 'space-between',
+                marginBottom: '4px'
+            } },
+            SP_REACT.createElement("span", { style: {
+                    fontWeight: 'bold',
+                    color,
+                    fontSize: '13px'
+                } }, label),
+            SP_REACT.createElement("span", { style: { color: '#888', fontSize: '11px' } }, formatDate(report.timestamp))),
+        SP_REACT.createElement("div", { style: {
+                fontSize: '11px',
+                color: '#aaa',
+                marginBottom: '4px',
+                textAlign: 'right'
+            } }, [
+            report.os ? `OS: ${report.os}` : null,
+            report.proton_version ? `Proton: ${report.proton_version}` : null,
+            report.is_steam_deck ? 'Steam Deck' : null
+        ]
+            .filter(Boolean)
+            .join(' · ') || '—'),
+        SP_REACT.createElement("div", { style: {
+                fontSize: '12px',
+                color: report.notes ? '#ccc' : '#666',
+                lineHeight: '1.4',
+                fontStyle: 'italic'
+            } }, report.notes
+            ? report.notes.length > 200
+                ? report.notes.slice(0, 200) + '…'
+                : report.notes
+            : 'No remarks shared')));
+};
+function ratioColor(ratio) {
+    if (ratio >= 0.75)
+        return '#4ade80';
+    if (ratio >= 0.5)
+        return '#facc15';
+    return '#f87171';
+}
+function isCurrent(version) {
+    return (version === `Proton ${CURRENT_PROTON_MAJOR}` ||
+        version === 'Proton Official');
+}
+function copyToClipboard(text) {
+    try {
+        const input = document.createElement('input');
+        input.value = text;
+        input.style.position = 'absolute';
+        input.style.left = '-9999px';
+        document.body.appendChild(input);
+        input.focus();
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+    }
+    catch {
+        try {
+            navigator.clipboard.writeText(text);
+        }
+        catch {
+            /* clipboard unavailable */
+        }
+    }
+}
+const SettingRow = ({ opt, appId }) => {
+    if (!opt?.option || typeof opt.value !== 'string')
+        return null;
+    const count = typeof opt.count === 'number' ? opt.count : 0;
+    const total = typeof opt.total_with_options === 'number' ? opt.total_with_options : 0;
+    const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+    const text = `${opt.option}=${opt.value}`;
+    const [copied, setCopied] = SP_REACT.useState(false);
+    const [applyState, setApplyState] = SP_REACT.useState('idle');
+    const [currentOptions, setCurrentOptions] = SP_REACT.useState('');
+    const handleApply = async () => {
+        try {
+            const numericId = parseInt(appId, 10);
+            if (isNaN(numericId))
+                return;
+            const current = await getCurrentLaunchOptions(numericId);
+            if (!current.trim()) {
+                setLaunchOptions(numericId, text);
+                setApplyState('applied');
+                setTimeout(() => setApplyState('idle'), 2000);
+            }
+            else {
+                setCurrentOptions(current);
+                setApplyState('conflict');
+            }
+        }
+        catch {
+            setApplyState('idle');
+        }
+    };
+    const resolveConflict = (mode) => {
+        try {
+            const numericId = parseInt(appId, 10);
+            if (isNaN(numericId))
+                return;
+            const merged = buildMergedOptions(currentOptions, text, mode);
+            setLaunchOptions(numericId, merged);
+            setApplyState('applied');
+            setTimeout(() => setApplyState('idle'), 2000);
+        }
+        catch {
+            setApplyState('idle');
+        }
+    };
+    return (SP_REACT.createElement("div", { style: {
+            background: 'rgba(255,255,255,0.04)',
+            borderRadius: '6px',
+            padding: '8px 12px',
+            marginBottom: '6px',
+            borderLeft: '3px solid rgba(255,255,255,0.12)'
+        } },
+        SP_REACT.createElement("div", { style: {
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: '2px'
+            } },
+            SP_REACT.createElement("span", { style: {
+                    fontWeight: 'bold',
+                    fontSize: '12px',
+                    color: '#e0e0e0',
+                    fontFamily: 'monospace',
+                    flex: 1
+                } }, text),
+            SP_REACT.createElement(DFL.Focusable, { style: {
+                    padding: '4px 10px',
+                    fontSize: '11px',
+                    color: applyState === 'applied' ? '#4ade80' : '#7dd3fc',
+                    cursor: 'pointer',
+                    background: 'rgba(255,255,255,0.06)',
+                    borderRadius: '4px',
+                    marginLeft: '8px',
+                    whiteSpace: 'nowrap',
+                    outline: 'none',
+                    border: 'none'
+                }, onClick: handleApply, onActivate: handleApply, 
+                //@ts-ignore
+                focusClassName: "" }, applyState === 'applied' ? '✓ Applied' : 'Apply'),
+            SP_REACT.createElement(DFL.Focusable, { style: {
+                    padding: '4px 10px',
+                    fontSize: '11px',
+                    color: copied ? '#4ade80' : '#aaa',
+                    cursor: 'pointer',
+                    background: 'rgba(255,255,255,0.06)',
+                    borderRadius: '4px',
+                    marginLeft: '4px',
+                    whiteSpace: 'nowrap',
+                    outline: 'none',
+                    border: 'none'
+                }, onClick: () => {
+                    copyToClipboard(text);
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 2000);
+                }, onActivate: () => {
+                    copyToClipboard(text);
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 2000);
+                }, 
+                //@ts-ignore
+                focusClassName: "" }, copied ? '✓' : 'Copy')),
+        applyState === 'conflict' && (SP_REACT.createElement("div", { style: {
+                marginTop: '6px',
+                padding: '6px 8px',
+                background: 'rgba(255,255,255,0.06)',
+                borderRadius: '4px',
+                fontSize: '10px'
+            } },
+            SP_REACT.createElement("div", { style: { color: '#facc15', marginBottom: '4px' } }, "Game already has launch options:"),
+            SP_REACT.createElement("div", { style: {
+                    color: '#aaa',
+                    fontFamily: 'monospace',
+                    marginBottom: '6px',
+                    wordBreak: 'break-all'
+                } }, currentOptions),
+            SP_REACT.createElement("div", { style: { display: 'flex', gap: '6px' } },
+                SP_REACT.createElement(DFL.Focusable, { style: {
+                        padding: '3px 8px',
+                        fontSize: '10px',
+                        color: '#4ade80',
+                        cursor: 'pointer',
+                        background: 'rgba(74,222,128,0.1)',
+                        borderRadius: '3px',
+                        outline: 'none',
+                        border: 'none'
+                    }, onClick: () => resolveConflict('append'), onActivate: () => resolveConflict('append'), 
+                    //@ts-ignore
+                    focusClassName: "" }, "Add to existing"),
+                SP_REACT.createElement(DFL.Focusable, { style: {
+                        padding: '3px 8px',
+                        fontSize: '10px',
+                        color: '#f87171',
+                        cursor: 'pointer',
+                        background: 'rgba(248,113,113,0.1)',
+                        borderRadius: '3px',
+                        outline: 'none',
+                        border: 'none'
+                    }, onClick: () => resolveConflict('replace'), onActivate: () => resolveConflict('replace'), 
+                    //@ts-ignore
+                    focusClassName: "" }, "Replace all"),
+                SP_REACT.createElement(DFL.Focusable, { style: {
+                        padding: '3px 8px',
+                        fontSize: '10px',
+                        color: '#aaa',
+                        cursor: 'pointer',
+                        background: 'rgba(255,255,255,0.06)',
+                        borderRadius: '3px',
+                        outline: 'none',
+                        border: 'none'
+                    }, onClick: () => setApplyState('idle'), onActivate: () => setApplyState('idle'), 
+                    //@ts-ignore
+                    focusClassName: "" }, "Cancel")))),
+        SP_REACT.createElement("div", { style: { fontSize: '10px', color: '#666' } },
+            count,
+            " report",
+            count !== 1 ? 's' : '',
+            " (",
+            pct,
+            "%)")));
+};
+const NON_APPLICABLE_VERSIONS = ['other', 'unknown'];
+const VersionRow = ({ stat, appId }) => {
+    if (!stat?.version)
+        return null;
+    const current = isCurrent(stat.version);
+    const canApply = typeof stat.version === 'string' &&
+        !NON_APPLICABLE_VERSIONS.includes(stat.version.toLowerCase().trim());
+    const ratio = Number.isFinite(stat.positive_ratio) ? stat.positive_ratio : 0;
+    const color = ratioColor(ratio);
+    const pct = Math.round(ratio * 100);
+    const barWidth = `${Math.min(100, Math.max(0, pct))}%`;
+    const ts = typeof stat.latest_timestamp === 'number' ? stat.latest_timestamp : 0;
+    const age = ts > 0 ? Math.round((Date.now() / 1000 - ts) / 86400) : -1;
+    const [applyState, setApplyState] = SP_REACT.useState('idle');
+    const [pendingTool, setPendingTool] = SP_REACT.useState(null);
+    const handleApplyVersion = async () => {
+        try {
+            const numericId = parseInt(appId, 10);
+            if (isNaN(numericId))
+                return;
+            const tools = await getInstalledCompatTools();
+            const match = findMatchingTool(stat.version, tools);
+            if (!match) {
+                setApplyState('not_found');
+                setTimeout(() => setApplyState('idle'), 5000);
+                return;
+            }
+            const currentTool = await getCurrentCompatTool(numericId);
+            if (currentTool && isDowngrade(currentTool, match.displayName)) {
+                setPendingTool(match);
+                setApplyState('confirm_downgrade');
+                return;
+            }
+            const success = applyCompatTool(numericId, match.toolName);
+            if (success) {
+                setApplyState('applied');
+                setTimeout(() => setApplyState('idle'), 2000);
+            }
+        }
+        catch {
+            setApplyState('idle');
+        }
+    };
+    const confirmDowngrade = () => {
+        if (!pendingTool)
+            return;
+        const numericId = parseInt(appId, 10);
+        if (isNaN(numericId))
+            return;
+        const success = applyCompatTool(numericId, pendingTool.toolName);
+        if (success) {
+            setApplyState('applied');
+            setTimeout(() => setApplyState('idle'), 2000);
+        }
+        else {
+            setApplyState('idle');
+        }
+        setPendingTool(null);
+    };
+    return (SP_REACT.createElement("div", { style: {
+            background: current
+                ? 'rgba(122,179,240,0.10)'
+                : 'rgba(255,255,255,0.04)',
+            borderRadius: '6px',
+            padding: '8px 12px',
+            marginBottom: '6px',
+            borderLeft: current
+                ? '3px solid #7ab3f0'
+                : '3px solid rgba(255,255,255,0.12)'
+        } },
+        SP_REACT.createElement("div", { style: {
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: '4px'
+            } },
+            SP_REACT.createElement("span", { style: {
+                    fontWeight: 'bold',
+                    fontSize: '13px',
+                    color: current ? '#7ab3f0' : '#e0e0e0',
+                    flex: 1
+                } },
+                stat.version,
+                current && (SP_REACT.createElement("span", { style: {
+                        fontSize: '10px',
+                        color: '#7ab3f0',
+                        marginLeft: '6px',
+                        fontWeight: 'normal'
+                    } }, "\u2605 Steam Deck default"))),
+            canApply && applyState === 'confirm_downgrade' ? (SP_REACT.createElement(SP_REACT.Fragment, null,
+                SP_REACT.createElement("span", { style: {
+                        fontSize: '9px',
+                        color: '#facc15',
+                        marginLeft: '6px'
+                    } }, "Older version \u2014 may break game"),
+                SP_REACT.createElement(DFL.Focusable, { style: {
+                        padding: '3px 8px',
+                        fontSize: '10px',
+                        color: '#f87171',
+                        cursor: 'pointer',
+                        background: 'rgba(248,113,113,0.15)',
+                        borderRadius: '4px',
+                        marginLeft: '6px',
+                        whiteSpace: 'nowrap',
+                        outline: 'none',
+                        border: 'none'
+                    }, onClick: confirmDowngrade, onActivate: confirmDowngrade, 
+                    //@ts-ignore
+                    focusClassName: "" }, "Downgrade anyway"),
+                SP_REACT.createElement(DFL.Focusable, { style: {
+                        padding: '3px 8px',
+                        fontSize: '10px',
+                        color: '#aaa',
+                        cursor: 'pointer',
+                        background: 'rgba(255,255,255,0.06)',
+                        borderRadius: '4px',
+                        marginLeft: '4px',
+                        whiteSpace: 'nowrap',
+                        outline: 'none',
+                        border: 'none'
+                    }, onClick: () => setApplyState('idle'), onActivate: () => setApplyState('idle'), 
+                    //@ts-ignore
+                    focusClassName: "" }, "Cancel"))) : canApply ? (SP_REACT.createElement(DFL.Focusable, { style: {
+                    padding: '3px 8px',
+                    fontSize: '10px',
+                    color: applyState === 'applied'
+                        ? '#4ade80'
+                        : applyState === 'not_found'
+                            ? '#f87171'
+                            : '#7dd3fc',
+                    cursor: 'pointer',
+                    background: 'rgba(255,255,255,0.06)',
+                    borderRadius: '4px',
+                    marginLeft: '6px',
+                    whiteSpace: 'nowrap',
+                    outline: 'none',
+                    border: 'none'
+                }, onClick: handleApplyVersion, onActivate: handleApplyVersion, 
+                //@ts-ignore
+                focusClassName: "" }, applyState === 'applied'
+                ? '✓ Set'
+                : applyState === 'not_found'
+                    ? 'Not installed'
+                    : 'Use')) : null,
+            SP_REACT.createElement("span", { style: { color: '#aaa', fontSize: '11px', marginLeft: '6px' } },
+                stat.total_reports,
+                " report",
+                stat.total_reports !== 1 ? 's' : '')),
+        SP_REACT.createElement("div", { style: {
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
+            } },
+            SP_REACT.createElement("div", { style: {
+                    flex: 1,
+                    height: '6px',
+                    background: 'rgba(255,255,255,0.08)',
+                    borderRadius: '3px',
+                    overflow: 'hidden'
+                } },
+                SP_REACT.createElement("div", { style: {
+                        width: barWidth,
+                        height: '100%',
+                        background: color,
+                        borderRadius: '3px',
+                        transition: 'width 0.3s ease'
+                    } })),
+            SP_REACT.createElement("span", { style: { fontSize: '11px', color, minWidth: '32px' } },
+                pct,
+                "%")),
+        SP_REACT.createElement("div", { style: {
+                fontSize: '10px',
+                color: '#666',
+                marginTop: '2px'
+            } },
+            "Latest: ",
+            age < 0 ? '—' : age === 0 ? 'today' : `${age}d ago`),
+        applyState === 'not_found' && lastDebugInfo && (SP_REACT.createElement("div", { style: {
+                fontSize: '9px',
+                color: '#f87171',
+                marginTop: '2px',
+                wordBreak: 'break-all'
+            } },
+            "Debug: ",
+            lastDebugInfo))));
+};
+function AnalysisModal({ analysis, appId, closeModal }) {
+    const t = useTranslations();
+    const confidence = {
+        score: analysis.confidence?.score ?? 0,
+        level: analysis.confidence?.level ?? 'none',
+        factors: Array.isArray(analysis.confidence?.factors)
+            ? analysis.confidence.factors
+            : []
+    };
+    const freshness = {
+        latest_report_age: analysis.freshness?.latest_report_age ?? 0,
+        label: analysis.freshness?.label ?? 'unknown',
+        is_stale: analysis.freshness?.is_stale ?? true
+    };
+    const trend = {
+        direction: analysis.trend?.direction ?? 'unknown',
+        recent_positive_ratio: analysis.trend?.recent_positive_ratio,
+        older_positive_ratio: analysis.trend?.older_positive_ratio
+    };
+    const stats = {
+        total_reports: analysis.stats?.total_reports ?? 0,
+        recent_reports: analysis.stats?.recent_reports ?? 0
+    };
+    const working_status = analysis.working_status;
+    const [gameName, setGameName] = SP_REACT.useState('—');
+    const [activeTab, setActiveTab] = SP_REACT.useState('details');
+    const [history, setHistory] = SP_REACT.useState();
+    const [historyLoading, setHistoryLoading] = SP_REACT.useState(false);
+    const [recentReports, setRecentReports] = SP_REACT.useState();
+    const [reportsLoading, setReportsLoading] = SP_REACT.useState(false);
+    const [versionsData, setVersionsData] = SP_REACT.useState();
+    const [versionsLoading, setVersionsLoading] = SP_REACT.useState(false);
+    const [settingsData, setSettingsData] = SP_REACT.useState();
+    const [settingsLoading, setSettingsLoading] = SP_REACT.useState(false);
+    const REPORTS_PAGE_SIZE = 5;
+    const [visibleReports, setVisibleReports] = SP_REACT.useState(REPORTS_PAGE_SIZE);
+    SP_REACT.useEffect(() => {
+        try {
+            const overview = window.appStore?.GetAppOverviewByAppID?.(parseInt(appId));
+            if (overview?.display_name)
+                setGameName(overview.display_name);
+        }
+        catch {
+            /* ignore */
+        }
+    }, [appId]);
+    SP_REACT.useEffect(() => {
+        if (activeTab === 'reports' && !history && !historyLoading) {
+            setHistoryLoading(true);
+            getReportHistory(appId)
+                .then((data) => {
+                setHistory(data);
+                setHistoryLoading(false);
+            })
+                .catch(() => {
+                setHistoryLoading(false);
+            });
+        }
+        if (activeTab === 'reports' && !recentReports && !reportsLoading) {
+            setReportsLoading(true);
+            getCachedReports(appId)
+                .then((cached) => {
+                if (cached?.reports?.length) {
+                    setRecentReports(cached);
+                    setReportsLoading(false);
+                    return null;
+                }
+                return getRecentReports(appId);
+            })
+                .then((fresh) => {
+                if (fresh === null)
+                    return;
+                if (fresh?.reports?.length) {
+                    setCachedReports(appId, fresh);
+                }
+                setRecentReports(fresh ?? undefined);
+                setReportsLoading(false);
+            })
+                .catch(() => {
+                setReportsLoading(false);
+            });
+        }
+        if (activeTab === 'versions' && !versionsData && !versionsLoading) {
+            setVersionsLoading(true);
+            getCachedVersions(appId)
+                .then((cached) => {
+                if (cached?.versions?.length) {
+                    setVersionsData(cached);
+                    setVersionsLoading(false);
+                    return null;
+                }
+                return getProtonVersions(appId);
+            })
+                .then((fresh) => {
+                if (fresh === null)
+                    return;
+                if (fresh?.versions?.length) {
+                    setCachedVersions(appId, fresh);
+                }
+                setVersionsData(fresh ?? undefined);
+                setVersionsLoading(false);
+            })
+                .catch(() => {
+                setVersionsLoading(false);
+            });
+        }
+        if (activeTab === 'settings' && !settingsData && !settingsLoading) {
+            setSettingsLoading(true);
+            getSettingsTips(appId)
+                .then((data) => {
+                setSettingsData(data ?? undefined);
+                setSettingsLoading(false);
+            })
+                .catch(() => {
+                setSettingsLoading(false);
+            });
+        }
+    }, [activeTab]);
+    const trendIcon = TREND_ICONS[trend.direction] ?? '❓';
+    const workingIcon = working_status
+        ? (WORKING_STATUS_ICONS[working_status.status] ?? '❓')
+        : '❓';
+    const rows = [
+        { label: 'Game name', value: gameName },
+        { label: 'Game App ID', value: appId },
+        {
+            label: 'Working status',
+            value: working_status?.status
+                ? `${workingIcon} ${working_status.status.replace('_', ' ')} (${working_status.confidence ?? 'unknown'} certainty)`
+                : '❓ Unknown'
+        },
+        {
+            label: '— Recently broken',
+            value: working_status
+                ? working_status.recently_broken
+                    ? 'Yes'
+                    : 'No'
+                : '—',
+            sub: true
+        },
+        {
+            label: '— Timeframe',
+            value: working_status?.timeframe_days != null
+                ? `Last ${working_status.timeframe_days} days`
+                : '—',
+            sub: true
+        },
+        {
+            label: '— Last positive report',
+            value: working_status?.last_positive_report_age != null
+                ? `${working_status.last_positive_report_age} days ago`
+                : '—',
+            sub: true
+        },
+        {
+            label: 'Confidence',
+            value: `${confidence.level} (${confidence.score}/100)`
+        },
+        {
+            label: 'Confidence factors',
+            value: confidence.factors.length > 0 ? confidence.factors.join(', ') : '—'
+        },
+        {
+            label: 'Trend',
+            value: trend.direction === 'unknown'
+                ? '❓ Not enough recent data'
+                : `${trendIcon} ${trend.direction.charAt(0).toUpperCase() + trend.direction.slice(1)}`
+        },
+        {
+            label: '— Recent positive ratio',
+            value: formatPercent(trend.recent_positive_ratio),
+            sub: true
+        },
+        {
+            label: '— Older positive ratio',
+            value: formatPercent(trend.older_positive_ratio),
+            sub: true
+        },
+        {
+            label: 'Freshness',
+            value: `${freshness.label} (${freshness.latest_report_age} days ago)`
+        },
+        {
+            label: 'Stale',
+            value: freshness.is_stale ? 'Yes' : 'No'
+        },
+        {
+            label: 'Total reports',
+            value: stats.total_reports
+        },
+        {
+            label: 'Recent reports',
+            value: stats.recent_reports
+        }
+    ];
+    return (SP_REACT.createElement(DFL.ConfirmModal, { strTitle: " ", strOKButtonText: "Close", bAlertDialog: true, onOK: closeModal, onCancel: closeModal, bHideCloseIcon: false },
+        SP_REACT.createElement("style", null, `
+          .DialogBody *:focus,
+          .DialogBody *:focus-visible,
+          .ModalPosition *:focus,
+          .ModalPosition *:focus-visible,
+          .ConfirmDialog *:focus,
+          .ConfirmDialog *:focus-visible {
+            outline: none !important;
+            box-shadow: none !important;
+            border-color: transparent !important;
+          }
+        `),
+        SP_REACT.createElement("div", { style: {
+                display: 'flex',
+                alignItems: 'baseline',
+                justifyContent: 'space-between',
+                marginTop: '-32px',
+                marginBottom: '8px'
+            } },
+            SP_REACT.createElement("span", { style: { fontSize: '16px', fontWeight: 'bold', color: '#fff' } }, "ProtonDB Analysis"),
+            SP_REACT.createElement("a", { href: "https://protondb.schelstraete.org/status", style: {
+                    color: '#7ab3f0',
+                    fontSize: '11px',
+                    textDecoration: 'none',
+                    outline: 'none'
+                }, tabIndex: -1, onClick: () => DFL.Navigation.NavigateToExternalWeb('https://protondb.schelstraete.org/status') }, "protondb.schelstraete.org")),
+        SP_REACT.createElement(DFL.Focusable, { style: { display: 'flex', marginBottom: '8px' }, "flow-children": "row" },
+            SP_REACT.createElement(DFL.Focusable, { style: tabStyle(activeTab === 'details'), onClick: () => setActiveTab('details'), onActivate: () => setActiveTab('details') }, "Details"),
+            SP_REACT.createElement(DFL.Focusable, { style: tabStyle(activeTab === 'reports'), onClick: () => setActiveTab('reports'), onActivate: () => setActiveTab('reports') }, "Reports"),
+            SP_REACT.createElement(DFL.Focusable, { style: tabStyle(activeTab === 'versions'), onClick: () => setActiveTab('versions'), onActivate: () => setActiveTab('versions') }, "Versions"),
+            SP_REACT.createElement(DFL.Focusable, { style: tabStyle(activeTab === 'settings'), onClick: () => setActiveTab('settings'), onActivate: () => setActiveTab('settings') }, "Settings")),
+        activeTab === 'details' && (SP_REACT.createElement(DFL.ScrollPanelGroup, null,
+            SP_REACT.createElement(DFL.ScrollPanel, null,
+                SP_REACT.createElement(DFL.Focusable, { style: { padding: '4px' }, "flow-children": "column" }, rows.map((row, i) => (SP_REACT.createElement(DFL.Focusable, { key: row.label, onFocus: (e) => e.target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest'
+                    }) },
+                    SP_REACT.createElement(Row, { label: row.label, value: row.value, even: i % 2 === 0, sub: row.sub })))))))),
+        activeTab === 'reports' && (SP_REACT.createElement("div", { style: { padding: '4px' } },
+            SP_REACT.createElement("div", { style: {
+                    fontSize: '12px',
+                    color: '#888',
+                    marginBottom: '8px',
+                    textAlign: 'center'
+                } },
+                gameName,
+                " \u2014 Last 5 years"),
+            historyLoading ? (SP_REACT.createElement("div", { style: {
+                    color: '#888',
+                    textAlign: 'center',
+                    padding: '20px 0'
+                } }, "Loading chart...")) : history ? (SP_REACT.createElement("div", { style: { outline: 'none' }, tabIndex: -1 },
+                SP_REACT.createElement(ReportChart, { months: history.months }))) : null,
+            SP_REACT.createElement("div", { style: {
+                    borderTop: '1px solid rgba(255,255,255,0.08)',
+                    marginTop: '12px',
+                    paddingTop: '8px'
+                } }),
+            reportsLoading ? (SP_REACT.createElement("div", { style: {
+                    color: '#888',
+                    textAlign: 'center',
+                    padding: '40px 0'
+                } }, "Loading...")) : recentReports?.reports?.length ? (SP_REACT.createElement(DFL.ScrollPanelGroup, null,
+                SP_REACT.createElement(DFL.ScrollPanel, null,
+                    SP_REACT.createElement(DFL.Focusable, { style: { padding: '4px' }, "flow-children": "column" },
+                        recentReports.reports
+                            .slice(0, visibleReports)
+                            .map((report, i) => (SP_REACT.createElement(DFL.Focusable, { key: i, onFocus: (e) => e.target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'nearest'
+                            }) },
+                            SP_REACT.createElement(ReportCard, { report: report })))),
+                        visibleReports < recentReports.reports.length && (SP_REACT.createElement(DFL.Focusable, { style: {
+                                textAlign: 'center',
+                                padding: '10px 0',
+                                fontSize: '12px',
+                                color: '#7ab3f0',
+                                cursor: 'pointer',
+                                background: 'rgba(122,179,240,0.08)',
+                                borderRadius: '6px',
+                                marginTop: '4px'
+                            }, onClick: () => setVisibleReports((p) => Math.min(p + REPORTS_PAGE_SIZE, recentReports.reports.length)), onActivate: () => setVisibleReports((p) => Math.min(p + REPORTS_PAGE_SIZE, recentReports.reports.length)) },
+                            "Show more (",
+                            recentReports.reports.length - visibleReports,
+                            ' ',
+                            "remaining)")))))) : (SP_REACT.createElement("div", { style: {
+                    color: '#888',
+                    textAlign: 'center',
+                    padding: '40px 0'
+                } }, "No recent reports available")))),
+        activeTab === 'versions' && (SP_REACT.createElement("div", { style: { padding: '4px' } }, versionsLoading ? (SP_REACT.createElement("div", { style: {
+                color: '#888',
+                textAlign: 'center',
+                padding: '40px 0'
+            } }, "Loading...")) : versionsData?.versions?.length ? (SP_REACT.createElement(DFL.ScrollPanelGroup, null,
+            SP_REACT.createElement(DFL.ScrollPanel, null,
+                SP_REACT.createElement(DFL.Focusable, { style: { padding: '4px' }, "flow-children": "column" },
+                    SP_REACT.createElement("div", { style: {
+                            fontSize: '11px',
+                            color: '#888',
+                            marginBottom: '8px',
+                            textAlign: 'center'
+                        } },
+                        versionsData.total_reports,
+                        " reports across all versions"),
+                    SP_REACT.createElement("div", { style: {
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            fontSize: '10px',
+                            color: '#666',
+                            padding: '0 12px 4px',
+                            marginBottom: '2px',
+                            borderBottom: '1px solid rgba(255,255,255,0.06)'
+                        } },
+                        SP_REACT.createElement("span", null, "Version"),
+                        SP_REACT.createElement("span", null, "% positive ratings")),
+                    versionsData.versions.map((stat) => (SP_REACT.createElement(DFL.Focusable, { key: stat.version, onFocus: (e) => e.target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'nearest'
+                        }) },
+                        SP_REACT.createElement(VersionRow, { stat: stat, appId: appId })))),
+                    !versionsData.versions.some((s) => isCurrent(s.version)) && (SP_REACT.createElement("div", { style: {
+                            fontSize: '11px',
+                            color: '#facc15',
+                            textAlign: 'center',
+                            padding: '8px 0',
+                            marginTop: '4px'
+                        } },
+                        "No reports found for Proton ",
+                        CURRENT_PROTON_MAJOR,
+                        " (Steam Deck default)")))))) : (SP_REACT.createElement("div", { style: {
+                color: '#888',
+                textAlign: 'center',
+                padding: '40px 0'
+            } }, "No report data available")))),
+        activeTab === 'settings' && (SP_REACT.createElement("div", { style: { padding: '4px' } }, settingsLoading ? (SP_REACT.createElement("div", { style: {
+                color: '#888',
+                textAlign: 'center',
+                padding: '40px 0'
+            } }, "Loading...")) : settingsData?.launch_options?.length ? (SP_REACT.createElement(DFL.ScrollPanelGroup, null,
+            SP_REACT.createElement(DFL.ScrollPanel, null,
+                SP_REACT.createElement(DFL.Focusable, { style: { padding: '4px' }, "flow-children": "column" },
+                    SP_REACT.createElement("div", { style: {
+                            fontSize: '11px',
+                            color: '#888',
+                            marginBottom: '8px',
+                            textAlign: 'center'
+                        } }, t('settingsTabCount')
+                        .replace('{with}', String(settingsData.reports_with_settings ?? 0))
+                        .replace('{total}', String(settingsData.total_reports ?? 0))),
+                    SP_REACT.createElement("div", { style: {
+                            fontSize: '10px',
+                            color: '#666',
+                            marginBottom: '4px',
+                            textAlign: 'center',
+                            lineHeight: '1.4'
+                        } }, t('settingsTabHint')),
+                    SP_REACT.createElement("div", { style: {
+                            fontSize: '10px',
+                            color: '#555',
+                            marginBottom: '8px',
+                            textAlign: 'center',
+                            fontFamily: 'monospace'
+                        } }, t('settingsTabExample')),
+                    settingsData.launch_options.map((opt, i) => (SP_REACT.createElement(DFL.Focusable, { key: `${opt.option}-${opt.value}-${i}`, onFocus: (e) => e.target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'nearest'
+                        }) },
+                        SP_REACT.createElement(SettingRow, { opt: opt, appId: appId })))))))) : (SP_REACT.createElement("div", { style: {
+                color: '#888',
+                textAlign: 'center',
+                padding: '40px 0'
+            } }, t('settingsTabEmpty')))))));
+}
+
+class AnalysisErrorBoundary extends SP_REACT.Component {
+    state = { hasError: false };
+    static getDerivedStateFromError() {
+        return { hasError: true };
+    }
+    render() {
+        if (this.state.hasError) {
+            return (SP_REACT.createElement("div", { style: {
+                    padding: '20px',
+                    textAlign: 'center',
+                    color: '#f87171',
+                    fontSize: '14px'
+                } }, "Analysis data could not be displayed."));
+        }
+        const { children, ...injectedProps } = this.props;
+        return SP_REACT.Children.map(children, (child) => SP_REACT.isValidElement(child) ? SP_REACT.cloneElement(child, injectedProps) : child);
+    }
+}
+
+function urlFallback() {
+    const match = window.location.pathname.match(/\/app\/(\d+)/);
+    return (match ? { appid: match[1] } : {});
+}
+function findUseParams() {
+    try {
+        if (typeof DFL.useParams === 'function') {
+            console.info('[ProtonDB] useParams: using @decky/ui export');
+            return DFL.useParams;
+        }
+        if (typeof DFL.findModuleExport === 'function') {
+            const found = DFL.findModuleExport((e) => {
+                try {
+                    return (typeof e === 'function' &&
+                        e.toString().length < 200 &&
+                        /\.params:\{\}/.test(e.toString()));
+                }
+                catch {
+                    return false;
+                }
+            });
+            if (typeof found === 'function') {
+                console.info('[ProtonDB] useParams: found via findModuleExport');
+                return found;
+            }
+        }
+    }
+    catch (e) {
+        console.error('[ProtonDB] useParams: fallback search failed', e);
+    }
+    console.info('[ProtonDB] useParams: using URL pathname fallback');
+    return urlFallback;
+}
+const useParams = findUseParams();
+
+function cleanString$1(str) {
     return str
         .replace(/['"\u0040\u0026\u2122\u00ae]/g, '')
         .toLowerCase()
@@ -9456,9 +12852,9 @@ const useAppId = () => {
                 });
                 if (res.status === 200) {
                     const options = await res.json();
-                    const cleanedGameName = cleanString(gameName);
+                    const cleanedGameName = cleanString$1(gameName);
                     const appId = options.find((o) => {
-                        return o.name && cleanString(o.name) === cleanedGameName;
+                        return o.name && cleanString$1(o.name) === cleanedGameName;
                     })?.appid;
                     setAppId(appId);
                     return;
@@ -9484,9 +12880,9 @@ const useAppId = () => {
     return appId;
 };
 
-const FETCH_TIMEOUT_MS$1 = 2000;
+const FETCH_TIMEOUT_MS$2 = 2000;
 // Helper function to add timeout to fetch requests
-async function fetchWithTimeout$1(fetchPromise, timeoutMs = FETCH_TIMEOUT_MS$1) {
+async function fetchWithTimeout$2(fetchPromise, timeoutMs = FETCH_TIMEOUT_MS$2) {
     const timeoutPromise = new Promise((_, reject) => {
         setTimeout(() => reject(new Error('Request timeout')), timeoutMs);
     });
@@ -9494,7 +12890,7 @@ async function fetchWithTimeout$1(fetchPromise, timeoutMs = FETCH_TIMEOUT_MS$1) 
 }
 async function getProtonDBInfo(appId) {
     try {
-        const res = await fetchWithTimeout$1(fetchNoCors(`https://www.protondb.com/api/v1/reports/summaries/${appId}.json`, {
+        const res = await fetchWithTimeout$2(fetchNoCors(`https://www.protondb.com/api/v1/reports/summaries/${appId}.json`, {
             method: 'GET'
         }));
         if (res.status === 200) {
@@ -9509,7 +12905,7 @@ async function getProtonDBInfo(appId) {
 }
 async function getLinuxInfo(appId) {
     try {
-        const res = await fetchWithTimeout$1(fetchNoCors(`https://store.steampowered.com/api/appdetails/?appids=${appId}`, {
+        const res = await fetchWithTimeout$2(fetchNoCors(`https://store.steampowered.com/api/appdetails/?appids=${appId}`, {
             method: 'GET'
         }));
         if (res.status === 200) {
@@ -9553,83 +12949,100 @@ function isOutdated(lastUpdated) {
     return hoursBetweenDates > 24;
 }
 
+function isValidAnalysis(analysis) {
+    if (!analysis || typeof analysis !== 'object')
+        return false;
+    if (!analysis.confidence || typeof analysis.confidence.score !== 'number')
+        return false;
+    if (!analysis.freshness || typeof analysis.freshness.latest_report_age !== 'number')
+        return false;
+    if (!analysis.trend || typeof analysis.trend.direction !== 'string')
+        return false;
+    if (!analysis.stats || typeof analysis.stats.total_reports !== 'number')
+        return false;
+    if (!Array.isArray(analysis.confidence.factors))
+        return false;
+    return true;
+}
+
 const useBadgeData = (appId) => {
     const [protonDBTier, setProtonDBTier] = SP_REACT.useState();
     const [linuxSupport, setLinuxSupport] = SP_REACT.useState(false);
+    const [analysis, setAnalysis] = SP_REACT.useState();
     async function refresh() {
-        const tierPromise = getProtonDBInfo(appId);
-        const linuxPromise = getLinuxInfo(appId);
-        const [tier, linuxSupport] = await Promise.all([tierPromise, linuxPromise]);
-        if (tier?.length && appId?.length) {
-            updateCache(appId, {
-                tier: tier,
-                linuxSupport,
-                lastUpdated: new Date().toISOString()
-            });
+        if (!appId?.length)
+            return;
+        const [tier, linux, anal] = await Promise.all([
+            getProtonDBInfo(appId),
+            getLinuxInfo(appId),
+            getGameAnalysis(appId)
+        ]);
+        if (tier?.length) {
             setProtonDBTier(tier);
         }
-        setLinuxSupport(linuxSupport);
+        setLinuxSupport(linux);
+        const validAnal = isValidAnalysis(anal) ? anal : undefined;
+        setAnalysis(validAnal);
+        if (tier?.length) {
+            updateCache(appId, {
+                tier: tier,
+                linuxSupport: linux,
+                analysis: validAnal,
+                lastUpdated: new Date().toISOString()
+            });
+        }
     }
     SP_REACT.useEffect(() => {
-        // Proton DB Data
+        if (!appId?.length)
+            return;
         let ignore = false;
-        async function getData() {
+        async function loadData() {
             const cache = await getCache(appId);
             if (cache?.tier) {
                 setProtonDBTier(cache.tier);
-                if (!isOutdated(cache?.lastUpdated))
-                    return;
             }
-            const tier = await getProtonDBInfo(appId);
-            if (ignore) {
-                return;
-            }
-            if (!tier?.length)
-                return;
-            setProtonDBTier(tier);
-        }
-        if (appId?.length) {
-            getData();
-        }
-        return () => {
-            ignore = true;
-        };
-    }, [appId]);
-    SP_REACT.useEffect(() => {
-        // Linux Data
-        let ignore = false;
-        async function getData() {
-            const cache = await getCache(appId);
             if (typeof cache?.linuxSupport !== 'undefined') {
-                setLinuxSupport(cache?.linuxSupport);
-                if (!isOutdated(cache?.lastUpdated))
-                    return;
+                setLinuxSupport(cache.linuxSupport);
             }
-            const linuxSupport = await getLinuxInfo(appId);
-            if (ignore) {
+            if (isValidAnalysis(cache?.analysis)) {
+                setAnalysis(cache.analysis);
+            }
+            if (cache?.tier &&
+                cache.tier !== 'pending' &&
+                isValidAnalysis(cache?.analysis) &&
+                !isOutdated(cache?.lastUpdated))
                 return;
+            const [tier, linux, anal] = await Promise.all([
+                getProtonDBInfo(appId),
+                getLinuxInfo(appId),
+                getGameAnalysis(appId)
+            ]);
+            if (ignore)
+                return;
+            if (tier?.length) {
+                setProtonDBTier(tier);
             }
-            setLinuxSupport(linuxSupport);
+            setLinuxSupport(linux);
+            const validAnal = isValidAnalysis(anal) ? anal : undefined;
+            setAnalysis(validAnal);
+            if (tier?.length) {
+                updateCache(appId, {
+                    tier: tier,
+                    linuxSupport: linux,
+                    analysis: validAnal,
+                    lastUpdated: new Date().toISOString()
+                });
+            }
         }
-        if (appId?.length) {
-            getData();
-        }
+        loadData();
         return () => {
             ignore = true;
         };
     }, [appId]);
-    SP_REACT.useEffect(() => {
-        if (protonDBTier) {
-            updateCache(appId, {
-                tier: protonDBTier,
-                linuxSupport,
-                lastUpdated: new Date().toISOString()
-            });
-        }
-    }, [protonDBTier, linuxSupport]);
     return {
         protonDBTier,
         linuxSupport,
+        analysis,
         refresh
     };
 };
@@ -9736,9 +13149,9 @@ var style = (SP_REACT.createElement("style", null, `
     }
 
     .protondb-decky-indicator-borked {
-      background: red;
+      background: rgb(200, 30, 30);
       color: #000000;
-      outline-color: red;
+      outline-color: rgb(200, 30, 30);
     }
 
     .protondb-decky-indicator-pending {
@@ -9849,17 +13262,18 @@ var style = (SP_REACT.createElement("style", null, `
     .protondb-decky-submit-button {
       background: rgb(166, 166, 166);
       border: none;
-      border-radius: 8px;
-      padding: 6px 18px;
+      border-radius: 0;
+      padding: 6px 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: Abel, "Motiva Sans", Arial, Helvetica, sans-serif;
       color: #000000;
+      width: max-content;
+      height: max-content;
     }
 
     .protondb-decky-submit-button.gpfocus, .protondb-decky-submit-button:hover {
-      background: #8a8a8a;
+      filter: brightness(1.3);
       outline: 2px solid black;
     }
 
@@ -9875,24 +13289,12 @@ var style = (SP_REACT.createElement("style", null, `
       height: 28px;
     }
 
-    .protondb-decky-submit-button > span {
-      margin-left: 10px;
-      font-size: 24px;
-      white-space: nowrap;
-      line-height: 24px;
-    }
-
     .protondb-decky-submit-button.protondb-decky-indicator-small {
-      padding: 6px 12px;
+      padding: 6px 8px;
     }
 
     .protondb-decky-submit-button.protondb-decky-indicator-small > div {
       height: 20px;
-    }
-
-    .protondb-decky-submit-button.protondb-decky-indicator-small > span {
-      font-size: 12px;
-      line-height: 12px;
     }
 
     .protondb-decky-submit-button.protondb-decky-indicator-small > div > svg {
@@ -9908,28 +13310,9 @@ var style = (SP_REACT.createElement("style", null, `
       height: 20px;
     }
 
-    .protondb-decky-submit-button.protondb-decky-indicator-minimalist > span {
-      display: none;
-    }
-
     .protondb-decky-submit-button.protondb-decky-indicator-minimalist > div > svg {
       width: 20px;
       height: 20px;
-    }
-
-    .protondb-decky-submit-button.protondb-decky-indicator-label-on-hover-small:hover > span,
-    .protondb-decky-submit-button.protondb-decky-indicator-label-on-hover-small.gpfocus > span {
-      display: block;
-      font-size: 12px;
-      line-height: 12px;
-    }
-
-    .protondb-decky-submit-button.protondb-decky-indicator-label-on-hover-regular:hover > span,
-    .protondb-decky-submit-button.protondb-decky-indicator-label-on-hover-regular.gpfocus > span {
-      display: block;
-      margin-left: 10px;
-      font-size: 24px;
-      line-height: 24px;
     }
 
     .protondb-decky-submit-button.protondb-decky-not-logged-in {
@@ -9939,7 +13322,83 @@ var style = (SP_REACT.createElement("style", null, `
 
     .protondb-decky-submit-button.protondb-decky-not-logged-in.gpfocus,
     .protondb-decky-submit-button.protondb-decky-not-logged-in:hover {
-      background: #ff7a4a;
+      filter: brightness(1.3);
+    }
+
+    .protondb-decky-info-button {
+      background: rgb(166, 166, 166);
+      border: none;
+      border-radius: 0;
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Abel, "Motiva Sans", Arial, Helvetica, sans-serif;
+      color: #000000;
+      width: max-content;
+      height: max-content;
+    }
+
+    .protondb-decky-info-button.gpfocus,
+    .protondb-decky-info-button:hover {
+      filter: brightness(1.3);
+      outline: 2px solid black;
+    }
+
+    .protondb-decky-info-button > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 28px;
+    }
+
+    .protondb-decky-info-button > div > svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .protondb-decky-info-button.protondb-decky-indicator-small {
+      padding: 6px 8px;
+    }
+
+    .protondb-decky-info-button.protondb-decky-indicator-small > div {
+      height: 20px;
+    }
+
+    .protondb-decky-info-button.protondb-decky-indicator-small > div > svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .protondb-decky-info-button.protondb-decky-indicator-minimalist {
+      padding: 6px;
+    }
+
+    .protondb-decky-info-button.protondb-decky-indicator-minimalist > div {
+      height: 20px;
+    }
+
+    .protondb-decky-info-button.protondb-decky-indicator-minimalist > div > svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Analysis button status colors */
+    .protondb-decky-info-working {
+      background: rgb(74, 194, 100);
+      color: #000000;
+    }
+
+    .protondb-decky-info-not-working {
+      background: rgb(200, 30, 30);
+      color: #000000;
+    }
+
+    /* Rounded corners opt-in */
+    .protondb-decky-rounded .protondb-decky-indicator,
+    .protondb-decky-rounded .protondb-decky-submit-button,
+    .protondb-decky-rounded .protondb-decky-info-button {
+      border-radius: 8px;
     }
 
     /* Store page specific styles */
@@ -9955,6 +13414,106 @@ var style = (SP_REACT.createElement("style", null, `
     .protondb-store-context .protondb-decky-indicator {
       /* Ensure badges flow naturally in store context */
       position: static;
+    }
+
+    /* Enhanced Info Badge - styled like other badges */
+    .protondb-decky-enhanced-info {
+      background: rgba(100, 149, 237, 0.3);
+      border: 1px solid rgba(100, 149, 237, 0.5);
+    }
+
+    .protondb-decky-enhanced-info:hover,
+    .protondb-decky-enhanced-info.gpfocus {
+      background: rgba(100, 149, 237, 0.5);
+      border: 1px solid #000;
+    }
+
+    /* Confidence Dots */
+    .protondb-confidence-dots {
+      display: flex;
+      gap: 3px;
+      align-items: center;
+    }
+
+    .protondb-confidence-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .protondb-confidence-dot.filled {
+      background: rgba(74, 222, 128, 0.8);
+      border-color: rgba(74, 222, 128, 0.4);
+      box-shadow: 0 0 4px rgba(74, 222, 128, 0.5);
+    }
+
+    .protondb-confidence-dot.empty {
+      background: rgba(148, 163, 184, 0.3);
+      border-color: rgba(148, 163, 184, 0.2);
+    }
+
+    /* Confidence Text */
+    .protondb-confidence-text {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Trend Indicator */
+    .protondb-trend-indicator {
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1;
+      text-shadow: 0 0 4px currentColor;
+    }
+
+    /* Warnings */
+    .protondb-warnings-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .protondb-warnings-icon {
+      font-size: 14px;
+      color: #fbbf24;
+      cursor: pointer;
+      text-shadow: 0 0 4px rgba(251, 191, 36, 0.5);
+    }
+
+    .protondb-warnings-overlay {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 4px;
+      min-width: 200px;
+      max-width: 300px;
+      padding: 8px;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
+
+    .protondb-warning-item {
+      font-size: 12px;
+      padding: 4px 0;
+      color: #fbbf24;
+      line-height: 1.4;
+    }
+
+    .protondb-warning-item:not(:last-child) {
+      border-bottom: 1px solid rgba(251, 191, 36, 0.2);
     }
 `));
 
@@ -10010,9 +13569,9 @@ function ProtonMedal({ hideSubmit = false, context = 'library', appId: propAppId
     const t = useTranslations();
     const detectedAppId = useAppId();
     const appId = propAppId || detectedAppId;
-    const { protonDBTier, linuxSupport, refresh } = useBadgeData(appId);
+    const { protonDBTier, linuxSupport, analysis, refresh } = useBadgeData(appId);
     const { settings, loading } = useSettings();
-    const { isLoggedIn, isLoading: authLoading, recheckLoginStatus } = useProtonDBAuth();
+    const { isLoggedIn, recheckLoginStatus } = useProtonDBAuth();
     // There will be no mutation when the page is loaded (either from exiting the game
     // or just newly opening the page), therefore it's visible by default.
     const [show, setShow] = SP_REACT.useState(true);
@@ -10037,7 +13596,7 @@ function ProtonMedal({ hideSubmit = false, context = 'library', appId: propAppId
             // Set up mutation observer for fullscreen detection
             mutationObserver = new MutationObserver((entries) => {
                 for (const entry of entries) {
-                    if (entry.type !== "attributes" || entry.attributeName !== "class") {
+                    if (entry.type !== 'attributes' || entry.attributeName !== 'class') {
                         continue;
                     }
                     const className = entry.target.className;
@@ -10050,7 +13609,10 @@ function ProtonMedal({ hideSubmit = false, context = 'library', appId: propAppId
                     setShow(!fullscreenMode || fullscreenAborted);
                 }
             });
-            mutationObserver.observe(topCapsule, { attributes: true, attributeFilter: ["class"] });
+            mutationObserver.observe(topCapsule, {
+                attributes: true,
+                attributeFilter: ['class']
+            });
             // Set up height measurement
             const updateHeight = () => {
                 const height = topCapsule.getBoundingClientRect().height;
@@ -10099,13 +13661,28 @@ function ProtonMedal({ hideSubmit = false, context = 'library', appId: propAppId
             position: 'absolute',
             ...getPositionStyle(settings.position, heroHeight)
         };
+    const roundedClass = settings.roundedCorners ? 'protondb-decky-rounded' : '';
     const containerClassName = context === 'store'
-        ? 'protondb-decky-indicator-container protondb-store-context'
-        : 'protondb-decky-indicator-container';
-    return (SP_REACT.createElement("div", { ref: ref, className: containerClassName, style: containerStyle }, show && !loading &&
-        SP_REACT.createElement(SP_REACT.Fragment, null,
-            style,
-            SP_REACT.createElement(DFL.Focusable, { style: { display: 'flex', gap: '8px' }, "flow-children": "row" },
+        ? `protondb-decky-indicator-container protondb-store-context ${roundedClass}`
+        : `protondb-decky-indicator-container ${roundedClass}`;
+    const trendBorderColors = {
+        improving: '#4ade80',
+        declining: '#f87171'
+    };
+    const trendDirection = analysis?.trend?.direction;
+    const trendBorderStyle = trendDirection && trendBorderColors[trendDirection]
+        ? {
+            border: `2px solid ${trendBorderColors[trendDirection]}`,
+            boxShadow: `0 0 6px ${trendBorderColors[trendDirection]}55`
+        }
+        : {};
+    return (SP_REACT.createElement("div", { ref: ref, className: containerClassName, style: containerStyle }, show && !loading && (SP_REACT.createElement(SP_REACT.Fragment, null,
+        style,
+        SP_REACT.createElement(DFL.Focusable, { style: { display: 'flex', gap: '8px' }, "flow-children": "row" },
+            SP_REACT.createElement("div", { style: {
+                    borderRadius: settings.roundedCorners ? '8px' : '0',
+                    ...trendBorderStyle
+                } },
                 SP_REACT.createElement(DeckButton, { className: `protondb-decky-indicator ${tierClass} ${nativeClass} ${sizeClass} ${labelTypeOnHoverClass}`, type: "button", onClick: async () => {
                         refresh();
                         DFL.Navigation.NavigateToExternalWeb(`https://www.protondb.com/app/${appId}`);
@@ -10114,31 +13691,36 @@ function ProtonMedal({ hideSubmit = false, context = 'library', appId: propAppId
                         linuxSupport ? (SP_REACT.createElement(IoLogoTux, { style: { marginRight: 10 } })) : (SP_REACT.createElement(SP_REACT.Fragment, null)),
                         SP_REACT.createElement(FaReact, null)),
                     SP_REACT.createElement("span", null, (() => {
-                        const text = protonDBTier ? (settings.size === 'small' ||
-                            (settings.size === 'minimalist' &&
-                                settings.labelTypeOnHover !== 'regular')
-                            ? t(`tierMin${protonDBTier}`)
-                            : t(`tier${protonDBTier}`)) : (t('noReport'));
+                        const text = protonDBTier
+                            ? settings.size === 'small' ||
+                                (settings.size === 'minimalist' &&
+                                    settings.labelTypeOnHover !== 'regular')
+                                ? t(`tierMin${protonDBTier}`)
+                                : t(`tier${protonDBTier}`)
+                            : t('noReport');
                         // Limit to 20 characters max
                         return text.length > 20 ? text.slice(0, 20) : text;
-                    })())),
-                !settings.disableSubmit && !hideSubmit && (SP_REACT.createElement(DeckButton, { className: `protondb-decky-indicator protondb-decky-submit-button ${sizeClass} ${labelTypeOnHoverClass} ${isLoggedIn === false ? 'protondb-decky-not-logged-in' : ''}`, type: "button", onClick: async () => {
-                        if (isLoggedIn === false) {
-                            // User is not logged in, direct them to profile page to login
-                            DFL.Navigation.NavigateToExternalWeb('https://www.protondb.com/profile');
-                        }
-                        else {
-                            // User is logged in or status unknown, go to contribute page
-                            DFL.Navigation.NavigateToExternalWeb(`https://www.protondb.com/contribute?appId=${appId}`);
-                        }
-                        // Recheck login status after user potentially logs in
-                        setTimeout(() => {
-                            recheckLoginStatus();
-                        }, 2000);
-                    } },
-                    SP_REACT.createElement("div", null,
-                        SP_REACT.createElement(FaPaperPlane, null)),
-                    settings.size !== 'minimalist' && (SP_REACT.createElement("span", null, authLoading ? t('loading') : (isLoggedIn === false ? t('login') : t('submit'))))))))));
+                    })()))),
+            isValidAnalysis(analysis) &&
+                settings.showAnalysisButton !== false && (SP_REACT.createElement(DeckButton, { className: `protondb-decky-info-button ${sizeClass} ${analysis.working_status?.status === 'working' ? 'protondb-decky-info-working' : analysis.working_status?.status === 'not_working' ? 'protondb-decky-info-not-working' : ''}`, type: "button", onClick: () => {
+                    DFL.showModal(SP_REACT.createElement(AnalysisErrorBoundary, null,
+                        SP_REACT.createElement(AnalysisModal, { analysis: analysis, appId: appId })));
+                } },
+                SP_REACT.createElement("div", null,
+                    SP_REACT.createElement(FaChartBar, null)))),
+            !settings.disableSubmit && !hideSubmit && (SP_REACT.createElement(DeckButton, { className: `protondb-decky-submit-button ${sizeClass} ${isLoggedIn === false ? 'protondb-decky-not-logged-in' : ''}`, type: "button", onClick: async () => {
+                    if (isLoggedIn === false) {
+                        DFL.Navigation.NavigateToExternalWeb('https://www.protondb.com/profile');
+                    }
+                    else {
+                        DFL.Navigation.NavigateToExternalWeb(`https://www.protondb.com/contribute?appId=${appId}`);
+                    }
+                    setTimeout(() => {
+                        recheckLoginStatus();
+                    }, 2000);
+                } },
+                SP_REACT.createElement("div", null,
+                    SP_REACT.createElement(FaPaperPlane, null)))))))));
 }
 
 function patchLibraryApp() {
@@ -10162,9 +13744,9 @@ function patchLibraryApp() {
     });
 }
 
-const FETCH_TIMEOUT_MS = 2000;
+const FETCH_TIMEOUT_MS$1 = 2000;
 // Helper function to add timeout to fetch requests
-async function fetchWithTimeout(fetchPromise, timeoutMs = FETCH_TIMEOUT_MS) {
+async function fetchWithTimeout$1(fetchPromise, timeoutMs = FETCH_TIMEOUT_MS$1) {
     const timeoutPromise = new Promise((_, reject) => {
         setTimeout(() => reject(new Error('Request timeout')), timeoutMs);
     });
@@ -10174,10 +13756,26 @@ async function fetchWithTimeout(fetchPromise, timeoutMs = FETCH_TIMEOUT_MS) {
 const storeAppId$ = new BehaviorSubject('');
 // Tier colors matching the library badge
 const TIER_COLORS = {
-    platinum: { bg: 'rgb(180, 199, 220)', text: '#000000', border: 'rgb(180, 199, 220)' },
-    gold: { bg: 'rgb(207, 181, 59)', text: '#000000', border: 'rgb(207, 181, 59)' },
-    silver: { bg: 'rgb(166, 166, 166)', text: '#000000', border: 'rgb(166, 166, 166)' },
-    bronze: { bg: 'rgb(205, 127, 50)', text: '#000000', border: 'rgb(205, 127, 50)' },
+    platinum: {
+        bg: 'rgb(180, 199, 220)',
+        text: '#000000',
+        border: 'rgb(180, 199, 220)'
+    },
+    gold: {
+        bg: 'rgb(207, 181, 59)',
+        text: '#000000',
+        border: 'rgb(207, 181, 59)'
+    },
+    silver: {
+        bg: 'rgb(166, 166, 166)',
+        text: '#000000',
+        border: 'rgb(166, 166, 166)'
+    },
+    bronze: {
+        bg: 'rgb(205, 127, 50)',
+        text: '#000000',
+        border: 'rgb(205, 127, 50)'
+    },
     borked: { bg: 'rgb(255, 0, 0)', text: '#000000', border: 'rgb(255, 0, 0)' },
     pending: { bg: 'rgb(68, 68, 68)', text: '#FFFFFF', border: 'rgb(68, 68, 68)' }
 };
@@ -10191,48 +13789,578 @@ const HistoryModule = DFL.findModuleExport((exp) => exp?.m_history !== undefined
 const History = HistoryModule?.m_history;
 // Track if WebSocket is ready for injection
 let wsReady = false;
+function fetchGatewayJson(url, timeoutMs = 5000) {
+    return fetchWithTimeout$1(fetchNoCors(url, {
+        method: 'GET',
+        headers: { 'X-API-Key': GATEWAY_API_KEY }
+    }), timeoutMs)
+        .then((r) => (r.status === 200 ? r.json() : null))
+        .catch(() => null);
+}
+function serializeForScript(value) {
+    return value ? JSON.stringify(value) : 'null';
+}
+function buildOverlayPreambleCode(payload) {
+    return `
+    const analysisData = ${payload.analysisData};
+    const historyData = ${payload.historyData};
+    const recentReportsData = ${payload.recentReportsData};
+    const versionsData = ${payload.versionsData};
+    var historyMonths = historyData && historyData.months ? historyData.months : null;
+    var recentReports = recentReportsData && recentReportsData.reports ? recentReportsData.reports : null;
+    var protonVersions = versionsData && versionsData.versions ? versionsData.versions : null;
+    var settingsTips = ${payload.settingsData};
+    var settingsOptions = settingsTips && settingsTips.launch_options ? settingsTips.launch_options : null;
+    var gameAppId = ${payload.appId};
+
+    function esc(s) {
+      if (!s) return '';
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    var gameName = '—';
+    try {
+      var titleEl = document.querySelector('#appHubAppName') || document.querySelector('.apphub_AppName');
+      if (titleEl) gameName = esc(titleEl.textContent.trim());
+    } catch(e) {}
+  `;
+}
+function buildOverlayAnalysisHelpersCode(appId) {
+    return `
+    function buildAnalysisTable(a) {
+      if (!a) return '<p style="color:#aaa;">No analysis data available.</p>';
+      var trend = a.trend || {};
+      var confidence = a.confidence || {};
+      var freshness = a.freshness || {};
+      var stats = a.stats || {};
+      var ws = a.working_status || null;
+      var trendIcons = { improving: '🟢', declining: '🔴', stable: '⚪', unknown: '❓' };
+      var wsIcons = { working: '✅', not_working: '❌', unknown: '❓' };
+      function pct(v) { return v !== undefined && v !== null ? (v * 100).toFixed(1) + '%' : '—'; }
+      var rows = [
+        ['Game name', gameName],
+        ['Game App ID', '${appId}'],
+        ['Working status', ws ? (wsIcons[ws.status] || '❓') + ' ' + ws.status.replace('_', ' ') + ' (' + ws.confidence + ' certainty)' : '❓ Unknown'],
+        ['— Recently broken', ws ? (ws.recently_broken ? 'Yes' : 'No') : '—'],
+        ['— Timeframe', ws && ws.timeframe_days != null ? 'Last ' + ws.timeframe_days + ' days' : '—'],
+        ['— Last positive report', ws && ws.last_positive_report_age != null ? ws.last_positive_report_age + ' days ago' : '—'],
+        ['Confidence', (confidence.level || '—') + ' (' + (confidence.score || 0) + '/100)'],
+        ['Confidence factors', (confidence.factors || []).join(', ') || '—'],
+        ['Trend', trend.direction === 'unknown' ? '❓ Not enough recent data' : (trendIcons[trend.direction] || '❓') + ' ' + trend.direction],
+        ['— Recent positive ratio', pct(trend.recent_positive_ratio)],
+        ['— Older positive ratio', pct(trend.older_positive_ratio)],
+        ['Freshness', (freshness.label || '—') + ' (' + (freshness.latest_report_age || 0) + ' days ago)'],
+        ['Stale', freshness.is_stale ? 'Yes' : 'No'],
+        ['Total reports', stats.total_reports || 0],
+        ['Recent reports', stats.recent_reports || 0]
+      ];
+      var html = '<table style="width:100%;border-collapse:collapse;font-size:13px;color:#e0e0e0;">';
+      rows.forEach(function(row, i) {
+        var sub = row[0].startsWith('—');
+        var bg = i % 2 === 0 ? 'rgba(255,255,255,0.04)' : 'transparent';
+        var labelColor = sub ? '#888' : '#c0c0c0';
+        var labelPad = sub ? '6px 10px 6px 20px' : '6px 10px';
+        html += '<tr style="background:' + bg + '"><td style="padding:' + labelPad + ';color:' + labelColor + ';width:55%;font-weight:bold;vertical-align:top;">' + row[0] + '</td><td style="padding:6px 10px;vertical-align:top;">' + row[1] + '</td></tr>';
+      });
+      html += '</table>';
+      return html;
+    }
+
+    function buildChartSvg(months) {
+      if (!months || months.length === 0) return '<p style="color:#888;text-align:center;padding:40px 0;">No report data available</p>';
+      var now = new Date();
+      var cutoff = new Date(now.getFullYear() - 5, now.getMonth(), 1);
+      var filtered = months.filter(function(m) {
+        var parts = m.month.split('-');
+        return new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, 1) >= cutoff;
+      });
+      if (filtered.length === 0) return '<p style="color:#888;text-align:center;padding:40px 0;">No recent data</p>';
+      var maxVal = 1;
+      filtered.forEach(function(m) { maxVal = Math.max(maxVal, m.positive, m.negative); });
+      var w = 500, h = 180, pad = 40, chartW = w - pad - 30, chartH = h - 30;
+      function x(i) { return pad + (i / (filtered.length - 1 || 1)) * chartW; }
+      function y(v) { return 10 + chartH - (v / maxVal) * chartH; }
+      function line(data, key) {
+        return data.map(function(d, i) { return (i === 0 ? 'M' : 'L') + x(i).toFixed(1) + ',' + y(d[key]).toFixed(1); }).join(' ');
+      }
+      function area(data, key) {
+        var l = line(data, key);
+        return l + ' L' + x(data.length - 1).toFixed(1) + ',' + (10 + chartH) + ' L' + pad + ',' + (10 + chartH) + ' Z';
+      }
+      var svg = '<svg viewBox="0 0 ' + w + ' ' + h + '" style="width:100%;height:220px;" xmlns="http://www.w3.org/2000/svg">';
+      svg += '<defs><linearGradient id="gp" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4caf50" stop-opacity="0.4"/><stop offset="100%" stop-color="#4caf50" stop-opacity="0.05"/></linearGradient>';
+      svg += '<linearGradient id="gn" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f44336" stop-opacity="0.4"/><stop offset="100%" stop-color="#f44336" stop-opacity="0.05"/></linearGradient></defs>';
+      svg += '<path d="' + area(filtered, 'positive') + '" fill="url(#gp)"/>';
+      svg += '<path d="' + line(filtered, 'positive') + '" fill="none" stroke="#4caf50" stroke-width="2"/>';
+      svg += '<path d="' + area(filtered, 'negative') + '" fill="url(#gn)"/>';
+      svg += '<path d="' + line(filtered, 'negative') + '" fill="none" stroke="#f44336" stroke-width="2"/>';
+      var shortMonths = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      function fmtMonth(m) { var p = m.split('-'); return shortMonths[parseInt(p[1]) - 1] + " '" + p[0].slice(2); }
+      var step = Math.max(1, Math.floor(filtered.length / 6));
+      for (var i = 0; i < filtered.length; i += step) {
+        svg += '<text x="' + x(i).toFixed(1) + '" y="' + (h - 2) + '" fill="#888" font-size="9" text-anchor="middle">' + fmtMonth(filtered[i].month) + '</text>';
+      }
+      for (var v = 0; v <= maxVal; v += Math.max(1, Math.ceil(maxVal / 4))) {
+        svg += '<text x="' + (pad - 4) + '" y="' + (y(v) + 3).toFixed(1) + '" fill="#888" font-size="9" text-anchor="end">' + v + '</text>';
+      }
+      svg += '<circle cx="' + (w - 80) + '" cy="12" r="4" fill="#4caf50"/><text x="' + (w - 72) + '" y="16" fill="#ccc" font-size="11">Good</text>';
+      svg += '<circle cx="' + (w - 35) + '" cy="12" r="4" fill="#f44336"/><text x="' + (w - 27) + '" y="16" fill="#ccc" font-size="11">Bad</text>';
+      svg += '</svg>';
+      return svg;
+    }
+
+    var reportsPageSize = 5;
+    var reportsVisible = reportsPageSize;
+
+    function buildSingleReportHtml(r) {
+      if (!r || typeof r !== 'object') return '';
+      var ts = typeof r.timestamp === 'number' ? r.timestamp : 0;
+      var d = new Date(ts * 1000);
+      var dateStr = ts > 0 ? d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
+      var isPositive = r.rating === 'Gold' || r.rating === 'Platinum' || r.rating === 'Silver';
+      var color = isPositive ? '#4ade80' : '#f87171';
+      var label = isPositive ? '👍 Works' : '👎 Issues';
+      var meta = [r.os ? 'OS: ' + esc(r.os) : null, r.proton_version ? 'Proton: ' + esc(r.proton_version) : null, r.is_steam_deck ? 'Steam Deck' : null].filter(Boolean).join(' · ') || '—';
+      var rawNotes = r.notes ? (r.notes.length > 200 ? r.notes.substring(0, 200) + '…' : r.notes) : '';
+      var notes = rawNotes ? esc(rawNotes) : 'No remarks shared';
+      var notesColor = rawNotes ? '#ccc' : '#666';
+      var h = '<div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px 12px;margin-bottom:8px;border-left:3px solid ' + color + ';">';
+      h += '<div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-weight:bold;color:' + color + ';font-size:13px;">' + label + '</span><span style="color:#888;font-size:11px;">' + dateStr + '</span></div>';
+      h += '<div style="font-size:11px;color:#aaa;margin-bottom:4px;text-align:right;">' + meta + '</div>';
+      h += '<div style="font-size:12px;color:' + notesColor + ';line-height:1.4;font-style:italic;">' + notes + '</div>';
+      h += '</div>';
+      return h;
+    }
+
+    function renderReportsPage(reports) {
+      var panel = document.getElementById('pdb-panel-reports');
+      if (!panel || !reports || !Array.isArray(reports)) return;
+      var html = '';
+      var count = Math.min(reportsVisible, reports.length);
+      for (var i = 0; i < count; i++) { html += buildSingleReportHtml(reports[i]); }
+      var remaining = reports.length - count;
+      if (remaining > 0) {
+        html += '<div id="pdb-reports-more" style="text-align:center;padding:10px 0;font-size:12px;color:#7ab3f0;cursor:pointer;background:rgba(122,179,240,0.08);border-radius:6px;margin-top:4px;">Show more (' + remaining + ' remaining)</div>';
+      }
+      panel.innerHTML = html;
+      var moreBtn = document.getElementById('pdb-reports-more');
+      if (moreBtn) {
+        moreBtn.onclick = function() {
+          reportsVisible += reportsPageSize;
+          renderReportsPage(reports);
+        };
+      }
+    }
+
+    function buildReportsHtml(reports) {
+      if (!reports || reports.length === 0) return '<p style="color:#888;text-align:center;padding:40px 0;">No recent reports available</p>';
+      reportsVisible = reportsPageSize;
+      var html = '';
+      var count = Math.min(reportsVisible, reports.length);
+      for (var i = 0; i < count; i++) { html += buildSingleReportHtml(reports[i]); }
+      var remaining = reports.length - count;
+      if (remaining > 0) {
+        html += '<div id="pdb-reports-more" style="text-align:center;padding:10px 0;font-size:12px;color:#7ab3f0;cursor:pointer;background:rgba(122,179,240,0.08);border-radius:6px;margin-top:4px;">Show more (' + remaining + ' remaining)</div>';
+      }
+      return html;
+    }
+
+    function buildVersionsHtml(versions, totalReports) {
+      if (!versions || versions.length === 0) return '<p style="color:#888;text-align:center;padding:40px 0;">No version data available</p>';
+      var html = '<div style="font-size:11px;color:#888;margin-bottom:8px;text-align:center;">' + (totalReports || 0) + ' reports across all versions</div>';
+      html += '<div style="display:flex;justify-content:space-between;font-size:10px;color:#666;padding:0 12px 4px;margin-bottom:2px;border-bottom:1px solid rgba(255,255,255,0.06);"><span>Version</span><span>% positive ratings</span></div>';
+      versions.forEach(function(v) {
+        var isCurrent = v.version === 'Proton Official' || v.version === 'Proton 10';
+        var ratio = typeof v.positive_ratio === 'number' ? v.positive_ratio : 0;
+        var pct = Math.round(ratio * 100);
+        var color = ratio >= 0.75 ? '#4ade80' : ratio >= 0.5 ? '#facc15' : '#f87171';
+        var borderColor = isCurrent ? '#7ab3f0' : 'rgba(255,255,255,0.12)';
+        var bg = isCurrent ? 'rgba(122,179,240,0.10)' : 'rgba(255,255,255,0.04)';
+        var nameColor = isCurrent ? '#7ab3f0' : '#e0e0e0';
+        var ts = typeof v.latest_timestamp === 'number' ? v.latest_timestamp : 0;
+        var age = ts > 0 ? Math.round((Date.now() / 1000 - ts) / 86400) : -1;
+        var ageStr = age < 0 ? '—' : age === 0 ? 'today' : age + 'd ago';
+        html += '<div style="background:' + bg + ';border-radius:6px;padding:8px 12px;margin-bottom:6px;border-left:3px solid ' + borderColor + ';">';
+        html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">';
+        html += '<span style="font-weight:bold;font-size:13px;color:' + nameColor + ';">' + esc(v.version);
+        if (isCurrent) html += '<span style="font-size:10px;color:#7ab3f0;margin-left:6px;font-weight:normal;">★ Steam Deck default</span>';
+        html += '</span>';
+        var vCount = typeof v.total_reports === 'number' ? v.total_reports : 0;
+        html += '<span style="color:#aaa;font-size:11px;">' + vCount + ' report' + (vCount !== 1 ? 's' : '') + '</span></div>';
+        html += '<div style="display:flex;align-items:center;gap:8px;">';
+        html += '<div style="flex:1;height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;"><div style="width:' + Math.min(100, Math.max(0, pct)) + '%;height:100%;background:' + color + ';border-radius:3px;"></div></div>';
+        html += '<span style="font-size:11px;color:' + color + ';min-width:32px;">' + pct + '%</span></div>';
+        html += '<div style="font-size:10px;color:#666;margin-top:2px;">Latest: ' + ageStr + '</div>';
+        html += '</div>';
+      });
+      return html;
+    }
+
+    function storeCopyToClipboard(text) {
+      try {
+        var input = document.createElement('input');
+        input.value = text;
+        input.style.position = 'absolute';
+        input.style.left = '-9999px';
+        document.body.appendChild(input);
+        input.focus();
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+      } catch(e) {
+        try { navigator.clipboard.writeText(text); } catch(e2) {}
+      }
+    }
+
+    function buildSettingsHtml(options, tips) {
+      if (!options || options.length === 0) return '<p style="color:#888;text-align:center;padding:40px 0;">No launch options reported for this game</p>';
+      var totalReports = tips ? (tips.total_reports || 0) : 0;
+      var withSettings = tips ? (tips.reports_with_settings || 0) : 0;
+      var html = '<div style="font-size:11px;color:#888;margin-bottom:8px;text-align:center;">Launch options used in ' + withSettings + ' of ' + totalReports + ' reports (positive only)</div>';
+      html += '<div style="font-size:10px;color:#666;margin-bottom:8px;text-align:center;line-height:1.4;">Add these to Steam &gt; Game Properties &gt; Launch Options</div>';
+      options.forEach(function(opt, idx) {
+        if (!opt || !opt.option) return;
+        var text = esc(opt.option) + '=' + esc(opt.value);
+        var count = typeof opt.count === 'number' ? opt.count : 0;
+        var total = typeof opt.total_with_options === 'number' ? opt.total_with_options : 0;
+        var pct = total > 0 ? Math.round((count / total) * 100) : 0;
+        html += '<div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:8px 12px;margin-bottom:6px;border-left:3px solid rgba(255,255,255,0.12);">';
+        html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">';
+        html += '<span style="font-weight:bold;font-size:12px;color:#e0e0e0;font-family:monospace;flex:1;">' + text + '</span>';
+        html += '<span id="pdb-apply-' + idx + '" style="padding:4px 10px;font-size:11px;color:#7dd3fc;cursor:pointer;background:rgba(255,255,255,0.06);border-radius:4px;margin-left:8px;white-space:nowrap;">Apply</span>';
+        html += '<span id="pdb-copy-' + idx + '" style="padding:4px 10px;font-size:11px;color:#aaa;cursor:pointer;background:rgba(255,255,255,0.06);border-radius:4px;margin-left:4px;white-space:nowrap;">Copy</span>';
+        html += '</div>';
+        html += '<div id="pdb-conflict-' + idx + '" style="display:none;margin-top:6px;padding:6px 8px;background:rgba(255,255,255,0.06);border-radius:4px;font-size:10px;"></div>';
+        html += '<div style="font-size:10px;color:#666;">' + count + ' report' + (count !== 1 ? 's' : '') + ' (' + pct + '%)</div>';
+        html += '</div>';
+      });
+      return html;
+    }
+
+    function wireSettingsCopyButtons(options) {
+      if (!options || !Array.isArray(options)) return;
+      options.forEach(function(opt, idx) {
+        if (!opt || !opt.option) return;
+        var btn = document.getElementById('pdb-copy-' + idx);
+        if (!btn) return;
+        var copyText = String(opt.option) + '=' + String(opt.value || '');
+        btn.onclick = function() {
+          storeCopyToClipboard(copyText);
+          btn.textContent = 'Copied!';
+          btn.style.color = '#4ade80';
+          setTimeout(function() { btn.textContent = 'Copy'; btn.style.color = '#aaa'; }, 2000);
+        };
+      });
+    }
+
+    function getSteamApps() {
+      return (window.SteamClient || (typeof SteamClient !== 'undefined' ? SteamClient : null));
+    }
+
+    function applyOptionDirect(optText, btn) {
+      try {
+        var sa = getSteamApps();
+        if (sa && sa.Apps && sa.Apps.SetAppLaunchOptions) {
+          sa.Apps.SetAppLaunchOptions(gameAppId, optText);
+          btn.textContent = 'Applied!';
+          btn.style.color = '#4ade80';
+          setTimeout(function() { btn.textContent = 'Apply'; btn.style.color = '#7dd3fc'; }, 2000);
+        }
+      } catch(e) {}
+    }
+
+    function wireSettingsApplyButtons(options) {
+      if (!options || !Array.isArray(options)) return;
+      var sa = getSteamApps();
+      if (!sa || !sa.Apps || !sa.Apps.SetAppLaunchOptions) return;
+      options.forEach(function(opt, idx) {
+        if (!opt || !opt.option) return;
+        var btn = document.getElementById('pdb-apply-' + idx);
+        if (!btn) return;
+        var optText = String(opt.option) + '=' + String(opt.value || '');
+        btn.onclick = function() {
+          try {
+            var sa2 = getSteamApps();
+            if (!sa2 || !sa2.Apps) { applyOptionDirect(optText, btn); return; }
+            if (!sa2.Apps.RegisterForAppDetails) { applyOptionDirect(optText, btn); return; }
+            var done = false;
+            var reg = sa2.Apps.RegisterForAppDetails(gameAppId, function(details) {
+              if (done) return;
+              done = true;
+              if (reg && reg.unregister) reg.unregister();
+              var current = (details && typeof details.strLaunchOptions === 'string') ? details.strLaunchOptions : '';
+              if (!current.trim()) {
+                applyOptionDirect(optText, btn);
+              } else {
+                showConflictUI(idx, current, optText, btn);
+              }
+            });
+            setTimeout(function() {
+              if (!done) {
+                done = true;
+                if (reg && reg.unregister) reg.unregister();
+                applyOptionDirect(optText, btn);
+              }
+            }, 1500);
+          } catch(e) {
+            applyOptionDirect(optText, btn);
+          }
+        };
+      });
+    }
+
+    function showConflictUI(idx, current, optText, applyBtn) {
+      var container = document.getElementById('pdb-conflict-' + idx);
+      if (!container) return;
+      container.style.display = 'block';
+      var label = document.createElement('div');
+      label.style.cssText = 'color:#facc15;margin-bottom:4px;';
+      label.textContent = 'Game already has launch options:';
+      var preview = document.createElement('div');
+      preview.style.cssText = 'color:#aaa;font-family:monospace;margin-bottom:6px;word-break:break-all;';
+      preview.textContent = current;
+      var actions = document.createElement('div');
+      actions.style.cssText = 'display:flex;gap:6px;';
+      var appendBtn = document.createElement('span');
+      appendBtn.style.cssText = 'padding:3px 8px;font-size:10px;color:#4ade80;cursor:pointer;background:rgba(74,222,128,0.1);border-radius:3px;';
+      appendBtn.textContent = 'Add to existing';
+      var replaceBtn = document.createElement('span');
+      replaceBtn.style.cssText = 'padding:3px 8px;font-size:10px;color:#f87171;cursor:pointer;background:rgba(248,113,113,0.1);border-radius:3px;';
+      replaceBtn.textContent = 'Replace all';
+      var cancelBtn = document.createElement('span');
+      cancelBtn.style.cssText = 'padding:3px 8px;font-size:10px;color:#aaa;cursor:pointer;background:rgba(255,255,255,0.06);border-radius:3px;';
+      cancelBtn.textContent = 'Cancel';
+      actions.appendChild(appendBtn);
+      actions.appendChild(replaceBtn);
+      actions.appendChild(cancelBtn);
+      container.textContent = '';
+      container.appendChild(label);
+      container.appendChild(preview);
+      container.appendChild(actions);
+      appendBtn.onclick = function() {
+        try {
+          var sa = getSteamApps();
+          if (!sa || !sa.Apps || !sa.Apps.SetAppLaunchOptions) return;
+          var merged = current.indexOf(optText) >= 0 ? current : current + ' ' + optText;
+          sa.Apps.SetAppLaunchOptions(gameAppId, merged);
+          container.style.display = 'none';
+          applyBtn.textContent = 'Applied!';
+          applyBtn.style.color = '#4ade80';
+          setTimeout(function() { applyBtn.textContent = 'Apply'; applyBtn.style.color = '#7dd3fc'; }, 2000);
+        } catch(e) {}
+      };
+      replaceBtn.onclick = function() {
+        try {
+          var sa = getSteamApps();
+          if (!sa || !sa.Apps || !sa.Apps.SetAppLaunchOptions) return;
+          sa.Apps.SetAppLaunchOptions(gameAppId, optText);
+          container.style.display = 'none';
+          applyBtn.textContent = 'Applied!';
+          applyBtn.style.color = '#4ade80';
+          setTimeout(function() { applyBtn.textContent = 'Apply'; applyBtn.style.color = '#7dd3fc'; }, 2000);
+        } catch(e) {}
+      };
+      cancelBtn.onclick = function() {
+        container.style.display = 'none';
+      };
+    }
+  `;
+}
+function buildOverlayUiCode(payload) {
+    return `
+    const wrapper = document.createElement('div');
+    wrapper.id = 'protondb-store-badge';
+    wrapper.style.cssText = 'position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 999999; display: flex; align-items: center; gap: 8px;';
+
+    const badge = document.createElement('div');
+    badge.style.cssText = 'background: ${payload.tierColor.bg}; padding: 6px 18px; border-radius: 8px; color: ${payload.tierColor.text}; cursor: pointer; display: flex; align-items: center; width: max-content; height: max-content; ${payload.trendBorderCss}';
+    badge.innerHTML = '<span style="font-size: 28px; line-height: 28px;">⚛️</span><span style="margin-left: 10px; font-size: 24px; line-height: 24px; white-space: nowrap;">${payload.tierLabel}</span>';
+    badge.onclick = function() { window.open('https://www.protondb.com/app/${payload.appId}', '_blank'); };
+    wrapper.appendChild(badge);
+
+    if (analysisData) {
+      const infoBtn = document.createElement('div');
+      infoBtn.id = 'protondb-store-info-btn';
+      infoBtn.style.cssText = 'background: ${payload.infoBtnColor.bg}; padding: 6px 10px; border-radius: 8px; color: ${payload.infoBtnColor.text}; cursor: pointer; display: flex; align-items: center; justify-content: center;';
+      infoBtn.innerHTML = '<svg viewBox="0 0 512 512" width="28" height="28" fill="currentColor"><path d="M32 32v432a16 16 0 0 0 16 16h432" stroke="currentColor" stroke-width="32" fill="none" stroke-linecap="round"/><rect x="96" y="224" width="80" height="192" rx="8"/><rect x="224" y="128" width="80" height="288" rx="8"/><rect x="352" y="64" width="80" height="352" rx="8"/></svg>';
+      infoBtn.title = 'Show analysis';
+      infoBtn.onclick = function(e) {
+        e.stopPropagation();
+        var overlay = document.getElementById('protondb-store-analysis-overlay');
+        if (overlay) { overlay.remove(); return; }
+        var ov = document.createElement('div');
+        ov.id = 'protondb-store-analysis-overlay';
+        ov.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999999; background: #1a1d23; border-radius: 8px; padding: 20px; min-width: 520px; max-width: 90vw; width: 600px; max-height: 80vh; overflow-y: auto; box-shadow: 0 8px 32px rgba(0,0,0,0.6); color: #e0e0e0; outline: none;';
+        var tabBtnStyle = 'flex:1;padding:8px 0;text-align:center;font-size:13px;font-weight:bold;cursor:pointer;border:none;border-radius:0;background:transparent;';
+        var activeTabStyle = tabBtnStyle + 'color:#fff;border-bottom:2px solid #7ab3f0;background:rgba(255,255,255,0.1);';
+        var inactiveTabStyle = tabBtnStyle + 'color:#888;border-bottom:2px solid transparent;';
+        var header = '<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px;"><h3 style="margin:0;color:#fff;font-size:16px;font-weight:bold;">ProtonDB Analysis</h3><a href="https://protondb.schelstraete.org" target="_blank" style="color:#7ab3f0;font-size:11px;text-decoration:none;">protondb.schelstraete.org</a></div>';
+        var tabs = '<div style="display:flex;margin-bottom:8px;"><button id="pdb-tab-details" style="' + activeTabStyle + '">Details</button><button id="pdb-tab-reports" style="' + inactiveTabStyle + '">Reports</button><button id="pdb-tab-versions" style="' + inactiveTabStyle + '">Versions</button><button id="pdb-tab-settings" style="' + inactiveTabStyle + '">Settings</button></div>';
+        var detailsContent = '<div id="pdb-panel-details">' + buildAnalysisTable(analysisData) + '</div>';
+        var reportsContent = '<div id="pdb-panel-reports" style="display:none;"></div>';
+        var versionsContent = '<div id="pdb-panel-versions" style="display:none;"></div>';
+        var settingsContent = '<div id="pdb-panel-settings" style="display:none;"></div>';
+        ov.innerHTML = header + tabs + detailsContent + reportsContent + versionsContent + settingsContent;
+        var closeBtnDiv = document.createElement('div');
+        closeBtnDiv.style.cssText = 'margin-top:14px;display:flex;justify-content:flex-end;';
+        var closeBtnEl = document.createElement('button');
+        closeBtnEl.textContent = 'Close';
+        closeBtnEl.style.cssText = 'background:rgb(100,120,150);color:#fff;border:none;border-radius:6px;padding:10px 28px;cursor:pointer;font-size:16px;min-height:44px;';
+        closeBtnEl.addEventListener('click', function(evt) { evt.stopPropagation(); evt.preventDefault(); ov.remove(); }, true);
+        closeBtnDiv.appendChild(closeBtnEl);
+        ov.appendChild(closeBtnDiv);
+        document.body.appendChild(ov);
+        ov.addEventListener('click', function(evt) { evt.stopPropagation(); });
+        function switchTab(active) {
+          var panels = ['details', 'reports', 'versions', 'settings'];
+          panels.forEach(function(p) {
+            var panel = document.getElementById('pdb-panel-' + p);
+            var tab = document.getElementById('pdb-tab-' + p);
+            if (panel) panel.style.display = p === active ? '' : 'none';
+            if (tab) tab.style.cssText = p === active ? activeTabStyle : inactiveTabStyle;
+          });
+        }
+        function lazyLoadReports() {
+          var panel = document.getElementById('pdb-panel-reports');
+          if (!panel) return;
+          var html = '';
+          if (historyMonths) {
+            html += '<div style="font-size:12px;color:#888;margin-bottom:8px;text-align:center;">' + esc(gameName) + ' — Last 5 years</div>';
+            html += buildChartSvg(historyMonths);
+            html += '<div style="border-top:1px solid rgba(255,255,255,0.08);margin:12px 0 8px;"></div>';
+          }
+          if (recentReports === null) {
+            html += '<p style="color:#888;text-align:center;padding:20px 0;">No recent reports available</p>';
+          } else {
+            html += buildReportsHtml(recentReports);
+          }
+          panel.innerHTML = html;
+          var moreBtn = document.getElementById('pdb-reports-more');
+          if (moreBtn) {
+            moreBtn.onclick = function() {
+              reportsVisible += reportsPageSize;
+              renderReportsPage(recentReports);
+            };
+          }
+        }
+        function lazyLoadVersions() {
+          var panel = document.getElementById('pdb-panel-versions');
+          if (!panel) return;
+          if (protonVersions === null) {
+            panel.textContent = 'No version data available';
+            panel.style.cssText += 'color:#888;text-align:center;padding:40px 0;';
+            return;
+          }
+          panel.innerHTML = buildVersionsHtml(protonVersions, versionsData ? versionsData.total_reports : 0);
+        }
+        function lazyLoadSettings() {
+          var panel = document.getElementById('pdb-panel-settings');
+          if (!panel) return;
+          if (settingsOptions === null) {
+            panel.textContent = 'No launch options reported for this game';
+            panel.style.cssText += 'color:#888;text-align:center;padding:40px 0;';
+            return;
+          }
+          panel.innerHTML = buildSettingsHtml(settingsOptions, settingsTips);
+          wireSettingsCopyButtons(settingsOptions);
+          wireSettingsApplyButtons(settingsOptions);
+        }
+        document.getElementById('pdb-tab-details').onclick = function() { switchTab('details'); };
+        document.getElementById('pdb-tab-reports').onclick = function() { switchTab('reports'); lazyLoadReports(); };
+        document.getElementById('pdb-tab-versions').onclick = function() { switchTab('versions'); lazyLoadVersions(); };
+        document.getElementById('pdb-tab-settings').onclick = function() { switchTab('settings'); lazyLoadSettings(); };
+      };
+      wrapper.appendChild(infoBtn);
+    }
+
+    document.body.appendChild(wrapper);
+  `;
+}
+function buildStoreOverlayScript(payload) {
+    return `
+    (function() {
+      const existing = document.getElementById('protondb-store-badge');
+      if (existing) existing.remove();
+      const existingOverlay = document.getElementById('protondb-store-analysis-overlay');
+      if (existingOverlay) existingOverlay.remove();
+${buildOverlayPreambleCode(payload)}
+${buildOverlayAnalysisHelpersCode(payload.appId)}
+${buildOverlayUiCode(payload)}
+    })();
+  `;
+}
 // Inject badge into store page via WebSocket debugger
 async function injectBadgeIntoStore(appId) {
     // Check if store badge is enabled in settings
     if (!SettingsContext.value.enableStoreBadge) {
         return;
     }
-    if (!storeWebSocket || storeWebSocket.readyState !== WebSocket.OPEN || !wsReady) {
+    if (!storeWebSocket ||
+        storeWebSocket.readyState !== WebSocket.OPEN ||
+        !wsReady) {
         return;
     }
-    // Fetch ProtonDB data
+    // Fetch ProtonDB tier and gateway data in parallel so the injected page script
+    // never has to make authenticated cross-origin requests.
     let tier = 'pending';
     let tierLabel = 'NO REPORT';
-    try {
-        const response = await fetchWithTimeout(fetchNoCors(`https://www.protondb.com/api/v1/reports/summaries/${appId}.json`));
-        if (response.ok) {
-            const data = await response.json();
-            if (data.tier) {
-                tier = data.tier;
-                tierLabel = tier.toUpperCase();
-            }
-        }
+    let trendBorderCss = '';
+    const [tierResult, analysisResult, historyResult, recentReportsResult, versionsResult, settingsResult] = await Promise.allSettled([
+        fetchWithTimeout$1(fetchNoCors(`https://www.protondb.com/api/v1/reports/summaries/${appId}.json`))
+            .then((r) => (r.ok ? r.json() : null))
+            .catch(() => null),
+        fetchGatewayJson(`${GATEWAY_BASE_URL}/api/v1/analysis/${appId}?user_gpu_vendor=amd&user_proton_version=10`),
+        fetchGatewayJson(`${GATEWAY_BASE_URL}/api/v1/reports/history/${appId}`),
+        fetchGatewayJson(`${GATEWAY_BASE_URL}/api/v1/reports/recent/${appId}?limit=20`),
+        fetchGatewayJson(`${GATEWAY_BASE_URL}/api/v1/reports/versions/${appId}`),
+        fetchGatewayJson(`${GATEWAY_BASE_URL}/api/v1/reports/settings/${appId}`)
+    ]);
+    if (tierResult.status === 'fulfilled' && tierResult.value?.tier) {
+        tier = tierResult.value.tier;
+        tierLabel = tier.toUpperCase();
     }
-    catch (e) {
-        // Silently fail - will show NO REPORT
+    if (analysisResult.status === 'fulfilled' && analysisResult.value?.trend) {
+        const direction = analysisResult.value.trend.direction;
+        if (direction === 'improving') {
+            trendBorderCss =
+                'border: 2px solid #4ade80; box-shadow: 0 0 6px #4ade8055;';
+        }
+        else if (direction === 'declining') {
+            trendBorderCss =
+                'border: 2px solid #f87171; box-shadow: 0 0 6px #f8717155;';
+        }
     }
     // Get tier colors
     const tierColor = TIER_COLORS[tier] || TIER_COLORS.pending;
-    const injectScript = `
-    (function() {
-      // Remove existing badge if any
-      const existing = document.getElementById('protondb-store-badge');
-      if (existing) existing.remove();
-
-      // Create badge container (matching library badge regular size styling)
-      const badge = document.createElement('div');
-      badge.id = 'protondb-store-badge';
-      badge.style.cssText = 'position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 999999; background: ${tierColor.bg}; padding: 6px 18px; border-radius: 8px; color: ${tierColor.text}; cursor: pointer; display: flex; align-items: center; width: max-content; height: max-content;';
-      badge.innerHTML = '<span style="font-size: 28px; line-height: 28px;">⚛️</span><span style="margin-left: 10px; font-size: 24px; line-height: 24px; white-space: nowrap;">${tierLabel}</span>';
-      badge.onclick = function() { window.open('https://www.protondb.com/app/${appId}', '_blank'); };
-      document.body.appendChild(badge);
-    })();
-  `;
+    // Info button color based on working status (matches library badge)
+    const workingStatus = analysisResult.status === 'fulfilled'
+        ? analysisResult.value?.working_status?.status
+        : undefined;
+    const infoBtnColor = workingStatus === 'working'
+        ? { bg: 'rgb(74, 194, 100)', text: '#000000' }
+        : workingStatus === 'not_working'
+            ? { bg: 'rgb(200, 30, 30)', text: '#000000' }
+            : { bg: 'rgb(166, 166, 166)', text: '#000000' };
+    // Build analysis data for overlay (JSON-safe)
+    const analysisData = serializeForScript(analysisResult.status === 'fulfilled' ? analysisResult.value : null);
+    const historyData = serializeForScript(historyResult.status === 'fulfilled' ? historyResult.value : null);
+    const recentReportsData = serializeForScript(recentReportsResult.status === 'fulfilled'
+        ? recentReportsResult.value
+        : null);
+    const versionsData = serializeForScript(versionsResult.status === 'fulfilled' ? versionsResult.value : null);
+    const settingsData = serializeForScript(settingsResult.status === 'fulfilled' ? settingsResult.value : null);
+    const injectScript = buildStoreOverlayScript({
+        appId,
+        tierLabel,
+        tierColor,
+        trendBorderCss,
+        infoBtnColor,
+        analysisData,
+        historyData,
+        recentReportsData,
+        versionsData,
+        settingsData
+    });
     storeWebSocket.send(JSON.stringify({
         id: messageId++,
         method: 'Runtime.evaluate',
@@ -10248,6 +14376,8 @@ function removeBadgeFromStore() {
     (function() {
       const badge = document.getElementById('protondb-store-badge');
       if (badge) badge.remove();
+      const overlay = document.getElementById('protondb-store-analysis-overlay');
+      if (overlay) overlay.remove();
     })();
   `;
     storeWebSocket.send(JSON.stringify({
@@ -10397,20 +14527,570 @@ function initStorePatch() {
     };
 }
 
+const FETCH_TIMEOUT_MS = 2000;
+const BATCH_SIZE = 3;
+const BATCH_DELAY_MS = 3000;
+const SCAN_INTERVAL_MS = 3000;
+const GRID_CACHE_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
+const DOT_CLASS = 'protondb-grid-dot';
+const COVER_SELECTOR = '._1pwP4eeP1zQD7PEgmsep0W';
+const APP_ID_FROM_SRC = /\/(?:assets|customimages)\/(\d+)/;
+const STATUS_COLORS = {
+    working: 'rgb(74, 194, 100)',
+    not_working: 'rgb(200, 30, 30)',
+    unknown: 'rgb(166, 166, 166)'
+};
+const statusCache = new Map();
+const resolveCache = new Map();
+const pendingIds = new Set();
+let isFetching = false;
+let scanInterval = null;
+let lastPosition = '';
+function cleanString(str) {
+    return str
+        .replace(/['"@&™®]/g, '')
+        .toLowerCase()
+        .trim();
+}
+function isSteamGame(gameId) {
+    try {
+        const overview = appStore?.GetAppOverviewByGameID(gameId);
+        return Boolean(appTypes[overview?.app_type]);
+    }
+    catch {
+        return false;
+    }
+}
+function isSteamGameStrict(gameId) {
+    try {
+        if (gameId >= 2000000000)
+            return false;
+        const overview = appStore?.GetAppOverviewByGameID(gameId);
+        return overview?.app_type === 1;
+    }
+    catch {
+        return false;
+    }
+}
+async function resolveToSteamAppId(rawId) {
+    if (resolveCache.has(rawId)) {
+        return resolveCache.get(rawId) ?? null;
+    }
+    const num = parseInt(rawId);
+    if (!isNaN(num) && isSteamGame(num)) {
+        resolveCache.set(rawId, rawId);
+        return rawId;
+    }
+    try {
+        const overview = appStore?.GetAppOverviewByGameID(num);
+        const gameName = overview?.display_name;
+        if (!gameName) {
+            resolveCache.set(rawId, null);
+            return null;
+        }
+        const res = await fetchWithTimeout(fetchNoCors(`https://steamcommunity.com/actions/SearchApps/${gameName}`));
+        if (res.status === 200) {
+            const options = await res.json();
+            if (!Array.isArray(options)) {
+                resolveCache.set(rawId, null);
+                return null;
+            }
+            const cleaned = cleanString(gameName);
+            const match = options.find((o) => o?.name && cleanString(o.name) === cleaned);
+            const steamId = match?.appid ?? null;
+            resolveCache.set(rawId, steamId);
+            return steamId;
+        }
+    }
+    catch {
+        // silently fail
+    }
+    resolveCache.set(rawId, null);
+    return null;
+}
+function getBigPictureDocument() {
+    try {
+        return (SteamUIStore?.WindowStore?.GamepadUIMainWindowInstance?.m_BrowserWindow
+            ?.document ?? null);
+    }
+    catch {
+        return null;
+    }
+}
+async function fetchWithTimeout(promise, ms = FETCH_TIMEOUT_MS) {
+    return Promise.race([
+        promise,
+        new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), ms))
+    ]);
+}
+async function getStatusFromCache(appId) {
+    try {
+        const cached = await getCache(appId);
+        if (cached?.analysis?.working_status?.status) {
+            const age = cached.lastUpdated
+                ? Date.now() - new Date(cached.lastUpdated).getTime()
+                : Infinity;
+            return {
+                status: cached.analysis.working_status.status,
+                stale: age > GRID_CACHE_MAX_AGE_MS
+            };
+        }
+    }
+    catch {
+        // localforage read failed
+    }
+    return null;
+}
+async function hasProtonDBReports(appId) {
+    try {
+        const res = await fetchWithTimeout(fetchNoCors(`https://www.protondb.com/api/v1/reports/summaries/${appId}.json`));
+        if (res.status === 200) {
+            const data = await res.json();
+            return !!data?.tier;
+        }
+    }
+    catch {
+        // silently fail
+    }
+    return false;
+}
+async function fetchAndCacheStatus(appId) {
+    // Check if the game has ProtonDB reports before calling gateway
+    const hasReports = await hasProtonDBReports(appId);
+    if (!hasReports) {
+        await cacheUnknown(appId);
+        return 'unknown';
+    }
+    try {
+        const url = `${GATEWAY_BASE_URL}/api/v1/analysis/${appId}?user_gpu_vendor=amd&user_proton_version=10`;
+        const res = await fetchWithTimeout(fetchNoCors(url, {
+            method: 'GET',
+            headers: { 'X-API-Key': GATEWAY_API_KEY }
+        }));
+        if (res.status === 200) {
+            const data = await res.json();
+            if (!data || typeof data !== 'object' || !data.working_status) {
+                await cacheUnknown(appId);
+                return 'unknown';
+            }
+            const status = data.working_status.status || 'unknown';
+            const existing = await getCache(appId);
+            await updateCache(appId, {
+                tier: existing?.tier || 'pending',
+                linuxSupport: existing?.linuxSupport || false,
+                analysis: data,
+                lastUpdated: new Date().toISOString()
+            });
+            return status;
+        }
+    }
+    catch {
+        // silently fail
+    }
+    await cacheUnknown(appId);
+    return 'unknown';
+}
+async function cacheUnknown(appId) {
+    try {
+        const existing = await getCache(appId);
+        if (!existing?.analysis) {
+            await updateCache(appId, {
+                tier: existing?.tier || 'pending',
+                linuxSupport: existing?.linuxSupport || false,
+                analysis: { working_status: { status: 'unknown' } },
+                lastUpdated: new Date().toISOString()
+            });
+        }
+    }
+    catch {
+        // localforage write failed
+    }
+}
+function injectDot(bpDoc, coverDiv, status) {
+    try {
+        const existing = coverDiv.querySelector(`.${DOT_CLASS}`);
+        if (existing) {
+            existing.remove();
+        }
+        const container = coverDiv.firstElementChild || coverDiv;
+        container.style.position = 'relative';
+        const color = STATUS_COLORS[status] || STATUS_COLORS.unknown;
+        const pos = SettingsContext.value.libraryIconPosition || 'bl';
+        const posStyles = {
+            bl: 'bottom:4px;left:4px;',
+            tl: 'top:4px;left:4px;',
+            tr: 'top:4px;right:4px;'
+        };
+        const wrapper = bpDoc.createElement('div');
+        wrapper.className = DOT_CLASS;
+        wrapper.setAttribute('data-status', status);
+        wrapper.style.cssText = `position:absolute;${posStyles[pos] || posStyles.bl}width:20px;height:20px;z-index:9999;pointer-events:none;background:rgba(0,0,0,0.7);border-radius:20px;padding:2px;display:flex;align-items:center;justify-content:center;`;
+        const ns = 'http://www.w3.org/2000/svg';
+        const svg = bpDoc.createElementNS(ns, 'svg');
+        svg.setAttribute('viewBox', '0 0 512 512');
+        svg.setAttribute('width', '16');
+        svg.setAttribute('height', '16');
+        const circle = bpDoc.createElementNS(ns, 'circle');
+        circle.setAttribute('cx', '256');
+        circle.setAttribute('cy', '256');
+        circle.setAttribute('r', '36');
+        circle.setAttribute('fill', color);
+        svg.appendChild(circle);
+        const rotations = ['0', '60', '120'];
+        for (const rot of rotations) {
+            const ellipse = bpDoc.createElementNS(ns, 'ellipse');
+            ellipse.setAttribute('cx', '256');
+            ellipse.setAttribute('cy', '256');
+            ellipse.setAttribute('rx', '220');
+            ellipse.setAttribute('ry', '88');
+            ellipse.setAttribute('fill', 'none');
+            ellipse.setAttribute('stroke', color);
+            ellipse.setAttribute('stroke-width', '28');
+            if (rot !== '0') {
+                ellipse.setAttribute('transform', `rotate(${rot} 256 256)`);
+            }
+            svg.appendChild(ellipse);
+        }
+        wrapper.appendChild(svg);
+        container.appendChild(wrapper);
+    }
+    catch {
+        // silently fail - don't crash Decky
+    }
+}
+async function processBatch(bpDoc) {
+    if (isFetching || pendingIds.size === 0)
+        return;
+    isFetching = true;
+    const batch = Array.from(pendingIds).slice(0, BATCH_SIZE);
+    batch.forEach((id) => pendingIds.delete(id));
+    for (const rawId of batch) {
+        try {
+            const steamId = resolveCache.get(rawId) ?? rawId;
+            if (!steamId)
+                continue;
+            const status = await fetchAndCacheStatus(steamId);
+            statusCache.set(rawId, status);
+            const cover = bpDoc.querySelector(`[data-id="${rawId}"] ${COVER_SELECTOR}`) ||
+                bpDoc
+                    .querySelector(`img[src*="/assets/${rawId}/"]`)
+                    ?.closest(COVER_SELECTOR) ||
+                bpDoc
+                    .querySelector(`img[src*="/customimages/${rawId}"]`)
+                    ?.closest(COVER_SELECTOR);
+            if (cover)
+                injectDot(bpDoc, cover, status);
+        }
+        catch {
+            // skip failed fetch
+        }
+    }
+    isFetching = false;
+    if (pendingIds.size > 0) {
+        setTimeout(() => processBatch(bpDoc), BATCH_DELAY_MS);
+    }
+}
+function getAppIdFromCover(cover) {
+    const tile = cover.closest('[data-id]');
+    if (tile) {
+        const id = tile.getAttribute('data-id');
+        const num = parseInt(id || '');
+        if (!isNaN(num) && num > 0) {
+            return id;
+        }
+    }
+    const img = cover.querySelector('img');
+    if (img?.src) {
+        const match = img.src.match(APP_ID_FROM_SRC);
+        if (match) {
+            const num = parseInt(match[1]);
+            if (!isNaN(num))
+                return match[1];
+        }
+    }
+    return null;
+}
+async function scanTiles() {
+    try {
+        if (SettingsContext.value.showLibraryIcons !== true)
+            return;
+        const bpDoc = getBigPictureDocument();
+        if (!bpDoc)
+            return;
+        const covers = bpDoc.querySelectorAll(COVER_SELECTOR);
+        const needsDiskCheck = [];
+        for (const cover of covers) {
+            if (cover.querySelector(`.${DOT_CLASS}`))
+                continue;
+            const rawId = getAppIdFromCover(cover);
+            if (!rawId)
+                continue;
+            const memCached = statusCache.get(rawId);
+            if (memCached) {
+                injectDot(bpDoc, cover, memCached);
+                continue;
+            }
+            needsDiskCheck.push({ rawId, cover: cover });
+        }
+        for (const { rawId, cover } of needsDiskCheck) {
+            try {
+                const steamId = await resolveToSteamAppId(rawId);
+                if (!steamId)
+                    continue;
+                const diskCached = await getStatusFromCache(steamId);
+                if (diskCached) {
+                    statusCache.set(rawId, diskCached.status);
+                    injectDot(bpDoc, cover, diskCached.status);
+                    if (diskCached.stale && !pendingIds.has(rawId)) {
+                        pendingIds.add(rawId);
+                    }
+                    continue;
+                }
+            }
+            catch {
+                /* ignore disk read failure */
+            }
+            if (!pendingIds.has(rawId)) {
+                pendingIds.add(rawId);
+            }
+        }
+        if (pendingIds.size > 0) {
+            processBatch(bpDoc);
+        }
+    }
+    catch {
+        // silently fail - don't crash Decky
+    }
+}
+let reinjectInterval = null;
+let refreshCounter = 0;
+let refreshIntervalSecs = 60;
+async function refreshUnknownStatuses() {
+    try {
+        const unknowns = [];
+        statusCache.forEach((status, appId) => {
+            if (status === 'unknown')
+                unknowns.push(appId);
+        });
+        if (unknowns.length === 0) {
+            refreshIntervalSecs = 300;
+            return;
+        }
+        for (const appId of unknowns) {
+            const disk = await getStatusFromCache(appId);
+            if (disk && disk.status !== 'unknown') {
+                statusCache.set(appId, disk.status);
+            }
+        }
+        refreshIntervalSecs = 300;
+    }
+    catch {
+        /* ignore */
+    }
+}
+function reinjectCached() {
+    try {
+        if (SettingsContext.value.showLibraryIcons !== true)
+            return;
+        if (statusCache.size === 0)
+            return;
+        refreshCounter++;
+        if (refreshCounter >= refreshIntervalSecs) {
+            refreshCounter = 0;
+            refreshUnknownStatuses();
+        }
+        const bpDoc = getBigPictureDocument();
+        if (!bpDoc)
+            return;
+        const currentPos = SettingsContext.value.libraryIconPosition || 'bl';
+        if (currentPos !== lastPosition) {
+            lastPosition = currentPos;
+            const oldDots = bpDoc.querySelectorAll(`.${DOT_CLASS}`);
+            for (const dot of oldDots)
+                dot.remove();
+        }
+        const covers = bpDoc.querySelectorAll(COVER_SELECTOR);
+        for (const cover of covers) {
+            const appId = getAppIdFromCover(cover);
+            if (!appId)
+                continue;
+            const cached = statusCache.get(appId);
+            if (!cached)
+                continue;
+            const existing = cover.querySelector(`.${DOT_CLASS}`);
+            if (existing) {
+                if (existing.getAttribute('data-status') === cached)
+                    continue;
+                existing.remove();
+            }
+            injectDot(bpDoc, cover, cached);
+        }
+    }
+    catch {
+        // silently fail - don't crash Decky
+    }
+}
+let prefetchAborted = false;
+async function prefetchLibrary() {
+    try {
+        if (!SettingsContext.value.showLibraryIcons)
+            return;
+        const allApps = [];
+        try {
+            const overview = appStore?.GetInstalledApps?.() ?? [];
+            for (const app of overview) {
+                const id = app?.appid ?? app?.m_unAppID;
+                if (id && isSteamGameStrict(id))
+                    allApps.push(id);
+            }
+        }
+        catch {
+            /* appStore not available */
+        }
+        if (allApps.length === 0) {
+            try {
+                const sections = appStore?.m_mapApps;
+                if (sections?.forEach) {
+                    sections.forEach((_val, key) => {
+                        if (isSteamGameStrict(key))
+                            allApps.push(key);
+                    });
+                }
+            }
+            catch {
+                /* fallback failed */
+            }
+        }
+        if (allApps.length === 0)
+            return;
+        const uncached = [];
+        for (const id of allApps) {
+            const key = String(id);
+            const memStatus = statusCache.get(key);
+            if (memStatus && memStatus !== 'unknown')
+                continue;
+            const disk = await getStatusFromCache(key);
+            if (disk && !disk.stale && disk.status !== 'unknown') {
+                statusCache.set(key, disk.status);
+                continue;
+            }
+            uncached.push(key);
+        }
+        console.log(`[ProtonDB Grid] Prefetch: ${allApps.length} games, ${uncached.length} need fetching`);
+        for (let i = 0; i < uncached.length; i += BATCH_SIZE) {
+            if (prefetchAborted)
+                return;
+            const batch = uncached.slice(i, i + BATCH_SIZE);
+            for (const appId of batch) {
+                if (prefetchAborted)
+                    return;
+                try {
+                    const status = await fetchAndCacheStatus(appId);
+                    statusCache.set(appId, status);
+                }
+                catch {
+                    /* skip */
+                }
+            }
+            if (i + BATCH_SIZE < uncached.length) {
+                await new Promise((r) => setTimeout(r, BATCH_DELAY_MS));
+            }
+        }
+        console.log('[ProtonDB Grid] Prefetch complete');
+    }
+    catch {
+        /* don't crash Decky */
+    }
+}
+function initLibraryGridPatch() {
+    console.log('[ProtonDB Grid] Initializing library grid patch');
+    reinjectInterval = setInterval(reinjectCached, 1000);
+    prefetchAborted = false;
+    getAllCachedStatuses()
+        .then((cached) => {
+        cached.forEach((status, appId) => statusCache.set(appId, status));
+        console.log(`[ProtonDB Grid] Pre-loaded ${cached.size} statuses from cache`);
+        reinjectCached();
+    })
+        .catch(() => { })
+        .finally(() => {
+        scanInterval = setInterval(scanTiles, SCAN_INTERVAL_MS);
+        setTimeout(scanTiles, 500);
+        setTimeout(prefetchLibrary, 5000);
+    });
+    return () => {
+        if (scanInterval) {
+            clearInterval(scanInterval);
+            scanInterval = null;
+        }
+        if (reinjectInterval) {
+            clearInterval(reinjectInterval);
+            reinjectInterval = null;
+        }
+        prefetchAborted = true;
+    };
+}
+
 var index = DFL.definePlugin(() => {
-    loadSettings();
-    const libraryPatch = patchLibraryApp();
-    const stopStorePatch = initStorePatch();
-    // Register store overlay as global component (renders on all routes)
-    routerHook.addGlobalComponent('ProtonDBStoreOverlay', StoreOverlay);
+    let libraryPatch = null;
+    let stopStorePatch = null;
+    let stopGridPatch = null;
+    try {
+        loadSettings();
+    }
+    catch (e) {
+        console.error('[ProtonDB] loadSettings', e);
+    }
+    try {
+        libraryPatch = patchLibraryApp();
+    }
+    catch (e) {
+        console.error('[ProtonDB] patchLibraryApp', e);
+    }
+    try {
+        stopStorePatch = initStorePatch();
+    }
+    catch (e) {
+        console.error('[ProtonDB] initStorePatch', e);
+    }
+    try {
+        stopGridPatch = initLibraryGridPatch();
+    }
+    catch (e) {
+        console.error('[ProtonDB] initLibraryGridPatch', e);
+    }
+    try {
+        routerHook.removeGlobalComponent('ProtonDBStoreOverlay');
+    }
+    catch { }
+    try {
+        routerHook.addGlobalComponent('ProtonDBStoreOverlay', StoreOverlay);
+    }
+    catch (e) {
+        console.error('[ProtonDB] addGlobalComponent', e);
+    }
     return {
         title: SP_REACT.createElement("div", { className: DFL.staticClasses.Title }, "ProtonDB Badges Extended"),
         icon: SP_REACT.createElement(FaReact, null),
         content: SP_REACT.createElement(Index, null),
         onDismount() {
-            routerHook.removePatch('/library/app/:appid', libraryPatch);
-            routerHook.removeGlobalComponent('ProtonDBStoreOverlay');
-            stopStorePatch();
+            try {
+                if (libraryPatch)
+                    routerHook.removePatch('/library/app/:appid', libraryPatch);
+            }
+            catch { }
+            try {
+                routerHook.removeGlobalComponent('ProtonDBStoreOverlay');
+            }
+            catch { }
+            try {
+                stopStorePatch?.();
+            }
+            catch { }
+            try {
+                stopGridPatch?.();
+            }
+            catch { }
         }
     };
 });

@@ -20035,7 +20035,7 @@
             case "dropdown":
                 return (window.SP_REACT.createElement(window.SP_REACT.Fragment, null,
                     window.SP_REACT.createElement(deckyFrontendLib.PanelSectionRow, null,
-                        window.SP_REACT.createElement(deckyFrontendLib.DropdownItem, { bottomSeparator: bottomSeparatorValue, label: modal ? data.name : window.SP_REACT.createElement(PatchLabel, { name: data.name }), menuLabel: `${data.name}`, rgOptions: data.options.map((x, i) => {
+                        window.SP_REACT.createElement(deckyFrontendLib.DropdownItem, { layout: "below", bottomSeparator: bottomSeparatorValue, label: modal ? data.name : window.SP_REACT.createElement(PatchLabel, { name: data.name }), menuLabel: `${data.name}`, rgOptions: data.options.map((x, i) => {
                                 return { data: i, label: x };
                             }), selectedOption: selectedIndex, onChange: (index) => {
                                 setIndex(index.data);
@@ -20773,6 +20773,12 @@
                 deckyFrontendLib.gamepadDialogClasses.FieldChildrenInner} {
                 min-width: 100% !important;
               }
+              /* May 16 2026 Patch */
+              .CssLoader_ThemeBrowser_ScaleSlider .${
+                // @ts-ignore
+                deckyFrontendLib.gamepadDialogClasses.FieldChildrenInner} {
+                min-width: 100% !important;
+              }
             `)))));
     }
     React.memo(BrowserSearchFields);
@@ -20844,6 +20850,10 @@
         .CSSLoader_QAM_CollapseButton_Container > div > div > div > div > button {
           height: 10px !important;
         }
+        /* May 16 2026 Patch */
+        .CSSLoader_QAM_CollapseButton_Container > div > div > div > div > div > button {
+          height: 10px !important;
+        }
         `),
             window.SP_REACT.createElement(deckyFrontendLib.Focusable, { className: "CSSLoader_ThemeListContainer" },
                 window.SP_REACT.createElement(window.SP_REACT.Fragment, null, localThemeList
@@ -20862,6 +20872,11 @@
                     " theme",
                     unpinnedThemes.length > 1 ? "s are" : "is",
                     " hidden.")))));
+    }
+
+    // THIS FILE IS AUTO GENERATED
+    function FiPlusCircle (props) {
+      return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":"2","strokeLinecap":"round","strokeLinejoin":"round"},"child":[{"tag":"circle","attr":{"cx":"12","cy":"12","r":"10"}},{"tag":"line","attr":{"x1":"12","y1":"8","x2":"12","y2":"16"}},{"tag":"line","attr":{"x1":"8","y1":"12","x2":"16","y2":"12"}}]})(props);
     }
 
     function CreatePresetModalRoot({ closeModal }) {
@@ -20894,17 +20909,12 @@
                 } })));
     }
 
-    // THIS FILE IS AUTO GENERATED
-    function FiPlusCircle (props) {
-      return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":"2","strokeLinecap":"round","strokeLinejoin":"round"},"child":[{"tag":"circle","attr":{"cx":"12","cy":"12","r":"10"}},{"tag":"line","attr":{"x1":"12","y1":"8","x2":"12","y2":"16"}},{"tag":"line","attr":{"x1":"8","y1":"12","x2":"16","y2":"12"}}]})(props);
-    }
-
     function PresetSelectionDropdown() {
         const { localThemeList, selectedPreset } = useCssLoaderState();
         const presets = React.useMemo(() => localThemeList.filter((e) => e.flags.includes(Flags.isPreset)), [localThemeList]);
         const [render, rerender] = useRerender();
         return (window.SP_REACT.createElement(window.SP_REACT.Fragment, null, render && (window.SP_REACT.createElement(deckyFrontendLib.PanelSectionRow, null,
-            window.SP_REACT.createElement(deckyFrontendLib.DropdownItem, { label: "Selected Profile", selectedOption: localThemeList.filter((e) => e.enabled && e.flags.includes(Flags.isPreset)).length > 1
+            window.SP_REACT.createElement(deckyFrontendLib.DropdownItem, { layout: "below", label: "Selected Profile", selectedOption: localThemeList.filter((e) => e.enabled && e.flags.includes(Flags.isPreset)).length > 1
                     ? "Invalid State"
                     : selectedPreset?.name || "None", rgOptions: [
                     ...(localThemeList.filter((e) => e.enabled && e.flags.includes(Flags.isPreset))

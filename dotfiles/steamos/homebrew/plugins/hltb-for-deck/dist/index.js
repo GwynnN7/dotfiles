@@ -1,97 +1,9 @@
-var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
-function getDefaultExportFromCjs (x) {
-	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
-}
-
-function getAugmentedNamespace(n) {
-  if (n.__esModule) return n;
-  var f = n.default;
-	if (typeof f == "function") {
-		var a = function a () {
-			if (this instanceof a) {
-        return Reflect.construct(f, arguments, this.constructor);
-			}
-			return f.apply(this, arguments);
-		};
-		a.prototype = f.prototype;
-  } else a = {};
-  Object.defineProperty(a, '__esModule', {value: true});
-	Object.keys(n).forEach(function (k) {
-		var d = Object.getOwnPropertyDescriptor(n, k);
-		Object.defineProperty(a, k, d.get ? d : {
-			enumerable: true,
-			get: function () {
-				return n[k];
-			}
-		});
-	});
-	return a;
-}
-
-var jsxRuntime = {exports: {}};
-
-var reactJsxRuntime_production = {};
-
-/**
- * @license React
- * react-jsx-runtime.production.js
- *
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-var hasRequiredReactJsxRuntime_production;
-
-function requireReactJsxRuntime_production () {
-	if (hasRequiredReactJsxRuntime_production) return reactJsxRuntime_production;
-	hasRequiredReactJsxRuntime_production = 1;
-	var REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"),
-	  REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
-	function jsxProd(type, config, maybeKey) {
-	  var key = null;
-	  void 0 !== maybeKey && (key = "" + maybeKey);
-	  void 0 !== config.key && (key = "" + config.key);
-	  if ("key" in config) {
-	    maybeKey = {};
-	    for (var propName in config)
-	      "key" !== propName && (maybeKey[propName] = config[propName]);
-	  } else maybeKey = config;
-	  config = maybeKey.ref;
-	  return {
-	    $$typeof: REACT_ELEMENT_TYPE,
-	    type: type,
-	    key: key,
-	    ref: void 0 !== config ? config : null,
-	    props: maybeKey
-	  };
-	}
-	reactJsxRuntime_production.Fragment = REACT_FRAGMENT_TYPE;
-	reactJsxRuntime_production.jsx = jsxProd;
-	reactJsxRuntime_production.jsxs = jsxProd;
-	return reactJsxRuntime_production;
-}
-
-{
-  jsxRuntime.exports = requireReactJsxRuntime_production();
-}
-
-var jsxRuntimeExports = jsxRuntime.exports;
-
-// Decky Loader will pass this api in, it's versioned to allow for backwards compatibility.
-// @ts-ignore
-
-// Prevents it from being duplicated in output.
 const manifest = {"name":"HLTB for Deck"};
 const API_VERSION = 2;
 const internalAPIConnection = window.__DECKY_SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED_deckyLoaderAPIInit;
-// Initialize
 if (!internalAPIConnection) {
     throw new Error('[@decky/api]: Failed to connect to the loader as as the loader API was not initialized. This is likely a bug in Decky Loader.');
 }
-// Version 1 throws on version mismatch so we have to account for that here.
 let api;
 try {
     api = internalAPIConnection.connect(API_VERSION, manifest.name);
@@ -180,6 +92,37 @@ function IconBase(props) {
 // THIS FILE IS AUTO GENERATED
 function FaGamepad (props) {
   return GenIcon({"attr":{"viewBox":"0 0 640 512"},"child":[{"tag":"path","attr":{"d":"M480.07 96H160a160 160 0 1 0 114.24 272h91.52A160 160 0 1 0 480.07 96zM248 268a12 12 0 0 1-12 12h-52v52a12 12 0 0 1-12 12h-24a12 12 0 0 1-12-12v-52H84a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h52v-52a12 12 0 0 1 12-12h24a12 12 0 0 1 12 12v52h52a12 12 0 0 1 12 12zm216 76a40 40 0 1 1 40-40 40 40 0 0 1-40 40zm64-96a40 40 0 1 1 40-40 40 40 0 0 1-40 40z"}}]})(props);
+}
+
+var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+function getDefaultExportFromCjs (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+}
+
+function getAugmentedNamespace(n) {
+  if (n.__esModule) return n;
+  var f = n.default;
+	if (typeof f == "function") {
+		var a = function a () {
+			if (this instanceof a) {
+        return Reflect.construct(f, arguments, this.constructor);
+			}
+			return f.apply(this, arguments);
+		};
+		a.prototype = f.prototype;
+  } else a = {};
+  Object.defineProperty(a, '__esModule', {value: true});
+	Object.keys(n).forEach(function (k) {
+		var d = Object.getOwnPropertyDescriptor(n, k);
+		Object.defineProperty(a, k, d.get ? d : {
+			enumerable: true,
+			get: function () {
+				return n[k];
+			}
+		});
+	});
+	return a;
 }
 
 function commonjsRequire(path) {
@@ -3007,10 +2950,113 @@ var localforage$1 = {exports: {}};
 var localforageExports = localforage$1.exports;
 var localforage = /*@__PURE__*/getDefaultExportFromCjs(localforageExports);
 
+const DEFAULT_APPEARANCE = {
+    custom: false,
+    barAlpha: 25,
+    linkColor: 'steam',
+    textShadow: false,
+    textScale: 100,
+    border: true,
+};
+function toStyleVars(appearance) {
+    const variables = {};
+    if (appearance.custom) {
+        variables['--hltb-bar-alpha'] = String(appearance.barAlpha / 100);
+        // Match the stats text color without changing the hover or focus color.
+        if (appearance.linkColor === 'text')
+            variables['--hltb-link-color'] = 'currentColor';
+        if (appearance.textShadow)
+            variables['--hltb-text-shadow'] = '0 1px 3px rgba(0, 0, 0, 0.9)';
+        if (appearance.textScale !== DEFAULT_APPEARANCE.textScale)
+            variables['--hltb-text-scale'] = String(appearance.textScale / 100);
+        if (!appearance.border)
+            variables['--hltb-border-width'] = '0';
+    }
+    // React 17 CSSProperties omits custom property keys.
+    return variables;
+}
+function normalizeAppearance(value) {
+    const stored = typeof value === 'object' && value !== null
+        ? value
+        : {};
+    const custom = typeof stored.custom === 'boolean'
+        ? stored.custom
+        : DEFAULT_APPEARANCE.custom;
+    const barAlpha = typeof stored.barAlpha === 'number' && Number.isFinite(stored.barAlpha)
+        ? Math.round(Math.min(100, Math.max(0, stored.barAlpha)) / 5) * 5
+        : DEFAULT_APPEARANCE.barAlpha;
+    const linkColor = stored.linkColor === 'steam' || stored.linkColor === 'text'
+        ? stored.linkColor
+        : DEFAULT_APPEARANCE.linkColor;
+    const textShadow = typeof stored.textShadow === 'boolean'
+        ? stored.textShadow
+        : DEFAULT_APPEARANCE.textShadow;
+    const textScale = typeof stored.textScale === 'number' &&
+        Number.isFinite(stored.textScale)
+        ? Math.round(Math.min(150, Math.max(75, stored.textScale)) / 5) * 5
+        : DEFAULT_APPEARANCE.textScale;
+    const border = typeof stored.border === 'boolean'
+        ? stored.border
+        : DEFAULT_APPEARANCE.border;
+    return {
+        custom,
+        barAlpha,
+        linkColor,
+        textShadow,
+        textScale,
+        border,
+    };
+}
+let appearanceState = DEFAULT_APPEARANCE;
+let hydrated = false, hydrating = null;
+let persistenceTimer;
+let localChanges = {};
+const listeners = new Set();
+function notifyAppearanceListeners() {
+    [...listeners].forEach((listener) => listener());
+}
+function getAppearanceState() {
+    return appearanceState;
+}
+function subscribeAppearance(listener) {
+    listeners.add(listener);
+    return () => listeners.delete(listener);
+}
+function hydrateAppearance() {
+    if (hydrated)
+        return Promise.resolve();
+    if (hydrating)
+        return hydrating;
+    hydrating = (async () => {
+        try {
+            // Lazy imports avoid the Cache-to-appearance module cycle.
+            const { getAppearance } = await Promise.resolve().then(function () { return Cache; });
+            appearanceState = { ...(await getAppearance()), ...localChanges };
+            hydrated = true;
+            notifyAppearanceListeners();
+        }
+        finally {
+            hydrating = null;
+        }
+    })();
+    return hydrating;
+}
+function setAppearance(patch) {
+    appearanceState = { ...appearanceState, ...patch };
+    localChanges = { ...localChanges, ...patch };
+    notifyAppearanceListeners();
+    clearTimeout(persistenceTimer);
+    persistenceTimer = setTimeout(async () => {
+        const { appearanceKey, updateCache } = await Promise.resolve().then(function () { return Cache; });
+        await updateCache(appearanceKey, getAppearanceState());
+    }, 250);
+}
+
 const database = 'hltb-for-deck';
 const styleKey = 'hltb-style';
 const hideDetailsKey = 'hltb-hide-details';
 const statPreferencesKey = 'hltb-stat-preferences';
+const appearanceKey = 'hltb-appearance';
 const apiBootstrapCacheKey = 'hltb-api-bootstrap';
 localforage.config({
     name: database,
@@ -3022,10 +3068,7 @@ function isApiBootstrapSearchAuth(value) {
     if (!isRecord(value)) {
         return false;
     }
-    return (typeof value.searchUrl === 'string' &&
-        typeof value.token === 'string' &&
-        typeof value.hpKey === 'string' &&
-        typeof value.hpVal === 'string');
+    return (typeof value.searchUrl === 'string' && typeof value.token === 'string');
 }
 function normalizeApiBootstrapCache(value) {
     if (!isRecord(value)) {
@@ -3039,12 +3082,37 @@ function normalizeApiBootstrapCache(value) {
         normalized.nextJsKey = value.nextJsKey;
     }
     if (isApiBootstrapSearchAuth(value.searchAuth)) {
-        normalized.searchAuth = value.searchAuth;
+        normalized.searchAuth = {
+            searchUrl: value.searchAuth.searchUrl,
+            token: value.searchAuth.token,
+        };
+        if (typeof value.searchAuth.hpKey === 'string' &&
+            value.searchAuth.hpKey &&
+            typeof value.searchAuth.hpVal === 'string' &&
+            value.searchAuth.hpVal) {
+            normalized.searchAuth.hpKey = value.searchAuth.hpKey;
+            normalized.searchAuth.hpVal = value.searchAuth.hpVal;
+        }
     }
     return normalized;
 }
+const cacheListeners = new Map();
+// Keep the open game page in sync with saved settings.
+function subscribeCache(key, listener) {
+    const forKey = cacheListeners.get(key) ?? new Set();
+    forKey.add(listener);
+    cacheListeners.set(key, forKey);
+    return () => {
+        forKey.delete(listener);
+    };
+}
 async function updateCache(key, value) {
     await localforage.setItem(key, value);
+    const forKey = cacheListeners.get(key);
+    if (forKey) {
+        for (const listener of [...forKey])
+            listener();
+    }
 }
 async function getCache(key) {
     return await localforage.getItem(key);
@@ -3093,7 +3161,17 @@ async function setShowHide(appId) {
 }
 async function getStyle() {
     const hltbStyle = await localforage.getItem(styleKey);
-    return hltbStyle === null ? 'default' : hltbStyle;
+    if (hltbStyle === 'default' ||
+        hltbStyle === 'clean' ||
+        hltbStyle === 'clean-left' ||
+        hltbStyle === 'clean-default') {
+        return hltbStyle;
+    }
+    return 'default';
+}
+async function getAppearance() {
+    const appearance = await localforage.getItem(appearanceKey);
+    return normalizeAppearance(appearance);
 }
 async function getPreference() {
     const hideViewDetails = await localforage.getItem(hideDetailsKey);
@@ -3103,11 +3181,39 @@ async function getStatPreferences() {
     const preferences = await localforage.getItem(statPreferencesKey);
     return preferences;
 }
-const clearCache$s = () => {
-    const style = getStyle();
-    localforage.clear();
-    updateCache(styleKey, style);
-};
+const PREFERENCE_KEYS = [
+    styleKey,
+    hideDetailsKey,
+    statPreferencesKey,
+    appearanceKey,
+];
+async function clearCache$s() {
+    const keys = await localforage.keys();
+    await Promise.all(keys
+        .filter((k) => !PREFERENCE_KEYS.includes(k))
+        .map((k) => localforage.removeItem(k)));
+}
+
+var Cache = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    apiBootstrapCacheKey: apiBootstrapCacheKey,
+    appearanceKey: appearanceKey,
+    clearApiBootstrapCache: clearApiBootstrapCache,
+    clearCache: clearCache$s,
+    getApiBootstrapCache: getApiBootstrapCache,
+    getAppearance: getAppearance,
+    getCache: getCache,
+    getPreference: getPreference,
+    getStatPreferences: getStatPreferences,
+    getStyle: getStyle,
+    hideDetailsKey: hideDetailsKey,
+    setShowHide: setShowHide,
+    statPreferencesKey: statPreferencesKey,
+    styleKey: styleKey,
+    subscribeCache: subscribeCache,
+    updateApiBootstrapCache: updateApiBootstrapCache,
+    updateCache: updateCache
+});
 
 var levenshtein = {exports: {}};
 
@@ -3250,9 +3356,9 @@ const closest = (str, arr) => {
 };
 
 var mod = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	closest: closest,
-	distance: distance
+    __proto__: null,
+    closest: closest,
+    distance: distance
 });
 
 var require$$0 = /*@__PURE__*/getAugmentedNamespace(mod);
@@ -3374,7 +3480,7 @@ const normalize = (str) => {
 // Related Python API fix: https://github.com/ScrappyCocco/HowLongToBeat-PythonAPI/pull/53
 // We could randomize it later if we still reuse the same value consistently.
 const USER_AGENT = 'Chrome: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36';
-const DEFAULT_SEARCH_URL = '/api/bleed';
+const DEFAULT_SEARCH_URL = '/api/search/site';
 let searchUrl = '';
 let searchAuth = null;
 let bootstrapCacheLoaded = false;
@@ -3387,13 +3493,16 @@ function getBaseHeaders() {
     };
 }
 function getSearchHeaders(auth) {
-    return {
+    const headers = {
         ...getBaseHeaders(),
         Authority: 'howlongtobeat.com',
         'x-auth-token': auth.token,
-        'x-hp-key': auth.hpKey,
-        'x-hp-val': auth.hpVal,
     };
+    if (auth.hpKey && auth.hpVal) {
+        headers['x-hp-key'] = auth.hpKey;
+        headers['x-hp-val'] = auth.hpVal;
+    }
+    return headers;
 }
 function parseSearchAuth(data) {
     if (!data || typeof data !== 'object') {
@@ -3416,13 +3525,14 @@ function parseSearchAuth(data) {
             hpVal = fieldValue;
         }
     }
-    if (token && hpKey && hpVal) {
+    if (token) {
+        const auth = { token };
+        if (hpKey && hpVal) {
+            auth.hpKey = hpKey;
+            auth.hpVal = hpVal;
+        }
         console.log('HLTB auth acquired');
-        return {
-            token,
-            hpKey,
-            hpVal,
-        };
+        return auth;
     }
     console.error('HLTB - incomplete auth response:', data);
     return null;
@@ -3442,12 +3552,15 @@ function extractSearchUrlFromScript(scriptText) {
         if (!match[1]) {
             continue;
         }
-        const pathSuffix = match[1];
-        const basePath = pathSuffix.includes('/')
-            ? pathSuffix.split('/')[0]
-            : pathSuffix;
-        const discoveredSearchUrl = `/api/${basePath}`;
-        const initPattern = new RegExp(`\\/api\\/${escapeRegex(basePath)}\\/init`, 'i');
+        // Keep the whole path. HLTB moved from single-segment routes such as
+        // /api/bleed to nested ones such as /api/search/site, so truncating at
+        // the first slash makes every request 404.
+        const searchPath = match[1].replace(/\/+$/, '').replace(/\/init$/i, '');
+        if (!searchPath) {
+            continue;
+        }
+        const discoveredSearchUrl = `/api/${searchPath}`;
+        const initPattern = new RegExp(`\\/api\\/${escapeRegex(searchPath)}\\/init`, 'i');
         if (initPattern.test(scriptText)) {
             return discoveredSearchUrl;
         }
@@ -3731,8 +3844,10 @@ async function fetchSearchResultsWithAuth(gameName, auth) {
             sort: 0,
             randomizer: 0,
         },
-        [auth.hpKey]: auth.hpVal,
     };
+    if (auth.hpKey && auth.hpVal) {
+        data[auth.hpKey] = auth.hpVal;
+    }
     return fetchNoCors(`https://howlongtobeat.com${searchUrl}`, {
         method: 'POST',
         headers: getSearchHeaders(auth),
@@ -3770,6 +3885,67 @@ async function fetchSearchResults(appName) {
         item.game_name = normalize(item.game_name);
     }
     return results;
+}
+async function fetchEnglishSteamAppName(appId) {
+    try {
+        const response = await fetchNoCors(`https://store.steampowered.com/api/appdetails?appids=${appId}&l=en`, {
+            method: 'GET',
+            headers: {
+                'User-Agent': USER_AGENT,
+            },
+        });
+        if (response.status !== 200) {
+            console.error('HLTB - failed to fetch English Steam app details:', response.status);
+            return null;
+        }
+        const data = await response.json();
+        if (!data || typeof data !== 'object') {
+            console.error('HLTB - unexpected Steam app details:', data);
+            return null;
+        }
+        const appData = data[String(appId)];
+        if (!appData || typeof appData !== 'object') {
+            console.error('HLTB - missing Steam app data:', data);
+            return null;
+        }
+        const details = appData;
+        if (details.success !== true) {
+            console.error('HLTB - Steam app details lookup failed:', details);
+            return null;
+        }
+        const name = details.data
+            ?.name;
+        if (typeof name !== 'string') {
+            console.error('HLTB - missing Steam app name:', details);
+            return null;
+        }
+        return normalize(name);
+    }
+    catch (error) {
+        console.error('HLTB - error fetching English Steam app name:', error);
+        return null;
+    }
+}
+async function fetchSearchResultsState(appName, appId) {
+    const results = await fetchSearchResults(appName);
+    if (results === null) {
+        return null;
+    }
+    if (results.data.length > 0 || typeof appId !== 'number') {
+        return { appName, results };
+    }
+    const englishAppName = await fetchEnglishSteamAppName(appId);
+    if (englishAppName === null || englishAppName === appName) {
+        return { appName, results };
+    }
+    const englishResults = await fetchSearchResults(englishAppName);
+    if (englishResults === null) {
+        return null;
+    }
+    return {
+        appName: englishAppName,
+        results: englishResults,
+    };
 }
 async function fetchGamePageDataWithKey(gameId, apiKey) {
     return fetchNoCors(`https://howlongtobeat.com/_next/data/${apiKey}/game/${gameId}.json`, {
@@ -3823,11 +3999,12 @@ async function fetchMostCompatibleGameData(appName, appId, hltbGameId) {
     if (typeof hltbGameId === 'number') {
         return await fetchGameData(hltbGameId);
     }
-    const searchResults = await fetchSearchResults(appName);
-    if (searchResults === null) {
+    const searchState = await fetchSearchResultsState(appName, appId);
+    if (searchState === null) {
         // Error already logged
         return null;
     }
+    const { appName: resolvedAppName, results: searchResults } = searchState;
     const gameDataCache = new Map();
     const getGameData = async (gameId) => {
         return gameDataCache.get(gameId) ?? (await fetchGameData(gameId));
@@ -3848,7 +4025,7 @@ async function fetchMostCompatibleGameData(appName, appId, hltbGameId) {
     }
     // Search by app name if not found by appId
     for (const item of searchResults.data) {
-        if (item.game_name === appName) {
+        if (item.game_name === resolvedAppName) {
             return getGameData(item.game_id);
         }
     }
@@ -3857,7 +4034,7 @@ async function fetchMostCompatibleGameData(appName, appId, hltbGameId) {
         const possibleChoices = searchResults.data
             .map((item) => {
             return {
-                minEditDistance: levenshteinExports.get(appName, item.game_name, {
+                minEditDistance: levenshteinExports.get(resolvedAppName, item.game_name, {
                     useCollator: true,
                 }),
                 item,
@@ -3967,44 +4144,71 @@ function useHltb(appId, appName, isSteamGame) {
 const useStyle = () => {
     const [style, setStyle] = SP_REACT.useState(null);
     SP_REACT.useEffect(() => {
-        const getData = async () => {
-            setStyle(await getStyle());
+        let mounted = true;
+        const read = async () => {
+            const next = await getStyle();
+            if (mounted)
+                setStyle(next);
         };
-        getData();
+        read();
+        const unsubscribe = subscribeCache(styleKey, read);
+        return () => {
+            mounted = false;
+            unsubscribe();
+        };
     }, []);
     return style;
 };
 const usePreference = () => {
     const [pref, setPref] = SP_REACT.useState(false);
     SP_REACT.useEffect(() => {
-        const getData = async () => {
-            setPref(await getPreference());
+        let mounted = true;
+        const read = async () => {
+            const next = await getPreference();
+            if (mounted)
+                setPref(next);
         };
-        getData();
+        read();
+        const unsubscribe = subscribeCache(hideDetailsKey, read);
+        return () => {
+            mounted = false;
+            unsubscribe();
+        };
     }, []);
     return pref;
 };
 
-var style = (jsxRuntimeExports.jsx("style", { children: `
+var style = (SP_JSX.jsx("style", { children: `
 
 #hltb-for-deck{
     position: relative;
 }
 
 .hltb-info {
-    background: rgba(14, 20, 27, 0.25);
+    background: var(--hltb-bar-bg, rgb(var(--hltb-bar-rgb, 14 20 27) / var(--hltb-bar-alpha, 0.25)));
     position: relative;
-    border-bottom: 2px solid rgba(61, 68, 80, 0.54);
-    padding-top: 5px;
+    border-bottom: var(--hltb-border-width, 2px) solid var(--hltb-border-color, rgba(61,68,80,.54));
+    padding-top: var(--hltb-pad-y, 5px);
+    padding-bottom: var(--hltb-pad-y, 5px);
+    color: var(--hltb-text-color, inherit);
+    text-shadow: var(--hltb-text-shadow, none);
+    border-radius: var(--hltb-radius, 0);
+}
+
+/* Keep the "Clean" layouts at 50% opacity unless the user overrides it. */
+.hltb-info-clean-default,
+.hltb-info-clean {
+    --hltb-bar-alpha: 0.5;
 }
 
 .hltb-info-clean-default {
-    background: rgba(14, 20, 27, 0.5);
     position: absolute;
-    border: none;
+    border: 0;
+    border-bottom: var(--hltb-border-width, 0) solid var(--hltb-border-color, rgba(61,68,80,.54));
     padding-top: 0px;
-    top: -40px;
-    height: 40px;
+    padding-bottom: 0px;
+    top: calc(0px - var(--hltb-bar-height, 40px) * var(--hltb-text-scale, 1));
+    height: calc(var(--hltb-bar-height, 40px) * var(--hltb-text-scale, 1));
     width: 100%;
 }
 
@@ -4014,23 +4218,23 @@ var style = (jsxRuntimeExports.jsx("style", { children: `
 }
 
 .hltb-info-clean {
-    background: rgba(14, 20, 27, 0.5);
     position: absolute;
-    top: -55vh;
-    right: 2.8vw;
+    top: var(--hltb-clean-top, -55vh);
+    right: var(--hltb-clean-inset, 2.8vw);
     width: fit-content;
     height: fit-content;
-    border: none;
+    border: 0;
+    border-bottom: var(--hltb-border-width, 0) solid var(--hltb-border-color, rgba(61,68,80,.54));
 }
 
 .hltb-info-clean-left {
     right: 0px;
-    left: 2.8vw;
+    left: var(--hltb-clean-inset, 2.8vw);
 }
 
 .hltb-info ul {
     list-style: none;
-    padding: 5px 35px;
+    padding: var(--hltb-pad-y, 5px) var(--hltb-pad-x, 35px);
     margin: 0px;
     display: flex;
     flex: 0 1 auto;    
@@ -4045,31 +4249,27 @@ var style = (jsxRuntimeExports.jsx("style", { children: `
     text-align: center;
 }
 
-// .hltb-info-clean ul li {
-//     width: 100%;
-// }
-
 .hltb-info p {
     margin: 0;
 }
 
 .hltb-gametime {
-    font-size: 16px;
+    font-size: calc(var(--hltb-stat-size, 16px) * var(--hltb-text-scale, 1));
     font-weight: bold;
 }
 
 .hltb-info-clean .hltb-gametime {
-    font-size: 20px;
+    font-size: calc(var(--hltb-stat-size, 16px) * var(--hltb-stat-scale-clean, 1.25) * var(--hltb-text-scale, 1));
     font-weight: bold;
 }
 
 .hltb-label {
     text-transform: uppercase;
-    font-size: 10px;
+    font-size: calc(var(--hltb-label-size, 10px) * var(--hltb-text-scale, 1));
 }
 .hltb-details-btn {
     background: transparent !important;
-    color: #1a9fff !important;
+    color: var(--hltb-link-color, #67c1f5) !important;
     margin: auto !important;
     font-size: 10px !important;
     font-weight: bold !important;
@@ -4081,10 +4281,10 @@ var style = (jsxRuntimeExports.jsx("style", { children: `
 }
 
 .hltb-details-btn:focus {
-    color: white !important;
+    color: var(--hltb-link-color-focus, #ffffff) !important;
 }
 .hltb-details-btn:hover {
-    color: white !important;
+    color: var(--hltb-link-color-focus, #ffffff) !important;
 }
 ` }));
 
@@ -4096,13 +4296,18 @@ const useStatPreferences = () => {
         showAllStyles: true,
     });
     SP_REACT.useEffect(() => {
-        const getData = async () => {
-            let prefs = await getStatPreferences();
-            if (prefs === null)
-                prefs = statPrefs;
-            setStatPrefs(prefs);
+        let mounted = true;
+        const read = async () => {
+            const prefs = await getStatPreferences();
+            if (mounted && prefs !== null)
+                setStatPrefs(prefs);
         };
-        getData();
+        read();
+        const unsubscribe = subscribeCache(statPreferencesKey, read);
+        return () => {
+            mounted = false;
+            unsubscribe();
+        };
     }, []);
     return statPrefs;
 };
@@ -4262,6 +4467,22 @@ var cleanLeft$o = "\"Schlicht\" Links";
 var cleanDefault$o = "\"Schlicht\" Standard";
 var hltbStyle$o = "HLTB Stil";
 var cleanDesc$o = "Der \"Schlichte\" Stil sind für die Verwendung mit dem CSS Loader Theme \"Clean Gameview\" gedacht";
+var appearance$1 = "Darstellung";
+var customizeAppearance$1 = "Darstellung anpassen";
+var customizeAppearanceDesc$1 = "Eigene Farben, Deckkraft und Textgröße für die HLTB-Leiste verwenden";
+var barOpacity$1 = "Hintergrund-Deckkraft";
+var barOpacityDesc$1 = "Verdunkelt die Leiste, damit die Statistik auch vor hellen Hintergrundbildern lesbar bleibt";
+var viewDetailsColor$1 = "\"Zeige Details\"-Linkfarbe";
+var viewDetailsColorDesc$1 = "Farbe des Links \"Zeige Details\"";
+var linkColorSteam$1 = "Steam-Blau";
+var linkColorText$1 = "Statistik-Textfarbe";
+var textShadow$1 = "Textschatten";
+var textShadowDesc$1 = "Fügt der Statistik einen Textschatten für besseren Kontrast hinzu";
+var textSize$1 = "Textgröße";
+var textSizeDesc$1 = "Ändert die Größe der Statistikwerte und Beschriftungen";
+var bottomBorder$1 = "Untere Trennlinie";
+var bottomBorderDesc$1 = "Zeigt eine Trennlinie unter der HLTB-Leiste";
+var resetAppearance$1 = "Darstellung zurücksetzen";
 var hideViewDetails$o = "Verstecke \"Zeige Details\"";
 var hideViewDetailsDesc$o = "Versteckt den \"Zeige Details\" Knopf bei der HLTB Statistik";
 var toggleMainStat$o = "Schalte die Haupt Statistik um";
@@ -4287,6 +4508,22 @@ var de = {
 	cleanDefault: cleanDefault$o,
 	hltbStyle: hltbStyle$o,
 	cleanDesc: cleanDesc$o,
+	appearance: appearance$1,
+	customizeAppearance: customizeAppearance$1,
+	customizeAppearanceDesc: customizeAppearanceDesc$1,
+	barOpacity: barOpacity$1,
+	barOpacityDesc: barOpacityDesc$1,
+	viewDetailsColor: viewDetailsColor$1,
+	viewDetailsColorDesc: viewDetailsColorDesc$1,
+	linkColorSteam: linkColorSteam$1,
+	linkColorText: linkColorText$1,
+	textShadow: textShadow$1,
+	textShadowDesc: textShadowDesc$1,
+	textSize: textSize$1,
+	textSizeDesc: textSizeDesc$1,
+	bottomBorder: bottomBorder$1,
+	bottomBorderDesc: bottomBorderDesc$1,
+	resetAppearance: resetAppearance$1,
 	hideViewDetails: hideViewDetails$o,
 	hideViewDetailsDesc: hideViewDetailsDesc$o,
 	toggleMainStat: toggleMainStat$o,
@@ -4362,6 +4599,22 @@ var cleanLeft$m = "\"Clean\" Left";
 var cleanDefault$m = "\"Clean\" Default";
 var hltbStyle$m = "HLTB Style";
 var cleanDesc$m = "The \"Clean\" styles are intended to work with the CSS Loader Theme \"Clean Gameview\"";
+var appearance = "Appearance";
+var customizeAppearance = "Customize appearance";
+var customizeAppearanceDesc = "Enable custom colors, opacity and text size for the HLTB bar";
+var barOpacity = "Background opacity";
+var barOpacityDesc = "Darkens the bar so stats stay readable over bright hero art";
+var viewDetailsColor = "\"View Details\" color";
+var viewDetailsColorDesc = "Color of the \"View Details\" link";
+var linkColorSteam = "Steam blue";
+var linkColorText = "Match stats text";
+var textShadow = "Text shadow";
+var textShadowDesc = "Adds a shadow behind the stats for extra contrast";
+var textSize = "Text size";
+var textSizeDesc = "Scales the stat numbers and labels";
+var bottomBorder = "Bottom border";
+var bottomBorderDesc = "Shows a divider line under the HLTB bar";
+var resetAppearance = "Reset appearance";
 var hideViewDetails$m = "Hide \"View Details\"";
 var hideViewDetailsDesc$m = "Hides \"View Details\" button on HLTB Stats";
 var toggleMainStat$m = "Toggle main stat";
@@ -4387,6 +4640,22 @@ var en = {
 	cleanDefault: cleanDefault$m,
 	hltbStyle: hltbStyle$m,
 	cleanDesc: cleanDesc$m,
+	appearance: appearance,
+	customizeAppearance: customizeAppearance,
+	customizeAppearanceDesc: customizeAppearanceDesc,
+	barOpacity: barOpacity,
+	barOpacityDesc: barOpacityDesc,
+	viewDetailsColor: viewDetailsColor,
+	viewDetailsColorDesc: viewDetailsColorDesc,
+	linkColorSteam: linkColorSteam,
+	linkColorText: linkColorText,
+	textShadow: textShadow,
+	textShadowDesc: textShadowDesc,
+	textSize: textSize,
+	textSizeDesc: textSizeDesc,
+	bottomBorder: bottomBorder,
+	bottomBorderDesc: bottomBorderDesc,
+	resetAppearance: resetAppearance,
 	hideViewDetails: hideViewDetails$m,
 	hideViewDetailsDesc: hideViewDetailsDesc$m,
 	toggleMainStat: toggleMainStat$m,
@@ -5507,7 +5776,7 @@ var zhTw = {
 	showHideStats: showHideStats
 };
 
-const languages = {
+const catalogs = {
     bg,
     cs,
     da,
@@ -5537,6 +5806,8 @@ const languages = {
     zhCn,
     zhTw,
 };
+// English defines all keys; missing translations fall back to English.
+const languages = catalogs;
 
 function getCurrentLanguage() {
     const steamLang = window.LocalizationManager.m_rgLocalesToUse[0];
@@ -5557,6 +5828,12 @@ function useLocalization() {
         }
     };
 }
+
+const useAppearance = () => {
+    const [appearance, setCurrentAppearance] = SP_REACT.useState(getAppearanceState());
+    SP_REACT.useEffect(() => subscribeAppearance(() => setCurrentAppearance(getAppearanceState())), []);
+    return { appearance, update: setAppearance };
+};
 
 function findTopCapsuleParent(ref) {
     const children = ref?.parentElement?.children;
@@ -5587,6 +5864,7 @@ const GameStats = ({ game, appId, id, isSteamGame }) => {
     // or just newly opening the page), therefore it's not "launching" by default.
     const [gameLaunching, setGameLaunching] = SP_REACT.useState(false);
     const ref = SP_REACT.useRef(null);
+    const { appearance } = useAppearance();
     SP_REACT.useEffect(() => {
         const topCapsule = findTopCapsuleParent(ref?.current);
         if (!topCapsule) {
@@ -5617,6 +5895,7 @@ const GameStats = ({ game, appId, id, isSteamGame }) => {
             mutationObserver.disconnect();
         };
     }, []);
+    SP_REACT.useEffect(() => void hydrateAppearance(), []);
     const lang = useLocalization();
     const { mainStat, mainPlusStat, completeStat, allStylesStat, gameId, showStats, } = useHltb(appId, game, isSteamGame);
     const { showMain, showMainPlus, showComplete, showAllStyles } = useStatPreferences();
@@ -5644,16 +5923,16 @@ const GameStats = ({ game, appId, id, isSteamGame }) => {
     const btnStyle = hltbStyle === 'default' || hltbStyle === 'clean-default'
         ? ''
         : 'hltb-details-btn-clean';
-    return (jsxRuntimeExports.jsxs("div", { id: id, ref: ref, style: { display: hide ? 'none' : 'block' }, children: [style, jsxRuntimeExports.jsx("div", { className: `${baseClass} ${hltbInfoStyle} ${hltbInfoPosition}`, children: jsxRuntimeExports.jsxs("ul", { style: {
+    return (SP_JSX.jsxs("div", { id: id, ref: ref, style: { display: hide ? 'none' : 'block' }, children: [style, SP_JSX.jsx("div", { className: `${baseClass} ${hltbInfoStyle} ${hltbInfoPosition}`, style: toStyleVars(appearance), children: SP_JSX.jsxs("ul", { style: {
                         display: 'flex',
                         justifyContent: 'space-evenly',
-                    }, children: [jsxRuntimeExports.jsxs("li", { style: { display: showMain ? 'block' : 'none' }, children: [jsxRuntimeExports.jsxs("p", { className: "hltb-gametime", children: [mainStat, " ", lang('hours')] }), jsxRuntimeExports.jsx("p", { className: "hltb-label", children: lang('mainStory') })] }), jsxRuntimeExports.jsxs("li", { style: {
+                    }, children: [SP_JSX.jsxs("li", { style: { display: showMain ? 'block' : 'none' }, children: [SP_JSX.jsxs("p", { className: "hltb-gametime", children: [mainStat, " ", lang('hours')] }), SP_JSX.jsx("p", { className: "hltb-label", children: lang('mainStory') })] }), SP_JSX.jsxs("li", { style: {
                                 display: showMainPlus ? 'block' : 'none',
-                            }, children: [jsxRuntimeExports.jsxs("p", { className: "hltb-gametime", children: [mainPlusStat, " ", lang('hours')] }), jsxRuntimeExports.jsx("p", { className: "hltb-label", children: lang('mainPlusExtras') })] }), jsxRuntimeExports.jsxs("li", { style: {
+                            }, children: [SP_JSX.jsxs("p", { className: "hltb-gametime", children: [mainPlusStat, " ", lang('hours')] }), SP_JSX.jsx("p", { className: "hltb-label", children: lang('mainPlusExtras') })] }), SP_JSX.jsxs("li", { style: {
                                 display: showComplete ? 'block' : 'none',
-                            }, children: [jsxRuntimeExports.jsxs("p", { className: "hltb-gametime", children: [completeStat, " ", lang('hours')] }), jsxRuntimeExports.jsx("p", { className: "hltb-label", children: lang('completionist') })] }), jsxRuntimeExports.jsxs("li", { style: {
+                            }, children: [SP_JSX.jsxs("p", { className: "hltb-gametime", children: [completeStat, " ", lang('hours')] }), SP_JSX.jsx("p", { className: "hltb-label", children: lang('completionist') })] }), SP_JSX.jsxs("li", { style: {
                                 display: showAllStyles ? 'block' : 'none',
-                            }, children: [jsxRuntimeExports.jsxs("p", { className: "hltb-gametime", children: [allStylesStat, " ", lang('hours')] }), jsxRuntimeExports.jsx("p", { className: "hltb-label", children: lang('allStyles') })] }), gameId && !hideDetails && (jsxRuntimeExports.jsx("li", { children: jsxRuntimeExports.jsx(DFL.DialogButtonPrimary, { className: `hltb-details-btn ${btnStyle}`, onClick: () => DFL.Navigation.NavigateToExternalWeb(`https://howlongtobeat.com/game/${gameId}`), children: lang('viewDetails') }) }))] }) })] }));
+                            }, children: [SP_JSX.jsxs("p", { className: "hltb-gametime", children: [allStylesStat, " ", lang('hours')] }), SP_JSX.jsx("p", { className: "hltb-label", children: lang('allStyles') })] }), gameId && !hideDetails && (SP_JSX.jsx("li", { children: SP_JSX.jsx(DFL.DialogButtonPrimary, { className: `hltb-details-btn ${btnStyle}`, onClick: () => DFL.Navigation.NavigateToExternalWeb(`https://howlongtobeat.com/game/${gameId}`), children: lang('viewDetails') }) }))] }) })] }));
 };
 
 function isSteamGameType(appType) {
@@ -5701,7 +5980,7 @@ const patchAppPage = () => {
                             undefined);
                 });
                 if (spliceIndex > -1) {
-                    componentToSplice?.splice(spliceIndex, 0, jsxRuntimeExports.jsx(GameStats, { id: "hltb-for-deck", game: game, appId: appId, isSteamGame: isSteamGame }));
+                    componentToSplice?.splice(spliceIndex, 0, SP_JSX.jsx(GameStats, { id: "hltb-for-deck", game: game, appId: appId, isSteamGame: isSteamGame }));
                 }
                 else {
                     // If the component is not available for splicing, we could be in some
@@ -5717,13 +5996,19 @@ const patchAppPage = () => {
 };
 
 const QuickAccessView = () => {
-    const handleClearCache = () => {
-        clearCache$s();
-        DFL.Router.CloseSideMenus();
+    const { appearance, update } = useAppearance();
+    SP_REACT.useEffect(() => void hydrateAppearance(), []);
+    const handleClearCache = async () => {
+        await clearCache$s();
+        DFL.Navigation.CloseSideMenus();
     };
-    const style = useStyle();
-    // probably overkill for something so simple but it's fine :)
-    const hideDetails = usePreference();
+    // Show selections immediately while settings are saved.
+    const persistedStyle = useStyle();
+    const [style, setStyle] = SP_REACT.useState(persistedStyle);
+    SP_REACT.useEffect(() => setStyle(persistedStyle), [persistedStyle]);
+    const persistedHideDetails = usePreference();
+    const [hideDetails, setHideDetails] = SP_REACT.useState(persistedHideDetails);
+    SP_REACT.useEffect(() => setHideDetails(persistedHideDetails), [persistedHideDetails]);
     const preferences = useStatPreferences();
     const lang = useLocalization();
     const styleOptions = [
@@ -5748,19 +6033,34 @@ const QuickAccessView = () => {
         preferences.showAllStyles = !preferences.showAllStyles;
         updateCache(statPreferencesKey, preferences);
     };
-    return (jsxRuntimeExports.jsxs(DFL.PanelSection, { children: [jsxRuntimeExports.jsx(DFL.PanelSectionRow, { children: jsxRuntimeExports.jsx(DFL.DropdownItem, { label: lang('hltbStyle'), description: lang('cleanDesc'), menuLabel: lang('hltbStyle'), rgOptions: styleOptions.map((o) => ({
-                        data: o.data,
-                        label: o.label,
-                    })), selectedOption: styleOptions.find((o) => o.value === style)?.data || 0, onChange: (newVal) => {
-                        const newStyle = styleOptions.find((o) => o.data === newVal.data)
-                            ?.value || 'default';
-                        updateCache(styleKey, newStyle);
-                    } }) }), jsxRuntimeExports.jsx(DFL.PanelSectionRow, { children: jsxRuntimeExports.jsx(DFL.ToggleField, { label: lang('hideViewDetails'), description: lang('hideViewDetailsDesc'), checked: hideDetails, onChange: (checked) => updateCache(hideDetailsKey, checked) }) }), jsxRuntimeExports.jsx(DFL.PanelSectionRow, { children: jsxRuntimeExports.jsx(DFL.ToggleField, { label: lang('toggleMainStat'), description: lang('toggleMainStatDesc'), checked: preferences.showMain, onChange: () => toggleShowMain() }) }), jsxRuntimeExports.jsx(DFL.PanelSectionRow, { children: jsxRuntimeExports.jsx(DFL.ToggleField, { label: lang('toggleMainPlusStat'), description: lang('toggleMainPlusStatDesc'), checked: preferences.showMainPlus, onChange: () => toggleShowMainPlus() }) }), jsxRuntimeExports.jsx(DFL.PanelSectionRow, { children: jsxRuntimeExports.jsx(DFL.ToggleField, { label: lang('toggleCompletionistStat'), description: lang('toggleCompletionistStatDesc'), checked: preferences.showComplete, onChange: () => toggleShowComplete() }) }), jsxRuntimeExports.jsx(DFL.PanelSectionRow, { children: jsxRuntimeExports.jsx(DFL.ToggleField, { label: lang('toggleAllPlayStylesStat'), description: lang('toggleAllPlayStylesStatDesc'), checked: preferences.showAllStyles, onChange: () => toggleShowAllStyles() }) }), jsxRuntimeExports.jsx(DFL.PanelSectionRow, { children: jsxRuntimeExports.jsx(DFL.ButtonItem, { layout: "below", onClick: handleClearCache, children: lang('clearCache') }) })] }));
+    return (SP_JSX.jsxs(SP_JSX.Fragment, { children: [SP_JSX.jsxs(DFL.PanelSection, { children: [SP_JSX.jsx(DFL.PanelSectionRow, { children: SP_JSX.jsx(DFL.DropdownItem, { label: lang('hltbStyle'), description: lang('cleanDesc'), menuLabel: lang('hltbStyle'), rgOptions: styleOptions.map((o) => ({
+                                data: o.data,
+                                label: o.label,
+                            })), selectedOption: styleOptions.find((o) => o.value === style)?.data ||
+                                0, onChange: (newVal) => {
+                                const newStyle = styleOptions.find((o) => o.data === newVal.data)
+                                    ?.value || 'default';
+                                setStyle(newStyle);
+                                updateCache(styleKey, newStyle);
+                            } }) }), SP_JSX.jsx(DFL.PanelSectionRow, { children: SP_JSX.jsx(DFL.ToggleField, { label: lang('hideViewDetails'), description: lang('hideViewDetailsDesc'), checked: hideDetails, onChange: (checked) => {
+                                setHideDetails(checked);
+                                updateCache(hideDetailsKey, checked);
+                            } }) }), SP_JSX.jsx(DFL.PanelSectionRow, { children: SP_JSX.jsx(DFL.ToggleField, { label: lang('toggleMainStat'), description: lang('toggleMainStatDesc'), checked: preferences.showMain, onChange: () => toggleShowMain() }) }), SP_JSX.jsx(DFL.PanelSectionRow, { children: SP_JSX.jsx(DFL.ToggleField, { label: lang('toggleMainPlusStat'), description: lang('toggleMainPlusStatDesc'), checked: preferences.showMainPlus, onChange: () => toggleShowMainPlus() }) }), SP_JSX.jsx(DFL.PanelSectionRow, { children: SP_JSX.jsx(DFL.ToggleField, { label: lang('toggleCompletionistStat'), description: lang('toggleCompletionistStatDesc'), checked: preferences.showComplete, onChange: () => toggleShowComplete() }) }), SP_JSX.jsx(DFL.PanelSectionRow, { children: SP_JSX.jsx(DFL.ToggleField, { label: lang('toggleAllPlayStylesStat'), description: lang('toggleAllPlayStylesStatDesc'), checked: preferences.showAllStyles, onChange: () => toggleShowAllStyles() }) }), SP_JSX.jsx(DFL.PanelSectionRow, { children: SP_JSX.jsx(DFL.ButtonItem, { layout: "below", onClick: handleClearCache, children: lang('clearCache') }) })] }), SP_JSX.jsxs(DFL.PanelSection, { title: lang('appearance'), children: [SP_JSX.jsx(DFL.PanelSectionRow, { children: SP_JSX.jsx(DFL.ToggleField, { label: lang('customizeAppearance'), description: lang('customizeAppearanceDesc'), checked: appearance.custom, onChange: (v) => update({ custom: v }) }) }), appearance.custom && (SP_JSX.jsxs(SP_JSX.Fragment, { children: [SP_JSX.jsx(DFL.PanelSectionRow, { children: SP_JSX.jsx(DFL.SliderField, { label: lang('barOpacity'), description: lang('barOpacityDesc'), value: appearance.barAlpha, min: 0, max: 100, step: 5, showValue: true, valueSuffix: "%", resetValue: DEFAULT_APPEARANCE.barAlpha, onChange: (v) => update({ barAlpha: v }) }) }), SP_JSX.jsx(DFL.PanelSectionRow, { children: SP_JSX.jsx(DFL.DropdownItem, { label: lang('viewDetailsColor'), description: lang('viewDetailsColorDesc'), menuLabel: lang('viewDetailsColor'), rgOptions: [
+                                        { data: 0, label: lang('linkColorSteam') },
+                                        { data: 1, label: lang('linkColorText') },
+                                    ], selectedOption: appearance.linkColor === 'steam' ? 0 : 1, onChange: (newVal) => update({
+                                        linkColor: newVal.data === 0
+                                            ? 'steam'
+                                            : 'text',
+                                    }) }) }), SP_JSX.jsx(DFL.PanelSectionRow, { children: SP_JSX.jsx(DFL.ToggleField, { label: lang('textShadow'), description: lang('textShadowDesc'), checked: appearance.textShadow, onChange: (v) => update({ textShadow: v }) }) }), SP_JSX.jsx(DFL.PanelSectionRow, { children: SP_JSX.jsx(DFL.SliderField, { label: lang('textSize'), description: lang('textSizeDesc'), value: appearance.textScale, min: 75, max: 150, step: 5, showValue: true, valueSuffix: "%", resetValue: DEFAULT_APPEARANCE.textScale, onChange: (v) => update({ textScale: v }) }) }), style === 'default' && (SP_JSX.jsx(DFL.PanelSectionRow, { children: SP_JSX.jsx(DFL.ToggleField, { label: lang('bottomBorder'), description: lang('bottomBorderDesc'), checked: appearance.border, onChange: (v) => update({ border: v }) }) })), SP_JSX.jsx(DFL.PanelSectionRow, { children: SP_JSX.jsx(DFL.ButtonItem, { layout: "below", onClick: () => update({
+                                        ...DEFAULT_APPEARANCE,
+                                        custom: true,
+                                    }), children: lang('resetAppearance') }) })] }))] })] }));
 };
 
 const HLTBContextMenuItem = ({ appId }) => {
     const lang = useLocalization();
-    return (jsxRuntimeExports.jsx(DFL.MenuItem, { onSelected: () => {
+    return (SP_JSX.jsx(DFL.MenuItem, { onSelected: () => {
             // little hacky but it works
             setShowHide(appId);
             DFL.Navigation.Navigate('/hltb-for-deck/loading');
@@ -5800,7 +6100,7 @@ const addStatsSettingsMenuItem = (children, appId) => {
         return;
     }
     // Add the HLTB Stats Setting Menu Item before the Properties Menu Item
-    children.splice(propertiesMenuItem, 0, jsxRuntimeExports.jsx(HLTBContextMenuItem, { appId: `${appId}` }));
+    children.splice(propertiesMenuItem, 0, SP_JSX.jsx(HLTBContextMenuItem, { appId: `${appId}` }));
 };
 const removeStatsSettingsMenuItem = (children) => {
     if (!Array.isArray(children)) {
@@ -5811,12 +6111,70 @@ const removeStatsSettingsMenuItem = (children) => {
         children.splice(hltbIndex, 1);
     }
 };
-const contextMenuPatch = (LibraryContextMenu) => {
+const getFunctionSource = (value) => {
+    if (typeof value !== 'function') {
+        return '';
+    }
+    try {
+        const source = value.toString();
+        if (typeof source === 'string') {
+            return source;
+        }
+    }
+    catch {
+        // Fall back to the native source for patched or unusual exports.
+    }
+    try {
+        return Function.prototype.toString.call(value);
+    }
+    catch {
+        return '';
+    }
+};
+const findLibraryContextMenu = () => {
+    const component = DFL.findModuleChild((module) => {
+        if (!module || typeof module !== 'object') {
+            return;
+        }
+        try {
+            const exports$1 = Object.values(module);
+            if (exports$1.some((value) => getFunctionSource(value).includes('().LibraryContextMenu'))) {
+                return exports$1.find((value) => getFunctionSource(value).includes('navigator:'));
+            }
+        }
+        catch {
+            return;
+        }
+        return;
+    });
+    if (typeof component !== 'function') {
+        console.warn('HLTB - LibraryContextMenu component not found');
+        return null;
+    }
+    try {
+        const libraryContextMenu = DFL.fakeRenderComponent(component)?.type;
+        if (typeof libraryContextMenu?.prototype?.render === 'function') {
+            return libraryContextMenu;
+        }
+    }
+    catch (error) {
+        DFL.removeHookStubs();
+        console.error('HLTB - failed to resolve LibraryContextMenu:', error);
+        return null;
+    }
+    console.warn('HLTB - LibraryContextMenu render method not found');
+    return null;
+};
+const contextMenuPatch = () => {
     // Variable for all patches applied to LibraryContextMenu
     const patches = {
         unpatch: () => null,
     };
     let currentAppId = null;
+    const LibraryContextMenu = findLibraryContextMenu();
+    if (!LibraryContextMenu) {
+        return patches;
+    }
     patches.patchOne = DFL.afterPatch(LibraryContextMenu.prototype, 'render', (_, component) => {
         // Get the current app's ID
         const appid = resolveComponentAppId(component);
@@ -5824,7 +6182,9 @@ const contextMenuPatch = (LibraryContextMenu) => {
         if (appid === null) {
             return component;
         }
-        if (!patches.patchTwo) {
+        if (!patches.patchTwo &&
+            typeof component?.type?.prototype?.shouldComponentUpdate ===
+                'function') {
             patches.patchTwo = DFL.afterPatch(component.type.prototype, 'shouldComponentUpdate', ([nextProps], shouldUpdate) => {
                 removeStatsSettingsMenuItem(nextProps.children);
                 if (shouldUpdate === true) {
@@ -5849,30 +6209,19 @@ const contextMenuPatch = (LibraryContextMenu) => {
     };
     return patches;
 };
-const LibraryContextMenu = DFL.fakeRenderComponent(DFL.findModuleChild((m) => {
-    if (typeof m !== 'object')
-        return;
-    for (const prop in m) {
-        if (m[prop]?.toString() &&
-            m[prop].toString().includes('().LibraryContextMenu')) {
-            return Object.values(m).find((sibling) => sibling?.toString().includes('navigator:'));
-        }
-    }
-    return;
-})).type;
 
 const LoadingScreen = () => {
-    return jsxRuntimeExports.jsx(DFL.SteamSpinner, {});
+    return SP_JSX.jsx(DFL.SteamSpinner, {});
 };
 
 var index = DFL.definePlugin(() => {
-    const libraryContextMenuPatch = contextMenuPatch(LibraryContextMenu);
+    const libraryContextMenuPatch = contextMenuPatch();
     const libraryAppPagePatch = patchAppPage();
     routerHook.addRoute('/hltb-for-deck/loading', LoadingScreen);
     return {
-        title: jsxRuntimeExports.jsx("div", { className: DFL.staticClasses.Title, children: "HLTB for Deck" }),
-        icon: jsxRuntimeExports.jsx(FaGamepad, {}),
-        content: jsxRuntimeExports.jsx(QuickAccessView, {}),
+        title: SP_JSX.jsx("div", { className: DFL.staticClasses.Title, children: "HLTB for Deck" }),
+        icon: SP_JSX.jsx(FaGamepad, {}),
+        content: SP_JSX.jsx(QuickAccessView, {}),
         onDismount() {
             libraryContextMenuPatch?.unpatch();
             routerHook.removePatch('/library/app/:appid', libraryAppPagePatch);

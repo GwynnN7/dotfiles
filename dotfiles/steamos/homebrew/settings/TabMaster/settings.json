@@ -5,7 +5,7 @@
                 "GreatOnDeck": {
                     "id": "GreatOnDeck",
                     "title": "Great On Deck",
-                    "position": 2
+                    "position": -1
                 },
                 "AllGames": {
                     "id": "AllGames",
@@ -15,7 +15,7 @@
                 "Installed": {
                     "id": "Installed",
                     "title": "Installed",
-                    "position": 3
+                    "position": -1
                 },
                 "Favorites": {
                     "id": "Favorites",
@@ -25,17 +25,17 @@
                 "Collections": {
                     "id": "Collections",
                     "title": "Collections",
-                    "position": 6
+                    "position": 4
                 },
                 "DesktopApps": {
                     "id": "DesktopApps",
                     "title": "Non-Steam",
-                    "position": 4
+                    "position": -1
                 },
                 "Soundtracks": {
                     "id": "Soundtracks",
                     "title": "Soundtracks",
-                    "position": 7
+                    "position": 5
                 },
                 "68047302-5cbe-4cf3-8935-b9223d1500f6": {
                     "id": "68047302-5cbe-4cf3-8935-b9223d1500f6",
@@ -80,7 +80,7 @@
                 "ec6f8cf7-1e3d-40a4-a1bf-2a92b568ceed": {
                     "id": "ec6f8cf7-1e3d-40a4-a1bf-2a92b568ceed",
                     "title": " BACKLOGGED",
-                    "position": 5,
+                    "position": 3,
                     "filters": [
                         {
                             "type": "collection",
@@ -96,6 +96,42 @@
                     "autoHide": false,
                     "visibleToOthers": false,
                     "sortByOverride": -1
+                },
+                "cb3b1c43-a541-4319-9c2a-d3b2f1ac798b": {
+                    "id": "cb3b1c43-a541-4319-9c2a-d3b2f1ac798b",
+                    "title": "Installed",
+                    "position": 2,
+                    "filters": [
+                        {
+                            "type": "collection",
+                            "inverted": false,
+                            "params": {
+                                "id": "uc-ZK1BLnwwh*+Bw",
+                                "name": "   PLAYTHROUGH"
+                            }
+                        },
+                        {
+                            "type": "collection",
+                            "inverted": false,
+                            "params": {
+                                "id": "uc-5AWdxjsTyo4d",
+                                "name": "  BACKGROUND"
+                            }
+                        },
+                        {
+                            "type": "collection",
+                            "inverted": false,
+                            "params": {
+                                "id": "uc-nm612KyyTlX8",
+                                "name": "  SOFTWARE"
+                            }
+                        }
+                    ],
+                    "filtersMode": "or",
+                    "categoriesToInclude": 1,
+                    "autoHide": true,
+                    "visibleToOthers": false,
+                    "sortByOverride": 5
                 }
             },
             "friends": [
