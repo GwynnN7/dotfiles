@@ -1,21 +1,18 @@
--- Event-driven game window watcher. No background polling is used.
---
--- Edit these lists to add commands for each transition. Commands are passed
--- to Hyprland's asynchronous exec helper. Use `sh -c` for shell syntax such
--- as pipelines or multiple commands in a single entry.
 local game_started_commands = {
     "lact cli profile set Gaming",
-    "caelestia shell gamemode enable",
+    "caelestia shell gameMode enable",
     "sudo /usr/bin/scxctl switch --sched lavd",
+    "echo 'Game Started' | cortana notify"
 }
 
 local game_ended_commands = {
     "lact cli profile set Default",
-    "caelestia shell gamemode disable",
+    "caelestia shell gameMode disable",
     "sudo /usr/bin/scxctl restore",
+    "echo 'Game Stopped' | cortana notify"
 }
 
-local end_delay_ms = 5000
+local end_delay_ms = 2500
 
 local process_patterns = {
     "^steam_app_%d+$",
@@ -145,8 +142,6 @@ local function untrack_window(win)
     end
 end
 
--- Adopt already-open game windows quietly. This avoids firing duplicate start
--- hooks when Hyprland reloads its config while a game is still running.
 for _, win in ipairs(hl.get_windows()) do
     if is_game_window(win) then
         local key = window_key(win)
