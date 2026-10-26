@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-#!/usr/bin/env bash
-
-# Enable execution trace and log stdout/stderr
-set -x
-exec > "/tmp/steam_wrapper_$(date +%s).log" 2>&1
-
 if [[ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]]; then
     SESSION_TYPE="hyprland"
 else

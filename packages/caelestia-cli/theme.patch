@@ -1,0 +1,23 @@
+diff --git a/src/caelestia/utils/theme.py b/src/caelestia/utils/theme.py
+index b6c5268..3785b09 100644
+--- a/src/caelestia/utils/theme.py
++++ b/src/caelestia/utils/theme.py
+@@ -155,8 +155,7 @@ def apply_discord(scss: str) -> None:
+         (Path(tmp_dir) / "_colours.scss").write_text(scss)
+         conf = subprocess.check_output(["sass", "-I", tmp_dir, templates_dir / "discord.scss"], text=True)
+ 
+-    for client in "Equicord", "Vencord", "BetterDiscord", "equibop", "vesktop", "legcord":
+-        atomic_write(config_dir / client / "themes/caelestia.theme.css", conf)
++    atomic_write(config_dir / "equibop/themes/caelestia.theme.css", conf)
+ 
+ 
+ @log_exception
+@@ -244,7 +243,7 @@ def sync_papirus_colors(hex_color: str) -> None:
+ 
+     try:
+         subprocess.Popen(
+-            ["sudo", "-n", "papirus-folders", "-C", color, "-u"],
++            ["papirus-folders", "-C", color, "-u"],
+             stderr=subprocess.DEVNULL,
+             stdout=subprocess.DEVNULL,
+             start_new_session=True,

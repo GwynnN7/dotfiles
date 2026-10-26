@@ -19,10 +19,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-theme " .. vars.cursorTheme)
     hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-size " .. vars.cursorSize)
 
-    -- KDE Connect
-    hl.exec_cmd("kdeconnectd")
-    hl.exec_cmd("kdeconnect-indicator")
-
     -- Forward bluetooth media commands to MPRIS
     hl.exec_cmd("mpris-proxy")
 
@@ -33,8 +29,7 @@ hl.on("hyprland.start", function()
 
     -- Start shell
     hl.exec_cmd("hyprpm reload")
-    hl.exec_cmd("caelestia shell -d")
-    hl.exec_cmd("stowaway -d")
+    hl.exec_cmd("systemctl --user start desktop-shell")
 
     -- OpenRGB
     hl.exec_cmd("systemctl --user start openrgb.service")

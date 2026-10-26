@@ -33,8 +33,6 @@ hl.on("hyprland.start", function()
 
     -- Start shell
     hl.exec_cmd("hyprpm reload")
-    hl.exec_cmd("caelestia shell -d")
-    hl.exec_cmd("stowaway -d")
 
     -- OpenRGB
     hl.exec_cmd("systemctl --user start openrgb.service")
@@ -43,8 +41,6 @@ hl.on("hyprland.start", function()
     -- Cortana
 	hl.exec_cmd("cortana idle off")
 end)
-
-require("hyprland.gamewatch")
 
 -- Resizer listeners
 local function apply_resizer_rules(win)

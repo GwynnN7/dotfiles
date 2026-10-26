@@ -33,13 +33,11 @@ hl.on("hyprland.start", function()
 
     -- Start shell
     hl.exec_cmd("hyprpm reload")
-    hl.exec_cmd("dms run")
+    hl.exec_cmd("systemctl --user start desktop-shell")
 
     -- Cortana
     hl.exec_cmd("cortana idle off")
 end)
-
-require("hyprland.gamewatch")
 
 -- Resizer listeners
 local function apply_resizer_rules(win)

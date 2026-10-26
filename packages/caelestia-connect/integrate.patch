@@ -1,0 +1,14 @@
+diff --git a/caelestia/integrate.py b/caelestia/integrate.py
+index 5b5c1cb..df2697a 100755
+--- a/caelestia/integrate.py
++++ b/caelestia/integrate.py
+@@ -122,9 +122,6 @@ def main() -> int:
+     if not status.exists() or not content.exists():
+         print(f"{shell} does not look like a Caelestia shell", file=sys.stderr)
+         return 1
+-    if str(shell).startswith(("/etc/", "/usr/")):
+-        print(f"{shell} is a system install; use a local copy (see README)", file=sys.stderr)
+-        return 1
+ 
+     if args.uninstall:
+         new_status, new_content = strip_blocks(status.read_text()), strip_blocks(content.read_text())

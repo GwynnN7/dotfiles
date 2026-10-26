@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -eu
+
+sudo /usr/bin/systemctl start plugin_loader
+
+exec /usr/bin/env STEAM_RUNTIME=1 /usr/bin/steam \
+    -no-cef-sandbox \
+    -cef-force-glx \
+    -bigpicture

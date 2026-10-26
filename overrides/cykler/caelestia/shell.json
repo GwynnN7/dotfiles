@@ -5,7 +5,7 @@
             "scale": 0.8
         },
         "rounding": {
-            "scale": 1
+            "scale": 0.8
         },
         "spacing": {
             "scale": 1
@@ -22,11 +22,11 @@
             "enabled": true,
             "entries": [
                 {
-                    "col": 2,
+                    "col": 1,
                     "enabled": true,
                     "id": "resources",
                     "right": true,
-                    "row": 2
+                    "row": 21
                 }
             ]
         }
@@ -34,13 +34,13 @@
     "bar": {
         "activeWindow": {
             "compact": true,
-            "inverted": true,
+            "inverted": false,
             "showOnHover": false
         },
         "clock": {
             "background": false,
             "showDate": true,
-            "showIcon": false
+            "showIcon": true
         },
         "entries": [
             {
@@ -61,11 +61,11 @@
             },
             {
                 "enabled": true,
-                "id": "spacer"
+                "id": "clock"
             },
             {
                 "enabled": true,
-                "id": "clock"
+                "id": "spacer"
             },
             {
                 "enabled": true,
@@ -87,6 +87,10 @@
         },
         "position": "Left",
         "statusIcons": [
+            {
+                "enabled": true,
+                "id": "kdeConnect"
+            },
             {
                 "enabled": true,
                 "id": "lockStatus"
@@ -144,6 +148,28 @@
             ],
             "playback": [
                 "celluloid"
+            ]
+        },
+        "idle": {
+            "timeouts": [
+                {
+                    "enabled": true,
+                    "idleAction": "lock",
+                    "timeout": 600
+                },
+                {
+                    "enabled": true,
+                    "idleAction": "dpms off",
+                    "returnAction": "dpms on",
+                    "timeout": 1800
+                },
+                {
+                    "enabled": true,
+                    "idleAction": [
+                        "suspendThenHibernate"
+                    ],
+                    "timeout": 900
+                }
             ]
         },
         "mediaGifSpeedAdjustment": 125
@@ -234,29 +260,51 @@
         },
         "equalizer": true,
         "soundEffects": {
-            "enabled": true
+            "enabled": true,
+            "notificationVolume": 0.8025534315395095,
+            "screenUnlock": false,
+            "sfxVolume": 0.8041638283378747,
+            "volumeTick": true
         }
     },
     "session": {
-        "entries": [
-            {
-                "enabled": true,
-                "id": "shutdown"
-            },
-            {
-                "enabled": true,
-                "id": "sleep"
-            },
-            {
-                "enabled": true,
-                "id": "reboot"
-            },
-            {
-                "enabled": true,
-                "id": "logout"
-            }
-        ],
-        "side": "Left"
+        "commands": {
+            "logout": [
+                "uwsm",
+                "stop"
+            ],
+            "reboot": [
+                "sh",
+                "-c",
+                "cortana service &>/dev/null && cortana api computer -cmd Reboot | cortana notify || systemctl reboot"
+            ],
+            "shutdown": [
+                "sh",
+                "-c",
+                "cortana service &>/dev/null && cortana api computer -cmd Shutdown | cortana notify || systemctl poweroff"
+            ],
+            "steam": [
+                "sh",
+                "-c",
+                "steamos-session-select gamescope || systemctl reboot"
+            ],
+            "suspend": [
+                "suspend"
+            ],
+            "windows": [
+                "sh",
+                "-c",
+                "cortana service &>/dev/null && cortana api computer -cmd BootIntoOtherOperatingSystem | cortana notify || systemctl reboot"
+            ]
+        },
+        "icons": {
+            "logout": "exit_to_app",
+            "reboot": "cached",
+            "shutdown": "power_settings_new",
+            "steam": "stadia_controller",
+            "suspend": "bedtime",
+            "windows": "window"
+        }
     },
     "sidebar": {
         "dragThreshold": 100,

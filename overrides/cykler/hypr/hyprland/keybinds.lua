@@ -94,10 +94,10 @@ create_bind(vars.kbRestoreLock, function()
 end)
 
 -- Kill/restart
-create_bind(vars.kbKillRestart, hl.dsp.exec_cmd("qs -c caelestia kill"), release)
+create_bind(vars.kbKillRestart, hl.dsp.exec_cmd("systemctl --user stop caelestia-shell.service"))
 create_bind(
     vars.kbKillRestart,
-    hl.dsp.exec_cmd("qs -c caelestia kill; sleep .1; caelestia shell -d"),
+    hl.dsp.exec_cmd("systemctl --user start caelestia-shell.service"),
     release
 )
 

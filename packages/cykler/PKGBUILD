@@ -15,8 +15,19 @@ depends=('quickshell-git' 'qt6-m3shapes-git'
 makedepends=('git' 'cmake' 'ninja' 'qt6-shadertools')
 provides=($_pkgname 'caelestia-shell' 'caelestia-shell-git' 'midnight-shell' 'midnight-shell-git')
 conflicts=($_pkgname 'caelestia-shell' 'caelestia-shell-git' 'midnight-shell' 'midnight-shell-git')
-source=("${pkgname}::git+${url}.git")
-sha256sums=('SKIP')
+source=(
+    "$pkgname::git+$url.git"
+    "shell.patch"
+)
+sha256sums=(
+    'SKIP'
+    'SKIP'
+)
+
+prepare() {
+    cd "${srcdir}/${pkgname}"
+    patch -Np1 -i "${srcdir}/shell.patch"
+}
 
 pkgver() {
   cd "${srcdir}/${pkgname}"

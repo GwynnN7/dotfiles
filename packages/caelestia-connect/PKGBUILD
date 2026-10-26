@@ -1,0 +1,116 @@
+pkgname=caelestia-connect-git
+pkgver=r1.0000000
+pkgrel=1
+pkgdesc="Connect and control Caelestia Shell devices"
+arch=('any')
+url="https://github.com/maylton/caelestia-connect"
+license=('GPL-3.0-or-later')
+depends=(
+  'gtk4'
+  'libadwaita'
+  'gtk4-layer-shell'
+  'python'
+  'python-cryptography'
+  'python-evdev'
+  'python-gobject'
+)
+makedepends=('git')
+optdepends=(
+  'nautilus-python: Nautilus integration'
+  'wl-clipboard: Wayland clipboard integration'
+  'ufw: firewall management, if UFW is used'
+  'wayvnc: host a virtual monitor'
+  'freerdp: display another computer virtual monitor'
+)
+provides=('caelestia-connect')
+conflicts=('caelestia-connect')
+source=(
+    "$pkgname::git+$url.git"
+    "integrate.patch"
+)
+sha256sums=(
+    'SKIP'
+    'SKIP'
+)
+
+prepare() {
+    cd "${srcdir}/${pkgname}"
+    patch -Np1 -i "${srcdir}/integrate.patch"
+}
+
+pkgver() {
+  cd "${pkgname%-git}"
+  printf 'r%s.%s' "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+package() {
+  cd "${pkgname%-git}"
+
+  # Keep the Python application together in a private, package-owned directory.
+  install -d "$pkgdir/usr/lib/caelestia-connect"
+  cp -a caelestia_connect "$pkgdir/usr/lib/caelestia-connect/"
+  install -Dm755 caelestia/integrate.py \
+    "$pkgdir/usr/lib/caelestia-connect/caelestia/integrate.py"
+
+  # Executable entry points. Using /usr/bin/python avoids embedding the
+  # temporary makepkg build environment in generated launchers.
+  install -d "$pkgdir/usr/bin"
+  local name module
+  while IFS=: read -r name module; do
+    cat >"$pkgdir/usr/bin/$name" <<EOF
+#!/bin/sh
+export PYTHONPATH="/usr/lib/caelestia-connect\${PYTHONPATH:+:\$PYTHONPATH}"
+exec /usr/bin/python -m $module "\$@"
+EOF
+    chmod 755 "$pkgdir/usr/bin/$name"
+  done <<'EOF'
+caelestia-connect:caelestia_connect.ui
+caelestia-connectd:caelestia_connect.daemon
+caelestia-connect-cli:caelestia_connect.cli
+EOF
+
+  # Provide shell integration as an explicit user action. A package must not
+  # modify a user's ~/.config during build or installation.
+  cat >"$pkgdir/usr/bin/caelestia-connect-integrate" <<'EOF'
+#!/bin/sh
+shell_dir="${CAELESTIA_SHELL_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/quickshell/caelestia}"
+exec /usr/bin/python /usr/lib/caelestia-connect/caelestia/integrate.py \
+  --shell "$shell_dir" "$@"
+EOF
+  chmod 755 "$pkgdir/usr/bin/caelestia-connect-integrate"
+
+  # Desktop integration.
+  install -Dm644 data/org.caelestia.Connect.desktop \
+    "$pkgdir/usr/share/applications/org.caelestia.Connect.desktop"
+  sed -i 's|@BIN@|/usr/bin|g' \
+    "$pkgdir/usr/share/applications/org.caelestia.Connect.desktop"
+
+  install -Dm644 data/org.caelestia.Connect.svg \
+    "$pkgdir/usr/share/icons/hicolor/scalable/apps/org.caelestia.Connect.svg"
+
+  install -Dm644 data/nautilus/caelestia_connect_nautilus.py \
+    "$pkgdir/usr/share/nautilus-python/extensions/caelestia_connect_nautilus.py"
+
+  # User service. Users enable this themselves with systemctl --user.
+  install -Dm644 data/caelestia-connectd.service \
+    "$pkgdir/usr/lib/systemd/user/caelestia-connectd.service"
+  sed -i 's|@BIN@|/usr/bin|g' \
+    "$pkgdir/usr/lib/systemd/user/caelestia-connectd.service"
+
+  # Grant active local sessions access to uinput without an install-time shell
+  # command. Verify that this policy matches the project's security model.
+  install -Dm644 /dev/stdin \
+    "$pkgdir/usr/lib/udev/rules.d/60-caelestia-connect-uinput.rules" <<'EOF'
+KERNEL=="uinput", GROUP="input", MODE="0660", TAG+="uaccess"
+EOF
+
+  # Install the upstream license if the repository contains one.
+  local license_file
+  for license_file in LICENSE LICENSE.md COPYING; do
+    if [[ -f $license_file ]]; then
+      install -Dm644 "$license_file" \
+        "$pkgdir/usr/share/licenses/$pkgname/$license_file"
+      break
+    fi
+  done
+}

@@ -1,0 +1,116 @@
+diff --git a/modules/launcher/services/Apps.qml b/modules/launcher/services/Apps.qml
+index 1b8740e9..add9c7ce 100644
+--- a/modules/launcher/services/Apps.qml
++++ b/modules/launcher/services/Apps.qml
+@@ -13,11 +13,14 @@ Searcher {
+ 
+         if (entry.runInTerminal)
+             Quickshell.execDetached({
+-                command: [...GlobalConfig.general.apps.terminal, `${Quickshell.shellDir}/assets/wrap_term_launch.sh`, ...entry.command],
++                command: ["app2unit", "--", ...GlobalConfig.general.apps.terminal, `${Quickshell.shellDir}/assets/wrap_term_launch.sh`, ...entry.command],
+                 workingDirectory: entry.workingDirectory
+             });
+         else
+-            entry.execute();
++            Quickshell.execDetached({
++                command: ["app2unit", "--", ...entry.command],
++                workingDirectory: entry.workingDirectory
++            });
+     }
+ 
+     function search(search: string): var {
+diff --git a/modules/session/Content.qml b/modules/session/Content.qml
+index ecf50e5b..4d8aef67 100644
+--- a/modules/session/Content.qml
++++ b/modules/session/Content.qml
+@@ -32,6 +32,14 @@ Column {
+             reboot: {
+                 icon: Config.session.icons.reboot,
+                 command: Config.session.commands.reboot
++            },
++            windows: {
++                icon: Config.session.icons.windows,
++                command: Config.session.commands.windows
++            },
++            steamos: {
++                icon: Config.session.icons.steamos,
++                command: Config.session.commands.steamos
+             }
+         })
+ 
+diff --git a/plugin/src/Caelestia/Config/sessionconfig.hpp b/plugin/src/Caelestia/Config/sessionconfig.hpp
+index d9ecab9e..87e70aee 100644
+--- a/plugin/src/Caelestia/Config/sessionconfig.hpp
++++ b/plugin/src/Caelestia/Config/sessionconfig.hpp
+@@ -15,19 +15,23 @@ using Qt::StringLiterals::operator""_s;
+ class SessionIcons : public settings::ObjectNode {
+     CONFIG_NODE(SessionIcons, settings::ObjectNode)
+ 
+-    CONFIG_PROPERTY(QString, logout, u"logout"_s)
+     CONFIG_PROPERTY(QString, shutdown, u"power_settings_new"_s)
+-    CONFIG_PROPERTY(QString, sleep, u"bedtime"_s)
++    CONFIG_PROPERTY(QString, suspend, u"bedtime"_s)
+     CONFIG_PROPERTY(QString, reboot, u"cached"_s)
++    CONFIG_PROPERTY(QString, logout, u"exit_to_app"_s)
++    CONFIG_PROPERTY(QString, steam, u"stadia_controller"_s)
++    CONFIG_PROPERTY(QString, windows, u"window"_s)
+ };
+ 
+ class SessionCommands : public settings::ObjectNode {
+     CONFIG_NODE(SessionCommands, settings::ObjectNode)
+ 
+-    CONFIG_PROPERTY(QStringList, logout, { u"logout"_s })
+     CONFIG_PROPERTY(QStringList, shutdown, { u"poweroff"_s })
+-    CONFIG_PROPERTY(QStringList, sleep, { u"suspend"_s })
++    CONFIG_PROPERTY(QStringList, suspend, { u"suspend"_s })
+     CONFIG_PROPERTY(QStringList, reboot, { u"reboot"_s })
++    CONFIG_PROPERTY(QStringList, logout, { u"logout"_s })
++    CONFIG_PROPERTY(QStringList, steam, { u"logout"_s })
++    CONFIG_PROPERTY(QStringList, windows, { u"reboot"_s })
+ };
+ 
+ class SessionConfig : public settings::ObjectNode {
+@@ -47,6 +51,8 @@ class SessionConfig : public settings::ObjectNode {
+             LIST_ENTRY(shutdown, true),
+             LIST_ENTRY(sleep, true),
+             LIST_ENTRY(reboot, true),
++            LIST_ENTRY(steam, true),
++            LIST_ENTRY(windows, true),
+         }))
+ };
+ 
+diff --git a/services/GameMode.qml b/services/GameMode.qml
+index d8b0e85b..ecc4a571 100644
+--- a/services/GameMode.qml
++++ b/services/GameMode.qml
+@@ -18,6 +18,9 @@ Singleton {
+             "animations:enabled": 0,
+             "decoration:shadow:enabled": 0,
+             "decoration:blur:enabled": 0,
++            "decoration:active_opacity": 1,
++            "decoration:inactive_opacity": 1,
++            "decoration:fullscreen_opacity": 1,
+             "general:gaps_in": 0,
+             "general:gaps_out": 0,
+             "general:border_size": 1,
+@@ -25,17 +28,20 @@ Singleton {
+             "general:allow_tearing": 1,
+             "input:accel_profile": "flat"
+         });
++        Hypr.extras.batchMessage([`eval hl.window_rule({ match = { class = ".*" }, opaque = true })`]);
+     }
+ 
+     onEnabledChanged: {
+         if (enabled) {
+             setDynamicConfs();
++            IdleInhibitor.mode = IdleInhibitor.preventLockAndSleepMode;
+             if (GlobalConfig.utilities.toasts.gameModeChanged)
+                 Toaster.toast(Tr.tr("Game mode enabled"), Tr.tr("Disabled Hyprland animations, blur, gaps, shadows and mouse acceleration"), "gamepad");
+         } else {
+             // A reload drops every runtime `keyword monitor`; Monitors puts them back
+             Monitors.rememberForReload();
+             Hypr.extras.message("reload");
++            IdleInhibitor.mode = IdleInhibitor.off;
+             if (GlobalConfig.utilities.toasts.gameModeChanged)
+                 Toaster.toast(Tr.tr("Game mode disabled"), Tr.tr("Hyprland settings restored"), "gamepad");
+         }
