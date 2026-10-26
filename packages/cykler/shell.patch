@@ -19,11 +19,26 @@ index 1b8740e9..add9c7ce 100644
      }
  
      function search(search: string): var {
+diff --git a/modules/nexus/pages/panels/LockPanel.qml b/modules/nexus/pages/panels/LockPanel.qml
+index 2555164f..2b161110 100644
+--- a/modules/nexus/pages/panels/LockPanel.qml
++++ b/modules/nexus/pages/panels/LockPanel.qml
+@@ -15,7 +15,9 @@ PageBase {
+             logout: Tr.tr("Log out"),
+             shutdown: Tr.tr("Shut down"),
+             sleep: Tr.tr("Sleep"),
+-            reboot: Tr.tr("Reboot")
++            reboot: Tr.tr("Reboot"),
++            steamos: Tr.tr("SteamOS"),
++            windows: Tr.tr("Windows")
+         })
+ 
+     title: Tr.tr("Lock screen")
 diff --git a/modules/session/Content.qml b/modules/session/Content.qml
-index ecf50e5b..4d8aef67 100644
+index ecf50e5b..6c351556 100644
 --- a/modules/session/Content.qml
 +++ b/modules/session/Content.qml
-@@ -32,6 +32,14 @@ Column {
+@@ -32,12 +32,20 @@ Column {
              reboot: {
                  icon: Config.session.icons.reboot,
                  command: Config.session.commands.reboot
@@ -38,8 +53,28 @@ index ecf50e5b..4d8aef67 100644
              }
          })
  
+     // The animation isn't an action, so it stays in a fixed slot while the actions around it are
+     // reordered (and keeps its old spot in the default order)
+-    readonly property int gifIndex: 2
++    readonly property int gifIndex: Math.floor(Object.keys(builtinActions).length / 2)
+ 
+     // Enabled actions in their configured order, with the animation slotted back in
+     readonly property var items: {
+diff --git a/plugin/src/Caelestia/Config/lockconfig.hpp b/plugin/src/Caelestia/Config/lockconfig.hpp
+index 13570f69..329fee95 100644
+--- a/plugin/src/Caelestia/Config/lockconfig.hpp
++++ b/plugin/src/Caelestia/Config/lockconfig.hpp
+@@ -49,6 +49,8 @@ class LockConfig : public settings::ObjectNode {
+             LIST_ENTRY(shutdown, true),
+             LIST_ENTRY(sleep, true),
+             LIST_ENTRY(reboot, true),
++            LIST_ENTRY(steamos, true),
++            LIST_ENTRY(windows, true),
+         }))
+     // Which widgets show in the side columns, in what order, which column, and how much
+     // vertical room each gets (ids: weather, fetch, media, resources, battery, notifs, network,
 diff --git a/plugin/src/Caelestia/Config/sessionconfig.hpp b/plugin/src/Caelestia/Config/sessionconfig.hpp
-index d9ecab9e..87e70aee 100644
+index d9ecab9e..56fefa7a 100644
 --- a/plugin/src/Caelestia/Config/sessionconfig.hpp
 +++ b/plugin/src/Caelestia/Config/sessionconfig.hpp
 @@ -15,19 +15,23 @@ using Qt::StringLiterals::operator""_s;
@@ -48,11 +83,10 @@ index d9ecab9e..87e70aee 100644
  
 -    CONFIG_PROPERTY(QString, logout, u"logout"_s)
      CONFIG_PROPERTY(QString, shutdown, u"power_settings_new"_s)
--    CONFIG_PROPERTY(QString, sleep, u"bedtime"_s)
-+    CONFIG_PROPERTY(QString, suspend, u"bedtime"_s)
+     CONFIG_PROPERTY(QString, sleep, u"bedtime"_s)
      CONFIG_PROPERTY(QString, reboot, u"cached"_s)
 +    CONFIG_PROPERTY(QString, logout, u"exit_to_app"_s)
-+    CONFIG_PROPERTY(QString, steam, u"stadia_controller"_s)
++    CONFIG_PROPERTY(QString, steamos, u"stadia_controller"_s)
 +    CONFIG_PROPERTY(QString, windows, u"window"_s)
  };
  
@@ -61,11 +95,10 @@ index d9ecab9e..87e70aee 100644
  
 -    CONFIG_PROPERTY(QStringList, logout, { u"logout"_s })
      CONFIG_PROPERTY(QStringList, shutdown, { u"poweroff"_s })
--    CONFIG_PROPERTY(QStringList, sleep, { u"suspend"_s })
-+    CONFIG_PROPERTY(QStringList, suspend, { u"suspend"_s })
+     CONFIG_PROPERTY(QStringList, sleep, { u"suspend"_s })
      CONFIG_PROPERTY(QStringList, reboot, { u"reboot"_s })
 +    CONFIG_PROPERTY(QStringList, logout, { u"logout"_s })
-+    CONFIG_PROPERTY(QStringList, steam, { u"logout"_s })
++    CONFIG_PROPERTY(QStringList, steamos, { u"logout"_s })
 +    CONFIG_PROPERTY(QStringList, windows, { u"reboot"_s })
  };
  
@@ -74,7 +107,7 @@ index d9ecab9e..87e70aee 100644
              LIST_ENTRY(shutdown, true),
              LIST_ENTRY(sleep, true),
              LIST_ENTRY(reboot, true),
-+            LIST_ENTRY(steam, true),
++            LIST_ENTRY(steamos, true),
 +            LIST_ENTRY(windows, true),
          }))
  };

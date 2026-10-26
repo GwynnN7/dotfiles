@@ -735,7 +735,7 @@ post_install = [
     "systemctl --user daemon-reload",
     "systemctl --user stop hypr-kdeconnect-portal.service",
     "systemctl --user restart xdg-desktop-portal",
-    "caelestia-connect-integrate",
+    "sudo caelestia-connect-integrate --shell /etc/xdg/quickshell/caelestia/",
 ]
 
 [[components]]

@@ -57,8 +57,11 @@ package() {
   # Keep the Python application in a private, package-owned directory.
   install -d "$pkgdir/usr/lib/caelestia-connect"
   cp -a caelestia_connect "$pkgdir/usr/lib/caelestia-connect/"
-  install -Dm755 caelestia/integrate.py \
-    "$pkgdir/usr/lib/caelestia-connect/caelestia/integrate.py"
+
+  # integrate.py loads the QML payload relative to its own directory, so the
+  # complete caelestia tree must be installed alongside it.
+  cp -a caelestia "$pkgdir/usr/lib/caelestia-connect/"
+  chmod 755 "$pkgdir/usr/lib/caelestia-connect/caelestia/integrate.py"
 
   # Executable entry points.
   install -d "$pkgdir/usr/bin"

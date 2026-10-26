@@ -87,18 +87,12 @@ else
     create_bind(vars.kbOverview2, hl.dsp.global("caelestia:workspaceOverview"))
 end
 
--- Restore lock
-create_bind(vars.kbRestoreLock, function()
-    hl.dispatch(hl.dsp.exec_cmd("caelestia shell -d"))
-    hl.dispatch(hl.dsp.global("caelestia:lock"))
-end)
-
 -- Kill/restart
-create_bind(vars.kbKillRestart, hl.dsp.exec_cmd("qs -c caelestia kill"), release)
+create_bind(vars.kbKillRestart, hl.dsp.exec_cmd("systemctl --user stop desktop-shell"))
 create_bind(
     vars.kbKillRestart,
-    hl.dsp.exec_cmd("qs -c caelestia kill; sleep .1; caelestia shell -d"),
-    release
+    hl.dsp.exec_cmd("systemctl --user restart desktop-shell"),
+    hold
 )
 
 -- Monitor

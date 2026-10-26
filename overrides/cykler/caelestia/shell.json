@@ -283,7 +283,7 @@
                 "-c",
                 "cortana service &>/dev/null && cortana api computer -cmd Shutdown | cortana notify || systemctl poweroff"
             ],
-            "steam": [
+            "steamos": [
                 "sh",
                 "-c",
                 "steamos-session-select gamescope || systemctl reboot"
@@ -297,6 +297,32 @@
                 "cortana service &>/dev/null && cortana api computer -cmd BootIntoOtherOperatingSystem | cortana notify || systemctl reboot"
             ]
         },
+        "entries": [
+            {
+                "enabled": true,
+                "id": "shutdown"
+            },
+            {
+                "enabled": true,
+                "id": "sleep"
+            },
+            {
+                "enabled": true,
+                "id": "reboot"
+            },
+            {
+                "enabled": true,
+                "id": "logout"
+            },
+            {
+                "enabled": true,
+                "id": "steamos"
+            },
+            {
+                "enabled": true,
+                "id": "windows"
+            }
+        ],
         "icons": {
             "logout": "exit_to_app",
             "reboot": "cached",

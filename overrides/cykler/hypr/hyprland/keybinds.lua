@@ -94,11 +94,11 @@ create_bind(vars.kbRestoreLock, function()
 end)
 
 -- Kill/restart
-create_bind(vars.kbKillRestart, hl.dsp.exec_cmd("systemctl --user stop caelestia-shell.service"))
+create_bind(vars.kbKillRestart, hl.dsp.exec_cmd("systemctl --user stop desktop-shell"))
 create_bind(
     vars.kbKillRestart,
-    hl.dsp.exec_cmd("systemctl --user start caelestia-shell.service"),
-    release
+    hl.dsp.exec_cmd("systemctl --user restart desktop-shell"),
+    hold
 )
 
 -- Monitor

@@ -71,9 +71,6 @@ return {
     kbOverview                 = "SUPER + Space",
     kbOverview2                = "ALT + Tab",
 
-    -- Restore lock
-    kbRestoreLock              = "SUPER + ALT + L",
-
     -- Kill/restart
     kbKillRestart              = "CTRL + ALT + Delete",
 

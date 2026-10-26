@@ -1,6 +1,6 @@
 _pkgname='cykler-shell'
 pkgname="${_pkgname}-git"
-pkgver=0.0.0.r0.g0000000
+pkgver=0.0.0.r3891.6d599ef
 pkgrel=1
 pkgdesc='Personal Caelestia shell fork with additional features'
 arch=('x86_64')

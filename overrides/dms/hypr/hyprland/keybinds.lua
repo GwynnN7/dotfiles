@@ -87,17 +87,12 @@ else
     create_bind(vars.kbOverview2, hl.dsp.exec_cmd("dms ipc call spotlight toggle"))
 end
 
--- Restore lock
-create_bind(vars.kbRestoreLock, function()
-    hl.dispatch(hl.dsp.exec_cmd("dms run -d"))
-    hl.dispatch(hl.dsp.exec_cmd("dms ipc call lock lock"))
-end)
-
 -- Kill/restart
+create_bind(vars.kbKillRestart, hl.dsp.exec_cmd("systemctl --user stop desktop-shell"))
 create_bind(
     vars.kbKillRestart,
-    hl.dsp.exec_cmd("dms restart"),
-    release
+    hl.dsp.exec_cmd("systemctl --user restart desktop-shell"),
+    hold
 )
 
 -- Monitor
