@@ -71,9 +71,6 @@ return {
     kbOverview                 = "SUPER + Space",
     kbOverview2                = "ALT + Tab",
 
-    -- Restore lock
-    kbRestoreLock              = "SUPER + ALT + L",
-
     -- Kill/restart
     kbKillRestart              = "CTRL + ALT + Delete",
 
@@ -126,8 +123,8 @@ return {
     kbClipboard                = "SUPER + V",
     kbEmoji                    = "SUPER + Period",
     kbUtils                    = "SUPER + Comma",
-    kbKeybinds                 = "SUPER + K",
-    kbWindows                  = "SUPER + J",
+    kbTodo                     = "SUPER + K",
+    kbNotepad                  = "SUPER + J",
     kbWallpaper                = "SUPER + F4",
 
     -- Submaps

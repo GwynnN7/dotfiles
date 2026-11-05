@@ -1,6 +1,6 @@
 local home   = os.getenv("HOME")
 local hypr   = home .. "/.config/hypr"
-package.path = package.path .. ";" .. home .. "/.config/caelestia/?.lua"
+package.path = package.path .. ";" .. home .. "/.config/caelestia/?.lua" .. ";" .. home .. "/.config/plugins/?.lua"
 
 -- Create a file if it doesn't exist, optionally with initial content
 local function maybe_create(file, content)
@@ -48,6 +48,7 @@ hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@60", position = "1920x0", sc
 -- Configs
 require("hyprland.env")
 require("hyprland.general")
+require("hyprland.plugins")
 require("hyprland.input")
 require("hyprland.misc")
 require("hyprland.animations")
@@ -57,5 +58,4 @@ require("hyprland.execs")
 require("hyprland.rules")
 require("hyprland.gestures")
 require("hyprland.keybinds")
-require("hyprland.plugins")
 require("hyprland.gaming")

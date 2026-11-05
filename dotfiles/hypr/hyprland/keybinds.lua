@@ -69,7 +69,7 @@ create_bind(vars.kbShowPanels, hl.dsp.global("caelestia:showall"))
 create_bind(vars.kbLock, hl.dsp.global("caelestia:lock"))
 
 -- Plugins
-local smw = hl.plugin.split_monitor_workspaces
+local smw = require("plugins.split-monitor-workspaces")
 local has_scrolloverview = hl.plugin.scrolloverview ~= nil
 local has_hymission = hl.plugin.hymission ~= nil
 
@@ -78,13 +78,13 @@ if has_hymission then
 elseif has_scrolloverview then
     create_bind(vars.kbOverview, function() hl.plugin.scrolloverview.overview("toggle") end)
 else
-    create_bind(vars.kbOverview, hl.dsp.global("caelestia:workspaceOverview"))
+    create_bind(vars.kbOverview, hl.dsp.global("caelestia:overview"))
 end
 
 if has_scrolloverview and has_hymission then
     create_bind(vars.kbOverview2, function() hl.plugin.scrolloverview.overview("toggle") end)
 else
-    create_bind(vars.kbOverview2, hl.dsp.global("caelestia:workspaceOverview"))
+    create_bind(vars.kbOverview2, hl.dsp.global("caelestia:overview"))
 end
 
 -- Restore lock
@@ -94,34 +94,34 @@ create_bind(vars.kbRestoreLock, function()
 end)
 
 -- Kill/restart
-create_bind(vars.kbKillRestart, hl.dsp.exec_cmd("qs -c caelestia kill"), release)
+create_bind(vars.kbKillRestart, hl.dsp.exec_cmd("systemctl --user stop desktop-shell"))
 create_bind(
     vars.kbKillRestart,
-    hl.dsp.exec_cmd("qs -c caelestia kill; sleep .1; caelestia shell -d"),
-    release
+    hl.dsp.exec_cmd("systemctl --user restart desktop-shell"),
+    hold
 )
 
 -- Monitor
 create_bind(combine(vars.kbFocus, "TAB"), hl.dsp.focus({ monitor = "+1" }))
-create_bind(combine(vars.kbMove, "TAB"), function() return smw.change_monitor("next") end)
+create_bind(combine(vars.kbMove, "TAB"), hl.dsp.window.move({ monitor = "+1" }))
 create_bind(combine(vars.kbFocus, "CTRL + TAB"), hl.dsp.workspace.swap_monitors({ monitor1 = "0", monitor2 = "+1" }))
 
 -- Workspace and Windows
-for i = 1, 8 do
+for i = 1, smw.get_amount_of_workspaces() do
     local key = tostring(i)
-    create_bind(combine(vars.kbFocus, key), function() return smw.workspace(i) end, repeating_unless_mouse)
-    create_bind(combine(vars.kbMove, key), function() return smw.move_to_workspace(i) end, repeating_unless_mouse)
+    create_bind(combine(vars.kbFocus, key), smw.workspace(i), repeating_unless_mouse)
+    create_bind(combine(vars.kbMove, key), smw.move_to_workspace(i), repeating_unless_mouse)
 end
 
 for _, key in ipairs({ "mouse_up", "up", "W", }) do
     create_bind(combine(vars.kbFocus, key), fn.focus_workspace("-1"), repeating_unless_mouse)
-    create_bind(combine(vars.kbMove, key), function() return smw.move_to_workspace("-1") end, repeating_unless_mouse)
+    create_bind(combine(vars.kbMove, key), smw.move_to_workspace("-1"), repeating_unless_mouse)
     create_bind(combine(vars.kbMoveWin, key), hl.dsp.window.move({ direction = "up" }), repeating_unless_mouse)
 end
 
 for _, key in ipairs({ "mouse_down", "down", "S" }) do
     create_bind(combine(vars.kbFocus, key), fn.focus_workspace("+1"), repeating_unless_mouse)
-    create_bind(combine(vars.kbMove, key), function() return smw.move_to_workspace("+1") end, repeating_unless_mouse)
+    create_bind(combine(vars.kbMove, key), smw.move_to_workspace("+1"), repeating_unless_mouse)
     create_bind(combine(vars.kbMoveWin, key), hl.dsp.window.move({ direction = "down" }), repeating_unless_mouse)
 end
 
@@ -153,11 +153,11 @@ end
 
 -- Special workspace toggles
 create_bind(vars.kbScratchpad, fn.toggle_special_ws("specialws"))
-create_bind(combine("SHIFT", vars.kbScratchpad), function() return smw.move_to_workspace_silent("special") end)
+create_bind(combine("SHIFT", vars.kbScratchpad),smw.move_to_workspace_silent("special"))
 create_bind(vars.kbSystemMonitorWs, fn.toggle_special_ws("sysmon"))
 create_bind(vars.kbSpecialWs, fn.toggle_special_ws("music"), hold)
 create_bind(vars.kbSpecialWs, fn.toggle_special_ws("communication"))
-create_bind(combine("SHIFT", vars.kbCloseWindow), function() return smw.move_to_workspace("e+0") end)
+create_bind(combine("SHIFT", vars.kbCloseWindow), smw.move_to_workspace("e+0"))
 
 -- Resize and drag
 create_bind(vars.kbResizeColShrink, hl.dsp.layout("colresize -0.15"))
@@ -258,9 +258,9 @@ create_bind(
 create_bind(vars.kbClipboard, hl.dsp.exec_cmd("stowaway -t"))
 create_bind(vars.kbEmoji, hl.dsp.exec_cmd("stowaway -e"))
 create_bind(vars.kbUtils, hl.dsp.global("caelestia:utilities"))
-create_bind(vars.kbKeybinds, hl.dsp.global("caelestia:keybinds"))
-create_bind(vars.kbWindows, hl.dsp.global("caelestia:windowSwitcher"))
-create_bind(vars.kbWallpaper, hl.dsp.global("caelestia:wallpaper"))
+create_bind(vars.kbTodo, hl.dsp.global("caelestia:todoPopout"))
+create_bind(vars.kbNotepad, hl.dsp.global("caelestia:notepadPopout"))
+create_bind(vars.kbWallpaper, hl.dsp.exec_cmd("caelestia wallpaper -r"))
 create_bind(combine("ALT", vars.kbClipboard), hl.dsp.exec_cmd("pkill fuzzel || caelestia clipboard -d"))
 create_bind(combine("ALT", vars.kbEmoji), hl.dsp.exec_cmd("pkill fuzzel || caelestia emoji -p"))
 

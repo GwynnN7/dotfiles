@@ -69,7 +69,7 @@ create_bind(vars.kbShowPanels, hl.dsp.global("caelestia:showall"))
 create_bind(vars.kbLock, hl.dsp.global("caelestia:lock"))
 
 -- Plugins
-local smw = hl.plugin.split_monitor_workspaces
+local smw = require("plugins.split-monitor-workspaces")
 local has_scrolloverview = hl.plugin.scrolloverview ~= nil
 local has_hymission = hl.plugin.hymission ~= nil
 
@@ -103,25 +103,25 @@ create_bind(
 
 -- Monitor
 create_bind(combine(vars.kbFocus, "TAB"), hl.dsp.focus({ monitor = "+1" }))
-create_bind(combine(vars.kbMove, "TAB"), function() return smw.change_monitor("next") end)
+create_bind(combine(vars.kbMove, "TAB"), hl.dsp.window.move({ monitor = "+1" }))
 create_bind(combine(vars.kbFocus, "CTRL + TAB"), hl.dsp.workspace.swap_monitors({ monitor1 = "0", monitor2 = "+1" }))
 
 -- Workspace and Windows
-for i = 1, 8 do
+for i = 1, smw.get_amount_of_workspaces() do
     local key = tostring(i)
-    create_bind(combine(vars.kbFocus, key), function() return smw.workspace(i) end, repeating_unless_mouse)
-    create_bind(combine(vars.kbMove, key), function() return smw.move_to_workspace(i) end, repeating_unless_mouse)
+    create_bind(combine(vars.kbFocus, key), smw.workspace(i), repeating_unless_mouse)
+    create_bind(combine(vars.kbMove, key), smw.move_to_workspace(i), repeating_unless_mouse)
 end
 
 for _, key in ipairs({ "mouse_up", "up", "W", }) do
     create_bind(combine(vars.kbFocus, key), fn.focus_workspace("-1"), repeating_unless_mouse)
-    create_bind(combine(vars.kbMove, key), function() return smw.move_to_workspace("-1") end, repeating_unless_mouse)
+    create_bind(combine(vars.kbMove, key), smw.move_to_workspace("-1"), repeating_unless_mouse)
     create_bind(combine(vars.kbMoveWin, key), hl.dsp.window.move({ direction = "up" }), repeating_unless_mouse)
 end
 
 for _, key in ipairs({ "mouse_down", "down", "S" }) do
     create_bind(combine(vars.kbFocus, key), fn.focus_workspace("+1"), repeating_unless_mouse)
-    create_bind(combine(vars.kbMove, key), function() return smw.move_to_workspace("+1") end, repeating_unless_mouse)
+    create_bind(combine(vars.kbMove, key), smw.move_to_workspace("+1"), repeating_unless_mouse)
     create_bind(combine(vars.kbMoveWin, key), hl.dsp.window.move({ direction = "down" }), repeating_unless_mouse)
 end
 
@@ -153,11 +153,11 @@ end
 
 -- Special workspace toggles
 create_bind(vars.kbScratchpad, fn.toggle_special_ws("specialws"))
-create_bind(combine("SHIFT", vars.kbScratchpad), function() return smw.move_to_workspace_silent("special") end)
+create_bind(combine("SHIFT", vars.kbScratchpad),smw.move_to_workspace_silent("special"))
 create_bind(vars.kbSystemMonitorWs, fn.toggle_special_ws("sysmon"))
 create_bind(vars.kbSpecialWs, fn.toggle_special_ws("music"), hold)
 create_bind(vars.kbSpecialWs, fn.toggle_special_ws("communication"))
-create_bind(combine("SHIFT", vars.kbCloseWindow), function() return smw.move_to_workspace("e+0") end)
+create_bind(combine("SHIFT", vars.kbCloseWindow), smw.move_to_workspace("e+0"))
 
 -- Resize and drag
 create_bind(vars.kbResizeColShrink, hl.dsp.layout("colresize -0.15"))

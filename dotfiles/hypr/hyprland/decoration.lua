@@ -23,5 +23,11 @@ hl.config({
             render_power = vars.shadowRenderPower,
             color        = vars.shadowColour,
         },
+
+        wobble = {
+        	enabled = true,
+        	mesh = 18,
+        	stiffness = 300,
+        }
     },
 })

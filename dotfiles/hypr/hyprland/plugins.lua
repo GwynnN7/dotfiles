@@ -17,19 +17,18 @@ if hl.plugin.scrolloverview ~= nil then
 	})
 end
 
-if hl.plugin.split_monitor_workspaces ~= nil then
-	hl.config({
-    	plugin = {
-    		split_monitor_workspaces = {
-                count = 8,
-                keep_focused = 0,
-                enable_wrapping = 0,
-                enable_notifications = 0,
-                enable_persistent_workspaces = 0,
-        	}
-		}
-	})
-end
+-- Plugins
+local smw = require("plugins.split-monitor-workspaces")
+smw.setup({
+    workspace_count = 8,
+    monitor_priority = { "DP-1", "HDMI-A-1" },
+    keep_focused = true,
+    restore_workspaces_on_monitor_reconnect = true,
+    enable_notifications = false,
+    enable_persistent_workspaces = true,
+    enable_wrapping = false,
+    link_monitors = false,
+})
 
 if hl.plugin.hymission ~= nil then
     hl.config({
