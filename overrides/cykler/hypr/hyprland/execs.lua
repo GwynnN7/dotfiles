@@ -33,7 +33,7 @@ hl.on("hyprland.start", function()
 
     -- OpenRGB
     hl.exec_cmd("systemctl --user start openrgb.service")
-    h.exec_cmd("sleep 5 && caelestia-rgb-sync apply")
+    hl.exec_cmd("sleep 5 && caelestia-rgb-sync apply")
 
     -- Cortana
 	hl.exec_cmd("cortana idle off")

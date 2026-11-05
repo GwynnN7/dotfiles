@@ -164,6 +164,9 @@ category = "wm"
 default = false
 ask = true
 packages = []
+[[components.files]]
+src = "repo:zjeffer/split-monitor-workspaces"
+dest = "$XDG_CONFIG_HOME/hypr/plugins/split-monitor-workspaces"
 post_deploy = [
     "hyprpm purge-cache",
     "hyprpm reload",
@@ -172,9 +175,7 @@ post_deploy = [
     "hyprpm add https://github.com/gfhdhytghd/hymission",
     "hyprpm enable scrolloverview",
     "hyprpm enable hymission",
-    "hyprpm reload",
-    "mkdir -p ~/.config/hypr/plugins",
-    "git clone https://github.com/zjeffer/split-monitor-workspaces ~/.config/hypr/plugins/split-monitor-workspaces"
+    "hyprpm reload"
 ]
 
 [[components]]

@@ -382,7 +382,7 @@
             "repoUpdateAvailable": true,
             "side": "Right"
         },
-        "gamemode":{
+        "gameMode":{
         	"options": {
         		"animations:enabled": 0,
 	            "decoration:shadow:enabled": 0,
