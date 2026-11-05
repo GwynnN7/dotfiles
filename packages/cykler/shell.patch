@@ -20,7 +20,7 @@ index 1b8740e9..add9c7ce 100644
  
      function search(search: string): var {
 diff --git a/modules/nexus/pages/panels/LockPanel.qml b/modules/nexus/pages/panels/LockPanel.qml
-index 2555164f..2b161110 100644
+index fd7f145b..8907bc0c 100644
 --- a/modules/nexus/pages/panels/LockPanel.qml
 +++ b/modules/nexus/pages/panels/LockPanel.qml
 @@ -15,7 +15,9 @@ PageBase {
@@ -61,10 +61,10 @@ index ecf50e5b..6c351556 100644
      // Enabled actions in their configured order, with the animation slotted back in
      readonly property var items: {
 diff --git a/plugin/src/Caelestia/Config/lockconfig.hpp b/plugin/src/Caelestia/Config/lockconfig.hpp
-index 13570f69..329fee95 100644
+index 95a50c26..2ecbaf90 100644
 --- a/plugin/src/Caelestia/Config/lockconfig.hpp
 +++ b/plugin/src/Caelestia/Config/lockconfig.hpp
-@@ -49,6 +49,8 @@ class LockConfig : public settings::ObjectNode {
+@@ -52,6 +52,8 @@ class LockConfig : public settings::ObjectNode {
              LIST_ENTRY(shutdown, true),
              LIST_ENTRY(sleep, true),
              LIST_ENTRY(reboot, true),
@@ -113,23 +113,13 @@ index d9ecab9e..56fefa7a 100644
  };
  
 diff --git a/services/GameMode.qml b/services/GameMode.qml
-index d8b0e85b..ecc4a571 100644
+index e45f2254..fa496f70 100644
 --- a/services/GameMode.qml
 +++ b/services/GameMode.qml
-@@ -18,6 +18,9 @@ Singleton {
-             "animations:enabled": 0,
-             "decoration:shadow:enabled": 0,
-             "decoration:blur:enabled": 0,
-+            "decoration:active_opacity": 1,
-+            "decoration:inactive_opacity": 1,
-+            "decoration:fullscreen_opacity": 1,
-             "general:gaps_in": 0,
-             "general:gaps_out": 0,
-             "general:border_size": 1,
-@@ -25,17 +28,20 @@ Singleton {
-             "general:allow_tearing": 1,
-             "input:accel_profile": "flat"
-         });
+@@ -15,17 +15,20 @@ Singleton {
+ 
+     function setDynamicConfs(): void {
+         Hypr.extras.applyOptions(GlobalConfig.utilities.gameMode.options);
 +        Hypr.extras.batchMessage([`eval hl.window_rule({ match = { class = ".*" }, opaque = true })`]);
      }
  
