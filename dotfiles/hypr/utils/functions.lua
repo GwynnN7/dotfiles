@@ -1,17 +1,23 @@
 local function wsaction(action, range, i)
     return function()
         local activews = hl.get_active_workspace()
-        if activews then
-            local id = activews.id
-            local s  = (i - 1) * 10 + (id % 10)
-            local t  = math.floor((id - 1) / 10) * 10 + i
-            local z  = (range == "group") and s or t
+        if not activews then return end
 
-            if action == "move" then
-                return hl.dispatch(hl.dsp.window.move({ workspace = z }))
-            else
-                return hl.dispatch(hl.dsp.focus({ workspace = z }))
-            end
+        local id = activews.id
+        if type(id) ~= "number" or id < 1 then
+            -- Named workspaces have no numbered group, fall back to the first one.
+            id = 1
+        end
+
+        local slot  = (id - 1) % 10 + 1
+        local z     = range == "group" and ((i - 1) * 10 + slot) or (math.floor((id - 1) / 10) * 10 + i)
+
+        if action == "move" then
+            return hl.dispatch(hl.dsp.window.move({ workspace = z }))
+        elseif action == "move_silent" then
+            return hl.dispatch(hl.dsp.window.move({ workspace = z, follow = false }))
+        else
+            return hl.dispatch(hl.dsp.focus({ workspace = z }))
         end
     end
 end
@@ -40,7 +46,6 @@ local function resize_active_window(x, y)
         end
     end
 end
-
 
 local function resizer(window, val_fn, x_percent, y_percent, actions)
     if window and val_fn(window) then
@@ -159,6 +164,7 @@ local function deep_match(actual, expected)
     end
 end
 
+-- "if the client is running" etc function
 local function get_clients(clients, app_config, target_special)
     local matched_clients = {}
     if app_config and app_config.match then
@@ -194,6 +200,7 @@ local function shell_join(argv) -- uhh praise danny for this
     return table.concat(quoted, " ")
 end
 
+-- Merge user config with defaults
 local function load_toggle_config()
     local config = default_config()
 
@@ -219,6 +226,8 @@ local function load_toggle_config()
     return config
 end
 
+-- Ensure every configured app is present on the special workspace: spawn it if
+-- it isn't running, otherwise move any stray clients onto the workspace.
 local function place_apps(apps, special_workspace)
     local target = "special:" .. special_workspace
     local clients = hl.get_windows() or {}
@@ -242,23 +251,22 @@ local function place_apps(apps, special_workspace)
     end
 end
 
-local function toggle_special_ws(special_workspace)
+local function toggle(special_workspace)
     return function()
         local active_workspace = hl.get_active_special_workspace()
 
+        -- Generic special workspace toggle: close if any is open (if configured), or toggle "special"
         if special_workspace == "specialws" then
-            local target = active_workspace and active_workspace.name:gsub("^special:", "") or "special"
+            local close_any = vars.specialWsCloseAny == nil or vars.specialWsCloseAny
+            local target = close_any and active_workspace and active_workspace.name:gsub("^special:", "") or "special"
             return hl.dispatch(hl.dsp.workspace.toggle_special(target))
         end
 
         local on_correct_ws = active_workspace and active_workspace.name == "special:" .. special_workspace
 
+        -- Focus workspace before apps
         if not on_correct_ws then
-            if special_workspace == "communication" and active_workspace and active_workspace.name == "special:music" then
-                hl.dispatch(hl.dsp.workspace.toggle_special("music"))
-            else
-                hl.dispatch(hl.dsp.focus({ workspace = "special:" .. special_workspace }))
-            end 
+            hl.dispatch(hl.dsp.focus({ workspace = "special:" .. special_workspace }))
         end
 
         local apps = load_toggle_config()[special_workspace]
@@ -266,98 +274,9 @@ local function toggle_special_ws(special_workspace)
             place_apps(apps, special_workspace)
         end
 
+        -- Hide workspace if already active
         if on_correct_ws then
-            return hl.dispatch(hl.dsp.workspace.toggle_special(special_workspace))
-        end
-    end
-end
-
-local function focus_workspace(direction)
-    return function()
-        local active_ws = hl.get_active_special_workspace()
-        if active_ws and active_ws.name then
-            local name_only = active_ws.name:match("^special:(.*)") or active_ws.name
-            return toggle_special_ws(name_only)()
-                    else
-                        local smw = require("plugins.split-monitor-workspaces")
-                        return hl.dispatch(smw.workspace(direction))
-                    end
-                end
-            end
-            
-            local PREFERRED_PLAYERS = { "sone", "tidal-hifi", "zen-bin", "spotify", "celluloid", "mpv", "vlc" }
-
-local function media_volume(direction)
-    return function()
-        os.execute("pw-play /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga &")
-
-        local sinks = {}
-        local current_id, current_name, current_vol
-
-        local handle = io.popen("pactl list sink-inputs")
-        if handle then
-            for line in handle:lines() do
-                local id = line:match("^Sink Input #(%d+)")
-                if id then
-                    if current_id then
-                        table.insert(sinks, { id = current_id, name = current_name or "Unknown", vol = current_vol or 0 })
-                    end
-                    current_id = id
-                    current_name = nil
-                    current_vol = nil
-                elseif current_id then
-                    local v = line:match("Volume:.-(%d+)%%")
-                    if v and not current_vol then 
-                        current_vol = tonumber(v) 
-                    end
-
-                    local bin = line:match('application%.process%.binary = "(.-)"')
-                    if bin then 
-                        current_name = bin 
-                    elseif not current_name then
-                        local app = line:match('application%.name = "(.-)"')
-                        if app then current_name = app end
-                    end
-                end
-            end
-            if current_id then
-                table.insert(sinks, { id = current_id, name = current_name or "Unknown", vol = current_vol or 0 })
-            end
-            handle:close()
-        end
-
-        local target_id, target_name, target_vol
-        for _, player in ipairs(PREFERRED_PLAYERS) do
-            for _, sink in ipairs(sinks) do
-                if sink.name:lower():find(player:lower(), 1, true) then
-                    target_id = sink.id
-                    target_name = sink.name
-                    target_vol = sink.vol
-                    break
-                end
-            end
-            if target_id then break end
-        end
-
-        if target_id then
-            local new_vol = direction == "+" 
-                and math.min(150, target_vol + 5) 
-                or math.max(0, target_vol - 5)
-
-            local display_name = target_name:gsub("^%l", string.upper)
-
-            os.execute(string.format("pactl set-sink-input-volume %s %d%% &", target_id, new_vol))
-            os.execute(string.format(
-                'caelestia shell toaster info "Media Player" "%s Volume %d%%" music_note &', 
-                display_name, new_vol
-            ))
-        else
-            os.execute("wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 &")
-            if direction == "+" then
-                os.execute("wpctl set-mute @DEFAULT_AUDIO_SINK@ 0; wpctl set-volume -l " .. (vars.volumeMax / 100) .. " @DEFAULT_AUDIO_SINK@ " .. vars.volumeStep .. "%+" .. " &")
-            else
-                os.execute("wpctl set-mute @DEFAULT_AUDIO_SINK@ 0; wpctl set-volume @DEFAULT_AUDIO_SINK@ " .. vars.volumeStep .. "%-" .. " &")
-            end
+            hl.dispatch(hl.dsp.workspace.toggle_special(special_workspace))
         end
     end
 end
@@ -368,7 +287,5 @@ return {
     resize_active_window = resize_active_window,
     wsaction             = wsaction,
     move_actions         = move_actions,
-    focus_workspace      = focus_workspace,
-    toggle_special_ws    = toggle_special_ws,
-    media_volume		 = media_volume
+    toggle               = toggle,
 }

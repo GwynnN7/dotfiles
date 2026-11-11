@@ -38,6 +38,7 @@ hl.on("hyprland.start", function()
     -- Cortana
 	hl.exec_cmd("cortana idle off")
 end)
+require("shell_execs")
 
 -- Resizer listeners
 local function apply_resizer_rules(win)
@@ -110,3 +111,12 @@ end)
 hl.on("window.close", function(win)
     lastTags[win.stable_id] = nil
 end)
+
+hl.on("window.open", function(w)
+    if w ~= nil then
+        hl.dispatch(hl.dsp.focus({
+            window = w
+        }))
+    end
+end)
+

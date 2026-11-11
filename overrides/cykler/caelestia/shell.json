@@ -22,14 +22,41 @@
             "enabled": true,
             "entries": [
                 {
-                    "col": 1,
+                    "col": -1,
+                    "enabled": true,
+                    "id": "media",
+                    "right": false,
+                    "row": -1,
+                    "type": "default"
+                },
+                {
+                    "col": -1,
+                    "enabled": true,
+                    "id": "battery",
+                    "right": false,
+                    "row": -1,
+                    "type": "default"
+                },
+                {
+                    "col": -1,
                     "enabled": true,
                     "id": "resources",
-                    "right": true,
-                    "row": 21
+                    "right": false,
+                    "row": -1,
+                    "type": "rings-all"
+                },
+                {
+                    "col": -1,
+                    "enabled": true,
+                    "id": "lyrics",
+                    "right": false,
+                    "row": -1,
+                    "type": "default"
                 }
-            ]
-        }
+            ],
+            "position": "bottom-right"
+        },
+        "randomWallpaperOnStart": true
     },
     "bar": {
         "activeWindow": {
@@ -150,6 +177,11 @@
                 "celluloid"
             ]
         },
+        "battery": {
+            "powerManagement": {
+                "enabled": true
+            }
+        },
         "idle": {
             "timeouts": [
                 {
@@ -261,9 +293,9 @@
         "equalizer": true,
         "soundEffects": {
             "enabled": true,
-            "notificationVolume": 0.80,
+            "notificationVolume": 0.7,
             "screenUnlock": false,
-            "sfxVolume": 0.80,
+            "sfxVolume": 0.8,
             "volumeTick": true
         }
     },
@@ -283,13 +315,13 @@
                 "-c",
                 "cortana service &>/dev/null && cortana api computer -cmd Shutdown | cortana notify || systemctl poweroff"
             ],
+            "sleep": [
+                "suspend"
+            ],
             "steamos": [
                 "sh",
                 "-c",
                 "steamos-session-select gamescope || systemctl reboot"
-            ],
-            "sleep": [
-                "suspend"
             ],
             "windows": [
                 "sh",
@@ -327,20 +359,40 @@
             "logout": "exit_to_app",
             "reboot": "cached",
             "shutdown": "power_settings_new",
-            "steamos": "stadia_controller",
             "sleep": "bedtime",
+            "steamos": "stadia_controller",
             "windows": "window"
         }
     },
     "sidebar": {
+        "aiChat": true,
+        "dinoGame": true,
         "dragThreshold": 100,
+        "fullHeight": true,
+        "music": false,
         "showOnHover": true,
         "side": "Right"
     },
     "utilities": {
         "cards": {
-            "phoneShare": true,
-            "recorder": false
+            "phoneShare": false,
+            "recorder": true
+        },
+        "gameMode": {
+            "options": {
+                "animations:enabled": 0,
+                "decoration:active_opacity": 1,
+                "decoration:blur:enabled": 0,
+                "decoration:fullscreen_opacity": 1,
+                "decoration:inactive_opacity": 1,
+                "decoration:rounding": 0,
+                "decoration:shadow:enabled": 0,
+                "general:allow_tearing": 1,
+                "general:border_size": 1,
+                "general:gaps_in": 0,
+                "general:gaps_out": 0,
+                "input:accel_profile": "flat"
+            }
         },
         "maxToasts": 1,
         "quickToggles": [
@@ -375,28 +427,16 @@
             {
                 "enabled": false,
                 "id": "vpn"
+            },
+            {
+                "enabled": true,
+                "id": "timer"
             }
         ],
         "toasts": {
             "edge": "Bottom",
             "repoUpdateAvailable": true,
             "side": "Right"
-        },
-        "gameMode":{
-        	"options": {
-        		"animations:enabled": 0,
-	            "decoration:shadow:enabled": 0,
-	            "decoration:blur:enabled": 0,
-	            "decoration:active_opacity": 1,
-	            "decoration:inactive_opacity": 1,
-	            "decoration:fullscreen_opacity": 1,
-	            "general:gaps_in": 0,
-	            "general:gaps_out": 0,
-	            "general:border_size": 1,
-	            "decoration:rounding": 0,
-	            "general:allow_tearing": 1,
-	            "input:accel_profile": "flat"
-        	}
         }
     }
 }

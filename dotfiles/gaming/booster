@@ -3,7 +3,7 @@
 COMMAND=(game-performance)
 
 if [[ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]]; then
-    exec app2unit -- "${COMMAND[@]}" -- env "$@"
+    exec app2unit -- "${COMMAND[@]}" "$@"
 else
     exec "${COMMAND[@]}" -- "$@"
 fi

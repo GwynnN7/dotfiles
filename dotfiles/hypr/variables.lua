@@ -11,10 +11,13 @@ return {
     editor                     = "micro",
     fileExplorer               = "atlas",
     audioSettings              = "pwvucontrol",
+    launchWrapper              = "app2unit -- ",
 
     -- Touchpad
     touchpadDisableTyping      = true,
     touchpadScrollFactor       = 0.3,
+    gestureFingers             = 3,
+    gestureFingersMore         = 4,
 
     -- Blur
     blurEnabled                = true,
@@ -23,7 +26,22 @@ return {
     blurInputMethods           = true,
     blurSize                   = 8,
     blurPasses                 = 2,
-    blurXray                   = true,
+    blurXray                   = false,
+    blurVariant                = "ripple",
+
+    -- Ripple
+    blurRippleWidth            = 60,
+    blurRippleRadius           = 650,
+    blurRippleDuration         = 2,
+
+    -- Glow
+    glowEnabled                = true,
+    glowRange                  = 3,
+
+    -- Wobble
+    wobbleEnabled              = true,
+    wobbleMesh                 = 10,
+    wobbleStiffness            = 300,
 
     -- Shadow
     shadowEnabled              = true,
@@ -51,6 +69,7 @@ return {
     cursorTheme                = "sweet-cursors",
     cursorSize                 = 24,
     sleepGestureCmd            = "systemctl suspend",
+    specialWsCloseAny          = true,
 
 
     ------------------
@@ -64,12 +83,12 @@ return {
     kbSession                  = { "SUPER + Escape", "SUPER + F3" },
     kbShowSidebar              = "SUPER + B",
     kbClearNotifs              = "SUPER + ALT + B",
-    kbShowPanels               = "SUPER + H",
+    kbShowPanels               = "SUPER + K",
     kbLock                     = "SUPER + L",
 
     -- Plugins
     kbOverview                 = "SUPER + Space",
-    kbOverview2                = "ALT + Tab",
+    kbAltTab                   = "ALT + Tab",
 
     -- Kill/restart
     kbKillRestart              = "CTRL + ALT + Delete",
@@ -108,7 +127,7 @@ return {
     kbBrowser                  = "SUPER + R",
     kbFileExplorer             = "SUPER + E",
     kbYazi                     = "SUPER + Y",
-    kbAudioSettings            = "SUPER + N",
+    kbAudioSettings            = "SUPER + Comma",
 
     -- Utilities
     kbScreenshot               = "Print",
@@ -121,10 +140,10 @@ return {
 
     -- Utils
     kbClipboard                = "SUPER + V",
+    kbUtils                    = "SUPER + N",
     kbEmoji                    = "SUPER + Period",
-    kbUtils                    = "SUPER + Comma",
-    kbTodo                     = "SUPER + K",
-    kbNotepad                  = "SUPER + J",
+    kbScrollLeft               = "SUPER + H",
+    kbScrollRight              = "SUPER + J",
     kbWallpaper                = "SUPER + F4",
 
     -- Submaps

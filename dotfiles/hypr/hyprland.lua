@@ -8,14 +8,15 @@ local function maybe_create(file, content)
 
     if f then
         f:close()
-        return
+        return true
     end
 
     f = io.open(file, "w")
-    if f then
-        if content then f:write(content) end
-        f:close()
-    end
+    if not f then return false end
+
+    if content then f:write(content) end
+    f:close()
+    return true
 end
 
 -- Copy src to dst, but only if dst doesn't already exist
@@ -49,13 +50,8 @@ hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@60", position = "1920x0", sc
 require("hyprland.env")
 require("hyprland.general")
 require("hyprland.plugins")
-require("hyprland.input")
-require("hyprland.misc")
-require("hyprland.animations")
 require("hyprland.decoration")
-require("hyprland.group")
 require("hyprland.execs")
 require("hyprland.rules")
-require("hyprland.gestures")
 require("hyprland.keybinds")
 require("hyprland.gaming")

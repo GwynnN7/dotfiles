@@ -693,6 +693,14 @@ src = "applications/zen.desktop"
 dest = "$XDG_DATA_HOME/applications/zen.desktop"
 
 [[components]]
+name = "libreoffice"
+category = "apps"
+default = false
+packages = [
+    "libreoffice-fresh"
+]
+
+[[components]]
 name = "applications"
 category = "apps"
 default = false
