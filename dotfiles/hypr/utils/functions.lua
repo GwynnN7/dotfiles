@@ -262,8 +262,13 @@ local function toggle(special_workspace)
             return hl.dispatch(hl.dsp.workspace.toggle_special(target))
         end
 
-        local on_correct_ws = active_workspace and active_workspace.name == "special:" .. special_workspace
-
+        -- Bind same-key workspaces together
+        if active_workspace and active_workspace.name == "special:music" and special_workspace == "communication" then
+        	return hl.dispatch(hl.dsp.workspace.toggle_special("music"))
+        end
+        	
+		local on_correct_ws = active_workspace and active_workspace.name == "special:" .. special_workspace
+		
         -- Focus workspace before apps
         if not on_correct_ws then
             hl.dispatch(hl.dsp.focus({ workspace = "special:" .. special_workspace }))
@@ -281,6 +286,95 @@ local function toggle(special_workspace)
     end
 end
 
+local function focus_workspace(direction)
+    return function()
+        local active_ws = hl.get_active_special_workspace()
+        if active_ws and active_ws.name then
+            local name_only = active_ws.name:match("^special:(.*)") or active_ws.name
+            return toggle(name_only)()
+        else
+            local smw = require("plugins.split-monitor-workspaces")
+            return hl.dispatch(smw.workspace(direction))
+        end
+    end
+end
+            
+local PREFERRED_PLAYERS = { "sone", "tidal-hifi", "zen-bin", "spotify", "celluloid", "mpv", "vlc" }
+local function media_volume(direction)
+    return function()
+        os.execute("pw-play /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga &")
+
+        local sinks = {}
+        local current_id, current_name, current_vol
+
+        local handle = io.popen("pactl list sink-inputs")
+        if handle then
+            for line in handle:lines() do
+                local id = line:match("^Sink Input #(%d+)")
+                if id then
+                    if current_id then
+                        table.insert(sinks, { id = current_id, name = current_name or "Unknown", vol = current_vol or 0 })
+                    end
+                    current_id = id
+                    current_name = nil
+                    current_vol = nil
+                elseif current_id then
+                    local v = line:match("Volume:.-(%d+)%%")
+                    if v and not current_vol then 
+                        current_vol = tonumber(v) 
+                    end
+
+                    local bin = line:match('application%.process%.binary = "(.-)"')
+                    if bin then 
+                        current_name = bin 
+                    elseif not current_name then
+                        local app = line:match('application%.name = "(.-)"')
+                        if app then current_name = app end
+                    end
+                end
+            end
+            if current_id then
+                table.insert(sinks, { id = current_id, name = current_name or "Unknown", vol = current_vol or 0 })
+            end
+            handle:close()
+        end
+
+        local target_id, target_name, target_vol
+        for _, player in ipairs(PREFERRED_PLAYERS) do
+            for _, sink in ipairs(sinks) do
+                if sink.name:lower():find(player:lower(), 1, true) then
+                    target_id = sink.id
+                    target_name = sink.name
+                    target_vol = sink.vol
+                    break
+                end
+            end
+            if target_id then break end
+        end
+
+        if target_id then
+            local new_vol = direction == "+" 
+                and math.min(150, target_vol + 5) 
+                or math.max(0, target_vol - 5)
+
+            local display_name = target_name:gsub("^%l", string.upper)
+
+            os.execute(string.format("pactl set-sink-input-volume %s %d%% &", target_id, new_vol))
+            os.execute(string.format(
+                'caelestia shell toaster info "Media Player" "%s Volume %d%%" music_note &', 
+                display_name, new_vol
+            ))
+        else
+            os.execute("wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 &")
+            if direction == "+" then
+                os.execute("wpctl set-mute @DEFAULT_AUDIO_SINK@ 0; wpctl set-volume -l " .. (vars.volumeMax / 100) .. " @DEFAULT_AUDIO_SINK@ " .. vars.volumeStep .. "%+" .. " &")
+            else
+                os.execute("wpctl set-mute @DEFAULT_AUDIO_SINK@ 0; wpctl set-volume @DEFAULT_AUDIO_SINK@ " .. vars.volumeStep .. "%-" .. " &")
+            end
+        end
+    end
+end
+
 return {
     resizer              = resizer,
     resize_by_screen     = resize_by_screen,
@@ -288,4 +382,6 @@ return {
     wsaction             = wsaction,
     move_actions         = move_actions,
     toggle               = toggle,
+    media_volume 		 = media_volume,
+    focus_workspace      = focus_workspace
 }

@@ -1,54 +1,7 @@
 local vars = require("variables")
 local fn   = require("utils.functions")
 
-
--- Flags
-local locked           = { locked = true }
-local hold             = { long_press = true }
-local mouse            = { mouse = true }
-local release          = { release = true }
-local repeating        = { repeating = true }
-local locked_repeating = { locked = true, repeating = true }
-
-local function normalise_keybind(key)
-    return key:gsub("%s+", ""):lower()
-end
-
-local function valid_keybind(key)
-    return type(key) == "string" and key:match("%S") ~= nil
-end
-
-local function repeating_unless_mouse(key)
-    return not normalise_keybind(key):find("mouse", 1, true) and repeating or nil
-end
-
-local function flatten_keybinds(keybinds, keys)
-    keys = keys or {}
-
-    if type(keybinds) == "table" then
-        for _, keybind in pairs(keybinds) do
-            flatten_keybinds(keybind, keys)
-        end
-    elseif valid_keybind(keybinds) then
-        keys[#keys + 1] = keybinds
-    end
-
-    return keys
-end
-
-local function create_bind(keybinds, action, flags)
-    local get_flags = type(flags) == "function" and flags or function()
-        return flags
-    end
-
-    for _, key in ipairs(flatten_keybinds(keybinds)) do
-        hl.bind(key, action, get_flags(key))
-    end
-end
-
-local function combine(base, suffix)
-    return valid_keybind(base) and base .. " + " .. suffix or nil
-end
+require("utils.keybinds")
 
 -- Kill/restart
 create_bind(vars.kbKillRestart, hl.dsp.exec_cmd("systemctl --user stop desktop-shell"))
@@ -229,4 +182,4 @@ hl.gesture({ fingers = vars.gestureFingers, direction = "right", action = functi
 hl.gesture({ fingers = vars.gestureFingersMore, direction = "up", action = "fullscreen"})
 hl.gesture({ fingers = vars.gestureFingersMore, direction = "down", action = "fullscreen", mode = "maximize"})
 
-require("shell_keybinds")
+require("hyprland.shell_keybinds")

@@ -1,5 +1,6 @@
 local vars = require("variables")
-local fn   = require("utils.functions")
+
+require("utils.keybinds")
 
 -- Launcher
 local launcher_default = normalise_keybind("SUPER + SUPER_L")

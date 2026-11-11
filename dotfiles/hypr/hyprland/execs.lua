@@ -38,7 +38,7 @@ hl.on("hyprland.start", function()
     -- Cortana
 	hl.exec_cmd("cortana idle off")
 end)
-require("shell_execs")
+require("hyprland.shell_execs")
 
 -- Resizer listeners
 local function apply_resizer_rules(win)
