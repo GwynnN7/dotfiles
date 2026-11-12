@@ -1,0 +1,75 @@
+# Applications
+# Component names stay stable; package dependencies belong in PKGBUILDs.
+
+[[components]]
+name = "astra"
+category = "apps"
+default = true
+packages = ["local:flightdeck", "astra-airlock-git", "astra-foundry-git"]
+
+[[components]]
+name = "apps-core"
+category = "apps"
+default = false
+packages = ["sone-bin", "zen-browser-bin", "telegram-desktop", "equibop"]
+
+[[components.files]]
+src = "applications/zen.desktop"
+dest = "$XDG_DATA_HOME/applications/zen.desktop"
+
+[[components]]
+name = "libreoffice"
+category = "apps"
+default = false
+packages = ["libreoffice-fresh"]
+
+[[components]]
+name = "applications"
+category = "apps"
+default = false
+packages = ["gimp", "vlc", "celluloid", "loupe", "evince", "file-roller", "gparted"]
+
+[[components]]
+name = "easyeffects"
+category = "apps"
+default = true
+packages = ["easyeffects", "lsp-plugins-lv2", "calf"]
+post_install = ["systemctl --user enable --now easyeffects 2>/dev/null || true"]
+
+[[components]]
+name = "kdeconnect"
+category = "apps"
+default = false
+packages = ["kdeconnect", "local:kdeconnect"]
+post_install = [
+    "systemctl --user daemon-reload",
+    "systemctl --user stop hypr-kdeconnect-portal.service 2>/dev/null || true",
+    "systemctl --user restart xdg-desktop-portal",
+]
+
+[[components]]
+name = "caelestia-connect"
+category = "apps"
+environments = ["caelestia", "cykler"]
+default = false
+packages = ["local:caelestia-connect", "local:kdeconnect"]
+post_install = [
+    "systemctl --user daemon-reload",
+    "systemctl --user stop hypr-kdeconnect-portal.service 2>/dev/null || true",
+    "systemctl --user restart xdg-desktop-portal",
+    "sudo caelestia-connect-integrate --shell /etc/xdg/quickshell/caelestia/",
+]
+
+[[components]]
+name = "openrgb"
+category = "apps"
+environments = ["caelestia", "cykler"]
+default = false
+packages = ["openrgb", "caelestia-rgb-sync"]
+post_install = [
+    "rm -f $XDG_CONFIG_HOME/caelestia-rgb/config.toml 2>/dev/null || true",
+    "caelestia-rgb-sync init",
+    "caelestia-rgb-sync calibrate device",
+    "caelestia-rgb-sync calibrate global",
+]
+post_deploy = ["caelestia-rgb-sync apply"]

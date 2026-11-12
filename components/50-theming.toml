@@ -1,0 +1,75 @@
+# Theming
+# Component names stay stable; package dependencies belong in PKGBUILDs.
+
+[[components]]
+name = "icons"
+category = "theming"
+default = true
+packages = ["papirus-icon-theme", "papirus-folders", "adwaita-icon-theme"]
+
+[[components]]
+name = "matugen"
+category = "theming"
+environments = ["serpantinum"]
+default = true
+packages = ["matugen"]
+
+[[components.files]]
+src = "matugen"
+dest = "$XDG_CONFIG_HOME/matugen"
+
+[[components.files]]
+src = "matugen/config.toml"
+dest = "/usr/share/serpantinum/src/assets/matugen/config.toml"
+sudo = true
+check = false
+
+[[components.files]]
+src = "matugen/config-static.toml"
+dest = "/usr/share/serpantinum/src/assets/matugen/config-static.toml"
+sudo = true
+check = false
+
+[[components]]
+name = "gtk"
+category = "theming"
+default = true
+packages = ["adw-gtk-theme"]
+
+[[components]]
+name = "qt"
+category = "theming"
+default = true
+packages = ["qtengine-git", "frameworkintegration", "darkly-bin"]
+
+[[components]]
+name = "fonts"
+category = "theming"
+default = true
+packages = [
+    "ttf-material-symbols-variable",
+    "ttf-rubik-vf",
+    "ttf-jetbrains-mono-nerd",
+    "noto-fonts",
+    "noto-fonts-cjk",
+    "noto-fonts-emoji",
+    "ttf-iosevka-nerd",
+    "ttf-cascadia-code-nerd",
+]
+
+[[components]]
+name = "plymouth"
+category = "theming"
+default = false
+packages = ["plymouth", "plymouth-theme-darth-vader-git"]
+post_install = ["sudo plymouth-set-default-theme -R darth_vader"]
+
+[[components]]
+name = "cava"
+category = "theming"
+default = true
+packages = ["cava", "libcava"]
+
+[[components.files]]
+src = "cava"
+dest = "$XDG_CONFIG_HOME/cava"

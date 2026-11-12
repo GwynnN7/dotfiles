@@ -1,23 +1,7 @@
 local home   = os.getenv("HOME")
-local hypr   = home .. "/.config/hypr"
-package.path = package.path .. ";" .. home .. "/.config/caelestia/?.lua" .. ";" .. home .. "/.config/plugins/?.lua"
-
--- Create a file if it doesn't exist, optionally with initial content
-local function maybe_create(file, content)
-    local f = io.open(file)
-
-    if f then
-        f:close()
-        return true
-    end
-
-    f = io.open(file, "w")
-    if not f then return false end
-
-    if content then f:write(content) end
-    f:close()
-    return true
-end
+local config = os.getenv("XDG_CONFIG_HOME") or (home .. "/.config")
+local hypr   = config .. "/hypr"
+package.path = hypr .. "/?.lua;" .. hypr .. "/?/init.lua;" .. config .. "/caelestia/?.lua;" .. package.path
 
 -- Copy src to dst, but only if dst doesn't already exist
 local function maybe_copy(src, dst)
@@ -41,10 +25,8 @@ end
 -- Maybe set current colours to defaults
 maybe_copy(hypr .. "/scheme/default.lua", hypr .. "/scheme/current.lua")
 
--- Default monitor conf
-hl.monitor({ output = "DP-1", mode = "1920x1080@165", position = "0x0", scale = 1 })
-hl.monitor({ output = "eDP-1", mode = "1920x1080@60", position = "0x0", scale = 1 })
-hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@60", position = "1920x0", scale = 1 })
+-- Device-specific monitor rules and workspace preference.
+require("hyprland.monitors")
 
 -- Configs
 require("hyprland.env")

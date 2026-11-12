@@ -1,0 +1,74 @@
+# Shells
+# Component names stay stable; package dependencies belong in PKGBUILDs.
+
+[[components]]
+name = "caelestia"
+category = "shell"
+environments = ["caelestia"]
+default = true
+packages = ["local:caelestia", "local:stowaway", "local:caelestia-cli"]
+post_deploy = ["sh \"$WAYSYNC_REPO_DIR/scripts/waysync/restart-desktop-shell\""]
+
+[[components.files]]
+src = "caelestia"
+dest = "$XDG_CONFIG_HOME/caelestia"
+
+[[components.files]]
+src = "desktop-shell/desktop-shell.service"
+dest = "$XDG_CONFIG_SERVICE/desktop-shell.service"
+
+[[components]]
+name = "cykler"
+category = "shell"
+environments = ["cykler"]
+default = true
+packages = ["local:cykler", "local:caelestia-cli", "local:stowaway"]
+post_deploy = ["sh \"$WAYSYNC_REPO_DIR/scripts/waysync/restart-desktop-shell\""]
+
+[[components.files]]
+src = "caelestia"
+dest = "$XDG_CONFIG_HOME/caelestia"
+
+[[components.files]]
+src = "desktop-shell/desktop-shell.service"
+dest = "$XDG_CONFIG_SERVICE/desktop-shell.service"
+
+[[components]]
+name = "serpantinum"
+category = "shell"
+environments = ["serpantinum"]
+default = true
+packages = ["local:serpantinum"]
+post_deploy = ["sh \"$WAYSYNC_REPO_DIR/scripts/waysync/restart-desktop-shell\""]
+
+[[components.files]]
+src = "serpantinum"
+dest = "$XDG_CONFIG_HOME/serpantinum"
+
+[[components.files]]
+src = "desktop-shell/desktop-shell.service"
+dest = "$XDG_CONFIG_SERVICE/desktop-shell.service"
+
+[[components]]
+name = "dms"
+category = "shell"
+environments = ["dms"]
+default = true
+packages = ["dgop-git", "dsearch-git", "dms-shell-git"]
+post_deploy = ["sh \"$WAYSYNC_REPO_DIR/scripts/waysync/restart-desktop-shell\""]
+
+[[components.files]]
+src = "desktop-shell/desktop-shell.service"
+dest = "$XDG_CONFIG_SERVICE/desktop-shell.service"
+
+[[components]]
+name = "noctalia"
+category = "shell"
+environments = ["noctalia"]
+default = true
+packages = ["noctalia"]
+post_deploy = ["sh \"$WAYSYNC_REPO_DIR/scripts/waysync/restart-desktop-shell\""]
+
+[[components.files]]
+src = "desktop-shell/desktop-shell.service"
+dest = "$XDG_CONFIG_SERVICE/desktop-shell.service"

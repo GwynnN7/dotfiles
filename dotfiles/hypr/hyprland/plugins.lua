@@ -17,11 +17,11 @@ if hl.plugin.scrolloverview ~= nil then
 	})
 end
 
-local smw = require("plugins.split-monitor-workspaces")
+local smw = require("utils.workspaces")
 if smw ~= nil then
     smw.setup({
         workspace_count = 8,
-        monitor_priority = { "DP-1", "HDMI-A-1" },
+        monitor_priority = require("hyprland.monitors").priority,
         keep_focused = true,
         restore_workspaces_on_monitor_reconnect = true,
         enable_notifications = false,

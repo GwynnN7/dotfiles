@@ -1,0 +1,1 @@
+-- Shared profile has no shell-specific startup actions.

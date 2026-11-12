@@ -1,0 +1,47 @@
+# Development
+# Component names stay stable; package dependencies belong in PKGBUILDs.
+
+[[components]]
+name = "development"
+category = "development"
+default = false
+packages = [
+    "visual-studio-code-bin",
+    "git",
+    "github-cli",
+    "android-tools",
+    "eigen",
+    "openblas",
+    "python",
+    "python-numpy",
+    "python-pandas",
+    "python-matplotlib",
+]
+post_deploy = [
+    { cmd = "code --install-extension \"$WAYSYNC_REPO_DIR/overrides/$WAYSYNC_ENV/vscode/caelestia-vscode-integration/\"*.vsix", environments = ["caelestia", "cykler"] },
+]
+
+[[components.files]]
+src = "vscode/settings.json"
+dest = "$XDG_CONFIG_HOME/Code/User/settings.json"
+
+[[components.files]]
+src = "vscode/keybindings.json"
+dest = "$XDG_CONFIG_HOME/Code/User/keybindings.json"
+
+[[components.files]]
+src = "vscode/flags.conf"
+dest = "$XDG_CONFIG_HOME/code-flags.conf"
+
+[[components]]
+name = "rocm"
+category = "development"
+default = false
+packages = [
+    "rocm-hip-sdk",
+    "rocm-opencl-sdk",
+    "rocm-ml-sdk",
+    "rocminfo",
+    "rocm-smi-lib",
+    "unsloth-bin",
+]

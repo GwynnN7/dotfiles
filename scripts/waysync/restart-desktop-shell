@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+systemctl --user daemon-reload
+if systemctl --user is-active --quiet graphical-session.target; then
+    systemctl --user restart desktop-shell.service
+fi

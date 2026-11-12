@@ -20,7 +20,7 @@ create_bind(vars.kbShowPanels, hl.dsp.global("caelestia:showall"))
 create_bind(vars.kbLock, hl.dsp.global("caelestia:lock"))
 
 -- Plugins
-local smw = require("plugins.split-monitor-workspaces")
+local smw = require("utils.workspaces")
 local has_scrolloverview = hl.plugin.scrolloverview ~= nil
 
 if has_scrolloverview then

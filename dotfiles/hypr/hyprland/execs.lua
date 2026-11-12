@@ -29,7 +29,7 @@ hl.on("hyprland.start", function()
 
     -- Start shell
     hl.exec_cmd("hyprpm reload")
-    hl.exec_cmd("systemctl --user start desktop-shell")
+    hl.exec_cmd("systemctl --user --quiet cat desktop-shell.service >/dev/null 2>&1 && systemctl --user start desktop-shell.service")
 
     -- OpenRGB
     hl.exec_cmd("systemctl --user start openrgb.service")

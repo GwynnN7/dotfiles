@@ -1,0 +1,50 @@
+# System
+# Component names stay stable; package dependencies belong in PKGBUILDs.
+
+[[components]]
+name = "system"
+category = "system"
+default = true
+packages = ["gnome-keyring", "networkmanager", "bluez", "bluez-utils"]
+
+[[components]]
+name = "audio"
+category = "system"
+default = true
+packages = [
+    "pipewire",
+    "pipewire-pulse",
+    "pipewire-audio",
+    "pipewire-alsa",
+    "pipewire-jack",
+    "wireplumber",
+    "libpulse",
+    "pwvucontrol",
+    "playerctl",
+    "pamixer",
+]
+
+[[components.files]]
+src = "wireplumber"
+dest = "$XDG_CONFIG_HOME/wireplumber"
+
+[[components.files]]
+src = "pipewire"
+dest = "$XDG_CONFIG_HOME/pipewire"
+environments = ["cykler"]
+
+[[components]]
+name = "udiskie"
+category = "system"
+default = true
+packages = ["udiskie"]
+
+[[components.files]]
+src = "udiskie"
+dest = "$XDG_CONFIG_HOME/udiskie"
+
+[[components]]
+name = "clipboard"
+category = "system"
+default = true
+packages = ["wl-clipboard", "cliphist", "wtype"]

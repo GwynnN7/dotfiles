@@ -1,5 +1,6 @@
 local vars = require("variables")
 local fn   = require("utils.functions")
+local smw  = require("utils.workspaces")
 
 require("utils.keybinds")
 

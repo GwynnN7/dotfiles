@@ -293,7 +293,7 @@ local function focus_workspace(direction)
             local name_only = active_ws.name:match("^special:(.*)") or active_ws.name
             return toggle(name_only)()
         else
-            local smw = require("plugins.split-monitor-workspaces")
+            local smw = require("utils.workspaces")
             return hl.dispatch(smw.workspace(direction))
         end
     end
