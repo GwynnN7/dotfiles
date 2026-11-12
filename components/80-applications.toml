@@ -75,7 +75,7 @@ post_deploy = ["caelestia-rgb-sync apply"]
 
 [[components]]
 name = "cortana"
-category = "cortana"
+category = "apps"
 default = false
 packages = ["dotnet-sdk"]
 devices = ["desktop"]
