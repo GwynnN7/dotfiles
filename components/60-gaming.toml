@@ -1,5 +1,4 @@
 # Gaming
-# Component names stay stable; package dependencies belong in PKGBUILDs.
 
 [[components]]
 name = "gaming-core"
@@ -7,31 +6,26 @@ category = "gaming"
 default = true
 packages = ["cachyos-gaming-applications", "hyprland-focused-booster", "steam", "flatpak"]
 post_install = ["flatpak install --user -y net.retrodeck.retrodeck"]
-
 [[components.files]]
 src = "gaming/scx_loader.toml"
 dest = "/etc/scx_loader/config.toml"
 sudo = true
-
 [[components.files]]
 src = "gaming/sudoers_scxctl"
 dest = "/etc/sudoers.d/scxctl"
 sudo = true
-
+check = false
 [[components.files]]
 src = "gaming/booster"
 dest = "/usr/local/bin/booster"
 sudo = true
-
 [[components.files]]
 src = "gaming/gamerun"
 dest = "/usr/local/bin/gamerun"
 sudo = true
-
 [[components.files]]
 src = "gaming/start-steam"
 dest = "$XDG_BIN_HOME/start-steam"
-
 [[components.files]]
 src = "applications/steam.desktop"
 dest = "$XDG_DATA_HOME/applications/steam.desktop"
@@ -58,12 +52,10 @@ category = "gaming"
 default = true
 packages = ["gamescope-session-cachyos"]
 post_install = ["steamos-session-select persistent"]
-
 [[components.files]]
 src = "steamos/steam-set-session"
 dest = "/usr/lib/steamos/steam-set-session"
 sudo = true
-
 [[components.files]]
 src = "steamos/steamos-session-select"
 dest = "/usr/bin/steamos-session-select"
@@ -73,38 +65,36 @@ sudo = true
 name = "decky-loader"
 category = "gaming"
 default = true
-ask = true
+check = true
 post_install = [
     "curl -L https://github.com/SteamDeckHomebrew/decky-installer/releases/latest/download/install_prerelease.sh | sh",
 ]
 post_deploy = ["sudo systemctl disable plugin_loader"]
-
 [[components.files]]
 src = "steamos/homebrew"
 dest = "$HOME/homebrew"
 sudo = true
 check = false
-
 [[components.files]]
 src = "steamos/dlo"
 dest = "$HOME/.dlo"
-
+check = false
 [[components.files]]
 src = "steamos/sudoers_plugin_loader"
 dest = "/etc/sudoers.d/plugin_loader"
 sudo = true
+check = false
 
 [[components]]
 name = "lact"
 category = "gaming"
 default = true
 packages = ["lact"]
-
+devices = ["desktop"]
 [[components.files]]
 src = "gaming/lact/lact.yaml"
 dest = "/etc/lact/config.yaml"
 sudo = true
-
 [[components.files]]
 src = "gaming/lact/config.yaml"
 dest = "$XDG_CONFIG_HOME/lact/config.yaml"
@@ -128,7 +118,6 @@ post_deploy = [
 [[components.files]]
 src = "retrodeck/es_systems.xml"
 dest = "$HOME/.var/app/net.retrodeck.retrodeck/config/ES-DE/custom_systems/es_systems.xml"
-
 [[components.files]]
 src = "retrodeck/Switch.sh"
 dest = "$HOME/Games/Retrodeck/retrodeck/roms/apps/Switch.sh"

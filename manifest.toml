@@ -1,5 +1,4 @@
 # Waysync entrypoint: edit components/*.toml for the actual modules.
-# Environment and device choices are independent; device values are built in.
 
 include = [
     "components/00-shells.toml",

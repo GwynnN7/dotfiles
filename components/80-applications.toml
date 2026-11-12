@@ -1,21 +1,19 @@
 # Applications
-# Component names stay stable; package dependencies belong in PKGBUILDs.
-
-[[components]]
-name = "astra"
-category = "apps"
-default = true
-packages = ["local:flightdeck", "astra-airlock-git", "astra-foundry-git"]
 
 [[components]]
 name = "apps-core"
 category = "apps"
-default = false
+default = true
 packages = ["sone-bin", "zen-browser-bin", "telegram-desktop", "equibop"]
-
 [[components.files]]
 src = "applications/zen.desktop"
 dest = "$XDG_DATA_HOME/applications/zen.desktop"
+
+[[components]]
+name = "astra"
+category = "apps"
+default = false
+packages = ["local:flightdeck", "astra-airlock-git", "astra-foundry-git"]
 
 [[components]]
 name = "libreoffice"
@@ -32,7 +30,7 @@ packages = ["gimp", "vlc", "celluloid", "loupe", "evince", "file-roller", "gpart
 [[components]]
 name = "easyeffects"
 category = "apps"
-default = true
+default = false
 packages = ["easyeffects", "lsp-plugins-lv2", "calf"]
 post_install = ["systemctl --user enable --now easyeffects 2>/dev/null || true"]
 
@@ -64,6 +62,7 @@ post_install = [
 name = "openrgb"
 category = "apps"
 environments = ["caelestia", "cykler"]
+devices = ["desktop"]
 default = false
 packages = ["openrgb", "caelestia-rgb-sync"]
 post_install = [
@@ -73,3 +72,32 @@ post_install = [
     "caelestia-rgb-sync calibrate global",
 ]
 post_deploy = ["caelestia-rgb-sync apply"]
+
+[[components]]
+name = "cortana"
+category = "cortana"
+default = false
+packages = ["dotnet-sdk"]
+devices = ["desktop"]
+post_install = ["systemctl --user daemon-reload", "systemctl --user enable cortana-desktop.service"]
+post_deploy = [
+    "systemctl --user daemon-reload",
+    "systemctl --user try-restart cortana-desktop.service",
+]
+[[components.files]]
+src = "repo:GwynnN7/Cortana"
+dest = "$HOME/Projects/Cortana"
+[[components.files]]
+src = "cortana/Settings.json"
+dest = "$XDG_CONFIG_HOME/cortana/Settings.json"
+[[components.files]]
+src = "cortana/cortana"
+dest = "$XDG_BIN_HOME/cortana"
+[[components.files]]
+src = "cortana/cortana-desktop.service"
+dest = "$XDG_CONFIG_SERVICE/cortana-desktop.service"
+[[components.files]]
+src = "cortana/sudoers_efibootmgr"
+dest = "/etc/sudoers.d/efibootmgr"
+sudo = true
+check = false

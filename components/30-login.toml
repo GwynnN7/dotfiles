@@ -1,5 +1,4 @@
 # Login
-# Component names stay stable; package dependencies belong in PKGBUILDs.
 
 [[components]]
 name = "greetd"
@@ -12,12 +11,10 @@ post_install = [
     "sudo systemctl enable --now greetd",
 ]
 post_deploy = ["sudo systemctl daemon-reload"]
-
 [[components.files]]
 src = "greetd/config.toml"
 dest = "/etc/greetd/config.toml"
 sudo = true
-
 [[components.files]]
 src = "greetd/greetd-switcher"
 dest = "/usr/local/bin/greetd-switcher"
@@ -26,30 +23,34 @@ sudo = true
 [[components]]
 name = "sddm"
 category = "login"
-environments = ["caelestia", "cykler"]
 default = false
-packages = ["sddm", "caelestia-sddm-minimalistv2-git", "layer-shell-qt"]
+packages = ["sddm"]
 post_install = [
     "sudo systemctl daemon-reload",
     "sudo systemctl disable display-manager",
     "sudo systemctl enable --now sddm",
 ]
+
+[[components]]
+name = "sddm-caelestia"
+category = "login"
+environments = ["caelestia", "cykler"]
+default = false
+packages = ["caelestia-sddm-minimalistv2-git", "layer-shell-qt"]
 post_deploy = [
     "sudo systemctl daemon-reload",
     "sudo /usr/share/sddm/themes/caelestia/scripts/sync.sh >/dev/null",
 ]
-
 [[components.files]]
 src = "sddm/caelestia.conf"
 dest = "/etc/sddm.conf.d/caelestia.conf"
 sudo = true
-
 [[components.files]]
 src = "sddm/sddm.lua"
 dest = "/opt/hypr/sddm.lua"
 sudo = true
-
 [[components.files]]
 src = "sddm/caelestia-sddm"
 dest = "/etc/sudoers.d/caelestia-sddm"
 sudo = true
+check = false

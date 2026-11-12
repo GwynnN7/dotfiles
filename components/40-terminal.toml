@@ -1,12 +1,10 @@
 # Terminal
-# Component names stay stable; package dependencies belong in PKGBUILDs.
 
 [[components]]
 name = "foot"
 category = "terminal"
 default = true
 packages = ["foot"]
-
 [[components.files]]
 src = "foot"
 dest = "$XDG_CONFIG_HOME/foot"
@@ -22,7 +20,6 @@ name = "fish"
 category = "terminal"
 default = true
 packages = ["fish"]
-
 [[components.files]]
 src = "fish"
 dest = "$XDG_CONFIG_HOME/fish"
@@ -32,7 +29,6 @@ name = "starship"
 category = "terminal"
 default = true
 packages = ["starship"]
-
 [[components.files]]
 src = "starship.toml"
 dest = "$XDG_CONFIG_HOME/starship.toml"
@@ -42,32 +38,18 @@ name = "fastfetch"
 category = "terminal"
 default = true
 packages = ["fastfetch"]
-
 [[components.files]]
 src = "fastfetch"
 dest = "$XDG_CONFIG_HOME/fastfetch"
-
-[[components]]
-name = "monitor"
-category = "terminal"
-default = true
-packages = ["btop", "nvtop", "ncdu", "psmisc"]
-post_deploy = ["killall -USR2 btop 2>/dev/null || true"]
-
-[[components.files]]
-src = "btop"
-dest = "$XDG_CONFIG_HOME/btop"
 
 [[components]]
 name = "micro"
 category = "terminal"
 default = true
 packages = ["micro"]
-
 [[components.files]]
 src = "micro"
 dest = "$XDG_CONFIG_HOME/micro"
-
 [[components.files]]
 src = "applications/micro.desktop"
 dest = "$XDG_DATA_HOME/applications/micro.desktop"
@@ -77,73 +59,24 @@ name = "nvim"
 category = "terminal"
 default = false
 packages = ["neovim"]
-
 [[components.files]]
 src = "nvim/colors/caelestia.lua"
 dest = "$XDG_CONFIG_HOME/nvim/colors/caelestia.lua"
 environments = ["caelestia", "cykler"]
-
 [[components.files]]
 src = "nvim/lua/plugins/caelestia.lua"
 dest = "$XDG_CONFIG_HOME/nvim/lua/plugins/caelestia.lua"
 environments = ["caelestia", "cykler"]
 
 [[components]]
-name = "yazi"
-category = "terminal"
-default = true
-packages = ["yazi"]
-
-[[components.files]]
-src = "yazi"
-dest = "$XDG_CONFIG_HOME/yazi"
-
-[[components]]
-name = "pacseek"
-category = "terminal"
-default = true
-packages = ["pacseek"]
-
-[[components.files]]
-src = "pacseek"
-dest = "$XDG_CONFIG_HOME/pacseek"
-
-[[components]]
-name = "tools"
+name = "utilities"
 category = "terminal"
 default = true
 packages = [
-    "git",
-    "curl",
-    "trash-cli",
-    "jq",
-    "wget",
-    "file",
-    "fd",
-    "zbar",
-    "7zip",
-    "unzip",
-    "ffmpeg",
-    "lazygit",
     "bat",
     "eza",
-    "sshfs",
-    "openssh",
-    "imagemagick",
     "zoxide",
     "direnv",
     "ripgrep",
-    "ydotool",
-    "libnotify",
-    "xorg-xhost",
-    "xdg-user-dirs",
+    "ydotool"
 ]
-post_deploy = ["xdg-user-dirs-update"]
-
-[[components.files]]
-src = "mimeapps.list"
-dest = "$XDG_CONFIG_HOME/mimeapps.list"
-
-[[components.files]]
-src = "repo:GwynnN7/Wallpaper"
-dest = "$HOME/Pictures/Wallpapers"

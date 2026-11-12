@@ -1,5 +1,4 @@
 # System
-# Component names stay stable; package dependencies belong in PKGBUILDs.
 
 [[components]]
 name = "system"
@@ -23,28 +22,72 @@ packages = [
     "playerctl",
     "pamixer",
 ]
-
 [[components.files]]
 src = "wireplumber"
 dest = "$XDG_CONFIG_HOME/wireplumber"
-
 [[components.files]]
 src = "pipewire"
 dest = "$XDG_CONFIG_HOME/pipewire"
 environments = ["cykler"]
 
 [[components]]
-name = "udiskie"
+name = "pacseek"
 category = "system"
 default = true
-packages = ["udiskie"]
-
+packages = ["pacseek"]
 [[components.files]]
-src = "udiskie"
-dest = "$XDG_CONFIG_HOME/udiskie"
+src = "pacseek"
+dest = "$XDG_CONFIG_HOME/pacseek"
+
+[[components]]
+name = "monitor"
+category = "system"
+default = true
+packages = ["btop", "nvtop", "ncdu", "psmisc"]
+post_deploy = ["killall -USR2 btop 2>/dev/null"]
+[[components.files]]
+src = "btop"
+dest = "$XDG_CONFIG_HOME/btop"
 
 [[components]]
 name = "clipboard"
 category = "system"
 default = true
 packages = ["wl-clipboard", "cliphist", "wtype"]
+
+[[components]]
+name = "tools"
+category = "system"
+default = true
+packages = [
+    "git",
+    "curl",
+    "wget",
+    "rsync",
+    "jq",
+    "file",
+    "fd",
+    "zbar",
+    "7zip",
+    "unzip",
+    "ffmpeg",
+    "lazygit",
+    "sshfs",
+    "openssh",
+    "trash-cli",
+    "imagemagick",
+    "libnotify",
+    "xorg-xhost",
+    "udiskie",
+    "xdg-user-dirs",
+]
+[[components.files]]
+src = "udiskie"
+dest = "$XDG_CONFIG_HOME/udiskie"
+post_deploy = ["xdg-user-dirs-update"]
+[[components.files]]
+src = "mimeapps.list"
+dest = "$XDG_CONFIG_HOME/mimeapps.list"
+[[components.files]]
+src = "repo:GwynnN7/Wallpapers"
+dest = "$HOME/Pictures/Wallpapers"

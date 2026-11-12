@@ -1,16 +1,22 @@
 # File Management
-# Component names stay stable; package dependencies belong in PKGBUILDs.
+
+[[components]]
+name = "yazi"
+category = "file manager"
+default = true
+packages = ["yazi"]
+[[components.files]]
+src = "yazi"
+dest = "$XDG_CONFIG_HOME/yazi"
 
 [[components]]
 name = "thunar"
 category = "file manager"
 default = true
-packages = ["thunar", "thunar-archive-plugin", "sshfs"]
-
+packages = ["thunar", "thunar-archive-plugin"]
 [[components.files]]
 src = "thunar"
 dest = "$XDG_CONFIG_HOME/Thunar"
-
 [[components.files]]
 src = "xfce4"
 dest = "$XDG_CONFIG_HOME/xfce4"
@@ -20,7 +26,6 @@ name = "atlas"
 category = "file manager"
 default = true
 packages = ["astra-atlas-git"]
-
 [[components.files]]
 src = "astra/atlas.conf"
 dest = "$XDG_CONFIG_HOME/astra-atlas/atlas.conf"

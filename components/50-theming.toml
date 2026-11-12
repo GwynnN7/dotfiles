@@ -1,11 +1,10 @@
 # Theming
-# Component names stay stable; package dependencies belong in PKGBUILDs.
 
 [[components]]
 name = "icons"
 category = "theming"
 default = true
-packages = ["papirus-icon-theme", "papirus-folders", "adwaita-icon-theme"]
+packages = ["papirus-icon-theme", "papirus-folders-git", "adwaita-icon-theme"]
 
 [[components]]
 name = "matugen"
@@ -13,17 +12,14 @@ category = "theming"
 environments = ["serpantinum"]
 default = true
 packages = ["matugen"]
-
 [[components.files]]
 src = "matugen"
 dest = "$XDG_CONFIG_HOME/matugen"
-
 [[components.files]]
 src = "matugen/config.toml"
 dest = "/usr/share/serpantinum/src/assets/matugen/config.toml"
 sudo = true
 check = false
-
 [[components.files]]
 src = "matugen/config-static.toml"
 dest = "/usr/share/serpantinum/src/assets/matugen/config-static.toml"
@@ -69,7 +65,6 @@ name = "cava"
 category = "theming"
 default = true
 packages = ["cava", "libcava"]
-
 [[components.files]]
 src = "cava"
 dest = "$XDG_CONFIG_HOME/cava"

@@ -1,5 +1,4 @@
 # Desktop
-# Component names stay stable; package dependencies belong in PKGBUILDs.
 
 [[components]]
 name = "hyprland"
@@ -7,7 +6,6 @@ category = "wm"
 default = true
 packages = ["hyprland"]
 post_deploy = ["if [ -n \"${HYPRLAND_INSTANCE_SIGNATURE:-}\" ]; then hyprctl reload >/dev/null; fi"]
-
 [[components.files]]
 src = "hypr"
 dest = "$XDG_CONFIG_HOME/hypr"
@@ -17,11 +15,9 @@ name = "desktop portal"
 category = "wm"
 default = true
 packages = ["xdg-desktop-portal-hyprland", "xdg-desktop-portal-gtk", "local:wormhole"]
-
 [[components.files]]
 src = "xdg-desktop-portal"
 dest = "$XDG_CONFIG_HOME/xdg-desktop-portal"
-
 [[components]]
 name = "hyprutils"
 category = "wm"
@@ -34,11 +30,11 @@ category = "wm"
 default = false
 ask = true
 post_install = [
+    "hyprpm purge-cache", "hyprpm update",
     "hyprpm add https://github.com/yayuuu/hyprland-scroll-overview",
     "hyprpm enable scrolloverview",
 ]
 post_deploy = ["hyprpm update", "hyprpm reload"]
-
 [[components.files]]
 src = "repo:zjeffer/split-monitor-workspaces"
 dest = "$XDG_CONFIG_HOME/hypr/plugins/split-monitor-workspaces"
@@ -48,11 +44,9 @@ name = "systemd"
 category = "wm"
 default = true
 packages = ["uwsm", "app2unit"]
-
 [[components.files]]
 src = "uwsm"
 dest = "$XDG_CONFIG_HOME/uwsm"
-
 [[components.files]]
 src = "environment.d"
 dest = "$XDG_CONFIG_HOME/environment.d"

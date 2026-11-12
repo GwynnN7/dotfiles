@@ -25,7 +25,7 @@
                 "Collections": {
                     "id": "Collections",
                     "title": "Collections",
-                    "position": 4
+                    "position": 7
                 },
                 "DesktopApps": {
                     "id": "DesktopApps",
@@ -35,12 +35,12 @@
                 "Soundtracks": {
                     "id": "Soundtracks",
                     "title": "Soundtracks",
-                    "position": 5
+                    "position": -1
                 },
                 "68047302-5cbe-4cf3-8935-b9223d1500f6": {
                     "id": "68047302-5cbe-4cf3-8935-b9223d1500f6",
                     "title": "  BACKGROUND",
-                    "position": -1,
+                    "position": 3,
                     "filters": [
                         {
                             "type": "collection",
@@ -60,7 +60,7 @@
                 "da4e119e-c57b-4e7d-b056-1f9ce9f02774": {
                     "id": "da4e119e-c57b-4e7d-b056-1f9ce9f02774",
                     "title": "   PLAYTHROUGH",
-                    "position": -1,
+                    "position": 2,
                     "filters": [
                         {
                             "type": "collection",
@@ -80,7 +80,7 @@
                 "ec6f8cf7-1e3d-40a4-a1bf-2a92b568ceed": {
                     "id": "ec6f8cf7-1e3d-40a4-a1bf-2a92b568ceed",
                     "title": " BACKLOGGED",
-                    "position": 3,
+                    "position": 5,
                     "filters": [
                         {
                             "type": "collection",
@@ -100,7 +100,7 @@
                 "cb3b1c43-a541-4319-9c2a-d3b2f1ac798b": {
                     "id": "cb3b1c43-a541-4319-9c2a-d3b2f1ac798b",
                     "title": "Installed",
-                    "position": 2,
+                    "position": 6,
                     "filters": [
                         {
                             "type": "collection",
@@ -132,6 +132,26 @@
                     "autoHide": true,
                     "visibleToOthers": false,
                     "sortByOverride": 5
+                },
+                "3a62c26b-2af0-4e64-a8cc-bbb6d62f425d": {
+                    "id": "3a62c26b-2af0-4e64-a8cc-bbb6d62f425d",
+                    "title": "  SOFTWARE",
+                    "position": 4,
+                    "filters": [
+                        {
+                            "type": "collection",
+                            "inverted": false,
+                            "params": {
+                                "id": "uc-nm612KyyTlX8",
+                                "name": "  SOFTWARE"
+                            }
+                        }
+                    ],
+                    "filtersMode": "and",
+                    "categoriesToInclude": 1,
+                    "autoHide": false,
+                    "visibleToOthers": false,
+                    "sortByOverride": -1
                 }
             },
             "friends": [
