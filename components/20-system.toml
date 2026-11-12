@@ -44,7 +44,7 @@ name = "monitor"
 category = "system"
 default = true
 packages = ["btop", "nvtop", "ncdu", "psmisc"]
-post_deploy = ["killall -USR2 btop 2>/dev/null"]
+post_deploy = ["killall -USR2 btop 2>/dev/null || true"]
 [[components.files]]
 src = "btop"
 dest = "$XDG_CONFIG_HOME/btop"
