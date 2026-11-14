@@ -16,6 +16,13 @@ depends=(
   'python-cryptography'
   'python-evdev'
   'python-gobject'
+  'scrcpy' 
+  'android-tools' 
+  'android-udev' 
+  'ffmpeg'
+  'sshfs'
+  'v4l-utils' 
+  'v4l2loopback-dkms' 
 )
 makedepends=('git')
 optdepends=(
@@ -112,6 +119,20 @@ EOF
   install -Dm644 /dev/stdin \
     "$pkgdir/usr/lib/udev/rules.d/60-caelestia-connect-uinput.rules" <<'EOF'
 KERNEL=="uinput", GROUP="input", MODE="0660", TAG+="uaccess"
+EOF
+
+  # Configure the two v4l2loopback devices used by the phone webcam feature.
+  # These vendor defaults live in /usr/lib. An administrator can mask this
+  # drop-in with a same-named file under /etc/modprobe.d. The module is loaded
+  # automatically on the next boot through modules-load.d.
+  install -Dm644 /dev/stdin \
+    "$pkgdir/usr/lib/modprobe.d/caelestia-connect-webcam.conf" <<'EOF'
+options v4l2loopback devices=2 exclusive_caps=1,1 card_label="Caelestia Phone Camera,Caelestia Camera Input"
+EOF
+
+  install -Dm644 /dev/stdin \
+    "$pkgdir/usr/lib/modules-load.d/caelestia-connect-webcam.conf" <<'EOF'
+v4l2loopback
 EOF
 
   # License.

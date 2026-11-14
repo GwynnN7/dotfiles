@@ -251,6 +251,38 @@ local function place_apps(apps, special_workspace)
     end
 end
 
+local function swap_monitor_windows()
+    local monitors = hl.get_monitors()
+    if #monitors < 2 then return end
+
+    local ws1 = monitors[1].active_workspace
+    local ws2 = monitors[2].active_workspace
+
+    if not ws1 or not ws2 then return end
+
+    -- Snapshot both lists before moving anything
+    local windows1 = hl.get_windows({ workspace = ws1 })
+    local windows2 = hl.get_windows({ workspace = ws2 })
+
+    -- Move monitor 1's windows to monitor 2's workspace
+    for _, w in ipairs(windows1) do
+        hl.dispatch(hl.dsp.window.move({
+            window = w,
+            workspace = ws2,
+            follow = false,
+        }))
+    end
+
+    -- Move monitor 2's original windows to monitor 1's workspace
+    for _, w in ipairs(windows2) do
+        hl.dispatch(hl.dsp.window.move({
+            window = w,
+            workspace = ws1,
+            follow = false,
+        }))
+    end
+end
+
 local function toggle(special_workspace)
     return function()
         local active_workspace = hl.get_active_special_workspace()
@@ -383,5 +415,6 @@ return {
     move_actions         = move_actions,
     toggle               = toggle,
     media_volume 		 = media_volume,
-    focus_workspace      = focus_workspace
+    focus_workspace      = focus_workspace,
+    swap_monitor_windows = swap_monitor_windows
 }

@@ -15,7 +15,7 @@ create_bind(
 -- Monitor
 create_bind(combine(vars.kbFocus, "TAB"), hl.dsp.focus({ monitor = "+1" }))
 create_bind(combine(vars.kbMove, "TAB"), hl.dsp.window.move({ monitor = "+1" }))
-create_bind(combine(vars.kbFocus, "CTRL + TAB"), hl.dsp.workspace.swap_monitors({ monitor1 = "0", monitor2 = "+1" }))
+create_bind(combine(vars.kbFocus, "CTRL + TAB"), fn.swap_monitor_windows)
 
 -- Workspace and Windows
 for i = 1, smw.get_amount_of_workspaces() do
@@ -66,7 +66,7 @@ end
 
 -- Special workspace toggles
 create_bind(vars.kbScratchpad, fn.toggle("specialws"))
-create_bind(combine("SHIFT", vars.kbScratchpad),smw.move_to_workspace_silent("specialws"))
+create_bind(combine("SHIFT", vars.kbScratchpad),smw.move_to_workspace_silent("special:special"))
 create_bind(vars.kbSystemMonitorWs, fn.toggle("sysmon"))
 create_bind(vars.kbSpecialWs, fn.toggle("music"), hold)
 create_bind(vars.kbSpecialWs, fn.toggle("communication"))
