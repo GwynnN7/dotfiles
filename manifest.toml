@@ -11,6 +11,7 @@ include = [
     "components/70-file-management.toml",
     "components/80-applications.toml",
     "components/90-development.toml",
+    "components/95-ai.toml",
 ]
 
 [environments]
