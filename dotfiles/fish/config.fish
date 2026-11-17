@@ -20,7 +20,7 @@ function fish_user_key_bindings
 end
 
 set -gx EDITOR micro
-fish_add_path /opt/rocm/bin
+fish_add_path /opt/therock/10.1.0/bin
 
 if status is-interactive
     # Starship custom prompt

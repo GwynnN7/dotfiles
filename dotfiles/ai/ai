@@ -1,0 +1,838 @@
+#!/usr/bin/env bash
+# Arch Linux / CachyOS, AMD Radeon RX 6650 XT (gfx1032), Fish shell.
+# Usage:
+#   ai install <env|models|models-xl|comfyui|sdcpp|llamacpp|llamacpp-hip|whispercpp|training|all>
+#   ai <comfyui|sdcpp|llamacpp|llamacpp-hip|whispercpp> [optional arguments]
+#   ai chat [model]         Interactive terminal chat (starts a local router if needed)
+#   ai model [name]         Get or set your default GGUF model
+#   ai env                 Validate ROCm and PyTorch (read-only)
+#   ai models              List available local models (read-only)
+#   ai training            Show training environment instructions (read-only)
+#   ai status              Show installation status (read-only)
+#   ai help
+
+set -Eeuo pipefail
+IFS=$'\n\t'
+
+AI_HOME="${AI_HOME:-$HOME/Projects/AI}"
+APPS="$AI_HOME/apps"
+MODELS="$AI_HOME/models"
+ENVS="$AI_HOME/envs"
+OUTPUTS="$AI_HOME/outputs"
+CACHE="$AI_HOME/cache/downloads"
+CONFIG="$AI_HOME/config"
+LOGS="$AI_HOME/logs"
+MODEL_SELECTION="$CONFIG/default-model"
+LLAMA_PORT="${AI_LLAMA_PORT:-8080}"
+ROCM_VERSION="10.1.0"
+ROCM_DIR="/opt/therock/$ROCM_VERSION"
+ROCM_URL="https://stable.repo.amd.com/rocm/core/tarball/therock-dist-linux-gfx103X-all-10.1.0.tar.gz"
+PYTORCH_INDEX="https://stable.repo.amd.com/rocm/whl-next/"
+PYTORCH_VERSION="2.13.0+rocm10.1.0"
+TORCHVISION_VERSION="0.28.0+rocm10.1.0"
+GPU_ARCH="gfx1032"
+PYTHON_CMD="${PYTHON_CMD:-python3}"
+
+log() { printf '\n\033[1;36m[AI]\033[0m %s\n' "$*"; }
+warn() { printf '\033[1;33m[WARN]\033[0m %s\n' "$*" >&2; }
+die() { printf '\033[1;31m[ERROR]\033[0m %s\n' "$*" >&2; exit 1; }
+trap 'printf "\n[ERROR] Command failed at line %s. Review the error above.\n" "$LINENO" >&2' ERR
+need() { command -v "$1" >/dev/null 2>&1 || die "Missing system dependency: $1 (see package comments at top)."; }
+
+usage() {
+  cat <<'TXT'
+AI workspace command for Arch/CachyOS + AMD RX 6650 XT (gfx1032).
+
+Install components (downloads/builds may be substantial):
+  ai install env           Shared folders, TheRock 10.1 SDK, Fish config, PyTorch test venv
+  ai install models        SD 1.5, DreamShaper 8, Qwen3.5 4B Q4, Whisper base
+  ai install models-xl     Optional SDXL Base 1.0 checkpoint (~7 GB)
+  ai install comfyui       ComfyUI with ROCm PyTorch + Manager
+  ai install sdcpp         stable-diffusion.cpp Vulkan CLI + Web UI
+  ai install llamacpp      llama.cpp Vulkan
+  ai install llamacpp-hip  Separate llama.cpp HIP build (experimental)
+  ai install whispercpp    whisper.cpp HIP build (experimental)
+  ai install training      Transformers + PEFT training venv (not Unsloth)
+  ai install all           Environment, models, ComfyUI, SD.cpp, llama.cpp, Whisper
+
+Launch already-installed applications:
+  ai comfyui [flags...]    ComfyUI Web UI, http://127.0.0.1:8188
+  ai sdcpp [flags...]      SD.cpp Web UI, http://127.0.0.1:1234
+  ai llamacpp             Vulkan multi-model router server, http://127.0.0.1:8080
+  ai llamacpp-hip         HIP multi-model router server, same port
+  ai chat [model]         Interactive terminal chat (auto-starts Vulkan server if absent)
+  ai model [name]         Show or select persistent default local GGUF
+  ai model reset          Clear the saved default GGUF; use first local model
+  ai whispercpp [audio.wav]  Transcribe supplied WAV or included sample
+
+Inspect without installing:
+  ai env                   Validate native gfx1032 HIP and ROCm PyTorch
+  ai models                List downloaded model files (selected default marked)
+  ai models-xl             Check whether the optional SDXL model exists
+  ai training              Check venv and print how to activate it
+  ai status                Report installed programs and model files
+  ai help                  Show this help
+
+In terminal chat: /models, /model <name>, /clear, /help, /exit.
+GGUFs: ~/Projects/AI/models/llm; llama.cpp cache: ~/Projects/AI/models/.llama-cache.
+No Ollama installation or external model cache is used.
+
+Workspace: ~/Projects/AI by default; override with exported AI_HOME.
+You can run `ai` from Fish, Bash or a desktop terminal: Bash handles the script.
+System dependencies are listed in comments at the top, never installed with pacman.
+TXT
+}
+
+make_dirs() {
+  mkdir -p "$APPS" "$ENVS" "$CACHE" "$CONFIG" "$LOGS" \
+    "$MODELS/checkpoints" "$MODELS/diffusion_models" "$MODELS/text_encoders" \
+    "$MODELS/vae" "$MODELS/loras" "$MODELS/controlnet" \
+    "$MODELS/embeddings" "$MODELS/upscale_models" "$MODELS/llm" \
+    "$MODELS/whisper" "$MODELS/.llama-cache" \
+    "$OUTPUTS/images" "$OUTPUTS/text" "$OUTPUTS/audio" \
+    "$AI_HOME/training/datasets" "$AI_HOME/training/checkpoints" \
+    "$AI_HOME/training/outputs"
+}
+
+# Save large downloads as *.part until fully transferred, then rename atomically.
+# min_megabytes prevents saving a tiny login page or Git LFS pointer as a model.
+download() {
+  local url="$1" dst="$2" min_megabytes="$3"
+  local min_bytes=$((min_megabytes * 1024 * 1024))
+  local part="${dst}.part" size=0
+  need curl
+  mkdir -p "$(dirname "$dst")"
+  if [[ -e "$dst" ]]; then
+    size="$(stat -c '%s' "$dst")"
+    if (( size >= min_bytes )); then
+      log "Present: $dst ($(numfmt --to=iec "$size"))"
+      return
+    fi
+    die "File exists but looks incomplete: $dst ($size bytes). Investigate or move it manually."
+  fi
+  log "Downloading: $dst"
+  curl --fail --location --show-error --retry 4 --retry-delay 3 \
+    --connect-timeout 30 --continue-at - --output "$part" "$url"
+  size="$(stat -c '%s' "$part")"
+  (( size >= min_bytes )) || die "Download too small ($size bytes): $dst; retaining $part for inspection."
+  mv -n "$part" "$dst"
+  log "Saved: $dst ($(numfmt --to=iec "$size"))"
+}
+
+clone_once() {
+  local url="$1" dst="$2"
+  need git
+  if [[ -d "$dst/.git" ]]; then
+    log "Repository already present: $dst (no automatic pull/reset)"
+  elif [[ -e "$dst" ]]; then
+    die "Existing non-repository directory at $dst. Move it or use your existing installation."
+  else
+    git clone --recursive "$url" "$dst"
+  fi
+}
+
+# Run a command without previous global unsupported gfx1030 spoofing or LD_LIBRARY_PATH.
+clean_gpu_env() {
+  env -u HSA_OVERRIDE_GFX_VERSION \
+      -u PYTORCH_ROCM_ARCH \
+      -u HSA_ENABLE_SDMA \
+      -u HSA_NO_SCRATCH_VRAM \
+      -u PYTORCH_HIP_ALLOC_CONF \
+      -u LD_LIBRARY_PATH \
+      ROCM_PATH="$ROCM_DIR" ROCM_HOME="$ROCM_DIR" HIP_PATH="$ROCM_DIR" "$@"
+}
+
+make_venv() {
+  local path="$1"
+  need "$PYTHON_CMD"
+  if [[ ! -x "$path/bin/python" ]]; then
+    "$PYTHON_CMD" -m venv "$path"
+  fi
+  "$path/bin/python" -m pip install --disable-pip-version-check --upgrade pip
+}
+
+install_rocm_torch() {
+  local envdir="$1" torchvision="${2:-no}"
+  local -a packages=("torch[device-gfx1032]==$PYTORCH_VERSION")
+  if [[ "$torchvision" == yes ]]; then
+    packages+=("torchvision[device-gfx1032]==$TORCHVISION_VERSION")
+  fi
+  clean_gpu_env "$envdir/bin/python" -m pip install \
+    --disable-pip-version-check --index-url "$PYTORCH_INDEX" "${packages[@]}"
+}
+
+torch_test() {
+  local envdir="$1"
+  clean_gpu_env "$envdir/bin/python" - <<'PY'
+import torch
+print('PyTorch:', torch.__version__, '| HIP:', torch.version.hip)
+assert torch.__version__ == '2.13.0+rocm10.1.0', 'Expected pinned TheRock GPU build; pip may have replaced it'
+assert torch.cuda.is_available(), 'ROCm GPU not available'
+name = torch.cuda.get_device_name(0)
+print('GPU:', name)
+a = torch.randn((1024, 1024), dtype=torch.float16, device='cuda')
+b = a @ a
+assert torch.isfinite(b.float()).all().item()
+torch.cuda.synchronize()
+print('FP16 matrix multiplication: PASS')
+PY
+}
+
+bash_profile_setup() {
+  # Make the native SDK discoverable in login Bourne-family shells without
+  # altering /opt/rocm or globally adding any ROCm lib directory.
+  local config="/etc/profile.d/ai-therock.sh"
+  if sudo test -e "$config" && ! sudo grep -Eq '# Managed by (ai-setup.sh|ai)'  "$config"; then
+    warn "Not overwriting existing non-managed $config"
+    return
+  fi
+  sudo tee "$config" >/dev/null <<EOSH
+# Managed by ai -- native ROCm gfx1032.
+export ROCM_PATH="$ROCM_DIR"
+export ROCM_HOME="$ROCM_DIR"
+export HIP_PATH="$ROCM_DIR"
+case ":\$PATH:" in
+  *":$ROCM_DIR/bin:"*) ;;
+  *) export PATH="$ROCM_DIR/bin:\$PATH" ;;
+esac
+EOSH
+  log "Bash login environment: $config"
+}
+
+fish_setup() {
+  local config="$HOME/.config/fish/conf.d/ai-therock.fish"
+  mkdir -p "$(dirname "$config")"
+  if [[ -e "$config" ]] && ! grep -Eq '# Managed by (ai-setup.sh|ai)'  "$config"; then
+    warn "Not overwriting existing non-managed $config"
+    return
+  fi
+  cat > "$config" <<EOFISH
+# Managed by ai -- native ROCm gfx1032; no architecture spoofing.
+set -gx AI_HOME "$AI_HOME"
+set -gx ROCM_PATH "$ROCM_DIR"
+set -gx ROCM_HOME "$ROCM_DIR"
+set -gx HIP_PATH "$ROCM_DIR"
+contains -- "$ROCM_DIR/bin" \$PATH; or set -gx PATH "$ROCM_DIR/bin" \$PATH
+EOFISH
+  log "Fish environment: $config (takes effect in new Fish sessions)"
+}
+
+warn_legacy_overrides() {
+  local d
+  for d in /etc/environment.d "$HOME/.config/environment.d"; do
+    if [[ -d "$d" ]] && grep -RlE 'HSA_OVERRIDE_GFX_VERSION|PYTORCH_ROCM_ARCH|/opt/rocm' "$d" 2>/dev/null | grep -q .; then
+      warn "Old ROCm/architecture settings may still exist in $d. Review and remove them manually."
+    fi
+  done
+  if [[ "${HSA_OVERRIDE_GFX_VERSION:-}" != "" || "${PYTORCH_ROCM_ARCH:-}" != "" ]]; then
+    warn 'Legacy gfx1030-related environment overrides are set in this shell.'
+  fi
+  warn 'After installing, confirm your user belongs to render and video groups, and can access /dev/kfd.'
+}
+
+install_env() {
+  make_dirs
+  need tar
+  need sudo
+  if [[ -x "$ROCM_DIR/bin/hipcc" && -x "$ROCM_DIR/bin/rocminfo" ]]; then
+    log "TheRock already installed in $ROCM_DIR; leaving unchanged"
+  else
+    if [[ -e "$ROCM_DIR" ]]; then
+      die "$ROCM_DIR exists but is incomplete. Inspect it manually; installer will not overwrite."
+    fi
+    local archive="$CACHE/therock-dist-linux-gfx103X-all-$ROCM_VERSION.tar.gz"
+    download "$ROCM_URL" "$archive" 200
+    local stage="/opt/therock/.install-$ROCM_VERSION-$$"
+    sudo mkdir -p "$stage"
+    log "Extracting AMD TheRock SDK under /opt (sudo). This can take a while."
+    sudo tar -xzf "$archive" -C "$stage"
+    if ! sudo test -x "$stage/bin/hipcc" || ! sudo test -x "$stage/bin/rocminfo"; then
+      die "TheRock tarball layout unexpected; inspect $stage. Not activating it."
+    fi
+    sudo mv "$stage" "$ROCM_DIR"
+    log "Installed TheRock at $ROCM_DIR"
+  fi
+  bash_profile_setup
+  fish_setup
+  warn_legacy_overrides
+  log 'Checking native GPU detection (no gfx1030 spoofing)'
+  clean_gpu_env "$ROCM_DIR/bin/rocminfo" | grep -E 'gfx1032|Radeon RX 6650 XT' || \
+    die 'Could not see gfx1032 in rocminfo. Check /dev/kfd permissions and amdgpu.'
+  log 'Installing test PyTorch environment'
+  make_venv "$ENVS/pytorch"
+  install_rocm_torch "$ENVS/pytorch" no
+  "$ENVS/pytorch/bin/python" -m pip install numpy
+  torch_test "$ENVS/pytorch"
+  log "Environment ready. New Fish shell: echo \$ROCM_PATH ; hipcc --version"
+}
+
+install_models() {
+  make_dirs
+  warn 'Downloading about 9–11 GB total. No large SDXL checkpoint in this default set.'
+  download \
+    'https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/resolve/main/v1-5-pruned-emaonly.safetensors' \
+    "$MODELS/checkpoints/v1-5-pruned-emaonly.safetensors" 1000
+  download \
+    'https://huggingface.co/Lykon/DreamShaper/resolve/main/DreamShaper_8_pruned.safetensors' \
+    "$MODELS/checkpoints/DreamShaper_8_pruned.safetensors" 1000
+  download \
+    'https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q4_K_M.gguf' \
+    "$MODELS/llm/Qwen3.5-4B-Q4_K_M.gguf" 500
+  download \
+    'https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.bin' \
+    "$MODELS/whisper/ggml-base.bin" 50
+  log 'Models ready in the shared library.'
+}
+
+install_models_xl() {
+  make_dirs
+  warn 'SDXL Base 1.0 is ~7 GB and may need RAM/VRAM offloading on 8 GB GPUs.'
+  download \
+    'https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors' \
+    "$MODELS/checkpoints/sd_xl_base_1.0.safetensors" 5000
+}
+
+install_comfyui() {
+  make_dirs
+  clone_once 'https://github.com/Comfy-Org/ComfyUI.git' "$APPS/ComfyUI"
+  local venv="$APPS/ComfyUI/.venv"
+  make_venv "$venv"
+  log 'Installing ComfyUI requirements and Manager in its own venv'
+  "$venv/bin/python" -m pip install -r "$APPS/ComfyUI/requirements.txt"
+  if [[ -f "$APPS/ComfyUI/manager_requirements.txt" ]]; then
+    "$venv/bin/python" -m pip install -r "$APPS/ComfyUI/manager_requirements.txt"
+  else
+    warn 'No manager_requirements.txt found; Manager may not be enabled.'
+  fi
+  install_rocm_torch "$venv" yes
+  "$venv/bin/python" -m pip install numpy
+  "$venv/bin/python" -m pip check || die 'Dependency conflicts after ComfyUI install. Review before launching.'
+  torch_test "$venv"
+  log 'Ready: ai comfyui   (http://127.0.0.1:8188)'
+}
+
+install_sdcpp() {
+  make_dirs
+  need cmake
+  need pnpm
+  need node
+  clone_once 'https://github.com/leejet/stable-diffusion.cpp.git' "$APPS/stable-diffusion.cpp"
+  git -C "$APPS/stable-diffusion.cpp" submodule update --init --recursive
+  cmake -S "$APPS/stable-diffusion.cpp" -B "$APPS/stable-diffusion.cpp/build-vulkan" \
+    -DSD_VULKAN=ON -DSD_SERVER_BUILD_FRONTEND=ON -DCMAKE_BUILD_TYPE=Release
+  cmake --build "$APPS/stable-diffusion.cpp/build-vulkan" -j4
+  [[ -x "$APPS/stable-diffusion.cpp/build-vulkan/bin/sd-server" ]] || \
+    die 'sd-server was not produced. Read CMake output and upstream frontend build instructions.'
+  log 'Ready: ai sdcpp   (http://127.0.0.1:1234)'
+}
+
+install_llamacpp() {
+  make_dirs
+  need cmake
+  clone_once 'https://github.com/ggml-org/llama.cpp.git' "$APPS/llama.cpp"
+  cmake -S "$APPS/llama.cpp" -B "$APPS/llama.cpp/build-vulkan" \
+    -DGGML_VULKAN=ON -DCMAKE_BUILD_TYPE=Release
+  cmake --build "$APPS/llama.cpp/build-vulkan" -j4
+  log 'Ready: ai llamacpp (needs downloaded GGUF model)'
+}
+
+install_llamacpp_hip() {
+  make_dirs
+  [[ -x "$ROCM_DIR/bin/hipcc" ]] || die 'Install TheRock first: ai install env'
+  need cmake
+  clone_once 'https://github.com/ggml-org/llama.cpp.git' "$APPS/llama.cpp"
+  log 'Building separate HIP llama.cpp; availability of HIP libraries depends on SDK tarball.'
+  clean_gpu_env cmake -S "$APPS/llama.cpp" -B "$APPS/llama.cpp/build-hip" \
+    -DGGML_HIP=ON -DGPU_TARGETS="$GPU_ARCH" \
+    -DCMAKE_PREFIX_PATH="$ROCM_DIR" \
+    -DCMAKE_HIP_COMPILER_ROCM_ROOT="$ROCM_DIR" \
+    -DCMAKE_BUILD_TYPE=Release
+  clean_gpu_env cmake --build "$APPS/llama.cpp/build-hip" -j4
+  log 'HIP llama.cpp ready: build-hip/bin/llama-cli or llama-server'
+}
+
+install_whispercpp() {
+  make_dirs
+  [[ -x "$ROCM_DIR/bin/hipcc" ]] || die 'Install TheRock first: ai install env'
+  need cmake
+  clone_once 'https://github.com/ggml-org/whisper.cpp.git' "$APPS/whisper.cpp"
+  clean_gpu_env cmake -S "$APPS/whisper.cpp" -B "$APPS/whisper.cpp/build-hip" \
+    -DGGML_HIP=ON -DAMDGPU_TARGETS="$GPU_ARCH" \
+    -DCMAKE_PREFIX_PATH="$ROCM_DIR" \
+    -DCMAKE_HIP_COMPILER_ROCM_ROOT="$ROCM_DIR" \
+    -DCMAKE_BUILD_TYPE=Release
+  clean_gpu_env cmake --build "$APPS/whisper.cpp/build-hip" -j4
+  log 'Ready: ai whispercpp (requires models/whisper/ggml-base.bin)'
+}
+
+install_training() {
+  make_dirs
+  local venv="$ENVS/training"
+  make_venv "$venv"
+  install_rocm_torch "$venv" no
+  "$venv/bin/python" -m pip install numpy transformers peft accelerate datasets safetensors
+  "$venv/bin/python" -m pip check || warn 'Training environment has a dependency warning; review pip check output.'
+  torch_test "$venv"
+  warn 'No bitsandbytes, Unsloth, OneTrainer, or kohya_ss auto-install: their gfx1032/ROCm 10.1 support is not established.'
+  log "Training venv ready: source $venv/bin/activate.fish"
+}
+
+# Model resolution is strictly local: files must live under models/llm (no downloads).
+local_ggufs() {
+  [[ -d "$MODELS/llm" ]] || return 0
+  find "$MODELS/llm" -type f -iname '*.gguf' ! -iname 'mmproj*' ! -name '*.part' -print0 | sort -z
+}
+
+resolve_model() {
+  local query="$1" file rel base matches=0 candidate=""
+  [[ -n "$query" ]] || die 'Supply a GGUF model filename or unique prefix (try ai models)'
+  # Prefer exact relative paths; reject ambiguous duplicate basenames.
+  while IFS= read -r -d '' file; do
+    rel="${file#"$MODELS/llm/"}"
+    base="${file##*/}"
+    if [[ "$query" == "$rel" || "$query" == "$file" ]]; then
+      printf '%s\n' "$rel"
+      return 0
+    fi
+    if [[ "$query" == "$base" ]]; then
+      candidate="$rel"; ((matches+=1))
+    fi
+  done < <(local_ggufs)
+  if (( matches == 1 )); then
+    printf '%s\n' "$candidate"; return 0
+  elif (( matches > 1 )); then
+    die "Ambiguous model basename '$query' ($matches matches); use a relative path."
+  fi
+  matches=0; candidate=''
+  local query_lc="${query,,}" rel_lc base_lc
+  while IFS= read -r -d '' file; do
+    rel="${file#"$MODELS/llm/"}"
+    base="${file##*/}"
+    rel_lc="${rel,,}"
+    base_lc="${base,,}"
+    if [[ "$rel_lc" == "$query_lc"* || "$base_lc" == "$query_lc"* ]]; then
+      candidate="$rel"; ((matches+=1))
+    fi
+  done < <(local_ggufs)
+  (( matches > 0 )) || die "No local GGUF matches '$query'. Run: ai models"
+  (( matches == 1 )) || die "Ambiguous model '$query' ($matches matches); use its full filename."
+  printf '%s\n' "$candidate"
+}
+
+selected_model() {
+  local rel="" file
+  if [[ -f "$MODEL_SELECTION" ]]; then
+    IFS= read -r rel < "$MODEL_SELECTION" || true
+    while IFS= read -r -d '' file; do
+      if [[ "$rel" == "${file#"$MODELS/llm/"}" ]]; then
+        printf '%s\n' "$rel"; return 0
+      fi
+    done < <(local_ggufs)
+    warn 'Saved model no longer exists in the shared directory; using the first local GGUF.'
+  fi
+  IFS= read -r -d '' file < <(local_ggufs) || true
+  [[ -n "$file" ]] || die "No GGUF found under $MODELS/llm. Run: ai install models"
+  printf '%s\n' "${file#"$MODELS/llm/"}"
+}
+
+model_command() {
+  (( $# <= 1 )) || die 'Usage: ai model [name|reset]'
+  if (( $# == 0 )); then
+    local chosen
+    chosen="$(selected_model)"
+    printf 'Default GGUF: %s\nPath: %s\n' "$chosen" "$MODELS/llm/$chosen"
+    return
+  fi
+  if [[ "$1" == reset ]]; then
+    rm -f -- "$MODEL_SELECTION"
+    log 'Saved default cleared; ai chat will use the first available GGUF.'
+    return
+  fi
+  local chosen
+  chosen="$(resolve_model "$1")"
+  make_dirs
+  printf '%s\n' "$chosen" > "${MODEL_SELECTION}.tmp.$$"
+  mv -f -- "${MODEL_SELECTION}.tmp.$$" "$MODEL_SELECTION"
+  log "Default model: $chosen (saved in $MODEL_SELECTION)"
+}
+
+run_comfyui() {
+  local app="$APPS/ComfyUI"
+  [[ -x "$app/.venv/bin/python" ]] || die 'ComfyUI missing; run: ai install comfyui'
+  make_dirs
+  cd "$app"
+  # Extra arguments allow, e.g.: ai comfyui --lowvram
+  clean_gpu_env "$app/.venv/bin/python" main.py \
+    --models-directory "$MODELS" --output-directory "$OUTPUTS/images" \
+    --force-fp16 --enable-manager "$@"
+}
+run_sdcpp() {
+  local app="$APPS/stable-diffusion.cpp"
+  [[ -x "$app/build-vulkan/bin/sd-server" ]] || die 'SD.cpp missing; run: ai install sdcpp'
+  cd "$app"
+  "$app/build-vulkan/bin/sd-server" --model-dir "$MODELS" "$@"
+}
+llama_router_url() { printf 'http://127.0.0.1:%s' "$LLAMA_PORT"; }
+
+router_available() {
+  need curl
+  curl --noproxy '*' --silent --fail --max-time 2 \
+    "$(llama_router_url)/models" >/dev/null 2>&1
+}
+
+run_llamacpp_backend() {
+  local backend="$1"; shift
+  (( $# == 0 )) || die 'Router uses all local GGUFs; run: ai model <name> to select default'
+  local app="$APPS/llama.cpp"
+  local target='llamacpp'
+  [[ "$backend" == hip ]] && target='llamacpp-hip'
+  [[ -x "$app/build-$backend/bin/llama-server" ]] || die "llama.cpp $backend missing; run: ai install $target"
+  make_dirs
+  # Keep HF/cache downloads under the central models directory, not ~/.cache/llama.cpp.
+  local -a cmd=("$app/build-$backend/bin/llama-server" \
+    --models-dir "$MODELS/llm" --models-max 1 --host 127.0.0.1 \
+    --port "$LLAMA_PORT" -ngl 99 -c 4096)
+  log "llama.cpp $backend router at $(llama_router_url); stop with Ctrl+C"
+  if [[ "$backend" == hip ]]; then
+    LLAMA_CACHE="$MODELS/.llama-cache" clean_gpu_env "${cmd[@]}"
+  else
+    LLAMA_CACHE="$MODELS/.llama-cache" "${cmd[@]}"
+  fi
+}
+
+run_chat() {
+  (( $# <= 1 )) || die 'Usage: ai chat [model-name]'
+  need python3
+  need curl
+  local chosen
+  if (( $# == 1 )); then chosen="$(resolve_model "$1")"
+  else chosen="$(selected_model)"; fi
+  make_dirs
+  local started_pid="" app="$APPS/llama.cpp" url
+  url="$(llama_router_url)"
+  if ! router_available; then
+    [[ -x "$app/build-vulkan/bin/llama-server" ]] || die 'No local llama.cpp server; run: ai install llamacpp'
+    log "Starting temporary llama.cpp Vulkan router at $url"
+    LLAMA_CACHE="$MODELS/.llama-cache" "$app/build-vulkan/bin/llama-server" \
+      --models-dir "$MODELS/llm" --models-max 1 --host 127.0.0.1 \
+      --port "$LLAMA_PORT" -ngl 99 -c 4096 \
+      > "$LOGS/llama-chat-server.log" 2>&1 &
+    started_pid=$!
+    # Only stop the server if we started it. If another service has port 8080,
+    # the launched process exits and this reports an error instead of using it.
+    local i
+    for ((i=0;i<100;i++)); do
+      if ! kill -0 "$started_pid" 2>/dev/null; then
+        wait "$started_pid" 2>/dev/null || true
+        die "Local llama-server exited; see $LOGS/llama-chat-server.log"
+      fi
+      if router_available; then break; fi
+      sleep .25
+    done
+    if ! router_available; then
+      kill "$started_pid" 2>/dev/null || true
+      wait "$started_pid" 2>/dev/null || true
+      die "llama-server failed to become ready. See $LOGS/llama-chat-server.log"
+    fi
+    trap 'kill "$started_pid" 2>/dev/null || true; wait "$started_pid" 2>/dev/null || true' EXIT
+  fi
+  # Python stdlib terminal client; no separate installation or pip dependency.
+  # Model names resolve against IDs returned by the local llama.cpp router.
+  AI_CHAT_MODEL="$chosen" AI_CHAT_URL="$url" AI_CHAT_MODELS="$MODELS/llm" python3 /dev/fd/3 3<<'PYCHAT'
+import json, os, sys, urllib.request, urllib.error
+
+# Ignore HTTP proxy settings: this client only talks to a local server.
+OPENER = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+URL = os.environ['AI_CHAT_URL'].rstrip('/')
+SELECTED = os.environ['AI_CHAT_MODEL']
+ROOT = os.environ['AI_CHAT_MODELS']
+MAX_TOKENS = int(os.environ.get('AI_CHAT_MAX_TOKENS', '768'))
+HISTORY = []
+
+def get_models():
+    req = urllib.request.Request(URL + '/models?reload=1')
+    with OPENER.open(req, timeout=20) as response:
+        result = json.load(response)
+    if not isinstance(result, dict) or not isinstance(result.get('data'), list):
+        raise RuntimeError('Port is in use by a service that is not a llama.cpp model router')
+    return result['data']
+
+def match_model(name, models):
+    query = name.casefold()
+    exact = []
+    prefix = []
+    for entry in models:
+        model_id = entry.get('id', '')
+        path = entry.get('path', '')
+        rel = os.path.relpath(path, ROOT) if path and os.path.isabs(path) else ''
+        if not path or not os.path.isabs(path) or os.path.commonpath((os.path.realpath(ROOT), os.path.realpath(path))) != os.path.realpath(ROOT):
+            continue  # Never select a model from outside the shared GGUF library.
+        keys = {model_id, rel, os.path.basename(path), os.path.basename(model_id)}
+        if query in (key.casefold() for key in keys if key):
+            exact.append(model_id)
+        elif any(key.casefold().startswith(query) for key in keys if key):
+            prefix.append(model_id)
+    hits = list(dict.fromkeys(exact if exact else prefix))
+    if len(hits) == 1:
+        return hits[0]
+    if not hits:
+        raise ValueError(f'Unknown model: {name}. Use /models to see available models.')
+    raise ValueError(f'Ambiguous model: {name}; matches: {", ".join(hits)}')
+
+def show_models(models, active=None):
+    for entry in models:
+        path = entry.get('path', '')
+        if not path or not os.path.isabs(path) or os.path.commonpath((os.path.realpath(ROOT), os.path.realpath(path))) != os.path.realpath(ROOT):
+            continue
+        mid = entry.get('id', '?')
+        status = entry.get('status', {})
+        state = status.get('value', '') if isinstance(status, dict) else ''
+        mark = '*' if mid == active else ' '
+        print(f' {mark} {mid} {"[" + state + "]" if state else ""}')
+
+try:
+    models = get_models()
+    current = match_model(SELECTED, models)
+except (ValueError, RuntimeError, OSError, urllib.error.URLError) as exc:
+    print(f'Could not select model: {exc}', file=sys.stderr)
+    sys.exit(1)
+print(f'Using: {current}')
+print('Commands: /models, /model <name>, /clear, /help, /exit')
+print('Switching models clears this chat history; ai model <name> saves a default for later.')
+
+while True:
+    try:
+        question = input('\nYou> ').strip()
+    except (EOFError, KeyboardInterrupt):
+        print()
+        break
+    if not question:
+        continue
+    if question in ('/exit', '/quit', '/q'):
+        break
+    if question == '/help':
+        print('/models | /model <name> | /clear | /exit')
+        continue
+    if question == '/models':
+        try: show_models(get_models(), current)
+        except Exception as exc: print(f'Error: {exc}', file=sys.stderr)
+        continue
+    if question == '/clear':
+        HISTORY.clear()
+        print('Conversation cleared.')
+        continue
+    if question == '/model':
+        print('Usage: /model <model name or unique prefix>')
+        continue
+    if question.startswith('/model '):
+        try:
+            new_id = match_model(question[7:].strip(), get_models())
+            if new_id != current:
+                current = new_id
+                HISTORY.clear()
+                print(f'Switched to: {current}; conversation cleared.')
+            else:
+                print(f'Already using: {current}')
+        except Exception as exc:
+            print(f'Error: {exc}', file=sys.stderr)
+        continue
+    if question.startswith('/'):
+        print('Unknown command; type /help.')
+        continue
+
+    messages = HISTORY + [{'role': 'user', 'content': question}]
+    body = json.dumps({'model': current, 'messages': messages,
+                       'stream': True, 'max_tokens': MAX_TOKENS}).encode()
+    req = urllib.request.Request(URL + '/v1/chat/completions', data=body,
+             headers={'Content-Type': 'application/json', 'Accept': 'text/event-stream'}, method='POST')
+    parts = []
+    try:
+        print('AI> ', end='', flush=True)
+        with OPENER.open(req, timeout=600) as response:
+            for raw_line in response:
+                line = raw_line.decode('utf-8', errors='replace').strip()
+                if not line.startswith('data:'):
+                    continue
+                data = line[5:].strip()
+                if data == '[DONE]':
+                    break
+                event = json.loads(data)
+                if 'error' in event:
+                    raise RuntimeError(str(event['error']))
+                for choice in event.get('choices', []):
+                    delta = choice.get('delta', {})
+                    piece = delta.get('content', '') or ''
+                    if piece:
+                        print(piece, end='', flush=True)
+                        parts.append(piece)
+        print()
+        HISTORY[:] = messages + [{'role': 'assistant', 'content': ''.join(parts)}]
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, OSError,
+            ValueError, RuntimeError, KeyboardInterrupt) as exc:
+        print(f'\nRequest failed: {exc}', file=sys.stderr)
+PYCHAT
+  local result=$?
+  if [[ -n "$started_pid" ]]; then
+    kill "$started_pid" 2>/dev/null || true
+    wait "$started_pid" 2>/dev/null || true
+    trap - EXIT
+  fi
+  return "$result"
+}
+
+run_whispercpp() {
+  local app="$APPS/whisper.cpp"
+  (( $# <= 1 )) || die 'Usage: ai whispercpp [audio.wav]'
+  [[ -x "$app/build-hip/bin/whisper-cli" ]] || die 'whisper.cpp missing; run: ai install whispercpp'
+  [[ -f "$MODELS/whisper/ggml-base.bin" ]] || die 'Whisper model missing; run: ai install models'
+  local audio="${1:-$app/samples/jfk.wav}"
+  [[ -f "$audio" ]] || die "Input WAV file missing: $audio"
+  clean_gpu_env "$app/build-hip/bin/whisper-cli" -m "$MODELS/whisper/ggml-base.bin" -f "$audio"
+}
+
+# Read-only verification: no package installs and no config changes.
+check_env() {
+  local failed=0
+  log "Checking TheRock SDK: $ROCM_DIR"
+  if [[ -x "$ROCM_DIR/bin/hipcc" ]]; then
+    "$ROCM_DIR/bin/hipcc" --version | sed -n '1,2p'
+  else
+    warn 'hipcc missing. Run: ai install env'
+    failed=1
+  fi
+  if [[ -x "$ROCM_DIR/bin/rocminfo" ]]; then
+    local agents
+    if agents="$(clean_gpu_env "$ROCM_DIR/bin/rocminfo" 2>&1)"; then
+      if grep -q 'gfx1032' <<< "$agents"; then
+        log 'ROCm agent gfx1032: PASS'
+      else
+        warn 'rocminfo succeeded but did not report gfx1032'
+        failed=1
+      fi
+    else
+      warn "rocminfo failed: $agents"
+      failed=1
+    fi
+  else
+    warn 'rocminfo missing. Run: ai install env'
+    failed=1
+  fi
+  if [[ -x "$ENVS/pytorch/bin/python" ]]; then
+    log 'Testing GPU computation with existing PyTorch environment'
+    if ! torch_test "$ENVS/pytorch"; then
+      warn 'PyTorch GPU test failed'
+      failed=1
+    fi
+  else
+    warn 'PyTorch test venv missing. Run: ai install env'
+    failed=1
+  fi
+  if [[ -n "${HSA_OVERRIDE_GFX_VERSION:-}" || -n "${PYTORCH_ROCM_ARCH:-}" ]]; then
+    warn 'Legacy ROCm architecture overrides exist in this shell; clean_gpu_env suppresses them for checks.'
+  fi
+  (( failed == 0 )) || die 'Environment validation did not fully pass'
+  log 'Environment validation: PASS'
+}
+list_models() {
+  [[ -d "$MODELS" ]] || die "Shared model folder missing: $MODELS. Run: ai install env"
+  log "Models in: $MODELS"
+  local found=0 selected=''
+  if [[ -f "$MODEL_SELECTION" ]]; then IFS= read -r selected < "$MODEL_SELECTION" || true; fi
+  while IFS= read -r -d '' file; do
+    found=1
+    local mark=' '
+    if [[ "${file#"$MODELS/llm/"}" == "$selected" && "$file" == "$MODELS/llm/"* ]]; then mark='*'; fi
+    printf ' %s %s (%s)\n' "$mark" "${file#"$MODELS/"}" "$(du -h "$file" | cut -f1)"
+  done < <(find "$MODELS" -type f \( -name '*.safetensors' -o -name '*.gguf' -o -name '*.bin' \) -print0 | sort -z)
+  if (( found == 0 )); then
+    warn 'No model files found. Run: ai install models'
+  fi
+}
+check_models_xl() {
+  local path="$MODELS/checkpoints/sd_xl_base_1.0.safetensors"
+  if [[ -f "$path" ]]; then
+    log "SDXL checkpoint present: $path"
+  else
+    warn 'SDXL not installed. Run: ai install models-xl'
+    return 1
+  fi
+}
+check_training() {
+  local path="$ENVS/training/bin/python"
+  [[ -x "$path" ]] || die 'Training venv missing; run: ai install training'
+  log "Training venv found: $path"
+  printf "Fish: source '%s'\n" "$ENVS/training/bin/activate.fish"
+  printf "Bash: source '%s'\n" "$ENVS/training/bin/activate"
+}
+
+status() {
+  log "Workspace: $AI_HOME"
+  for spec in \
+    "TheRock SDK:$ROCM_DIR/bin/hipcc" \
+    "PyTorch test venv:$ENVS/pytorch/bin/python" \
+    "SD.cpp Web UI:$APPS/stable-diffusion.cpp/build-vulkan/bin/sd-server" \
+    "ComfyUI:$APPS/ComfyUI/.venv/bin/python" \
+    "llama.cpp Vulkan:$APPS/llama.cpp/build-vulkan/bin/llama-server" \
+    "llama.cpp HIP:$APPS/llama.cpp/build-hip/bin/llama-server" \
+    "whisper.cpp HIP:$APPS/whisper.cpp/build-hip/bin/whisper-cli"; do
+    local label="${spec%%:*}" path="${spec#*:}"
+    [[ -x "$path" ]] && printf '  [yes] %s\n' "$label" || printf '  [no ] %s\n' "$label"
+  done
+  log 'Shared model files:'
+  if [[ -d "$MODELS" ]]; then
+    find "$MODELS" -type f \( -name '*.safetensors' -o -name '*.gguf' -o -name '*.bin' \) \
+      -printf '  %P (%k KB)\n' | sort
+  else
+    printf '  (no shared model directory yet)\n'
+  fi
+}
+
+install_component() {
+  case "$1" in
+    env) install_env ;;
+    models) install_models ;;
+    models-xl) install_models_xl ;;
+    comfyui) install_comfyui ;;
+    sdcpp|sd.cpp|stable-diffusion) install_sdcpp ;;
+    llamacpp|lamacpp|llama.cpp) install_llamacpp ;;
+    llamacpp-hip) install_llamacpp_hip ;;
+    whispercpp|whisper.cpp) install_whispercpp ;;
+    training) install_training ;;
+    all)
+      warn 'This downloads multi-GB SDK/models and builds several large applications.'
+      install_env
+      install_models
+      install_sdcpp
+      install_comfyui
+      install_llamacpp
+      install_whispercpp
+      ;;
+    *) die "Unknown install target: $1 (run 'ai help')" ;;
+  esac
+}
+
+main() {
+  if (( $# == 0 )); then usage; return 0; fi
+  local action="$1"; shift
+  case "$action" in
+    help|-h|--help) (( $# == 0 )) || die 'Usage: ai help'; usage ;;
+    install)
+      (( $# == 1 )) || die 'Usage: ai install <component> (run ai help for targets)'
+      install_component "$1"
+      ;;
+    env) (( $# == 0 )) || die 'Usage: ai env'; check_env ;;
+    models) (( $# == 0 )) || die 'Usage: ai models'; list_models ;;
+    models-xl) (( $# == 0 )) || die 'Usage: ai models-xl'; check_models_xl ;;
+    training) (( $# == 0 )) || die 'Usage: ai training'; check_training ;;
+    status) (( $# == 0 )) || die 'Usage: ai status'; status ;;
+    comfyui) run_comfyui "$@" ;;
+    sdcpp|sd.cpp|stable-diffusion) run_sdcpp "$@" ;;
+    llamacpp|lamacpp|llama.cpp) run_llamacpp_backend vulkan "$@" ;;
+    llamacpp-hip) run_llamacpp_backend hip "$@" ;;
+    chat) run_chat "$@" ;;
+    model) model_command "$@" ;;
+    whispercpp|whisper.cpp) run_whispercpp "$@" ;;
+    *) die "Unknown command: $action (run 'ai help')" ;;
+  esac
+}
+main "$@"

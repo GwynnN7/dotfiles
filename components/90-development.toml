@@ -30,15 +30,8 @@ src = "vscode/flags.conf"
 dest = "$XDG_CONFIG_HOME/code-flags.conf"
 
 [[components]]
-name = "rocm"
+name = "android-studio"
 category = "development"
-devices = ["desktop"]
 default = false
-packages = [
-    "rocm-hip-sdk",
-    "rocm-opencl-sdk",
-    "rocm-ml-sdk",
-    "rocminfo",
-    "rocm-smi-lib",
-    "unsloth-bin",
-]
+packages = ["flatpak"]
+post_install = ["flatpak install -y flathub com.google.AndroidStudio"]

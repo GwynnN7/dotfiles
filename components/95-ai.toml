@@ -1,0 +1,89 @@
+# AI
+
+[[components]]
+name = "chatgpt"
+category = "ai"
+default = false
+packages = [
+    "chatgpt-desktop-bin",
+]
+
+[[components]]
+name = "claude"
+category = "ai"
+default = false
+packages = [
+    "claude-desktop",
+]
+
+[[components]]
+name = "local-env"
+category = "ai"
+default = false
+packages = [
+    "vulkan-radeon", "vulkan-icd-loader", "vulkan-headers", "vulkan-tools", "shaderc", "spirv-headers", "spirv-tools", "python", "python-pip", "ccache"
+]
+post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install env\""]
+[[components.files]]
+src = "ai/ai"
+dest = "/usr/bin/ai"
+sudo=true
+[[components.files]]
+src = "ai/ai.conf"
+dest = "$XDG_CONFIG_HOME/environment.d/ai.conf"
+
+[[components]]
+name = "models"
+category = "ai"
+default = false
+post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install models\""]
+
+[[components]]
+name = "comfyui"
+category = "ai"
+default = false
+post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install comfyui\""]
+
+[[components]]
+name = "stable-diffusion"
+category = "ai"
+default = false
+packages = [
+    "nodejs", "pnpm"
+]
+post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install sdcpp\""]
+
+[[components]]
+name = "llamacpp"
+category = "ai"
+default = false
+post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install llamacpp\""]
+
+[[components]]
+name = "llamacpp-hip"
+category = "ai"
+default = false
+post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install llamacpp-hip\""]
+
+[[components]]
+name = "whispercpp"
+category = "ai"
+default = false
+packages = [
+    "ffmpeg"
+]
+post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install whispercpp\""]
+
+[[components]]
+name = "training"
+category = "ai"
+default = false
+post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install training\""]
+
+[[components]]
+name = "unsloth"
+category = "ai"
+default = false
+packages = [
+    "unsloth-bin",
+]

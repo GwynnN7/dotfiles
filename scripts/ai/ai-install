@@ -1,0 +1,394 @@
+#!/usr/bin/env bash
+# Minimal installation-only CLI for Arch/CachyOS + AMD RX 6650 XT (gfx1032)
+# Usage: ai-install <env|models|models-xl|comfyui|sdcpp|llamacpp|
+#                    llamacpp-hip|whispercpp|training|all>
+
+set -Eeuo pipefail
+IFS=$'\n\t'
+
+AI_HOME="${AI_HOME:-$HOME/Projects/AI}"
+APPS="$AI_HOME/apps"
+MODELS="$AI_HOME/models"
+ENVS="$AI_HOME/envs"
+OUTPUTS="$AI_HOME/outputs"
+CACHE="$AI_HOME/cache/downloads"
+CONFIG="$AI_HOME/config"
+LOGS="$AI_HOME/logs"
+ROCM_VERSION="10.1.0"
+ROCM_DIR="/opt/therock/$ROCM_VERSION"
+ROCM_URL="https://stable.repo.amd.com/rocm/core/tarball/therock-dist-linux-gfx103X-all-10.1.0.tar.gz"
+PYTORCH_INDEX="https://stable.repo.amd.com/rocm/whl-next/"
+PYTORCH_VERSION="2.13.0+rocm10.1.0"
+TORCHVISION_VERSION="0.28.0+rocm10.1.0"
+GPU_ARCH="gfx1032"
+PYTHON_CMD="${PYTHON_CMD:-python3}"
+
+log() { printf '\n\033[1;36m[AI-INSTALL]\033[0m %s\n' "$*"; }
+warn() { printf '\033[1;33m[WARN]\033[0m %s\n' "$*" >&2; }
+die() { printf '\033[1;31m[ERROR]\033[0m %s\n' "$*" >&2; exit 1; }
+trap 'printf "\n[ERROR] Command failed at line %s. Review the error above.\n" "$LINENO" >&2' ERR
+need() { command -v "$1" >/dev/null 2>&1 || die "Missing system dependency: $1 (see script comments)."; }
+
+usage() {
+  cat <<'HELP'
+Install-only AI workspace for RX 6650 XT, native gfx1032, TheRock 10.1.0.
+
+  ai-install env           Shared folders, TheRock, Fish config and PyTorch venv
+  ai-install models        SD1.5, DreamShaper, Qwen3.5 4B Q4 and Whisper base
+  ai-install models-xl     Optional SDXL Base (~7 GB)
+  ai-install comfyui       ComfyUI + gfx1032 ROCm PyTorch + Manager deps
+  ai-install sdcpp         stable-diffusion.cpp Vulkan + web UI
+  ai-install llamacpp      llama.cpp Vulkan build
+  ai-install llamacpp-hip  llama.cpp HIP build (experimental)
+  ai-install whispercpp    whisper.cpp HIP build (experimental)
+  ai-install training      Transformers + PEFT venv (no Unsloth/bitsandbytes)
+  ai-install all           env, models, sdcpp, comfyui, llamacpp, whispercpp
+  ai-install help          This page
+
+One argument = one installation target. No run/chat/status commands.
+Never installs OS packages or Ollama. Models remain under ~/Projects/AI/models.
+Override workspace with AI_HOME; override Python executable with PYTHON_CMD.
+HELP
+}
+
+make_dirs() {
+  mkdir -p "$APPS" "$ENVS" "$CACHE" "$CONFIG" "$LOGS" \
+    "$MODELS/checkpoints" "$MODELS/diffusion_models" "$MODELS/text_encoders" \
+    "$MODELS/vae" "$MODELS/loras" "$MODELS/controlnet" \
+    "$MODELS/embeddings" "$MODELS/upscale_models" "$MODELS/llm" \
+    "$MODELS/whisper" "$MODELS/.llama-cache" \
+    "$OUTPUTS/images" "$OUTPUTS/text" "$OUTPUTS/audio" \
+    "$AI_HOME/training/datasets" "$AI_HOME/training/checkpoints" \
+    "$AI_HOME/training/outputs"
+}
+
+# Save large downloads as *.part until fully transferred, then rename atomically.
+# min_megabytes prevents saving a tiny login page or Git LFS pointer as a model.
+download() {
+  local url="$1" dst="$2" min_megabytes="$3"
+  local min_bytes=$((min_megabytes * 1024 * 1024))
+  local part="${dst}.part" size=0
+  need curl
+  mkdir -p "$(dirname "$dst")"
+  if [[ -e "$dst" ]]; then
+    size="$(stat -c '%s' "$dst")"
+    if (( size >= min_bytes )); then
+      log "Present: $dst ($(numfmt --to=iec "$size"))"
+      return
+    fi
+    die "File exists but looks incomplete: $dst ($size bytes). Investigate or move it manually."
+  fi
+  log "Downloading: $dst"
+  curl --fail --location --show-error --retry 4 --retry-delay 3 \
+    --connect-timeout 30 --continue-at - --output "$part" "$url"
+  size="$(stat -c '%s' "$part")"
+  (( size >= min_bytes )) || die "Download too small ($size bytes): $dst; retaining $part for inspection."
+  mv -n "$part" "$dst"
+  log "Saved: $dst ($(numfmt --to=iec "$size"))"
+}
+
+clone_once() {
+  local url="$1" dst="$2"
+  need git
+  if [[ -d "$dst/.git" ]]; then
+    log "Repository already present: $dst (no automatic pull/reset)"
+  elif [[ -e "$dst" ]]; then
+    die "Existing non-repository directory at $dst. Move it or use your existing installation."
+  else
+    git clone --recursive "$url" "$dst"
+  fi
+}
+
+# Run a command without previous global unsupported gfx1030 spoofing or LD_LIBRARY_PATH.
+clean_gpu_env() {
+  env -u HSA_OVERRIDE_GFX_VERSION \
+      -u PYTORCH_ROCM_ARCH \
+      -u HSA_ENABLE_SDMA \
+      -u HSA_NO_SCRATCH_VRAM \
+      -u PYTORCH_HIP_ALLOC_CONF \
+      -u LD_LIBRARY_PATH \
+      ROCM_PATH="$ROCM_DIR" ROCM_HOME="$ROCM_DIR" HIP_PATH="$ROCM_DIR" "$@"
+}
+
+make_venv() {
+  local path="$1"
+  need "$PYTHON_CMD"
+  if [[ ! -x "$path/bin/python" ]]; then
+    "$PYTHON_CMD" -m venv "$path"
+  fi
+  "$path/bin/python" -m pip install --disable-pip-version-check --upgrade pip
+}
+
+install_rocm_torch() {
+  local envdir="$1" torchvision="${2:-no}"
+  local -a packages=("torch[device-gfx1032]==$PYTORCH_VERSION")
+  if [[ "$torchvision" == yes ]]; then
+    packages+=("torchvision[device-gfx1032]==$TORCHVISION_VERSION")
+  fi
+  clean_gpu_env "$envdir/bin/python" -m pip install \
+    --disable-pip-version-check --index-url "$PYTORCH_INDEX" "${packages[@]}"
+}
+
+torch_test() {
+  local envdir="$1"
+  clean_gpu_env "$envdir/bin/python" - <<'PY'
+import torch
+print('PyTorch:', torch.__version__, '| HIP:', torch.version.hip)
+assert torch.__version__ == '2.13.0+rocm10.1.0', 'Expected pinned TheRock GPU build; pip may have replaced it'
+assert torch.cuda.is_available(), 'ROCm GPU not available'
+name = torch.cuda.get_device_name(0)
+print('GPU:', name)
+a = torch.randn((1024, 1024), dtype=torch.float16, device='cuda')
+b = a @ a
+assert torch.isfinite(b.float()).all().item()
+torch.cuda.synchronize()
+print('FP16 matrix multiplication: PASS')
+PY
+}
+
+user_environment_setup() {
+  # User-scoped systemd environment. No /etc writes, no global LD_LIBRARY_PATH.
+  local config="$HOME/.config/environment.d/90-therock.conf"
+  mkdir -p "$(dirname "$config")"
+  if [[ -e "$config" ]] && ! grep -q '^# Managed by ai-install' "$config"; then
+    if grep -q "^ROCM_PATH=$ROCM_DIR$" "$config" && \
+       grep -q "^HIP_PATH=$ROCM_DIR$" "$config"; then
+      log "Existing user TheRock configuration looks correct: $config"
+    else
+      warn "Leaving existing user-owned $config untouched. Check ROCM_PATH/ROCM_HOME/HIP_PATH manually."
+    fi
+  else
+    cat > "$config" <<EOCONF
+# Managed by ai-install. Native gfx1032 TheRock SDK.
+ROCM_PATH=$ROCM_DIR
+ROCM_HOME=$ROCM_DIR
+HIP_PATH=$ROCM_DIR
+EOCONF
+    log "Created user environment file: $config"
+  fi
+  # Fish path is a shell concern; no root permissions needed.
+  local fish_config="$HOME/.config/fish/conf.d/ai-therock.fish"
+  mkdir -p "$(dirname "$fish_config")"
+  if [[ -e "$fish_config" ]] && ! grep -Eq '^# Managed by (ai-install|ai --|ai-setup.sh)' "$fish_config"; then
+    warn "Leaving existing Fish file $fish_config untouched. Ensure $ROCM_DIR/bin is on PATH."
+  else
+    cat > "$fish_config" <<EOFISH
+# Managed by ai-install. Only adjusts Fish's executable search path.
+contains -- "$ROCM_DIR/bin" \$PATH; or set -gx PATH "$ROCM_DIR/bin" \$PATH
+EOFISH
+    log "Created Fish PATH configuration: $fish_config"
+  fi
+  log 'Log out and back in (or restart your Fish session) to pick up new user environment variables.'
+}
+
+warn_legacy_overrides() {
+  local d
+  for d in /etc/environment.d "$HOME/.config/environment.d"; do
+    if [[ -d "$d" ]] && grep -RlE 'HSA_OVERRIDE_GFX_VERSION|PYTORCH_ROCM_ARCH|/opt/rocm' "$d" 2>/dev/null | grep -q .; then
+      warn "Old ROCm/architecture settings may still exist in $d. Review and remove them manually."
+    fi
+  done
+  if [[ "${HSA_OVERRIDE_GFX_VERSION:-}" != "" || "${PYTORCH_ROCM_ARCH:-}" != "" ]]; then
+    warn 'Legacy gfx1030-related environment overrides are set in this shell.'
+  fi
+  warn 'After installing, confirm your user belongs to render and video groups, and can access /dev/kfd.'
+}
+
+install_env() {
+  make_dirs
+  need tar
+  need sudo
+  if [[ -x "$ROCM_DIR/bin/hipcc" && -x "$ROCM_DIR/bin/rocminfo" ]]; then
+    log "TheRock already installed in $ROCM_DIR; leaving unchanged"
+  else
+    if [[ -e "$ROCM_DIR" ]]; then
+      die "$ROCM_DIR exists but is incomplete. Inspect it manually; installer will not overwrite."
+    fi
+    local archive="$CACHE/therock-dist-linux-gfx103X-all-$ROCM_VERSION.tar.gz"
+    download "$ROCM_URL" "$archive" 200
+    local stage="/opt/therock/.install-$ROCM_VERSION-$$"
+    sudo mkdir -p "$stage"
+    log "Extracting AMD TheRock SDK under /opt (sudo). This can take a while."
+    sudo tar -xzf "$archive" -C "$stage"
+    if ! sudo test -x "$stage/bin/hipcc" || ! sudo test -x "$stage/bin/rocminfo"; then
+      die "TheRock tarball layout unexpected; inspect $stage. Not activating it."
+    fi
+    sudo mv "$stage" "$ROCM_DIR"
+    log "Installed TheRock at $ROCM_DIR"
+  fi
+  user_environment_setup
+  warn_legacy_overrides
+  log 'Checking native GPU detection (no gfx1030 spoofing)'
+  clean_gpu_env "$ROCM_DIR/bin/rocminfo" | grep -E 'gfx1032|Radeon RX 6650 XT' || \
+    die 'Could not see gfx1032 in rocminfo. Check /dev/kfd permissions and amdgpu.'
+  log 'Installing test PyTorch environment'
+  make_venv "$ENVS/pytorch"
+  install_rocm_torch "$ENVS/pytorch" no
+  "$ENVS/pytorch/bin/python" -m pip install numpy
+  torch_test "$ENVS/pytorch"
+  log "Environment ready. New Fish shell: echo \$ROCM_PATH ; hipcc --version"
+}
+
+install_models() {
+  make_dirs
+  warn 'Downloading about 9–11 GB total. No large SDXL checkpoint in this default set.'
+  download \
+    'https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/resolve/main/v1-5-pruned-emaonly.safetensors' \
+    "$MODELS/checkpoints/v1-5-pruned-emaonly.safetensors" 1000
+  download \
+    'https://huggingface.co/Lykon/DreamShaper/resolve/main/DreamShaper_8_pruned.safetensors' \
+    "$MODELS/checkpoints/DreamShaper_8_pruned.safetensors" 1000
+  download \
+    'https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q4_K_M.gguf' \
+    "$MODELS/llm/Qwen3.5-4B-Q4_K_M.gguf" 500
+  download \
+    'https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.bin' \
+    "$MODELS/whisper/ggml-base.bin" 50
+  log 'Models ready in the shared library.'
+}
+
+install_models_xl() {
+  make_dirs
+  warn 'SDXL Base 1.0 is ~7 GB and may need RAM/VRAM offloading on 8 GB GPUs.'
+  download \
+    'https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors' \
+    "$MODELS/checkpoints/sd_xl_base_1.0.safetensors" 5000
+}
+
+install_comfyui() {
+  make_dirs
+  clone_once 'https://github.com/Comfy-Org/ComfyUI.git' "$APPS/ComfyUI"
+  local venv="$APPS/ComfyUI/.venv"
+  make_venv "$venv"
+  log 'Installing ComfyUI requirements and Manager in its own venv'
+  "$venv/bin/python" -m pip install -r "$APPS/ComfyUI/requirements.txt"
+  if [[ -f "$APPS/ComfyUI/manager_requirements.txt" ]]; then
+    "$venv/bin/python" -m pip install -r "$APPS/ComfyUI/manager_requirements.txt"
+  else
+    warn 'No manager_requirements.txt found; Manager may not be enabled.'
+  fi
+  install_rocm_torch "$venv" yes
+  "$venv/bin/python" -m pip install numpy
+  "$venv/bin/python" -m pip check || die 'Dependency conflicts after ComfyUI install. Review before launching.'
+  torch_test "$venv"
+  # ComfyUI can now find the shared library even when launched without the ai CLI.
+  local paths_config="$APPS/ComfyUI/extra_model_paths.yaml"
+  if [[ -e "$paths_config" ]] && ! grep -q '^# Managed by ai-install' "$paths_config"; then
+    warn "Preserving existing $paths_config; add shared model paths manually if needed."
+  else
+    cat > "$paths_config" <<EOFYAML
+# Managed by ai-install. Shared models for ComfyUI.
+ai_shared:
+  base_path: "$AI_HOME"
+  checkpoints: models/checkpoints
+  diffusion_models: models/diffusion_models
+  text_encoders: models/text_encoders
+  vae: models/vae
+  loras: models/loras
+  controlnet: models/controlnet
+  embeddings: models/embeddings
+  upscale_models: models/upscale_models
+EOFYAML
+    log "Configured shared model library: $paths_config"
+  fi
+  log 'Installed ComfyUI. Launch via the separate ai CLI or directly with python main.py   (http://127.0.0.1:8188)'
+}
+
+install_sdcpp() {
+  make_dirs
+  need cmake
+  need pnpm
+  need node
+  clone_once 'https://github.com/leejet/stable-diffusion.cpp.git' "$APPS/stable-diffusion.cpp"
+  git -C "$APPS/stable-diffusion.cpp" submodule update --init --recursive
+  cmake -S "$APPS/stable-diffusion.cpp" -B "$APPS/stable-diffusion.cpp/build-vulkan" \
+    -DSD_VULKAN=ON -DSD_SERVER_BUILD_FRONTEND=ON -DCMAKE_BUILD_TYPE=Release
+  cmake --build "$APPS/stable-diffusion.cpp/build-vulkan" -j4
+  [[ -x "$APPS/stable-diffusion.cpp/build-vulkan/bin/sd-server" ]] || \
+    die 'sd-server was not produced. Read CMake output and upstream frontend build instructions.'
+  log 'Installed stable-diffusion.cpp. Launch build-vulkan/bin/sd-server   (http://127.0.0.1:1234)'
+}
+
+install_llamacpp() {
+  make_dirs
+  need cmake
+  clone_once 'https://github.com/ggml-org/llama.cpp.git' "$APPS/llama.cpp"
+  cmake -S "$APPS/llama.cpp" -B "$APPS/llama.cpp/build-vulkan" \
+    -DGGML_VULKAN=ON -DCMAKE_BUILD_TYPE=Release
+  cmake --build "$APPS/llama.cpp/build-vulkan" -j4
+  log 'Installed Vulkan llama.cpp (requires local GGUF models)'
+}
+
+install_llamacpp_hip() {
+  make_dirs
+  [[ -x "$ROCM_DIR/bin/hipcc" ]] || die 'Install TheRock first: ai-install env'
+  need cmake
+  clone_once 'https://github.com/ggml-org/llama.cpp.git' "$APPS/llama.cpp"
+  log 'Building separate HIP llama.cpp; availability of HIP libraries depends on SDK tarball.'
+  clean_gpu_env cmake -S "$APPS/llama.cpp" -B "$APPS/llama.cpp/build-hip" \
+    -DGGML_HIP=ON -DGPU_TARGETS="$GPU_ARCH" \
+    -DCMAKE_PREFIX_PATH="$ROCM_DIR" \
+    -DCMAKE_HIP_COMPILER_ROCM_ROOT="$ROCM_DIR" \
+    -DCMAKE_BUILD_TYPE=Release
+  clean_gpu_env cmake --build "$APPS/llama.cpp/build-hip" -j4
+  log 'HIP llama.cpp ready: build-hip/bin/llama-cli or llama-server'
+}
+
+install_whispercpp() {
+  make_dirs
+  [[ -x "$ROCM_DIR/bin/hipcc" ]] || die 'Install TheRock first: ai-install env'
+  need cmake
+  clone_once 'https://github.com/ggml-org/whisper.cpp.git' "$APPS/whisper.cpp"
+  clean_gpu_env cmake -S "$APPS/whisper.cpp" -B "$APPS/whisper.cpp/build-hip" \
+    -DGGML_HIP=ON -DAMDGPU_TARGETS="$GPU_ARCH" \
+    -DCMAKE_PREFIX_PATH="$ROCM_DIR" \
+    -DCMAKE_HIP_COMPILER_ROCM_ROOT="$ROCM_DIR" \
+    -DCMAKE_BUILD_TYPE=Release
+  clean_gpu_env cmake --build "$APPS/whisper.cpp/build-hip" -j4
+  log 'Installed whisper.cpp HIP (model under models/whisper/ggml-base.bin)'
+}
+
+install_training() {
+  make_dirs
+  local venv="$ENVS/training"
+  make_venv "$venv"
+  install_rocm_torch "$venv" no
+  "$venv/bin/python" -m pip install numpy transformers peft accelerate datasets safetensors
+  "$venv/bin/python" -m pip check || warn 'Training environment has a dependency warning; review pip check output.'
+  torch_test "$venv"
+  warn 'No bitsandbytes, Unsloth, OneTrainer, or kohya_ss auto-install: their gfx1032/ROCm 10.1 support is not established.'
+  log "Training venv ready: source $venv/bin/activate.fish"
+}
+
+install_component() {
+  case "$1" in
+    env) install_env ;;
+    models) install_models ;;
+    models-xl) install_models_xl ;;
+    comfyui) install_comfyui ;;
+    sdcpp|sd.cpp|stable-diffusion) install_sdcpp ;;
+    llamacpp|lamacpp|llama.cpp) install_llamacpp ;;
+    llamacpp-hip) install_llamacpp_hip ;;
+    whispercpp|whisper.cpp) install_whispercpp ;;
+    training) install_training ;;
+    all)
+      warn 'This will download large files and build multiple applications.'
+      install_env
+      install_models
+      install_sdcpp
+      install_comfyui
+      install_llamacpp
+      install_whispercpp
+      ;;
+    *) die "Unknown install target: $1. Run: ai-install help" ;;
+  esac
+}
+
+main() {
+  (( $# == 1 )) || { usage; (( $# == 0 )) || exit 2; return 0; }
+  case "$1" in
+    help|-h|--help) usage ;;
+    *) install_component "$1" ;;
+  esac
+}
+main "$@"
