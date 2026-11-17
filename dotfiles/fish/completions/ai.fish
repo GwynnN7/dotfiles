@@ -1,21 +1,25 @@
+# Fish completion for the standalone Bash `ai` runtime.
+# Install with: install -Dm644 ai.fish ~/.config/fish/completions/ai.fish
 complete -c ai -f
 complete -c ai -n '__fish_use_subcommand' \
-  -a 'install chat model comfyui sdcpp llamacpp llamacpp-hip whispercpp env models models-xl training status help' \
-  -d 'Local AI command'
-complete -c ai -n '__fish_seen_subcommand_from install' \
-  -a 'env models models-xl comfyui sdcpp llamacpp llamacpp-hip whispercpp training all' \
-  -d 'Install component'
-
+  -a 'ask start stop llamacpp llamacpp-hip sdcpp comfyui whispercpp model models env training status help' \
+  -d 'Local AI runtime'
+complete -c ai -n '__fish_seen_subcommand_from start' \
+  -a 'llamacpp llamacpp-hip comfyui sdcpp' -d 'Start local server'
+complete -c ai -n '__fish_seen_subcommand_from stop' \
+  -a 'llamacpp llamacpp-hip comfyui sdcpp' -d 'Stop managed server'
 function __ai_gguf_names
-    set -l root "$HOME/Projects/AI/models/llm"
+    set -l home "$HOME/Projects/AI"
     if set -q AI_HOME
-        set root "$AI_HOME/models/llm"
+        set home "$AI_HOME"
     end
-    if test -d "$root"
-        for path in (find "$root" -type f -name '*.gguf')
+    if test -d "$home/models/llm"
+        for path in (find "$home/models/llm" -type f -iname '*.gguf')
             basename "$path"
         end
     end
 end
-complete -c ai -n '__fish_seen_subcommand_from chat model' -a '(__ai_gguf_names)'
-complete -c ai -n '__fish_seen_subcommand_from model' -a 'reset'
+complete -c ai -n '__fish_seen_subcommand_from model' -a '(__ai_gguf_names) reset'
+
+# Import downloaded llama.cpp HF-cache snapshots into the shared GGUF directory.
+complete -c ai -n '__fish_seen_subcommand_from models' -a 'import-cache' -d 'Hard-link cached models without copying'

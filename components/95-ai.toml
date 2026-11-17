@@ -26,7 +26,7 @@ packages = [
 post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install\" env"]
 [[components.files]]
 src = "ai/ai"
-dest = "/usr/bin/ai"
+dest = "/usr/local/bin/ai"
 sudo=true
 
 [[components]]
