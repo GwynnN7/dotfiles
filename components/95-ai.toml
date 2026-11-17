@@ -28,9 +28,6 @@ post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install\" env"]
 src = "ai/ai"
 dest = "/usr/bin/ai"
 sudo=true
-[[components.files]]
-src = "ai/ai.conf"
-dest = "$XDG_CONFIG_HOME/environment.d/ai.conf"
 
 [[components]]
 name = "models"
