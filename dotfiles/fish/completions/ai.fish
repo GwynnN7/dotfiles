@@ -1,25 +1,11 @@
-# Fish completion for the standalone Bash `ai` runtime.
-# Install with: install -Dm644 ai.fish ~/.config/fish/completions/ai.fish
-complete -c ai -f
-complete -c ai -n '__fish_use_subcommand' \
-  -a 'ask start stop llamacpp llamacpp-hip sdcpp comfyui whispercpp model models env training status help' \
-  -d 'Local AI runtime'
-complete -c ai -n '__fish_seen_subcommand_from start' \
-  -a 'llamacpp llamacpp-hip comfyui sdcpp' -d 'Start local server'
-complete -c ai -n '__fish_seen_subcommand_from stop' \
-  -a 'llamacpp llamacpp-hip comfyui sdcpp' -d 'Stop managed server'
-function __ai_gguf_names
-    set -l home "$HOME/Projects/AI"
-    if set -q AI_HOME
-        set home "$AI_HOME"
-    end
-    if test -d "$home/models/llm"
-        for path in (find "$home/models/llm" -type f -iname '*.gguf')
-            basename "$path"
-        end
-    end
-end
-complete -c ai -n '__fish_seen_subcommand_from model' -a '(__ai_gguf_names) reset'
-
-# Import downloaded llama.cpp HF-cache snapshots into the shared GGUF directory.
-complete -c ai -n '__fish_seen_subcommand_from models' -a 'import-cache' -d 'Hard-link cached models without copying'
+# Install as ~/.config/fish/completions/ai.fish
+complete -c ai -e
+complete -c ai -n '__fish_use_subcommand' -f -a 'lms llamacpp llamacpp-hip comfyui sdcpp transcribe status help'
+complete -c ai -n '__fish_seen_subcommand_from lms; and test (count (commandline -opc)) -eq 2' -f -a 'start stop status chat get ls load unload ps import server runtime log daemon link'
+complete -c ai -n '__fish_seen_subcommand_from llamacpp llamacpp-hip; and test (count (commandline -opc)) -eq 2' -f -a 'start stop status chat prompt cli'
+complete -c ai -n '__fish_seen_subcommand_from sdcpp; and test (count (commandline -opc)) -eq 2' -f -a 'start stop status gen cli'
+complete -c ai -n '__fish_seen_subcommand_from comfyui; and test (count (commandline -opc)) -eq 2' -f -a 'start stop status'
+complete -c ai -n '__fish_seen_subcommand_from sdcpp; and __fish_seen_subcommand_from gen; and test (count (commandline -opc)) -eq 3' -f -a 'dreamshaper sd15 sdxl anima zimage'
+complete -c ai -n '__fish_seen_subcommand_from transcribe' -l model -r -f -a 'small medium turbo'
+complete -c ai -n '__fish_seen_subcommand_from transcribe' -l language -r -f -a 'auto en it fr de es'
+complete -c ai -n '__fish_seen_subcommand_from transcribe' -l backend -r -f -a 'vulkan cpu'

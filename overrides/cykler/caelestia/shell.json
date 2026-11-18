@@ -1,5 +1,10 @@
 {
     "appearance": {
+        "anim": {
+            "durations": {
+                "scale": 1
+            }
+        },
         "deformScale": 1,
         "padding": {
             "scale": 0.8
@@ -22,39 +27,44 @@
             "enabled": true,
             "entries": [
                 {
-                    "col": -1,
+                    "col": 1,
+                    "enabled": true,
+                    "id": "games",
+                    "right": true,
+                    "row": 19,
+                    "type": "shelf"
+                },
+                {
+                    "col": 4,
                     "enabled": true,
                     "id": "media",
-                    "right": false,
-                    "row": -1,
-                    "type": "default"
+                    "right": true,
+                    "row": 9,
+                    "type": "disc"
                 },
                 {
-                    "col": -1,
+                    "col": 3,
                     "enabled": true,
-                    "id": "battery",
-                    "right": false,
-                    "row": -1,
-                    "type": "default"
+                    "id": "shortcuts",
+                    "right": true,
+                    "row": 17,
+                    "type": "row"
                 },
                 {
-                    "col": -1,
+                    "col": 3,
                     "enabled": true,
                     "id": "resources",
-                    "right": false,
-                    "row": -1,
-                    "type": "rings-all"
-                },
-                {
-                    "col": -1,
-                    "enabled": true,
-                    "id": "lyrics",
-                    "right": false,
-                    "row": -1,
-                    "type": "default"
+                    "right": true,
+                    "row": 1,
+                    "type": "tiles"
                 }
             ],
+            "githubUser": "GwynnN7",
+            "opacity": 0.6,
             "position": "bottom-right"
+        },
+        "floorEqualizer": {
+            "enabled": false
         },
         "randomWallpaperOnStart": true
     },
@@ -161,11 +171,13 @@
     },
     "dashboard": {
         "align": "Center",
+        "analogueClock": false,
         "edge": "Top",
         "performance": {
             "graphView": false
         },
         "showClockSeconds": true,
+        "showPerformance": true,
         "showWeather": false
     },
     "general": {
@@ -213,8 +225,6 @@
     },
     "launcher": {
         "actionPrefix": "/",
-        "aiApiKey": "",
-        "aiModel": "gemini-3.5-flash-lite",
         "enableAiSearch": true,
         "enableDangerousActions": true,
         "favouriteApps": [
@@ -291,13 +301,16 @@
             "enabled": false
         },
         "equalizer": true,
+        "lyricsBackend": "Auto",
+        "repoPath": "/home/gwynn7/cykler-caelestia",
         "soundEffects": {
             "enabled": true,
             "notificationVolume": 0.7,
             "screenUnlock": false,
             "sfxVolume": 0.8,
             "volumeTick": true
-        }
+        },
+        "weatherLocation": "43.7085,10.4036"
     },
     "session": {
         "commands": {
@@ -374,6 +387,9 @@
         "side": "Right"
     },
     "utilities": {
+        "bottomText": {
+            "enabled": false
+        },
         "cards": {
             "phoneShare": false,
             "recorder": true

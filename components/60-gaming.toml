@@ -41,10 +41,10 @@ name = "mangohud"
 category = "gaming"
 default = true
 packages = ["mangohud"]
-
 [[components.files]]
 src = "mangohud"
 dest = "$XDG_CONFIG_HOME/MangoHud"
+check = false
 
 [[components]]
 name = "steamos-session"
@@ -65,7 +65,7 @@ sudo = true
 name = "decky-loader"
 category = "gaming"
 default = true
-check = true
+ask = true
 post_install = [
     "curl -L https://github.com/SteamDeckHomebrew/decky-installer/releases/latest/download/install_prerelease.sh | sh",
 ]
@@ -114,7 +114,6 @@ post_install = [
 post_deploy = [
     "curl -fsSL https://raw.githubusercontent.com/Abdess/retrobios/main/install.sh | sh -s -- --platform retrodeck --dest $HOME/Games/Retrodeck/retrodeck/bios",
 ]
-
 [[components.files]]
 src = "retrodeck/es_systems.xml"
 dest = "$HOME/.var/app/net.retrodeck.retrodeck/config/ES-DE/custom_systems/es_systems.xml"

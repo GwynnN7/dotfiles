@@ -65,6 +65,3 @@ name = "cava"
 category = "theming"
 default = true
 packages = ["cava", "libcava"]
-[[components.files]]
-src = "cava"
-dest = "$XDG_CONFIG_HOME/cava"

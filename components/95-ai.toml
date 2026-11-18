@@ -17,13 +17,29 @@ packages = [
 ]
 
 [[components]]
-name = "local-env"
+name = "lmstudio"
+category = "ai"
+default = false
+packages = [
+    "lmstudio-bin",
+]
+
+[[components]]
+name = "unsloth"
+category = "ai"
+default = false
+packages = [
+    "unsloth-bin",
+]
+
+[[components]]
+name = "rocm"
 category = "ai"
 default = false
 packages = [
     "vulkan-radeon", "vulkan-icd-loader", "vulkan-headers", "vulkan-tools", "shaderc", "spirv-headers", "spirv-tools", "python", "python-pip", "ccache"
 ]
-post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install\" env"]
+post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install\" rocm"]
 [[components.files]]
 src = "ai/ai"
 dest = "/usr/local/bin/ai"
@@ -36,12 +52,6 @@ default = false
 post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install\" models"]
 
 [[components]]
-name = "comfyui"
-category = "ai"
-default = false
-post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install\" comfyui"]
-
-[[components]]
 name = "stable-diffusion"
 category = "ai"
 default = false
@@ -51,36 +61,37 @@ packages = [
 post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install\" sdcpp"]
 
 [[components]]
+name = "comfyui"
+category = "ai"
+default = false
+packages = [
+     "python", "python-pip", "ccache"
+]
+post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install\" comfyui"]
+
+[[components]]
 name = "llamacpp"
 category = "ai"
 default = false
+packages = [
+    "vulkan-radeon", "vulkan-icd-loader", "vulkan-headers", "vulkan-tools"
+]
 post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install\" llamacpp"]
 
 [[components]]
 name = "llamacpp-hip"
 category = "ai"
 default = false
+packages = [
+    "shaderc", "spirv-headers", "spirv-tools"
+]
 post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install\" llamacpp-hip"]
 
 [[components]]
-name = "whispercpp"
+name = "transcribe-cpp"
 category = "ai"
 default = false
 packages = [
     "ffmpeg"
 ]
-post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install\" whispercpp"]
-
-[[components]]
-name = "training"
-category = "ai"
-default = false
-post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install\" training"]
-
-[[components]]
-name = "unsloth"
-category = "ai"
-default = false
-packages = [
-    "unsloth-bin",
-]
+post_install = ["sh \"$WAYSYNC_REPO_DIR/scripts/ai/ai-install\" whisp"]

@@ -26,7 +26,6 @@ function fish_user_key_bindings
 end
 
 set -gx EDITOR micro
-fish_add_path /opt/rocm/bin
 
 if status is-interactive
     # Starship custom prompt
