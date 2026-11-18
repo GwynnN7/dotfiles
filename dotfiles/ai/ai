@@ -4,11 +4,11 @@ set -Eeuo pipefail
 AI_HOME="${AI_HOME:-$HOME/Projects/AI}"
 M="$AI_HOME/models"; A="$AI_HOME/apps"; RUN="$AI_HOME/run"; LOG="$AI_HOME/logs"
 R="/opt/therock/10.1.0"; O="$AI_HOME/outputs"
+export ROCM_PATH="$R" ROCM_HOME="$R" HIP_PATH="$R" PATH="$R/bin:$PATH"
 err() { echo "ai: $*" >&2; exit 1; }
 msg() { echo "[ai] $*" >&2; }
 need() { command -v "$1" >/dev/null || err "missing: $1"; }
 init() { mkdir -p "$RUN" "$LOG" "$O/images" "$O/audio"; }
-rocm_env() { env -u HSA_OVERRIDE_GFX_VERSION -u PYTORCH_ROCM_ARCH ROCM_PATH="$R" ROCM_HOME="$R" HIP_PATH="$R" PATH="$R/bin:$PATH" "$@"; }
 port() {
   case "$1" in lms) echo 1234;; sdcpp) echo 1235;; comfyui) echo 8188;; llamacpp) echo 8080;; llamacpp-hip) echo 8081;; esac
 }
@@ -79,10 +79,7 @@ start() {
   # nohup retains the actual service PID; the CLI never kills unowned PIDs.
   (
     [[ "$app" != comfyui ]] || cd "$A/ComfyUI"
-    if [[ "$app" == comfyui || "$app" == llamacpp-hip ]]; then
-      exec nohup env -u HSA_OVERRIDE_GFX_VERSION -u PYTORCH_ROCM_ARCH \
-        ROCM_PATH="$R" ROCM_HOME="$R" HIP_PATH="$R" PATH="$R/bin:$PATH" "${cmd[@]}"
-    else exec nohup "${cmd[@]}"; fi
+    exec nohup "${cmd[@]}"
   ) >"$LOG/$app.log" 2>&1 </dev/null &
   pid=$!; echo "$pid" > "$(pidfile "$app")"
   for ((i=0; i<80; i++)); do
@@ -122,7 +119,7 @@ llama_cli() {
   else exe="$A/llama.cpp/build-hip/bin/llama-cli"; fi
   [[ -x "$exe" ]] || err "missing $exe"
   case "$act" in
-    cli) if [[ "$app" == llamacpp-hip ]]; then rocm_env "$exe" "$@"; else "$exe" "$@"; fi ;;
+    cli) "$exe" "$@" ;;
     chat|prompt)
       (( $# >= 1 )) || err "usage: ai $app $act MODEL [prompt/options]"
       model="$(resolve_llm "$1")"; shift
@@ -131,11 +128,9 @@ llama_cli() {
         (( $# >= 1 )) || err 'missing prompt'
         args+=(-p "$1"); shift
       fi
-      if [[ "$app" == llamacpp-hip ]]; then rocm_env "$exe" "${args[@]}" "$@"
-      else "$exe" "${args[@]}" "$@"; fi ;;
+      "$exe" "${args[@]}" "$@" ;;
     *) if [[ -z "$act" ]]; then act='--help'; fi
-       if [[ "$app" == llamacpp-hip ]]; then rocm_env "$exe" "$act" "$@"
-       else "$exe" "$act" "$@"; fi ;;
+       "$exe" "$act" "$@" ;;
   esac
 }
 sd_cli() {

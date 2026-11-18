@@ -11,12 +11,12 @@ ROCM_URL='https://stable.repo.amd.com/rocm/core/tarball/therock-dist-linux-gfx10
 TORCH_INDEX='https://stable.repo.amd.com/rocm/whl-next/'
 PYTHON_CMD="${PYTHON_CMD:-python3}"
 JOBS="${AI_JOBS:-4}"
+export ROCM_PATH="$R" ROCM_HOME="$R" HIP_PATH="$R" PATH="$R/bin:$PATH"
 
 err() { echo "ai-install: $*" >&2; exit 1; }
 msg() { echo "[ai-install] $*"; }
 need() { command -v "$1" >/dev/null || err "missing: $1"; }
 dirs() { mkdir -p "$A" "$AI_HOME/cache" "$AI_HOME/envs" "$AI_HOME/outputs/images" "$AI_HOME/outputs/audio" "$AI_HOME/logs" "$AI_HOME/run" "$M"/{lmstudio,checkpoints,diffusion_models,text_encoders,vae,whisper}; }
-rocm_env() { env -u HSA_OVERRIDE_GFX_VERSION -u PYTORCH_ROCM_ARCH ROCM_PATH="$R" ROCM_HOME="$R" HIP_PATH="$R" "$@"; }
 repo() {
   need git
   local url="$1" dst="$2"
@@ -96,7 +96,9 @@ set -gx ROCM_PATH '$R'
 set -gx ROCM_HOME '$R'
 set -gx HIP_PATH '$R'
 EOF
-  rocm_env "$R/bin/rocminfo" | grep -q 'gfx1032' || err 'gfx1032 not detected'
+  local gpu_info
+  gpu_info="$("$R/bin/rocminfo")" || err 'rocminfo failed'
+  [[ "$gpu_info" == *gfx1032* ]] || err 'gfx1032 not detected'
   msg "TheRock ready: $R (restart Fish)"
 }
 comfyui() {
@@ -107,10 +109,10 @@ comfyui() {
   [[ -x "$v/bin/python" ]] || "$PYTHON_CMD" -m venv "$v"
   "$v/bin/python" -m pip install -r "$A/ComfyUI/requirements.txt"
   [[ ! -f "$A/ComfyUI/manager_requirements.txt" ]] || "$v/bin/python" -m pip install -r "$A/ComfyUI/manager_requirements.txt"
-  rocm_env "$v/bin/python" -m pip install --index-url "$TORCH_INDEX" \
+  "$v/bin/python" -m pip install --index-url "$TORCH_INDEX" \
     'torch[device-gfx1032]==2.13.0+rocm10.1.0' \
     'torchvision[device-gfx1032]==0.28.0+rocm10.1.0'
-  rocm_env "$v/bin/python" -c 'import torch; assert torch.cuda.is_available(); print(torch.__version__, torch.cuda.get_device_name(0))'
+  "$v/bin/python" -c 'import torch; assert torch.cuda.is_available(); print(torch.__version__, torch.cuda.get_device_name(0))'
   # GGUF extension for supported diffusion models
   repo https://github.com/city96/ComfyUI-GGUF.git "$A/ComfyUI/custom_nodes/ComfyUI-GGUF"
   "$v/bin/python" -m pip install -r "$A/ComfyUI/custom_nodes/ComfyUI-GGUF/requirements.txt"
@@ -137,10 +139,10 @@ lmcpp() {
   repo https://github.com/ggml-org/llama.cpp.git "$A/llama.cpp"
   cmake -S "$A/llama.cpp" -B "$A/llama.cpp/build-vulkan" -DGGML_VULKAN=ON -DCMAKE_BUILD_TYPE=Release
   cmake --build "$A/llama.cpp/build-vulkan" -j "$JOBS"
-  rocm_env cmake -S "$A/llama.cpp" -B "$A/llama.cpp/build-hip" \
+  cmake -S "$A/llama.cpp" -B "$A/llama.cpp/build-hip" \
     -DGGML_HIP=ON -DGPU_TARGETS=gfx1032 -DCMAKE_PREFIX_PATH="$R" \
     -DCMAKE_HIP_COMPILER_ROCM_ROOT="$R" -DCMAKE_BUILD_TYPE=Release
-  rocm_env cmake --build "$A/llama.cpp/build-hip" -j "$JOBS"
+  cmake --build "$A/llama.cpp/build-hip" -j "$JOBS"
 }
 whisp() {
   dirs; need cmake
