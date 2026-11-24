@@ -4,8 +4,7 @@
 name = "gaming-core"
 category = "gaming"
 default = true
-packages = ["cachyos-gaming-applications", "hyprland-focused-booster", "steam", "flatpak"]
-post_install = ["flatpak install --user -y net.retrodeck.retrodeck"]
+packages = ["cachyos-gaming-meta", "steam", "protonplus", "heroic-games-launcher", "hyprland-focused-booster", "wqy-zenhei", "xorg-fonts-misc"]
 [[components.files]]
 src = "gaming/scx_loader.toml"
 dest = "/etc/scx_loader/config.toml"
@@ -23,12 +22,6 @@ sudo = true
 src = "gaming/gamerun"
 dest = "/usr/local/bin/gamerun"
 sudo = true
-[[components.files]]
-src = "gaming/start-steam"
-dest = "$XDG_BIN_HOME/start-steam"
-[[components.files]]
-src = "applications/steam.desktop"
-dest = "$XDG_DATA_HOME/applications/steam.desktop"
 
 [[components]]
 name = "gamemode"
@@ -40,7 +33,7 @@ packages = ["gamemode"]
 name = "mangohud"
 category = "gaming"
 default = true
-packages = ["mangohud"]
+packages = ["mangohud", "lib32-mangohud", "mangojuice"]
 [[components.files]]
 src = "mangohud"
 dest = "$XDG_CONFIG_HOME/MangoHud"
@@ -50,7 +43,7 @@ check = false
 name = "steamos-session"
 category = "gaming"
 default = true
-packages = ["gamescope-session-cachyos"]
+packages = ["gamescope", "gamescope-session-cachyos"]
 post_install = ["steamos-session-select persistent"]
 [[components.files]]
 src = "steamos/steam-set-session"
@@ -66,10 +59,17 @@ name = "decky-loader"
 category = "gaming"
 default = true
 ask = true
+packages = ["steam"]
 post_install = [
     "curl -L https://github.com/SteamDeckHomebrew/decky-installer/releases/latest/download/install_prerelease.sh | sh",
 ]
 post_deploy = ["sudo systemctl disable plugin_loader"]
+[[components.files]]
+src = "gaming/start-steam"
+dest = "$XDG_BIN_HOME/start-steam"
+[[components.files]]
+src = "applications/steam.desktop"
+dest = "$XDG_DATA_HOME/applications/steam.desktop"
 [[components.files]]
 src = "steamos/homebrew"
 dest = "$HOME/homebrew"
@@ -100,14 +100,23 @@ src = "gaming/lact/config.yaml"
 dest = "$XDG_CONFIG_HOME/lact/config.yaml"
 
 [[components]]
+name = "retrodeck"
+category = "gaming"
+default = false
+packages = ["flatpak"]
+post_install = [
+    "flatpak install --user -y net.retrodeck.retrodeck",
+    "flatpak override --user --talk-name=org.freedesktop.Flatpak net.retrodeck.retrodeck",
+]
+
+
+[[components]]
 name = "retrodeck-bios"
 category = "gaming"
 default = false
 ask = true
 packages = ["flatpak"]
 post_install = [
-    "flatpak install --user -y net.retrodeck.retrodeck",
-    "flatpak override --user --talk-name=org.freedesktop.Flatpak net.retrodeck.retrodeck",
     "mkdir -p $HOME/Games/Retrodeck/Switch",
     "mkdir -p $HOME/Games/Retrodeck/retrodeck/roms/apps",
 ]

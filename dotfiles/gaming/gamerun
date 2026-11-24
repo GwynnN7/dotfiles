@@ -8,19 +8,16 @@ fi
 
 GAME_CMD=()
 GAME_ENV=(
-    "MANGOHUD_CONFIGFILE=$HOME/.local/share/goverlay/gameconfig/global/MangoHud.conf"
-    "PROTON_FORCE_LARGE_ADDRESS_AWARE=1"
-    "ENABLE_LAYER_MESA_ANTI_LAG=1"
-    "PROTON_VKD3D_LOWLATENCY=1"
     "PROTON_LOCAL_SHADER_CACHE=1"
     "PROTON_DISCORD_BRIDGE=1"
-    "PROTON_PRIORITY_HIGH=1"
 )
 
-OPTISCALER="${GR_OPTI:-0}"
+GOVERLAY="${GR_GOVERLAY:-0}"
 GAMESCOPE="${GR_SCOPE:-0}"
 WAYLAND="${GR_WAYLAND:-0}"
+LATENCY="${GR_LATENCY:-0}"
 HDR="${GR_HDR:-0}"
+ZINK="${GR_ZINK:-0}"
 
 case "${GR_NVAPI:-}" in
     1|true)  NVAPI_STATUS=2 ;;
@@ -36,7 +33,8 @@ esac
 
 while [[ $# -gt 0 ]]; do
     case "$1" in 
-        --mangoapp) MANGOHUD_TYPE=1; shift ;;
+        --mangohud) MANGOHUD_TYPE=1; shift ;;
+        --mangoapp) MANGOHUD_TYPE=2; shift ;;
         --nvapi)    NVAPI_STATUS=1; shift ;;
         --no-nvapi) NVAPI_STATUS=2; shift ;;
         --gamescope) GAMESCOPE=1; shift ;;
@@ -55,6 +53,9 @@ fi
 if [[ "$SESSION_TYPE" == "steamos" ]]; then
     WAYLAND=0
     GAMESCOPE=0
+    if [[ $MANGOHUD_TYPE -eq 2 ]]; then
+        MANGOHUD_TYPE=1
+    fi
 fi
 
 if [[ $WAYLAND -eq 1 ]]; then
@@ -64,16 +65,34 @@ else
 fi
 
 if [[ $HDR -eq 1 ]]; then
-    GAME_ENV+=("PROTON_ENABLE_HDR=1")
+    GAME_ENV+=("DXVK_HDR=1")
 else
-    GAME_ENV+=("PROTON_ENABLE_HDR=0")
+    GAME_ENV+=("DXVK_NO_HDR=1")
 fi
 
-if [[ $NVAPI_STATUS -eq 1 ]]; then
-    GAME_ENV+=("PROTON_DISABLE_NVAPI=1")
-elif [[ $NVAPI_STATUS -eq 2 ]]; then
-    GAME_ENV+=("PROTON_ENABLE_NVAPI=1")
+if [[ $ZINK -eq 1 ]]; then
+    GAME_ENV+=("MESA_LOADER_DRIVER_OVERRIDE=zink")
 fi
+
+case "$LATENCY" in
+    1)
+        GAME_ENV+=("LOW_LATENCY_LAYER=1" "LOW_LATENCY_LAYER_REFLEX=1")
+        ;;
+    2)
+        GAME_ENV+=("PROTON_DXVK_LOWLATENCY=1")
+        ;;
+    3)
+        GAME_ENV+=("PROTON_VKD3D_LOWLATENCY=1")
+        ;;
+    4)
+        GAME_ENV+=("LOW_LATENCY_LAYER=1")
+        ;;
+esac
+
+case "$NVAPI_STATUS" in
+    1) GAME_ENV+=("PROTON_FORCE_NVAPI=1") ;;
+    2) GAME_ENV+=("PROTON_DISABLE_NVAPI=1") ;;
+esac
 
 WRAPPER=()
 if [[ $MANGOHUD_TYPE -eq 1 ]]; then
@@ -88,7 +107,7 @@ if [[ $GAMESCOPE -eq 1 ]]; then
     if [[ -z "$CURRENT_HZ" ]]; then
         CURRENT_HZ="60"
     fi
-    
+
     GAMESCOPE_ARGS=(
         -W 1920 -H 1080 -f -r "$CURRENT_HZ" --adaptive-sync
     )
@@ -100,7 +119,7 @@ if [[ $GAMESCOPE -eq 1 ]]; then
     LAUNCH_CMD+=(gamescope "${GAMESCOPE_ARGS[@]}" --)
 fi
 
-if [[ $OPTISCALER -eq 1 ]]; then
+if [[ $GOVERLAY -eq 1 ]]; then
     LAUNCH_CMD+=("$HOME/.local/share/goverlay/gameconfig/global/bgmod" --)
 fi
 
