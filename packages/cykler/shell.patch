@@ -20,10 +20,10 @@ index 1b8740e9..add9c7ce 100644
  
      function search(search: string): var {
 diff --git a/modules/nexus/pages/panels/LockPanel.qml b/modules/nexus/pages/panels/LockPanel.qml
-index fd7f145b..8907bc0c 100644
+index 3417709c..157ed1bc 100644
 --- a/modules/nexus/pages/panels/LockPanel.qml
 +++ b/modules/nexus/pages/panels/LockPanel.qml
-@@ -15,7 +15,9 @@ PageBase {
+@@ -18,7 +18,9 @@ PageBase {
              logout: Tr.tr("Log out"),
              shutdown: Tr.tr("Shut down"),
              sleep: Tr.tr("Sleep"),
@@ -33,12 +33,12 @@ index fd7f145b..8907bc0c 100644
 +            windows: Tr.tr("Windows")
          })
  
-     title: Tr.tr("Lock screen")
+     // The status pills the free-standing layouts can show (modules/lock/layouts/StatusChips.qml)
 diff --git a/modules/session/Content.qml b/modules/session/Content.qml
-index ecf50e5b..6c351556 100644
+index 87a6a158..1664f446 100644
 --- a/modules/session/Content.qml
 +++ b/modules/session/Content.qml
-@@ -32,12 +32,20 @@ Column {
+@@ -41,12 +41,20 @@ Column {
              reboot: {
                  icon: Config.session.icons.reboot,
                  command: Config.session.commands.reboot
@@ -61,10 +61,10 @@ index ecf50e5b..6c351556 100644
      // Enabled actions in their configured order, with the animation slotted back in
      readonly property var items: {
 diff --git a/plugin/src/Caelestia/Config/lockconfig.hpp b/plugin/src/Caelestia/Config/lockconfig.hpp
-index 95a50c26..2ecbaf90 100644
+index dd5344ce..9a0ce822 100644
 --- a/plugin/src/Caelestia/Config/lockconfig.hpp
 +++ b/plugin/src/Caelestia/Config/lockconfig.hpp
-@@ -52,6 +52,8 @@ class LockConfig : public settings::ObjectNode {
+@@ -85,6 +85,8 @@ class LockConfig : public settings::ObjectNode {
              LIST_ENTRY(shutdown, true),
              LIST_ENTRY(sleep, true),
              LIST_ENTRY(reboot, true),
@@ -74,7 +74,7 @@ index 95a50c26..2ecbaf90 100644
      // Which widgets show in the side columns, in what order, which column, and how much
      // vertical room each gets (ids: weather, fetch, media, resources, battery, notifs, network,
 diff --git a/plugin/src/Caelestia/Config/sessionconfig.hpp b/plugin/src/Caelestia/Config/sessionconfig.hpp
-index d9ecab9e..56fefa7a 100644
+index c03582a1..ab7530bb 100644
 --- a/plugin/src/Caelestia/Config/sessionconfig.hpp
 +++ b/plugin/src/Caelestia/Config/sessionconfig.hpp
 @@ -15,19 +15,23 @@ using Qt::StringLiterals::operator""_s;
@@ -103,7 +103,7 @@ index d9ecab9e..56fefa7a 100644
  };
  
  class SessionConfig : public settings::ObjectNode {
-@@ -47,6 +51,8 @@ class SessionConfig : public settings::ObjectNode {
+@@ -48,6 +52,8 @@ class SessionConfig : public settings::ObjectNode {
              LIST_ENTRY(shutdown, true),
              LIST_ENTRY(sleep, true),
              LIST_ENTRY(reboot, true),
@@ -113,10 +113,10 @@ index d9ecab9e..56fefa7a 100644
  };
  
 diff --git a/services/GameMode.qml b/services/GameMode.qml
-index e45f2254..fa496f70 100644
+index 81fdd007..da1b8934 100644
 --- a/services/GameMode.qml
 +++ b/services/GameMode.qml
-@@ -15,17 +15,20 @@ Singleton {
+@@ -22,6 +22,7 @@ Singleton {
  
      function setDynamicConfs(): void {
          Hypr.extras.applyOptions(GlobalConfig.utilities.gameMode.options);
@@ -124,6 +124,8 @@ index e45f2254..fa496f70 100644
      }
  
      onEnabledChanged: {
+@@ -32,12 +33,14 @@ Singleton {
+ 
          if (enabled) {
              setDynamicConfs();
 +            IdleInhibitor.mode = IdleInhibitor.preventLockAndSleepMode;
