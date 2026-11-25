@@ -178,7 +178,39 @@
         },
         "showClockSeconds": true,
         "showPerformance": true,
-        "showWeather": false
+        "showWeather": false,
+        "widgets": [
+            {
+                "enabled": true,
+                "id": "weather",
+                "zone": "top"
+            },
+            {
+                "enabled": true,
+                "id": "profile",
+                "zone": "top"
+            },
+            {
+                "enabled": true,
+                "id": "resources",
+                "zone": "bottom"
+            },
+            {
+                "enabled": true,
+                "id": "calendar",
+                "zone": "bottom"
+            },
+            {
+                "enabled": true,
+                "id": "clock",
+                "zone": "bottom"
+            },
+            {
+                "enabled": true,
+                "id": "media",
+                "zone": "right"
+            }
+        ]
     },
     "general": {
         "apps": {
@@ -302,7 +334,7 @@
         },
         "equalizer": true,
         "lyricsBackend": "Auto",
-        "repoPath": "/home/gwynn7/cykler-caelestia",
+        "repoPath": "/home/gwynn7/Projects/backlogged/caelestia/cykler-caelestia",
         "soundEffects": {
             "enabled": true,
             "notificationVolume": 0.7,
@@ -391,8 +423,27 @@
             "enabled": false
         },
         "cards": {
-            "phoneShare": false,
-            "recorder": true
+            "order": [
+                {
+                    "id": "keepAwake",
+                    "size": "compact"
+                },
+                {
+                    "id": "recorder",
+                    "size": "compact"
+                },
+                {
+                    "id": "phoneShare",
+                    "size": "normal"
+                },
+                {
+                    "id": "quickToggles",
+                    "size": "normal"
+                }
+            ],
+            "phoneShare": true,
+            "recorder": true,
+            "toggleColumns": 5
         },
         "gameMode": {
             "options": {
@@ -414,39 +465,48 @@
         "quickToggles": [
             {
                 "enabled": false,
-                "id": "wifi"
+                "id": "wifi",
+                "span": 1
             },
             {
                 "enabled": false,
-                "id": "bluetooth"
+                "id": "bluetooth",
+                "span": 1
             },
             {
                 "enabled": true,
-                "id": "mic"
+                "id": "mic",
+                "span": 1
             },
             {
                 "enabled": true,
-                "id": "settings"
+                "id": "timer",
+                "span": 1
             },
             {
                 "enabled": true,
-                "id": "gameMode"
+                "id": "gameMode",
+                "span": 1
             },
             {
                 "enabled": false,
-                "id": "wallpaperPlaying"
+                "id": "wallpaperPlaying",
+                "span": 1
             },
             {
                 "enabled": true,
-                "id": "dnd"
+                "id": "dnd",
+                "span": 1
             },
             {
                 "enabled": false,
-                "id": "vpn"
+                "id": "vpn",
+                "span": 1
             },
             {
                 "enabled": true,
-                "id": "timer"
+                "id": "settings",
+                "span": 1
             }
         ],
         "toasts": {

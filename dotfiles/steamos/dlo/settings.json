@@ -147,6 +147,18 @@
             "priority": 10
         },
         {
+            "id": "enable-fsr-watermark",
+            "name": "Enable FSR Watermark",
+            "on": "GR_FSR_WATERMARK=1 %command%",
+            "off": "",
+            "enableGlobally": false,
+            "group": "Environment",
+            "valueId": "",
+            "valueName": "",
+            "fallbackValue": false,
+            "priority": 10
+        },
+        {
             "id": "latency-antilag",
             "name": "Latency Layer",
             "on": "GR_LATENCY=0 %command%",

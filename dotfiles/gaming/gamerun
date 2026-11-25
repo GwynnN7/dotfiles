@@ -18,6 +18,7 @@ WAYLAND="${GR_WAYLAND:-0}"
 LATENCY="${GR_LATENCY:-0}"
 HDR="${GR_HDR:-0}"
 ZINK="${GR_ZINK:-0}"
+FSR_WATERMARK="${GR_FSR_WATERMARK:-0}"
 
 case "${GR_NVAPI:-}" in
     1|true)  NVAPI_STATUS=2 ;;
@@ -72,6 +73,10 @@ fi
 
 if [[ $ZINK -eq 1 ]]; then
     GAME_ENV+=("MESA_LOADER_DRIVER_OVERRIDE=zink")
+fi
+
+if [[ $FSR_WATERMARK -eq 1 ]]; then
+    GAME_ENV+=("PROTON_FSR4_INDICATOR=1")
 fi
 
 case "$LATENCY" in
